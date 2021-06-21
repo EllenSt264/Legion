@@ -4,4 +4,5 @@ $(document).ready(function () {
         fullWidth: true,
         indicators: true
     });
+    $('.collapsible').collapsible();
 });

@@ -29,6 +29,60 @@ nav {
     color: #0ACF83;
 }
 
+.sidenav {
+    background: #0B1B2A;
+}
+
+.sidenav li {
+    padding: 15px 24px 15px 50px;
+    border-bottom: 1px solid rgba(228, 228, 228, 20%);
+}
+
+.sidenav li:first-child,
+.sidenav li:last-child {
+    margin-top: 45px;
+    border-bottom: none;
+}
+
+.sidenav li > a {
+    padding: 0 !important;
+    font-weight: 300;
+}
+
+.sidenav a,
+.sidenav i {
+    color: #ffffff !important;
+}
+
+.sidenav i {
+    margin: 0 !important;
+}
+
+.sidenav .collapsible-body {
+    background: #0B1B2A;
+}
+
+.sidenav .collapsible-body li {
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+.sidenav .collapsible-body li a {
+    color: #7b7b7b !important;
+    font-weight: 400;
+}
+
+.sidenav .search {
+    font-size: 28px;
+}
+
+.sidenav .btn {
+    padding: 14px 10px;
+    background-color: #0ACF83;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
 .btn-green {
     background-color: #0ACF83;
     color: white;
