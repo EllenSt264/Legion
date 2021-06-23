@@ -235,6 +235,7 @@ Profile sidenav styles
     background-color: #04090F;
     z-index: 1000;
     opacity: 0;
+    transform: translateX(-105%)
 }
 
 #profile-sidenav .inner-container {
