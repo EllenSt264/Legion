@@ -94,6 +94,16 @@ AUTHENTICATION_BACKENDS = [
 WSGI_APPLICATION = 'legion.wsgi.application'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Points to Custom User Model
+AUTH_USER_MODEL = 'accounts.User'
+
+# Specify login URL and URL to redirect back to after logging in
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
