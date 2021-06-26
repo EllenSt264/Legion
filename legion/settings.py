@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'accounts',
+
+    # Other
+    'django_extensions',
+    'phonenumber_field',
 ]
 
 SITE_ID = 1
@@ -94,10 +98,41 @@ AUTHENTICATION_BACKENDS = [
 WSGI_APPLICATION = 'legion.wsgi.application'
 
 
+# Overwrite Allauth forms
+ACCOUNT_FORMS = {
+    "login": "allauth.account.forms.LoginForm",
+    "signup": "accounts.admin.UserCreationForm",
+    "add_email": "allauth.account.forms.AddEmailForm",
+    "change_password": "allauth.account.forms.ChangePasswordForm",
+    "set_password": "allauth.account.forms.SetPasswordForm",
+    "reset_password": "allauth.account.forms.ResetPasswordForm",
+    "reset_password_from_key": "allauth.account.forms.ResetPasswordKeyForm",
+    "disconnect": "allauth.socialaccount.forms.DisconnectForm",
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Points to Custom User Model
 AUTH_USER_MODEL = 'accounts.User'
+
+# Tells Allauth to ignore the username field
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+
+# Makes email required for registration
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+# Tells Allauth to allow email authentication
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+# Ensures we know users are using real emails
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+
+# To return user information on the front end
+def ACCOUNT_USER_DISPLAY(user): return user.get_username()
+
 
 # Specify login URL and URL to redirect back to after logging in
 LOGIN_URL = '/accounts/login/'
