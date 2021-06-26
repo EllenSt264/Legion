@@ -1,7 +1,7 @@
 <div id="profile-sidenav">
     <div class="inner-container">
         <ul>
-            <li><a href="#!"><img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1972&q=80" alt="" id="sidenav-profile-img"></a></li>
+            <li><a href="#!"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="sidenav-profile-img"></a></li>
             <li><a href="#!"><i class="far fa-comment fa-lg"></i></a></li>
             <li><a href="#!"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
             <li><a href="#!"><i class="far fa-heart fa-lg"></i></a></li>
@@ -9,7 +9,7 @@
             <li><a href="#!"><i class="fas fa-user-friends fa-lg"></i></a></li>
             <li><a href="#!"><i class="far fa-credit-card fa-lg"></i></a></li>
             <li><a href="#!"><i class="fas fa-cog fa-lg"></i></a></li>
-            <li><a href="#!"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
+            <li><a href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
         </ul>
     </div>
 </div>

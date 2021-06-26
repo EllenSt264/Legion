@@ -57,7 +57,7 @@ Navbar styles - mobile
 }
 
 .sidenav li:first-child,
-.sidenav li:last-child,
+.sidenav .login-btn,
 #profile-sidenav li:first-child,
 #profile-sidenav li:last-child {
     margin-top: 45px;
@@ -280,6 +280,14 @@ Profile sidenav styles
     width: 56px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+#desktop-profile-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
 }
 
 /* ======================================================

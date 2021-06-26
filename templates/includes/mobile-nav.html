@@ -20,5 +20,7 @@
     </li>
 
     <li><a href="#!">Contact <i class="material-icons right">chevron_right</i></a></li>
-    <li><a href="#!" class="btn">Log In</a></li>
+    {% if not request.user.is_authenticated %}
+        <li><a href="{% url 'account_login' %}" class="btn login-btn">Log In</a></li>
+    {% endif %}
 </ul>

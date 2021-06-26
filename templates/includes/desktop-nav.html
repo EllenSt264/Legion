@@ -1,9 +1,13 @@
-<a href="#!" class="brand-logo hide-on-med-and-down">Legion</a>
+<a href="{% url 'home' %}" class="brand-logo hide-on-med-and-down">Legion</a>
 <a href="#" data-target="mobile-sidenav--main" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
 <ul class="right hide-on-med-and-down">
     <li><a href="#!">About Us</a></li>
     <li><a href="#!">Services</a></li>
     <li><a href="#!">Discover</a></li>
     <li><a href="#!">Contact</a></li>
-    <li><a href="#!" class="btn btn-green">Log In</a></li>
+    {% if request.user.is_authenticated %}
+        <li><a href="#!"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-profile-img"></a></li>
+    {% else %}
+        <li><a href="{% url 'account_login' %}" class="btn btn-green">Log In</a></li>
+    {% endif %}
 </ul>
