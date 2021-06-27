@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
+import datetime
 
 from .models import User
 
@@ -11,6 +12,23 @@ from .models import User
 class UserCreationForm(forms.ModelForm):
     """ A form for creating new users. Includes all the required fields,
      including  a repeated password """
+
+    # Custom validation error for date of birth field
+    def validate_date_of_birth(value):
+        # Grab today's date
+        todayDate = datetime.datetime.now()
+        yy = todayDate.year
+        mm = todayDate.month
+        dd = todayDate.day
+
+        # Users must be at least 16 to register
+        maxiumDate = f'{yy-16}-{mm}-{dd}'
+
+        if value > maxiumDate:
+            raise ValidationError("You must be at least 16 to register")
+        else:
+            return value
+
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput,
@@ -19,11 +37,42 @@ class UserCreationForm(forms.ModelForm):
         label='Confirm Password',
         widget=forms.PasswordInput,
     )
+    # Override date field for materialize compatibility
+    date_of_birth = forms.CharField(
+        label='Date of Birth',
+        validators=[validate_date_of_birth],
+        widget=forms.TextInput(
+            attrs={
+                'class': 'datepicker',
+                'placeholder': 'Date of Birth',
+            })
+    )
 
     class Meta:
         model = User
+        widgets = {
+            # Apply placeholders
+            'first_name': forms.TextInput(
+                attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(
+                attrs={'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(
+                attrs={'placeholder': 'Email Address'}),
+            'phone_number': forms.TextInput(
+                attrs={'placeholder': 'Phone Number'}),
+            'password1': forms.TextInput(
+                attrs={'placeholder': 'Password'}),
+        }
         fields = ('first_name', 'last_name', 'email',
                   'date_of_birth', 'phone_number')
+
+    # Apply placeholders to password fields
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(
+            attrs={'placeholder': 'Password'})
+        self.fields['password2'].widget = forms.PasswordInput(
+            attrs={'placeholder': 'Confirm Password'})
 
     def clean_password2(self):
         # Check that passwords match
