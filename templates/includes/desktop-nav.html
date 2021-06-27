@@ -1,13 +1,31 @@
+<!-- Main nav -->
 <a href="{% url 'home' %}" class="brand-logo hide-on-med-and-down">Legion</a>
-<a href="#" data-target="mobile-sidenav--main" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
+<a href="#!" data-target="mobile-sidenav--main" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
 <ul class="right hide-on-med-and-down">
     <li><a href="#!">About Us</a></li>
     <li><a href="#!">Services</a></li>
     <li><a href="#!">Discover</a></li>
     <li><a href="#!">Contact</a></li>
     {% if request.user.is_authenticated %}
-        <li><a href="#!"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-profile-img"></a></li>
+        <li><a href="#!" data-target="slide-out" class="sidenav-trigger show-on-large"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-profile-img"></a></li>
     {% else %}
         <li><a href="{% url 'account_login' %}" class="btn btn-green">Log In</a></li>
     {% endif %}
 </ul>
+
+<!-- Desktop profile sidenav -->
+<div id="slide-out" class="sidenav">
+    <div class="inner-container">
+        <ul>
+            <li><a href="#!"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-sidenav-profile-img"></a></li>
+            <li><a href="#!"><i class="far fa-comment"></i> Messages</a></li>
+            <li><a href="#!"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+            <li><a href="#!"><i class="far fa-heart"></i> Favourites</a></li>
+            <li><a href="#!"><i class="far fa-bell"></i> Notifications</a></li>
+            <li><a href="#!"><i class="fas fa-user-friends"></i> Contacts</a></li>
+            <li><a href="#!"><i class="far fa-credit-card"></i> Payment Details</a></li>
+            <li><a href="#!"><i class="fas fa-cog"></i> Account Settings</a></li>
+            <li><a href="{% url 'account_logout' %}" class="btn login-btn">Log Out</a></li>
+        </ul>
+    </div>
+</div>

@@ -238,29 +238,43 @@ Profile sidenav styles
     transform: translateX(-105%)
 }
 
-#profile-sidenav .inner-container {
+#profile-sidenav .inner-container,
+#slide-out .inner-container {
     position: relative;
 }
 
-#profile-sidenav ul {
+#profile-sidenav ul,
+#slide-out ul {
     position: absolute;
 }
+
 
 #profile-sidenav li {
     height: 56px;
     margin-top: 15px;
 }
 
-#profile-sidenav li:first-child {
+#slide-out li {
+    padding: 30px 24px 30px 50px;
+}
+
+#profile-sidenav li:first-child,
+#slide-out li:first-child {
     margin-top: 10px;
     margin-bottom: 0;
 }
 
-#profile-sidenav li:nth-child(2) {
+#slide-out li:first-child {
+    text-align: center;
+}
+
+#profile-sidenav li:nth-child(2),
+#slide-out li:nth-child(2) {
     margin-top: 40px;
 }
 
-#profile-sidenav li:last-child {
+#profile-sidenav li:last-child,
+#slide-out li:last-child {
     margin-top: 80px;
 }
 
@@ -275,12 +289,25 @@ Profile sidenav styles
     padding-bottom: 20px;
 }
 
+#slide-out i {
+    font-size: 22px !important;
+    margin-right: 25px !important;
+}
+
 #sidenav-profile-img {
     height: 56px;
     width: 56px;
     border-radius: 50%;
     object-fit: cover;
 }
+
+#desktop-sidenav-profile-img {
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 
 #desktop-profile-img {
     height: 50px;

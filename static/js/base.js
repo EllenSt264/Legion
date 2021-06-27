@@ -5,16 +5,17 @@ $(document).ready(function () {
             $('aside').toggleClass('open');
         });
     });
-
+    
     var profileSidenav = true;
 
+    // Trigger profile sidenav with mobile nav
     if (profileSidenav) {
         // Fix sidenav aligment
-        $('.sidenav > li').css({
+        $('#mobile-sidenav--main > li').css({
             marginLeft: '50px'
         });
         // Trigger profile sidenav
-        $('.sidenav').sidenav({
+        $('#mobile-sidenav--main').sidenav({
             onOpenStart: function () {
                 $('#profile-sidenav').css({
                     opacity: 1,
