@@ -7,6 +7,7 @@
             <div class="content-container center-align">
                 <h4>Join the World's Marketplace</h4>
                 <p>Find great talent. Build your bussiness. Take your career to the next level.</p>
+                <!-- Mobile -->
                 <div class="row login-register-btns hide-on-med-and-up">
                     {% if request.user.is_authenticated %}
                         <div class="col s6 l2 offset-l4">
@@ -24,10 +25,20 @@
                         </div>
                     {% endif %}
                 </div>
+                <!-- Desktop -->
                 <div class="row hide-on-small-only get-started-btn">
-                    <div class="col s12">
-                        <a href="{% url 'account_login' %}" class="btn btn-large waves-effect">Get Started</a>
-                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="col s6 l2 offset-l4">
+                            <a class="btn btn-large waves-effect">Find Creators</a>
+                        </div>
+                        <div class="col s6 l2">
+                            <a class="btn btn-large waves-effect">Find Work</a>
+                        </div>
+                    {% else %}
+                        <div class="col s12">
+                            <a href="{% url 'account_login' %}" class="btn btn-large waves-effect">Get Started</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -132,7 +132,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 
 # To return user information on the front end
-def ACCOUNT_USER_DISPLAY(user): return user.get_username()
+def ACCOUNT_USER_DISPLAY(user): return f'{user.first_name} {user.last_name}'
 
 
 # Specify login URL and URL to redirect back to after logging in

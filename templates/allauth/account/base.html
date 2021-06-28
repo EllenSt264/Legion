@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="account-container" id="{% if request.get_full_path == '/accounts/signup/' %}SignUp{% elif request.get_full_path == '/accounts/login/' %}LogIn{% endif %}">
-        <div class="inner-container">
-            <div class="content">
-                {% block inner_content %}
-                {% endblock %}
-            </div>
-        </div>
+    <div class="page-top-border hide-on-med-and-up"></div>
+        <div class="container allauth-other">
+            {% block inner_content %}
+            {% endblock %}
     </div>
 {% endblock %}
+

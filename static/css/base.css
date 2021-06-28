@@ -324,6 +324,10 @@ Universal class styles
 .btn-green {
     background-color: #0ACF83;
     color: white;
+    border-radius: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
 
 .soft-blue {
@@ -331,7 +335,7 @@ Universal class styles
 }
 
 /* ======================================================
-Styles for allauth account pages
+Styles for allauth sign up and log in pages
 ====================================================== */
 
 /* =======================
@@ -540,6 +544,49 @@ Google button styles
 
 .google-btn span {
     margin-left: 20px;
+}
+
+/* ======================================================
+Styles for allauth account verification pages
+====================================================== */
+
+.container.allauth-other {
+    width: 100%;
+    height: 92%;
+    position: absolute;
+    bottom: 0;
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #0A1A29, #373454);
+    background: -moz-linear-gradient(bottom, #0A1A29, #373454);
+    background: linear-gradient(to top, #0A1A29, #373454);
+    color: white;
+    padding: 80px 25px 25px;
+    z-index: -5;
+}
+
+.page-top-border {
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    top: 0;
+    background-color: #6C5CE7;
+    border-radius: 0 0 50% 50%;
+}
+
+#confirmEmail .row {
+    margin: 25px auto;
+}
+
+#confirmEmail h3 {
+    margin: 25px auto 50px;
+}
+
+#confirmEmail form {
+    margin: 50px auto;
+}
+
+#Logout {
+    margin: 50% auto;
 }
 
 /* ======================================================
