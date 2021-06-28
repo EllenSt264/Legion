@@ -1,21 +1,48 @@
 {% extends "account/base.html" %}
+{% load materializecss %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+{% block inner_content %}
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<h4 class="center-align account-title register">{% trans "Create your account" %}</h4>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+    {% csrf_token %}
+    {{ form | materializecss }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <!-- Register -->
+    <div class="row center-align text-center form-btn-row">
+        <div class="col s12">
+            <button class="btn" type="submit">{% trans "Create Account" %}</button>
+        </div>
+    </div>
+    <p class="center-align or">OR</p>
+    <!-- Continue with Google -->
+    <div class="row center-align text-center">
+        <div class="col s12">
+            <a href="#!" class="btn google-btn">
+                <div class="icon-outer">
+                    <div class="icon">
+                        <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="" class="center">
+                    </div>
+                </div>
+                <span>Continue with Google</span>
+            </a>
+        </div>
+    </div>
+    <!-- Resgister -->
+    <div class="row center-align text-center">
+        <div class="col s12">
+            <p class="register-login-message">Already have an account? <a href="{{ login_url }}">Sign In</a></p>
+        </div>
+    </div>
+
 </form>
 
 {% endblock %}

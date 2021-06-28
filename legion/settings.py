@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # Other
     'django_extensions',
+    'materializecssform',
     'phonenumber_field',
 ]
 
