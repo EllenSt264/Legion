@@ -321,6 +321,10 @@ Profile sidenav styles
 Universal class styles
 ====================================================== */
 
+/* =======================
+Buttons
+====================== */
+
 .btn-green {
     background-color: #0ACF83;
     color: white;
@@ -357,6 +361,42 @@ Universal class styles
     color: #758FF9;
     text-transform: uppercase;
     font-size: 14px;
+}
+
+/* =======================
+Form fields
+====================== */
+
+.input-field {
+    width: 85% !important;
+    margin: 28px auto;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+
+input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding-left: 12px;
+    font-size: 16px;
+    color: #BABABA;
+    letter-spacing: 0.5px;
+}
+
+input,
+input:focus,
+input.valid
+input.invalid {
+    width: 90% !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+input {
+    border-bottom: none !important;
+}
+
+form .col.s12 {
+    text-align: center;
 }
 
 /* ======================================================
@@ -480,49 +520,9 @@ form .or {
 Input field styles
 ====================== */
 
-form.login .input-field,
-form.signup .input-field {
-    width: 85%;
-    margin: 28px auto;
-    background: #FFFFFF;
-    border-radius: 15px;
-}
-
-form.login input::placeholder,
-form.signup input::placeholder {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    padding-left: 12px;
-    font-size: 16px;
-    color: #BABABA;
-    letter-spacing: 0.5px;
-}
-
-form.login input,
-form.signup input,
-form.login input:focus,
-form.signup input:focus,
-form.login input.valid,
-form.signup input.valid,
-form.login input.invalid,
-form.signup input.invalid {
-    width: 90% !important;
-    font-family: 'Poppins', sans-serif;
-}
-
-form.login input,
-form.signup input {
-    border-bottom: none !important;
-}
-
 form.login label,
 form.signup label {
     display: none;
-}
-
-form.login .col.s12,
-form.signup .col.s12 {
-    text-align: center;
 }
 
 form.login .btn,
@@ -723,6 +723,67 @@ Titles and content
     margin: 15px auto;
 }
 
+/* =======================
+Form styles
+====================== */
+
+#RecruiterForm .switch {
+    width: 85%;
+    margin: auto;
+    text-align: right;
+}
+
+#RecruiterForm .switch label {
+    font-size: 16px;
+    color: #FEFEFE;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+#RecruiterForm .switch label .lever {
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 28px;
+    background-color: white;
+    border-radius: 15px;
+    margin-right: 10px;
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    vertical-align: middle;
+    margin: 0 16px;
+}
+
+#RecruiterForm .switch label .lever:before,
+#RecruiterForm .switch label .lever:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    left: 4px;
+    top: 2px;
+    -webkit-transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+}
+
+#RecruiterForm .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #6979F8;
+}
+
+#RecruiterForm .switch label input[type=checkbox]:checked+.lever:before,
+#RecruiterForm .switch label input[type=checkbox]:checked+.lever:after {
+    left: 20px;
+}
+
+#RecruiterForm .switch label .lever:after {
+    background-color: #a7a7a7;
+}
+
 /* ======================================================
 Carousel styles
 ====================================================== */
@@ -873,22 +934,16 @@ REPSONSIVE STYLES FOR LARGER SCREENS
 @media (min-width: 1280px) {
     /* Login page styles
     =========================== */
-    form.login .input-field,
-    form.signup .input-field {
+    .input-field {
         width: 50%;
     }
-    form.login input::placeholder,
-    form.signup input::placeholder {
+    input::placeholder {
         padding-left: 5px;
     }
-    form.login input,
-    form.signup input,
-    form.login input:focus,
-    form.signup input:focus,
-    form.login input.valid,
-    form.signup input.valid,
-    form.login input.invalid,
-    form.signup input.invalid {
+    input,
+    input:focus,
+    input.valid
+    input.invalid {
         width: 95% !important;
     }
     #LogIn blockquote,
