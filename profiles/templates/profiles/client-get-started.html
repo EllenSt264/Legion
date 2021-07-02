@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="account-container start-profile" id="ClientStart">
+            <div class="container content"> 
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center title">Get Started as a Client</h4>
+                        <p>As a client you can hire talents and buy any of their services and/or merchandise.</p>
+                        <p>
+                            If you are a Recruiter, and you’re specifically interested in posting jobs and hiring, then please check this box
+                            and enter your company name.
+                        </p>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <form action="">
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-green">Continue</a>
+                        </div>
+                        <div class="col s12 m6">
+                            <a href="{% url 'start' %}" class="btn btn-large btn-cancel">Go Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+{% endblock %}

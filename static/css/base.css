@@ -330,8 +330,33 @@ Universal class styles
     font-size: 16px;
 }
 
+.btn-purple {
+    background: #6C5CE7;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 25px;
+}
+
+.btn-cancel {
+    background: #FFFFFF;
+    color: #1E1E1E;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 25px;
+}
+
 .soft-blue {
     background-color: #363353;
+}
+
+.text-link {
+    color: #758FF9;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 /* ======================================================
@@ -600,6 +625,105 @@ Styles for allauth account verification pages
 }
 
 /* ======================================================
+Get started styles
+====================================================== */
+
+/* =======================
+Background image styles
+====================== */
+
+/* The background images were based upon the following sources: 
+'https://www.sitepoint.com/css3-transform-background-image/' 
+'https://css-tricks.com/almanac/properties/b/background-position/'
+*/
+
+#GetStarted::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('/media/img32.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: 45% -80px;
+    transform: scale(1.7);
+    z-index: -10;
+}
+
+#CreatorStart::before,
+#ClientStart::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('/media/img33.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: 65% 50px;
+    transform: scale(1.2);
+    z-index: -10;
+}
+
+/* =======================
+Container styles
+====================== */
+
+.account-container .container.content {
+    width: 100%;
+    height: 94%;
+    position: absolute;
+    top: 6%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 60%);
+    backdrop-filter: blur(2px);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    overflow: auto;
+}
+
+/* =======================
+Titles and content
+====================== */
+
+.start-profile .title {
+    margin: 25px auto;
+    padding: 0 33px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 26px;
+    line-height: 40px;
+}
+
+.start-profile p,
+.start-profile h4,
+.start-profile h6 {
+    padding: 10px 25px;
+
+}
+
+.start-profile ol {
+    padding: 5px 40px;
+}
+
+.start-profile li {
+    padding: 5px 25px;
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.start-profile p {
+    margin: 10px auto;
+    font-weight: 300;
+    line-height: 22px;
+    letter-spacing: 1px;
+}
+
+.start-profile .btn {
+    margin: 15px auto;
+}
+
+/* ======================================================
 Carousel styles
 ====================================================== */
 
@@ -854,7 +978,31 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     #SignUp::before {
         background-position: -65px -420px;
         transform: scale(1.1);
-    }    
+    }
+    /* Get started styles
+    =========================== */
+    #GetStarted::before {
+        background-position: 45% -500px;
+        transform: scale(1.2);
+    }
+}
+
+@media (min-width: 1023px) and (min-height: 800px) {
+    /* Get started styles
+    =========================== */
+    .account-container .container.content {
+        height: 70%;
+        top: 30%;
+    }
+}
+
+@media (min-width: 1023px) and (max-height: 800px) {
+    /* Get started styles
+    =========================== */
+    .account-container .container.content {
+        height: 75%;
+        top: 25%;
+    }
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) and (max-height: 800px) {
