@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'accounts',
+    'profiles',
 
     # Other
     'django_extensions',
