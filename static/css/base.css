@@ -339,6 +339,16 @@ Styles for allauth sign up and log in pages
 ====================================================== */
 
 /* =======================
+Error messages
+====================== */
+
+#LogIn blockquote,
+#SignUp blockquote {
+    width: 80%;
+    margin: auto;
+}
+
+/* =======================
 Container styles
 ====================== */
 
@@ -756,6 +766,11 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     form.login input.invalid,
     form.signup input.invalid {
         width: 95% !important;
+    }
+    #LogIn blockquote,
+    #SignUp blockquote {
+        width: 50%;
+        margin: auto;
     }
 }
 
