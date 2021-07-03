@@ -30,3 +30,10 @@ def start_client(request):
     }
 
     return render(request, template, context)
+
+
+def sucess(request):
+    """ A view to render the success page
+     for completing a profile """
+
+    return render(request, 'profiles/success.html')
