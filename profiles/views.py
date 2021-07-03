@@ -32,8 +32,15 @@ def start_client(request):
     return render(request, template, context)
 
 
-def sucess(request):
+def success_creator(request):
     """ A view to render the success page
-     for completing a profile """
+     for when a creator completes their profile """
 
-    return render(request, 'profiles/success.html')
+    return render(request, 'profiles/success-creator.html')
+
+
+def success_client(request):
+    """ A view to render the success page
+     for when a client completes their profile """
+
+    return render(request, 'profiles/success-client.html')
