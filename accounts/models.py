@@ -71,6 +71,8 @@ class User(AbstractBaseUser):
         blank=True,
         null=True,
     )
+    is_creator = models.BooleanField(default=False)
+    is_recruiter = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
