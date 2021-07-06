@@ -138,7 +138,7 @@ def ACCOUNT_USER_DISPLAY(user): return f'{user.first_name} {user.last_name}'
 
 # Specify login URL and URL to redirect back to after logging in
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/get-started/'
 
 
 # Database

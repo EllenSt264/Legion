@@ -23,4 +23,6 @@ $(document).ready(function () {
 
     // Initialize select input form field
     $('select').formSelect();
+
+    $('.tooltipped').tooltip();
 });
