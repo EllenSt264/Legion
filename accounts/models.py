@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.timezone import now
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
@@ -70,6 +71,9 @@ class User(AbstractBaseUser):
         verbose_name='phone number',
         blank=True,
         null=True,
+    )
+    date_joined = models.DateField(
+        default=timezone.now,
     )
     is_creator = models.BooleanField(default=False)
     is_recruiter = models.BooleanField(default=False)

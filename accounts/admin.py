@@ -99,7 +99,7 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'password',
-                  'date_of_birth', 'phone_number',
+                  'date_of_birth', 'phone_number', 'date_joined',
                   'is_active', 'is_admin')
 
 
@@ -116,7 +116,8 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name',
-                                      'date_of_birth', 'phone_number',)}),
+                                      'date_of_birth', 'phone_number',
+                                      'date_joined',)}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -125,7 +126,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('first_name', 'last_name', 'email', 'date_of_birth',
-                       'phone_number', 'password1', 'password2'),
+                       'phone_number', 'date_joined', 'password1', 'password2'),
         }),
     )
     search_fields = ('email',)
