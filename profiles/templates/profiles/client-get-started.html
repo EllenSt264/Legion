@@ -20,8 +20,13 @@
                 {% csrf_token %}
                 <!-- Recruiter switch and company name -->
                 <div class="tab" id="RecruiterOrClient">
+                    {% for field in profile_form %}
+                        {% if field.name == 'is_recruiter' %}
+                                {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
                     {% for field in form %}
-                        {% if field.name == 'is_recruiter' or field.name == 'company_name' %}
+                        {% if field.name == 'company_name' %}
                                 {{ field | materializecss }}
                         {% endif %}
                     {% endfor %}
@@ -29,12 +34,12 @@
                 <!-- Title and professional overview -->
                 <div class="tab" id="TitleOverview">
                     {% for field in profile_form %}
-                            {% if field.name == 'title' %}
-                                {{ field | materializecss }}
-                            {% endif %}
-                            {% if field.name == 'overview' %}
-                                {{ field | materializecss }}
-                            {% endif %}
+                        {% if field.name == 'title' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'overview' %}
+                            {{ field | materializecss }}
+                        {% endif %}
                     {% endfor %}
                     <!-- Skip section -->
                     <div class="col s12">
@@ -55,7 +60,7 @@
                         <a href="#!" class="btn btn-large btn-green" id="nextBtn">Continue</a>
                     </div>
                     <div class="col s12 m6">
-                        <button class="btn btn-large btn-green hide" id="submitBtn">Submit</button>
+                        <button type="submit" class="btn btn-large btn-green hide" id="submitBtn">Submit</button>
                     </div>
                     <div class="col s12 m6">
                         <a href="{% url 'start' %}" class="btn btn-large btn-cancel">Go Back</a>
