@@ -38,10 +38,11 @@ class Recruiter(models.Model):
     country = CountryField(blank_label='Select Country', null=True, blank=True)
 
 
-@receiver(post_save, sender=User)
-def update_profile_signal(sender, instance, created, **kwargs):
-    """ A signal to update or create the user profile """
-    user = instance
-    if created:
-        profile = UserProfile(user=user)
-        profile.save()
+def create_profile(sender, instance, created, *args, **kwargs):
+    # ignore if this is an existing User
+    if not created:
+        return
+    UserProfile.objects.create(user=instance)
+
+
+post_save.connect(create_profile, sender=User)
