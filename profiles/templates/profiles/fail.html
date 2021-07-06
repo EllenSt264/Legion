@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-top-border hide-on-med-and-up"></div>
+    <div class="start-profile container background-other">
+        <div class="row">
+            <div class="col s12 center-align">
+                <h4 class="center title">Something went wrong!</h4>
+                <h1 class="center-align"><i class="fas fa-exclamation-circle"></i></h1>
+                <p>
+                    Oh no, something went wrong and we couldn't submit your information. Please try again.
+                </p>
+                <p>
+                    If you continue to encounter problems then please contact our support team.
+                </p>
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s12">
+                <p class="text-link"><a href="#!">Contact Support</a></p>
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s12">
+                <a href="{% url 'start' %}" class="btn btn-large btn-green">Try Again</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

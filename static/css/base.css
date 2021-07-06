@@ -678,6 +678,20 @@ Background image styles
 Container styles
 ====================== */
 
+.background-other {
+    width: 100%;
+    height: 92% !important;
+    position: absolute;
+    bottom: 0;
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #0A1A29, #373454);
+    background: -moz-linear-gradient(bottom, #0A1A29, #373454);
+    background: linear-gradient(to top, #0A1A29, #373454);
+    color: white;
+    padding: 80px 25px 25px;
+    z-index: -5;
+}
+
 .account-container .container.content {
     width: 100%;
     height: 94%;
@@ -691,6 +705,15 @@ Container styles
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     overflow: auto;
+}
+
+.tab {
+    display: none;
+}
+
+#TitleOverview p a {
+    margin: auto;
+    width: 100%;
 }
 
 /* =======================
@@ -798,6 +821,19 @@ Form styles
 
 #RecruiterForm .switch label .lever:after {
     background-color: #a7a7a7;
+}
+
+.start-profile .select-dropdown {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding-left: 20px !important;
+    font-size: 16px;
+    color: #1f1f1f;
+    letter-spacing: 0.5px;
+}
+
+.start-profile .dropdown-content {
+    padding-left: 0 !important;
 }
 
 /* ======================================================
