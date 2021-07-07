@@ -26,22 +26,26 @@ def start_client(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        form2 = RecruiterForm(request.POST, instance=profile)
-        if form.is_valid():
+        profile_form = UserProfileForm(request.POST, instance=profile)
+        recruiter_form = RecruiterForm(request.POST)
+
+        if profile_form.is_valid() and recruiter_form.is_valid():
+            form = profile_form.save(commit=False)
+            recruiter = recruiter_form.save(commit=False)
+            recruiter.profile = form
             form.save()
-            form2.save()
+            recruiter.save()
             return redirect(reverse('success_client'))
         else:
             return redirect(reverse('fail'))
     else:
-        form = UserProfileForm(instance=profile)
-        form2 = RecruiterForm(instance=profile)
+        profile_form = UserProfileForm(instance=profile)
+        recruiter_form = RecruiterForm(instance=profile)
 
     template = 'profiles/client-get-started.html'
     context = {
-        'profile_form': form,
-        'form': form2,
+        'profile_form': profile_form,
+        'form': recruiter_form,
     }
 
     return render(request, template, context)

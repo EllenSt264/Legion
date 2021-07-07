@@ -31,11 +31,24 @@ class UserProfile(models.Model):
 class Recruiter(models.Model):
     """ A class model for the recruiter user type """
 
-    company_name = models.CharField(max_length=70, null=False, blank=False)
+    class Meta:
+        verbose_name_plural = 'Profiles'
 
+    profile = models.OneToOneField(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name='profile',
+        primary_key=True,
+        default='',
+    )
+
+    company_name = models.CharField(max_length=70, null=False, blank=False)
     town_or_city = models.CharField(max_length=70, null=False, blank=False)
     postcode = models.CharField(max_length=70, null=False, blank=False)
     country = CountryField(blank_label='Select Country', null=True, blank=True)
+
+    def __str__(self):
+        return self.profile.user.email
 
 
 def create_profile(sender, instance, created, *args, **kwargs):

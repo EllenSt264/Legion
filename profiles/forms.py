@@ -5,14 +5,13 @@ from .models import UserProfile, Recruiter
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user', 'recruiter',)
+        exclude = ('user', 'is_creator',)
 
         labels = {
             'title': '',
             'overview': '',
             'image': 'Profile Image',
             'is_recruiter': '',
-            'is_creator': '',
         }
 
     def __init__(self, *args, **kwargs):
@@ -25,7 +24,6 @@ class UserProfileForm(forms.ModelForm):
             'overview': 'Overview',
             'image': 'Image',
             'is_recruiter': '',
-            'is_creator': '',
         }
 
         for field in self.fields:
@@ -39,7 +37,6 @@ class RecruiterForm(forms.ModelForm):
         exclude = ('profile',)
 
         labels = {
-            'is_recruiter': '',
             'company_name': '',
             'town_or_city': '',
             'postcode': '',
@@ -52,7 +49,6 @@ class RecruiterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         placeholders = {
-            'is_recruiter': '',
             'company_name': 'Company Name',
             'town_or_city': 'Town or City',
             'postcode': 'Postcode',
