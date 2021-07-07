@@ -363,6 +363,12 @@ Buttons
     font-size: 14px;
 }
 
+.text-link-green {
+    color: #0ACF83;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
 /* =======================
 Form fields
 ====================== */
@@ -830,10 +836,6 @@ Form styles
     font-size: 16px;
     color: #1f1f1f;
     letter-spacing: 0.5px;
-}
-
-.start-profile .dropdown-content {
-    padding-left: 0 !important;
 }
 
 /* ======================================================

@@ -26,7 +26,7 @@ $(document).ready(function() {
     // Display the current tab
     showTab(currentTab);
 
-    $('#nextBtn').on('click', function() {
+    $('.next-btn').on('click', function() {
         nextPrev();
     });
 
@@ -41,8 +41,8 @@ $(document).ready(function() {
         // if you have reached the end of the form... :
         if (n == (x.length - 1)) {
             // show the submit to submit the form
-            $('#nextBtn').addClass('hide');
-            $('#submitBtn').removeClass('hide');
+            $('.next-btn').addClass('hide');
+            $('.submit-btn').removeClass('hide');
         }
     }
     
