@@ -94,3 +94,5 @@ The full spreedsheet that defines all of the user stories can be accessed [here]
 - When trying to add the user profile to the admin, I would recieve a `User has no profile` error. [This source](https://stackoverflow.com/questions/36317816/relatedobjectdoesnotexist-user-has-no-userprofile) helped me address and fix the issue.
 
 - [This source](https://stackoverflow.com/questions/26312219/operationalerror-no-such-column-django) helped me fix an operational error, `no such collumn` when working with the optional input fields in the user profile model.
+
+- I used [this source](https://stackoverflow.com/questions/38787889/django-admin-edit-fields-of-one-to-one-model-class) to implement inlines in the admin.
