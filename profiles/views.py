@@ -53,6 +53,7 @@ def creator_form(request, user_id):
                 creator.save()
 
                 category = category_form.save(commit=False)
+                category.profile = profile
                 category.save()
 
                 creator_work = work_form.save(commit=False)
