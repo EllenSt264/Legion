@@ -3,7 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile
-from .forms import RecruiterForm, UserProfileForm
+from .forms import (RecruiterForm, UserProfileForm, CreatorForm,
+                    CreatorWorkForm, CategoryForm,
+                    EducationForm, WorkExperienceForm, LanguagesForm)
 
 
 @login_required
@@ -24,10 +26,74 @@ def creator_form(request, user_id):
     """ A view to render the creator form """
 
     user = get_object_or_404(get_user_model(), pk=user_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, instance=profile)
+        creator_form = CreatorForm(request.POST)
+        work_form = CreatorWorkForm(request.POST)
+        category_form = CategoryForm(request.POST)
+        education_form = EducationForm(request.POST)
+        work_experience_form = WorkExperienceForm(request.POST)
+        languages_form = LanguagesForm(request.POST)
+
+        form_list = [
+            profile_form, creator_form, work_form,
+            category_form,
+            education_form, work_experience_form,
+            languages_form
+        ]
+
+        for each_form in form_list:
+            if each_form.is_valid():
+                profile = profile_form.save(commit=False)
+                creator = creator_form.save(commit=False)
+                creator.profile = profile
+                profile.save()
+                creator.save()
+
+                category = category_form.save(commit=False)
+                category.save()
+
+                creator_work = work_form.save(commit=False)
+                creator_work.profile = profile
+                creator_work.category = category
+                creator_work.save()
+
+                education = education_form.save(commit=False)
+                education.profile = profile
+                education.save()
+
+                work = work_experience_form.save(commit=False)
+                work.profile = profile
+                work.save()
+
+                languages = languages_form.save(commit=False)
+                languages.profile = profile
+                languages.save()
+
+                return redirect(reverse('success_client'))
+            else:
+                return redirect(reverse('fail'))
+    else:
+        profile_form = UserProfileForm(instance=profile)
+        creator_form = CreatorForm()
+        work_form = CreatorWorkForm()
+        category_form = CategoryForm()
+        education_form = EducationForm()
+        work_experience_form = WorkExperienceForm()
+        languages_form = LanguagesForm()
 
     template = 'profiles/creator-form.html'
     context = {
         'user': user,
+        'profile_form': profile_form,
+        'creator_form': creator_form,
+        'category_form': category_form,
+        'work_form': work_form,
+        'education_form': education_form,
+        'work_experience_form': work_experience_form,
+        'languages_form': languages_form,
     }
 
     return render(request, template, context)
@@ -55,7 +121,7 @@ def start_client(request):
             return redirect(reverse('fail'))
     else:
         profile_form = UserProfileForm(instance=profile)
-        recruiter_form = RecruiterForm(instance=profile)
+        recruiter_form = RecruiterForm()
 
     template = 'profiles/client-get-started.html'
     context = {
