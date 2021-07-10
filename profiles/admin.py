@@ -30,12 +30,6 @@ class CreatorInlineForm(admin.StackedInline):
 class CreatorWorkInlineForm(admin.StackedInline):
     model = CreatorWork
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == "category":
-            parent_id = request.resolver_match.kwargs['object_id']
-            kwargs["queryset"] = Category.objects.filter(category_name=parent_id)
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
 
 class CategoryInlineForm(admin.StackedInline):
     model = Category

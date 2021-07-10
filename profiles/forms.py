@@ -194,7 +194,7 @@ class WorkExperienceForm(forms.ModelForm):
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        exclude = ()
+        exclude = ('profile',)
 
     def __init__(self, *args, **kwargs):
         """ Add placeholders and classes to form inputs """

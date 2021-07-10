@@ -138,13 +138,6 @@ class CreatorWork(models.Model):
         blank=True,
     )
 
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=False
-    )
-
     skills = models.CharField(max_length=70, null=True, blank=True)
 
     class Expertise(models.IntegerChoices):
