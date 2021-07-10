@@ -6,6 +6,7 @@
     <div class="account-container start-profile" id="ClientStart">
         <div class="container content"> 
             <form action="{% url 'start_client' %}" method="POST" id="RecruiterForm">
+                {% csrf_token %}
                 <!-- Recruiter toggle and company name -->
                 <div class="tab" id="RecruiterOrClient">
                     <div class="row">
