@@ -6,7 +6,8 @@
     <div class="account-container start-profile" id="CreatorStart">
         <div class="container content">
             <form action="" method="POST" id="CreatorForm">
-                <!-- Work and services -->
+                {% csrf_token %}
+                <!-- Work and services - dummy field -->
                 <div class="tab" id="CreatorWork">
                     <div class="row">
                         <div class="col s12">
@@ -19,11 +20,36 @@
                         </div>
                     </div>
                 </div>
+                <!-- Work and services -->
+                <div class="tab" id="CreatorWork">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Select a Category</h4>
+                        </div>
+                    </div>
+                    {{ category_form | materializecss }}
+                </div>
                 <!-- Skills -->
                 <div class="tab" id="Skills">
                     <div class="row">
                         <div class="col s12">
-                            <h4 class="center title">Select your Skills</h4>
+                            <h4 class="center title">Add your Skills</h4>
+                            <p class="center">Add your skills tags by entering text and pressing enter</p>
+                        </div>
+                    </div>
+                    <div class="chips-container"></div>
+                    <div class="input-field col s12">
+                        <input type="text" id="skillsChips" placeholder="Type a skill and press enter">
+                    </div>
+                    <!-- Django hidden input field -->
+                    {% for field in work_form  %}
+                        {% if field.name == 'skills' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="#!" class="btn btn-large btn-purple" id="addSkills">Add</a>
                         </div>
                     </div>
                 </div>
@@ -35,6 +61,11 @@
                             <p>What’s your level of experience in this field? Pick one</p>
                         </div>
                     </div>
+                    {% for field in work_form  %}
+                        {% if field.name == 'expertise_level' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <!-- Education -->
                 <div class="tab" id="Education">
@@ -53,6 +84,13 @@
                             <h4 class="center title">Add Education</h4>
                         </div>
                     </div>
+                    {% for field in education_form %}
+                        {{ field | materializecss }}
+                        {% if field.name == 'qualification' %}
+                            <!-- To go above start date -->
+                            <span>Date Attended</span>    
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <!-- Work Experience -->
                 <div class="tab" id="WorkExperience">
@@ -77,6 +115,21 @@
                             <h4 class="center title">Add Work Experience</h4>
                         </div>
                     </div>
+                    {% for field in work_experience_form %}
+                        {% if field.name != 'start_date' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'start_date' %}
+                            <span>Period</span>
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Skip section -->
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="text-center"><span class="text-link-green skip-section">Skip this step</span></p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Languages -->
                 <div class="tab" id="Languages">
@@ -91,6 +144,7 @@
                             <a href="#!" class="btn btn-large btn-purple next-btn" id="languagesBtn">Add Languages</a>
                         </div>
                     </div>
+                    {{ languages_form | materializecss }}
                 </div>
                 <!-- Title and Overview -->
                 <div class="tab" id="CreatorTitleOverview">
@@ -101,6 +155,14 @@
                             <p>Let’s begin by adding your job title and professional overview.</p>
                         </div>
                     </div>
+                    {% for field in profile_form %}
+                        {% if field.name == 'title' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'overview' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
                     <!-- Skip section -->
                     <div class="row">
                         <div class="col s12">
@@ -119,6 +181,11 @@
                             </p>
                         </div>
                     </div>
+                    {% for field in profile_form %}
+                        {% if field.name == 'image' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
                     <!-- Skip section -->
                     <div class="row">
                         <div class="col s12">
@@ -141,6 +208,7 @@
                             </p>
                         </div>
                     </div>
+                    {{ creator_form | materializecss }}
                 </div>
                 <!-- Submit form, next and back buttons -->
                 <div class="row center-align">

@@ -735,6 +735,12 @@ Titles and content
     line-height: 40px;
 }
 
+.start-profile .title.smaller {
+    font-size: 18px;
+    padding: 0;
+    color: #ffffff;
+}
+
 .start-profile p,
 .start-profile h4,
 .start-profile h6 {
@@ -772,20 +778,20 @@ Titles and content
 Form styles
 ====================== */
 
-#RecruiterForm .switch {
+.start-profile .switch {
     width: 85%;
     margin: auto;
     text-align: right;
 }
 
-#RecruiterForm .switch label {
+.start-profile .switch label {
     font-size: 16px;
     color: #FEFEFE;
     font-weight: 200;
     letter-spacing: 1px;
 }
 
-#RecruiterForm .switch label .lever {
+.start-profile .switch label .lever {
     content: "";
     display: inline-block;
     position: relative;
@@ -800,8 +806,8 @@ Form styles
     margin: 0 16px;
 }
 
-#RecruiterForm .switch label .lever:before,
-#RecruiterForm .switch label .lever:after {
+.start-profile .switch label .lever:before,
+.start-profile .switch label .lever:after {
     content: "";
     position: absolute;
     display: inline-block;
@@ -816,26 +822,54 @@ Form styles
     transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
 }
 
-#RecruiterForm .switch label input[type=checkbox]:checked+.lever:after {
+.start-profile .switch label input[type=checkbox]:checked+.lever:after {
     background-color: #6979F8;
 }
 
-#RecruiterForm .switch label input[type=checkbox]:checked+.lever:before,
-#RecruiterForm .switch label input[type=checkbox]:checked+.lever:after {
+.start-profile .switch label input[type=checkbox]:checked+.lever:before,
+.start-profile .switch label input[type=checkbox]:checked+.lever:after {
     left: 20px;
 }
 
-#RecruiterForm .switch label .lever:after {
+.start-profile .switch label .lever:after {
     background-color: #a7a7a7;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: white;
 }
 
 .start-profile .select-dropdown {
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 20px !important;
     font-size: 16px;
     color: #1f1f1f;
     letter-spacing: 0.5px;
+}
+
+.input-field.chips {
+    padding-left: 20px !important;
+}
+
+.chips.focus {
+    border-bottom: 1px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}
+
+.category-tab li {
+    padding: 15px 0 15px 20px;
+}
+
+.category-tab li i {
+    font-size: 20px;
+}
+
+.category-tab li,
+.category-tab li label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
 }
 
 /* ======================================================

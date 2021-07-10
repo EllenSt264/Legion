@@ -25,4 +25,7 @@ $(document).ready(function () {
     $('select').formSelect();
 
     $('.tooltipped').tooltip();
+
+    // Initialize chips
+    $('.chips').chips();
 });

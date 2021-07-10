@@ -2,13 +2,150 @@ $(document).ready(function() {
     /* ======================================================
     Materialize switch
     ====================================================== */
-
-    var checkbox = $('#id_is_recruiter');
+    
+    // Grab checkboxes
+    var checkbox = $('input[type=checkbox]');
+    var recruiterSwitch = $('#id_is_recruiter');
+    var workingHereSwitch = $('#id_currently_working_here');
 
     // Add materalize switch classes to checkbox
     checkbox.parent().parent().addClass('switch');
     checkbox.next().addClass('lever');
-    checkbox.after("I'm a Recruiter");
+    recruiterSwitch.after("I'm a Recruiter");
+    workingHereSwitch.after("I'm currently working here");
+
+
+    /* ======================================================
+    Materialize chips
+    ====================================================== */
+
+    var skills = $('#skillsChips');
+
+    // Add materialize chips class to input field
+    skills.parent().addClass('chips');
+    skills.parent().removeClass('col s12');
+    skills.removeClass('validate');
+
+    // Add focus class
+    skills.parent().on('click', function() {
+        skills.parent().toggleClass('focus');
+        skills.focus();
+    });
+
+    // Prevent form from trying to submit when a user presses enter
+    $(skills).on('keypress', function(e) {
+        return e.which !== 13;
+    });
+
+    // Add chips
+    function addChips() {
+        $(skills).on('keypress', function(e) {
+            let keycode = (event.keyCode ? event.keyCode : event.which);
+            // Get text value from input field
+            let value = skills.val();
+            if(keycode == '13') {
+                // Prevent string with only whitespace and/or special characters
+                var regExp = /[a-zA-Z]/g;
+
+                // Grab chips from html container to prevent duplicate chips from being added
+                var current_container = $('.chips-container').text();
+
+                if (regExp.test(value) && !current_container.includes(value)) {
+                    container = $('.chips-container');
+                    html_code = `<div class="chip">${value}<i class="close material-icons">close</i></div>`;
+                    container.append(html_code);
+                    console.log(current_container);
+                };
+                // Refresh value of input field
+                skills.val('');
+            }
+        });
+    };
+    addChips();
+
+    // Add chips to hidden form
+    function chipsToForm() {
+        $('#addSkills').on('click', function() {
+            // Grab chips from html container
+            var container = $('.chips-container').text();
+    
+            // Add to array
+            chipsString = container.toString();
+            $.trim(chipsString);
+            chips_arr = chipsString.split('close');
+    
+            // Remove empty string fields
+            i = 0
+            for (i=0; i < chips_arr.length; i++) {
+                if (chips_arr[i] === '') {
+                    chips_arr.splice(i, 1);
+                };
+            };
+    
+            // Update hidden input field value with the chips array
+            $('#id_skills').val(chips_arr);
+        });
+    };
+    chipsToForm();
+
+
+    /* ======================================================
+    Radio buttons
+    ====================================================== */
+
+    var radioBoxes = $('input[name=category_name]');
+
+    // Toggle checked attribute for radio buttons and toggle background color
+    $(radioBoxes).on('click', function() {
+        radioBoxes.parent().siblings('i').css('color', 'white');
+        radioBoxes.attr('checked', false);
+        $(this).attr('checked', true);
+        $(this).parent().siblings('i').css('color', '#0ACF83');
+    });
+
+
+    /* ======================================================
+    Category Sections
+    ====================================================== */
+
+    // Update category id names
+    $('#id_category_name_0').attr('id', 'DevCategories');
+    $('#id_category_name_1').attr('id', 'CreativeCategories');
+    $('#id_category_name_2').attr('id', 'WritingCategories');
+    $('#id_category_name_3').attr('id', 'TranslationCategories');
+
+
+    var categoryTypes = ['Dev', 'Creative', 'Writing', 'Translation']
+
+    // Add id attributes to category list elements
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).parent().attr('id', `${categoryTypes[i]}Container`);
+    };
+
+    // Wrap heading text inside a header element
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Container`).contents().filter(function() {
+            return this.nodeType == 3; // Node.TEXT_NODE
+        }).wrap('<h6 class="center title smaller"></h6>');
+    };
+
+    // Add icons to radio list items
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
+    };
+
+    // Add hidden classes to category radio buttons
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).addClass('hide');
+        $(`#${categoryTypes[i]}Categories`).addClass('category-tab');
+    };
+
+    // Activate relevant tabs
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Container .title`).on('click', function() {
+            $(`#${categoryTypes[i]}Categories`).toggleClass('hide');
+        });
+    };
 
 
     /* ======================================================
@@ -77,8 +214,9 @@ $(document).ready(function() {
     // Ensure input fields are filled before moving to the next tab
     function validateForm() {
         var x, y, i, valid = true;
-        x = document.getElementsByClassName("tab");
+        x = $('.tab')
         y = x[currentTab].getElementsByTagName("input");
+
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
