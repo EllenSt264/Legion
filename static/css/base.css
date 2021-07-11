@@ -872,6 +872,51 @@ Form styles
     color: #ffffff;
 }
 
+#id_expertise_level label {
+    position: relative;
+    height: inherit;
+    font-size: 16px;
+    padding: 0 15px 50px;
+    font-weight: 600;
+    background-color: rgba(108, 92, 231, 75%);
+    border-radius: 15px;
+    vertical-align: top;
+}
+
+/* ======================================================
+Radio buttons
+====================================================== */
+
+#id_expertise_level li {
+    margin: 45px auto;
+    text-align: center;
+}
+
+#id_expertise_level [type="radio"]:not(:checked)+span,
+#id_expertise_level [type="radio"]:checked+span {
+    display: block;
+    padding-left: 0;
+}
+
+#id_expertise_level [type="radio"]:not(:checked)+span:before,
+#id_expertise_level [type="radio"]:not(:checked)+span:after,
+#id_expertise_level [type="radio"]:checked+span:after,
+#id_expertise_level [type="radio"].with-gap:checked+span:after {
+    position: absolute;
+    top: -40px;
+}
+
+#id_expertise_level [type="radio"]:not(:checked)+span:before,
+#id_expertise_level [type="radio"]:not(:checked)+span:after {
+    border: 2px solid #c4c4c4;
+    background-color: #c4c4c4;
+}
+
+#id_expertise_level [type="radio"]:checked+span:after,
+#id_expertise_level [type="radio"].with-gap:checked+span:after {
+    background-color: #ffffff;
+}
+
 /* ======================================================
 Carousel styles
 ====================================================== */

@@ -90,19 +90,48 @@ $(document).ready(function() {
 
 
     /* ======================================================
-    Radio buttons
+    Radio buttons - Categories
     ====================================================== */
 
-    var radioBoxes = $('input[name=category_name]');
+    var categoryRadios = $('input[name=category_name]');
 
-    // Toggle checked attribute for radio buttons and toggle background color
-    $(radioBoxes).on('click', function() {
-        radioBoxes.parent().siblings('i').css('color', 'white');
-        radioBoxes.attr('checked', false);
+    // Toggle checked for category radio buttons
+    $(categoryRadios).on('click', function() {
+        categoryRadios.parent().siblings('i').css('color', 'white');
+        categoryRadios.attr('checked', false);
         $(this).attr('checked', true);
         $(this).parent().siblings('i').css('color', '#0ACF83');
     });
 
+    var expertiseRadios = $('input[name=expertise_level]');
+
+    /* ======================================================
+    Radio buttons - Expertise level
+    ====================================================== */
+
+    $(expertiseRadios).parent().addClass('btn btn-large')
+
+    // Toggle checked for expertise level radio buttons
+    $(expertiseRadios).on('click', function() {
+        expertiseRadios.parent().css('backgroundColor', 'rgba(108, 92, 231, 75%)');
+        expertiseRadios.attr('checked', false);
+        $(this).attr('checked', true);
+        $(this).parent().css('backgroundColor', '#0ACF83');
+    });
+
+    // Add additional text to the expertise level radio buttons
+
+    $('input#id_expertise_level_0').parent().contents().filter(function() {
+        return this.nodeType == 3; // Node.TEXT_NODE
+    }).after('<span>I’m relatively new to this field</span>');
+
+    $('input#id_expertise_level_1').parent().contents().filter(function() {
+        return this.nodeType == 3; // Node.TEXT_NODE
+    }).after('<span>I’ve had substantial experience in this field</span>');
+
+    $('input#id_expertise_level_2').parent().contents().filter(function() {
+        return this.nodeType == 3; // Node.TEXT_NODE
+    }).after('<span>I’ve had comprehensive and detailed expertise in this field</span>');
 
     /* ======================================================
     Category Sections
@@ -210,18 +239,19 @@ $(document).ready(function() {
         // Display the correct tab:
         showTab(currentTab);
     }
-    
+
     // Ensure input fields are filled before moving to the next tab
     function validateForm() {
         var x, y, i, valid = true;
         x = $('.tab')
         y = x[currentTab].getElementsByTagName("input");
 
+        currentFields = $(x[currentTab]).find('input');
+
         // A loop that checks every input field in the current tab:
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
             // Check if required fields are filled
-
             // Add tooltips
             $(y[i]).addClass('tooltipped');
             $(y[i]).tooltip({delay: 50, position: 'top', isOpen: true, isHovered: false});
