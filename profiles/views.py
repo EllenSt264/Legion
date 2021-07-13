@@ -47,6 +47,7 @@ def creator_form(request, user_id):
         for each_form in form_list:
             if each_form.is_valid():
                 profile = profile_form.save(commit=False)
+                profile.is_creator = True
                 creator = creator_form.save(commit=False)
                 creator.profile = profile
                 profile.save()

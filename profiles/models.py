@@ -165,9 +165,9 @@ class Education(models.Model):
         blank=True,
     )
 
-    institution_name = models.CharField(max_length=70, null=False, blank=False)
-    area_of_study = models.CharField(max_length=70, null=False, blank=False)
-    qualification = models.CharField(max_length=70, null=False, blank=False)
+    institution_name = models.CharField(max_length=70, null=True, blank=True)
+    area_of_study = models.CharField(max_length=70, null=True, blank=True)
+    qualification = models.CharField(max_length=70, null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -187,10 +187,10 @@ class WorkExperience(models.Model):
         blank=True,
     )
 
-    company_name = models.CharField(max_length=70, null=False, blank=False)
-    work_town_or_city = models.CharField(max_length=70, null=False, blank=False)
+    company_name = models.CharField(max_length=70, null=True, blank=True)
+    work_town_or_city = models.CharField(max_length=70, null=True, blank=True)
     work_country = CountryField(blank_label='Country', null=True, blank=True)
-    job_title = models.CharField(max_length=70, null=False, blank=False)
+    job_title = models.CharField(max_length=70, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
@@ -220,12 +220,16 @@ class Languages(models.Model):
     english_proficiency = models.IntegerField(
         choices=Proficiency.choices,
         default=Proficiency.FLUENT,
+        null=False,
+        blank=False,
     )
 
     language = models.CharField(max_length=70, null=True, blank=True)
     language_proficiency = models.IntegerField(
         choices=Proficiency.choices,
         default=Proficiency.FLUENT,
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
