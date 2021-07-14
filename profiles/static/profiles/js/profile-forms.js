@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     The code used is based upon
     the following source:
-    https://www.w3schools.com/howto/howto_js_form_steps.asp'
+    'https://www.w3schools.com/howto/howto_js_form_steps.asp'
 
     ====================================================== */
 
@@ -31,7 +31,11 @@ $(document).ready(function() {
     showTab(currentTab);
 
     $('.next-btn').on('click', function() {
-        nextPrev();
+        nextPrev(1);
+    });
+
+    $('.prev-btn').on('click', function() {
+        nextPrev(-1);
     });
 
     $('.skip-section').on('click', function() {
@@ -54,6 +58,15 @@ $(document).ready(function() {
     function showTab(n) {
         var x = document.getElementsByClassName("tab");
         x[n].style.display = "block";
+
+        if (n == 0) {
+            $('#cancelBtn').removeClass('hide');
+            $('.prev-btn').addClass('hide');
+        } else {
+            $('.prev-btn').removeClass('hide');
+            $('#cancelBtn').addClass('hide');
+        }
+
         // if you have reached the end of the form... :
         if (n == (x.length - 1)) {
             // show the submit to submit the form
@@ -70,7 +83,7 @@ $(document).ready(function() {
         // Hide the current tab:
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:
-        currentTab = currentTab + 1;
+        currentTab = currentTab + n;
         // if you have reached the end of the form... :
         if (currentTab >= x.length) {
             return false;
@@ -135,8 +148,6 @@ $(document).ready(function() {
 
 
         if ($(currentFields).attr('required')) {
-            console.log(currentTab + ' the field is required');
-
             for (i = 0; i < currentFields.length; i++) {
                 if (($(currentFields[i]).val() === '') || ($(currentFields).is(':checked') !== true)) {
                     valid = false;
@@ -192,7 +203,6 @@ $(document).ready(function() {
                     container = $('.chips-container');
                     html_code = `<div class="chip">${value}<i class="close material-icons">close</i></div>`;
                     container.append(html_code);
-                    console.log(current_container);
                 };
                 // Refresh value of input field
                 skills.val('');
@@ -203,7 +213,7 @@ $(document).ready(function() {
 
     // Add chips to hidden form
     function chipsToForm() {
-        $('#addSkills').on('click', function() {
+        $('#nextBtn-creator').on('click', function() {
             // Grab chips from html container
             var container = $('.chips-container').text();
     
