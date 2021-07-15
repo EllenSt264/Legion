@@ -1064,6 +1064,46 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     }
 }
 
+@media (min-width: 2215px) {
+    /* Get started page styles
+    =========================== */
+    .start-profile .container.content {
+        min-width: 2000px !important;
+    }
+}
+
+@media (min-width: 1950px) and (max-width: 2215px) {
+    /* Get started page styles
+    =========================== */
+    .start-profile .container.content {
+        min-width: 1800px !important;
+    }
+}
+
+@media (min-width: 1750px) and (max-width: 1950px) {
+    /* Get started page styles
+    =========================== */
+    .start-profile .container.content {
+        min-width: 1650px !important;
+    }
+}
+
+@media (min-width: 1600px) and (max-width: 1750px) {
+    /* Get started page styles
+    =========================== */
+    .start-profile .container.content {
+        min-width: 1550px !important;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1600px) {
+    /* Get started page styles
+    =========================== */
+    .start-profile .container.content {
+        min-width: 1400px !important;
+    }
+}
+
 @media (min-width: 1280px) {
     /* Login page styles
     =========================== */
