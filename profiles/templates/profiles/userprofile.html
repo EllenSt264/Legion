@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% load materializecss %}
+
+{% block content %}
+    <section class="profile-page">
+        <div class="profile">
+            <div class="border-blur"></div>
+            <div class="profile-page-border"><img src="{{ MEDIA_URL }}img50.jpg" alt=""></div>
+            <div class="container">
+                <!-- Profile image -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        {% if profile.image %}
+                            <img src="{{ profile.image.url }}" alt="" class="responsive-img profile-page-img">
+                        {% else %}
+                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="" class="responsive-img profile-page-img">
+                        {% endif %}
+                    </div>
+                    <!-- Settings -->
+                    <a href="#!" class="settings">
+                        <img src="{{ MEDIA_URL }}icons/settings-cog.svg" alt="Settings cog icon" class="center">
+                    </a>
+                </div>
+                <!-- Name, title and user type -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        <h6 class="user-fullname">{{ user.get_full_name }}</h6>
+                        {% if profile.is_creator %}
+                            <h6 class="user-type">Creator</h6>
+                        {% elif profile.is_recruiter %}
+                            <h6 class="user-type">Creator</h6>
+                        {% endif %}
+                        <h6 class="user-title">{{ profile.title }}</h6>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="row center-align buttons">
+                    <div class="col s6">
+                        <a href="#!" class="btn btn-large profile-btn-purple">Open To</a>
+                    </div>
+                    <div class="col s6">
+                        <a href="#!" class="btn btn-large profile-btn-white">Edit Header</a>
+                    </div>
+                </div>
+                <!-- Tabs -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        <ul class="tabs">
+                            <li class="tab col s4"><a href="#projects">Projects</a></li>
+                            <li class="tab col s4"><a href="#bio">Bio</a></li>
+                            <li class="tab col s4"><a href="#work">Work</a></li>
+                            <li class="tab col s4"><a href="#reviews">Reviews</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12" id="projects">
+                        <h5>Projects</h5>
+                    </div>
+                    <div class="col s12" id="bio">
+                        <h5>About Me</h5>
+                    </div>
+                    <div class="col s12" id="work">
+                        <h5>Current Work</h5>
+                    </div>
+                    <div class="col s12" id="reviews">
+                        <h5>Reviews</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

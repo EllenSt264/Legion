@@ -14,18 +14,21 @@
 </ul>
 
 <!-- Desktop profile sidenav -->
-<div id="slide-out" class="sidenav">
-    <div class="inner-container">
-        <ul>
-            <li><a href="#!"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-sidenav-profile-img"></a></li>
-            <li><a href="#!"><i class="far fa-comment"></i> Messages</a></li>
-            <li><a href="#!"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
-            <li><a href="#!"><i class="far fa-heart"></i> Favourites</a></li>
-            <li><a href="#!"><i class="far fa-bell"></i> Notifications</a></li>
-            <li><a href="#!"><i class="fas fa-user-friends"></i> Contacts</a></li>
-            <li><a href="#!"><i class="far fa-credit-card"></i> Payment Details</a></li>
-            <li><a href="#!"><i class="fas fa-cog"></i> Account Settings</a></li>
-            <li><a href="{% url 'account_logout' %}" class="btn login-btn">Log Out</a></li>
-        </ul>
+{% if request.user.is_authenticated %}
+    <div id="slide-out" class="sidenav">
+        <div class="inner-container">
+            <ul>
+                <li><a href="{% url 'user_profile' request.user.pk %}"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-sidenav-profile-img"></a></li>
+                <li><a href="#!" class="center">{{ request.user.first_name }} {{ request.user.last_name }}</a></li>
+                <li><a href="#!"><i class="far fa-comment"></i> Messages</a></li>
+                <li><a href="#!"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+                <li><a href="#!"><i class="far fa-heart"></i> Favourites</a></li>
+                <li><a href="#!"><i class="far fa-bell"></i> Notifications</a></li>
+                <li><a href="#!"><i class="fas fa-user-friends"></i> Contacts</a></li>
+                <li><a href="#!"><i class="far fa-credit-card"></i> Payment Details</a></li>
+                <li><a href="#!"><i class="fas fa-cog"></i> Account Settings</a></li>
+                <li><a href="{% url 'account_logout' %}" class="btn login-btn">Log Out</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+{% endif %}

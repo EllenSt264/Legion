@@ -8,6 +8,10 @@ from .forms import (RecruiterForm, UserProfileForm, CreatorForm,
                     EducationForm, WorkExperienceForm, LanguagesForm)
 
 
+# ==========================================================
+# Profile setup - Get Started pages
+# ==========================================================
+
 @login_required
 def start(request):
     """ A view to render the get started page """
@@ -153,3 +157,24 @@ def success_client(request):
 @login_required
 def fail(request):
     return render(request, 'profiles/fail.html')
+
+
+# ==========================================================
+# User Profile pages
+# ==========================================================
+
+@login_required
+def user_profile(request, user_id):
+    if request.user.is_authenticated:
+        user = get_object_or_404(get_user_model(), pk=user_id)
+        if request.user.pk == user.pk:
+            profile = get_object_or_404(UserProfile, user=request.user)
+
+            template = 'profiles/userprofile.html'
+            context = {
+                'profile': profile,
+            }
+            return render(request, template, context)
+        else:
+            print('You are not authorised to be here!')
+            return redirect(reverse('home'))

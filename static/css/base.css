@@ -21,6 +21,11 @@ nav {
     background-color: rgba(0, 0, 0, 25%);
 }
 
+nav,
+nav .nav-wrapper {
+    z-index: 50 !important;
+}
+
 .nav-wrapper a {
     padding: 0 35px;
     font-size: 20px;
@@ -104,6 +109,10 @@ Navbar styles - mobile
     background-color: #0ACF83;
     font-weight: 600;
     border-radius: 10px;
+}
+
+.sidenav-overlay {
+    z-index: 1;
 }
 
 /* ======================================================
@@ -918,6 +927,184 @@ Radio buttons
 }
 
 /* ======================================================
+Profile pages
+====================================================== */
+
+.profile-page {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/media/img51.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+}
+
+.profile {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* To ensure the navbar links are visible  */
+.profile .border-blur {
+    width: 100%;
+    height: 50px; /* height of navbar */
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 50%);
+    z-index: 10;
+}
+
+.profile-page-border {
+    width: 100%;
+    height: 19%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #6C5CE7; /* fallback color */
+    border-radius: 0 0 50% 50%;
+    z-index: 1;
+}
+
+.profile-page-border img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 0 0 50% 50%;
+    object-fit: cover;
+}
+
+.profile .container {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 10%;
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #0A1A29, #373454);
+    background: -moz-linear-gradient(bottom, #0A1A29, #373454);
+    background: linear-gradient(to top, #0A1A29, #373454);
+    color: white;
+    padding: 80px 25px 25px;
+    overflow: hidden;
+}
+
+.profile-page-img {
+    width: 89px !important;
+    height: 89px !important;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #D7D7D7;
+    object-fit: cover;
+    z-index: 100;
+}
+
+.profile .settings {
+    position: absolute;
+    top: 8%;
+    left: 89%;
+    right: 0;
+}
+
+.profile .settings,
+.profile .settings img {
+    width: 28px;
+    height: 28px;
+}
+
+.profile .settings i {
+    font-size: 28px;
+    color: #ffffff;
+    border: 1px solid #D7D7D7;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.profile .container .row:nth-child(2) {
+    margin-top: 80px;
+}
+
+.profile-btn-purple {
+    background: #6C5CE7;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: none;
+    border-radius: 5px;
+}
+
+.profile-btn-white {
+    background: #FFFFFF;
+    color: black;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: none;
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.profile .tabs {
+    background: none;
+}
+
+.profile .tab {
+    min-width: 93px;
+}
+
+.profile .tabs .tab a {
+    color: rgba(60, 180, 110, 50%);
+    border-bottom: 4px solid rgba(60, 180, 110, 50%);
+}
+
+.profile .tabs .tab a:hover,
+.profile .tabs .tab a.active {
+    color: #0ACF83;
+}
+
+.profile .tabs .tab a:focus,
+.profile .tabs .tab a:focus.active {
+    background: none;
+}
+
+.profile .tabs .indicator {
+    height: 4px;
+    background-color: #0ACF83;
+}
+
+.user-fullname {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-size: 400;
+}
+
+.user-type {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.user-title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 22px;
+}
+
+
+/* ======================================================
 Carousel styles
 ====================================================== */
 
@@ -1072,11 +1259,25 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     }
 }
 
+@media (min-width: 2125px) {
+    .profile {
+        width: 55% !important;
+        left: 24% !important;
+    }
+}
+
 @media (min-width: 1950px) and (max-width: 2215px) {
     /* Get started page styles
     =========================== */
     .start-profile .container.content {
         min-width: 1800px !important;
+    }
+}
+
+@media (min-width: 1820px) and (max-width: 2125px) {
+    .profile {
+        width: 60% !important;
+        left: 22% !important;
     }
 }
 
@@ -1319,6 +1520,43 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     }
 }
 
+@media (min-width: 992px) {
+    /* Profile pages
+    =========================== */
+    .profile {
+        width: 70%;
+        left: 15%;
+    }
+    .profile .border-blur {
+        height: 64px;
+    }
+    .profile-page-border {
+        height: 24%;
+        top: 0;
+    }
+    .profile .container {
+        height: 87%;
+        top: 13%;
+    }
+    .profile-page-img {
+        width: 137px !important;
+        height: 137px !important;
+        top: 7%;
+    }
+    .profile .container .row:nth-child(2) {
+        margin-top: 110px;
+    }
+    .profile .settings {
+        top: 10%;
+        left: 93.5%;
+    }
+    .profile .settings,
+    .profile .settings img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
 @media (min-width: 800px) {
     /* Sign up page styles
     =========================== */
@@ -1478,6 +1716,15 @@ REPSONSIVE STYLES FOR SMALLER SCREENS
     }
 }
 
+@media (min-width: 475px) {
+    /* Profile pages
+    =========================== */
+    .profile-page-img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+}
+
 @media (max-width: 480px) and (max-height: 854px) {
     /* Carousel content styles
     =========================== */
@@ -1556,6 +1803,27 @@ REPSONSIVE STYLES FOR SMALLER SCREENS
     #home-carousel-img2 {
         transform: scale(1.8);
         top: 20%;
+    }
+}
+
+@media (max-width: 370px) {
+    /* Profile pages
+    =========================== */
+    .buttons {
+        text-align: left;
+    }
+    .profile-btn-purple {
+        min-width: 100px;
+        font-size: 14px;
+        padding: 0 20px;
+    }
+    .profile-btn-white {
+        min-width: 115px;
+        font-size: 14px;
+        padding: 0 15px;
+    }
+    .profile h5 {
+        font-size: 20px;
     }
 }
 

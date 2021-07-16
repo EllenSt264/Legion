@@ -10,5 +10,6 @@ urlpatterns = [
     path('get-started/client', views.start_client, name='start_client'),
     path('get-started/client/success', views.success_client, name='success_client'),
     path('get-started/creator/success', views.success_creator, name='success_creator'),
-    path('get-started/fail', views.fail, name='fail')
+    path('get-started/fail', views.fail, name='fail'),
+    path('<int:user_id>/', views.user_profile, name='user_profile')
 ]

@@ -28,4 +28,7 @@ $(document).ready(function () {
 
     // Initialize chips
     $('.chips').chips();
+
+    // Initialize tabs
+    $('.tabs').tabs();
 });

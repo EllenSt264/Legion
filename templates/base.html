@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
@@ -49,8 +49,12 @@
         </nav>
         <!-- Mobile sidenav -->
         {% include 'includes/mobile-nav.html' %}
-        <!-- Mobile sidenav -->
-        {% include 'includes/profile-sidenav.html' %}
+
+        <!-- Profile sidenav -->
+        {% if request.user.is_authenticated %}
+            {% include 'includes/profile-sidenav.html' %}
+        {% endif %}
+
         <!-- Mobile services fullscreen overlay -->
         {% include 'includes/services-nav.html' %}
     </header>
