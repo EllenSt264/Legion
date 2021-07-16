@@ -4,5 +4,8 @@ from .models import UserProfile
 
 
 def profile_processor(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+    else:
+        profile = None
     return {'profile': profile}
