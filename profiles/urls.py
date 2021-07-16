@@ -4,6 +4,7 @@ from django.urls.resolvers import URLPattern
 from . import views
 
 urlpatterns = [
+    path('', views.login_redirect, name='login_redirect'),
     path('get-started/', views.start, name='start'),
     path('get-started/creator', views.start_creator, name='start_creator'),
     path('get-started/creator/<int:user_id>', views.creator_form, name='creator_form'),

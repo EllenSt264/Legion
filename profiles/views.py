@@ -164,6 +164,15 @@ def fail(request):
 # ==========================================================
 
 @login_required
+def login_redirect(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    if profile.is_creator or profile.is_recruiter:
+        return redirect(reverse(user_profile, args=(request.user.pk,)))
+    else:
+        return redirect(reverse('start'))
+
+
+@login_required
 def user_profile(request, user_id):
     if request.user.is_authenticated:
         user = get_object_or_404(get_user_model(), pk=user_id)
