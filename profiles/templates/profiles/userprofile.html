@@ -11,11 +11,8 @@
                 <!-- Profile image -->
                 <div class="row center-align">
                     <div class="col s12">
-                        {% if profile.image %}
-                            <img src="{{ profile.image.url }}" alt="" class="responsive-img profile-page-img">
-                        {% else %}
-                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="" class="responsive-img profile-page-img">
-                        {% endif %}
+                        <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                            alt="User profile image" class="responsive-img profile-page-img">
                     </div>
                     <!-- Settings -->
                     <a href="#!" class="settings">
@@ -47,25 +44,74 @@
                 <div class="row center-align">
                     <div class="col s12">
                         <ul class="tabs">
-                            <li class="tab col s4"><a href="#projects">Projects</a></li>
-                            <li class="tab col s4"><a href="#bio">Bio</a></li>
-                            <li class="tab col s4"><a href="#work">Work</a></li>
-                            <li class="tab col s4"><a href="#reviews">Reviews</a></li>
+                            <li class="tab col s4 m3"><a href="#projects">Projects</a></li>
+                            <li class="tab col s4 m3"><a href="#bio">Bio</a></li>
+                            <li class="tab col s4 m3"><a href="#work">Work</a></li>
+                            <li class="tab col s4 m3"><a href="#reviews">Reviews</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="row">
+                    <!-- Projects -->
                     <div class="col s12" id="projects">
                         <h5>Projects</h5>
+                        <!-- Add project -->
+                        <div class="row center-align">
+                            <div class="col s12">
+                                <a href="#!" class="btn btn-green">Add Project</a>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Bio -->
                     <div class="col s12" id="bio">
                         <h5>About Me</h5>
+                        {% if profile.overview %}
+                            <!-- Professional overview -->
+                            <p>{{ profile.overview }}</p>
+                            <!-- Edit button -->
+                            <div class="edit-btn center-align">
+                                <a href="#!"><i class="fas fa-pen"></i></a>
+                            </div>
+                        {% else %}
+                            <!-- Missing feature -->
+                            <div class="missing-feature">
+                                <div class="col s2">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="col s10">
+                                    <p>Your profile is missing a professional overview!</p>
+                                    <p>
+                                        This is an important feature to have, as it allows you to tell employers, or clients, who you are and what type of
+                                        work you do. We recommend that you add one to complete your profile.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Add professional overview -->
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <a href="#!" class="btn btn-cancel">Add Bio</a>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
+                    <!-- Work -->
                     <div class="col s12" id="work">
                         <h5>Current Work</h5>
+                        <!-- Add services -->
+                        <div class="row center-align">
+                            <div class="col s12">
+                                <a href="#!" class="btn btn-green">Start Selling</a>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Reviews -->
                     <div class="col s12" id="reviews">
                         <h5>Reviews</h5>
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <p>You have no reviews yet</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
