@@ -7,7 +7,13 @@
     <li><a href="#!">Discover</a></li>
     <li><a href="#!">Contact</a></li>
     {% if request.user.is_authenticated %}
-        <li><a href="#!" data-target="slide-out" class="sidenav-trigger show-on-large"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-profile-img"></a></li>
+        <li>
+            <a href="#!" data-target="slide-out" class="sidenav-trigger show-on-large">
+                <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                    alt="User profile image" id="desktop-profile-img">
+            </a>
+        </li>
+        
     {% else %}
         <li><a href="{% url 'account_login' %}" class="btn btn-green">Log In</a></li>
     {% endif %}
@@ -18,7 +24,12 @@
     <div id="slide-out" class="sidenav">
         <div class="inner-container">
             <ul>
-                <li><a href="{% url 'user_profile' request.user.pk %}"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="desktop-sidenav-profile-img"></a></li>
+                <li>
+                    <a href="{% url 'user_profile' request.user.pk %}">
+                        <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                            alt="User profile image" id="desktop-sidenav-profile-img">
+                    </a>
+                </li>
                 <li><a href="#!" class="center">{{ request.user.first_name }} {{ request.user.last_name }}</a></li>
                 <li><a href="#!"><i class="far fa-comment"></i> Messages</a></li>
                 <li><a href="#!"><i class="fas fa-shopping-cart"></i> My Cart</a></li>

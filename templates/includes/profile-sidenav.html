@@ -2,7 +2,12 @@
 <div id="profile-sidenav">
     <div class="inner-container">
         <ul>
-            <li><a href="{% url 'user_profile' request.user.pk %}"><img src="{{ MEDIA_URL }}noimage.jpg" alt="" id="sidenav-profile-img"></a></li>
+            <li>
+                <a href="{% url 'user_profile' request.user.pk %}">
+                    <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                        alt="User profile image" id="sidenav-profile-img">
+                </a>
+            </li>
             <li><a href="#!"><i class="far fa-comment fa-lg"></i></a></li>
             <li><a href="#!"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
             <li><a href="#!"><i class="far fa-heart fa-lg"></i></a></li>
