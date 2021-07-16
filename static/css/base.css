@@ -930,6 +930,10 @@ Radio buttons
 Profile pages
 ====================================================== */
 
+/* =======================
+Containers
+====================== */
+
 .profile-page {
     position: absolute;
     top: 0;
@@ -990,6 +994,10 @@ Profile pages
     padding: 80px 25px 25px;
     overflow: hidden;
 }
+
+/* =======================
+Header content
+====================== */
 
 .profile-page-img {
     width: 89px !important;
@@ -1052,6 +1060,33 @@ Profile pages
     border-radius: 5px;
 }
 
+.user-fullname {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-size: 400;
+}
+
+.user-type {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.user-title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 22px;
+}
+
+/* =======================
+Tabs
+====================== */
+
 .profile .tabs {
     background: none;
 }
@@ -1080,27 +1115,44 @@ Profile pages
     background-color: #0ACF83;
 }
 
-.user-fullname {
-    font-size: 16px;
-    letter-spacing: 1px;
-    font-size: 400;
+/* =======================
+Tab content
+====================== */
+
+#bio {
+    position: relative;
 }
 
-.user-type {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 16px;
+.missing-feature {
+    font-size: 12px;
     font-weight: 200;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color: #FFCA43;
 }
 
-.user-title {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    line-height: 22px;
+.missing-feature p {
+    margin: 10px auto;
+}
+
+.missing-feature i {
+    margin-top: 50px;
+    font-size: 26px;
+    color: #FFCA43;
+}
+
+.profile .edit-btn {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background-color: #0ACF83;
+    border-radius: 50%;
+}
+
+.profile .edit-btn i {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 36px;
 }
 
 
