@@ -115,6 +115,10 @@ The full spreedsheet that defines all of the user stories can be accessed [here]
 
 - I used [this source](https://stackoverflow.com/questions/347798/changing-an-elements-id-with-jquery) to access and change an element ID attribute with JQuery.
 
+- I used [this source](https://stackoverflow.com/questions/17901341/django-how-to-make-a-variable-available-to-all-templates) to create a custom context processor in the profiles app, for accessing the user's profile across multiple pages.
+
+- I used [this source](https://stackoverflow.com/questions/42311548/pass-argument-to-view-with-reverse-django) to pass an argument to the view with Django reverse.
+
 
 
 #### Acknowledgements
