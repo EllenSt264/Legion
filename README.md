@@ -163,6 +163,8 @@ Below is a diagram illustrating the different steps used to define the user mode
 
 - I used [this source](https://stackoverflow.com/questions/42311548/pass-argument-to-view-with-reverse-django) to pass an argument to the view with Django reverse.
 
+- [This source](https://cssboxshadow.com/border-radius/) was used to create a box shadow with css.
+
 
 
 #### Acknowledgements

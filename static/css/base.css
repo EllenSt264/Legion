@@ -980,6 +980,7 @@ Containers
     background-color: #6C5CE7; /* fallback color */
     border-radius: 0 0 50% 50%;
     z-index: 1;
+    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
     box-shadow: 3px -10px 25px 13px rgba(0,0,0,0.55);
 }
 
@@ -1003,6 +1004,7 @@ Containers
     background: linear-gradient(to top, #0A1A29, #373454);
     color: white;
     padding: 80px 25px 0;
+    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
     box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
 }
 
@@ -1629,20 +1631,16 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
         height: 24%;
         top: 0;
     }
-    .profile .container {
-        height: 87%;
-        top: 13%;
-    }
     .profile-page-img {
         width: 137px !important;
         height: 137px !important;
-        top: 7%;
+        top: 3rem;
     }
     .profile .container .row:nth-child(2) {
         margin-top: 110px;
     }
     .profile .settings {
-        top: 10%;
+        top: 4.5rem;
         left: 93.5%;
     }
     .profile .settings,
