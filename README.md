@@ -7,6 +7,10 @@
 
     - [User Stories](#user-stories)
 
+    - [Strategy Plane](#strategy-plane)
+
+    - [Bussiness Model](#bussiness-model)
+
 - [Contents](#contents)
 
     - [credits](#credits)
@@ -18,6 +22,36 @@
 -----
 
 ## UX
+
+
+### Strategy Plane
+
+
+#### Project Purpose
+
+Legion is a professional, online marketplace that connects businesses with freelancers and creative job-seekers, while providing a professional space for creators to freelance their services and talent. Legion is also a platform for job-seekers to promote their online portfolios and look for jobs. Additionally, it provides an easy, user friendly platform for independent business owners and/or recruitment companies to post job listings and look for talented individuals to hire. 
+
+The purpose of Legion is to compete with known platforms like LinkedIn, Fiverr and Upwork, by providing a new, distinct platform for individuals to connect with business and vice versa. Legion is also open to smaller, independent companies who wish to hire freelance services. Legion aims to provide a professional, easy and secure space for people to network and grow their business and/or online presence. What makes it different is its approach, as Legion takes on an aesthetic which is similar to social media platforms like Instagram. This makes Legion easy to navigate and makes the user experience much more enjoyable.
+
+
+#### Site Owner Goals
+
+The primary goal is to establish a professional and secure community to unite freelancers, job seekers and businesses. If the project was a real-world application, then another goal would be to generate site revenue by taking a percentage of money made freelancing and offering premium memberships to business owners and/or recruiters. The project has implemented its features to represent this real-world goal.
+
+
+#### Target Audience
+
+Legion has two primary types of users at the center of its target audience: the client and the creator. The client may be part of a recruitment company; the head of a large business, or a smaller independent business owner looking for freelance services. If the user is a recruiter, then they may use the site to post job listings or look for talented individuals to employ. The creator is the freelancer and/or job seeker, who will use the site to freelance their services, look for jobs, establish their online presence through a portfolio and network by making and building connections.
+
+
+#### Business Model
+
+Below is my business model, which was built using the [Strategyzer](https://www.strategyzer.com/) business model canvas. [Micro](https://miro.com/) was used to add post it notes. The business model canvas was created during the planning phase of the project and influenced the user stories and helped prioritize features.
+
+![Business model canvas](documentation/media/business-model.png)
+
+
+-----
 
 
 ### User Stories
