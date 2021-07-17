@@ -7,10 +7,16 @@ BASE STYLES
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     color: white;
+    background: url('/media/img51.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 /* ======================================================
@@ -341,6 +347,11 @@ Buttons
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 16px;
+}
+
+.btn.btn-green {
+    padding: 10px 16px;
+    line-height: 15px;
 }
 
 .btn-purple {
@@ -938,10 +949,8 @@ Containers
     position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;
-    background: url('/media/img51.jpg') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -1;
+    min-height: 100%;
+    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
 }
 
 .profile {
@@ -971,6 +980,7 @@ Containers
     background-color: #6C5CE7; /* fallback color */
     border-radius: 0 0 50% 50%;
     z-index: 1;
+    box-shadow: 3px -10px 25px 13px rgba(0,0,0,0.55);
 }
 
 .profile-page-border img {
@@ -983,7 +993,8 @@ Containers
 
 .profile .container {
     width: 100%;
-    height: 90%;
+    min-height: 90%;
+    height: auto;
     position: absolute;
     top: 10%;
     background: #0B1C2A;
@@ -991,8 +1002,15 @@ Containers
     background: -moz-linear-gradient(bottom, #0A1A29, #373454);
     background: linear-gradient(to top, #0A1A29, #373454);
     color: white;
-    padding: 80px 25px 25px;
-    overflow: hidden;
+    padding: 80px 25px 0;
+    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
+}
+
+.profile .tab-container {
+    padding: 25px 15px 35px;
+    background-color: #6C5CE7;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 /* =======================
@@ -1003,19 +1021,18 @@ Header content
     width: 89px !important;
     height: 89px !important;
     position: absolute;
-    top: 5%;
+    top: 1.5rem;
     left: 0;
     right: 0;
     margin: 0 auto;
     border-radius: 50%;
-    border: 1px solid #D7D7D7;
     object-fit: cover;
     z-index: 100;
 }
 
 .profile .settings {
     position: absolute;
-    top: 8%;
+    top: 4rem;
     left: 89%;
     right: 0;
 }
@@ -1045,7 +1062,7 @@ Header content
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: none;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .profile-btn-white {
@@ -1057,7 +1074,7 @@ Header content
     letter-spacing: 1px;
     text-transform: none;
     padding: 0 20px;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .user-fullname {
@@ -1119,6 +1136,15 @@ Tabs
 Tab content
 ====================== */
 
+.tab-container .divider {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.tab-content .profile-btn-white {
+    margin: 15px auto;
+}
+
 #bio {
     position: relative;
 }
@@ -1153,6 +1179,23 @@ Tab content
     font-size: 16px;
     color: #ffffff;
     line-height: 36px;
+}
+
+
+#languagesTab p {
+    position: relative;
+    margin: 20px auto;
+}
+
+#languagesTab span {
+    position: absolute;
+    right: 10px;
+    color: #CACACA;
+}
+
+#scrollUpTab {
+    margin-top: 6rem;
+    margin-bottom: 0;
 }
 
 
@@ -1606,6 +1649,23 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     .profile .settings img {
         width: 35px;
         height: 35px;
+    }
+    .missing-feature .col.s2 {
+        text-align: right;
+    }
+    .missing-feature i {
+        margin-top: 20px;
+    }
+    .missing-feature p {
+        width: 50%;
+        margin-left: 0;
+    }
+    #bio .row:first-child h5 {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    #languagesTab h5 {
+        text-align: left !important;
     }
 }
 

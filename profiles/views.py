@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile
+from .models import Category, Creator, CreatorWork, Education, Languages, Recruiter, UserProfile, WorkExperience
 from .forms import (RecruiterForm, UserProfileForm, CreatorForm,
                     CreatorWorkForm, CategoryForm,
                     EducationForm, WorkExperienceForm, LanguagesForm)
@@ -184,11 +184,34 @@ def user_profile(request, user_id):
         if request.user.pk == user.pk:
             profile = get_object_or_404(UserProfile, user=request.user)
 
-            template = 'profiles/userprofile.html'
-            context = {
-                'profile': profile,
-            }
-            return render(request, template, context)
+            if profile.is_recruiter:
+                recruiter = get_object_or_404(Recruiter, profile=profile)
+
+                template = 'profiles/userprofile.html'
+                context = {
+                    'profile': profile,
+                    'recruiter': recruiter
+                }
+                return render(request, template, context)
+            else:
+                creator = get_object_or_404(Creator, profile=profile)
+                category = get_object_or_404(Category, profile=profile)
+                work = get_object_or_404(CreatorWork, profile=profile)
+                education = get_object_or_404(Education, profile=profile)
+                workexperience = get_object_or_404(WorkExperience, profile=profile)
+                languages = get_object_or_404(Languages, profile=profile)
+
+                template = 'profiles/userprofile.html'
+                context = {
+                    'profile': profile,
+                    'creator': creator,
+                    'category': category,
+                    'work': work,
+                    'education': education,
+                    'workexperience': workexperience,
+                    'languages': languages,
+                }
+                return render(request, template, context)
         else:
             print('You are not authorised to be here!')
             return redirect(reverse('home'))
