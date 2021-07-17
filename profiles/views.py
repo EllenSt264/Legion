@@ -164,7 +164,10 @@ def fail(request):
 # ==========================================================
 
 @login_required
-def login_redirect(request):
+def profile_or_redirect(request):
+    """ A view to direct users to their profile or redirect them to
+    the Get Started pages if their profile has not been completed """
+
     profile = get_object_or_404(UserProfile, user=request.user)
     if profile.is_creator or profile.is_recruiter:
         return redirect(reverse(user_profile, args=(request.user.pk,)))
@@ -174,6 +177,8 @@ def login_redirect(request):
 
 @login_required
 def user_profile(request, user_id):
+    """ A view to render the profile page """
+
     if request.user.is_authenticated:
         user = get_object_or_404(get_user_model(), pk=user_id)
         if request.user.pk == user.pk:

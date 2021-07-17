@@ -13,7 +13,6 @@
                     alt="User profile image" id="desktop-profile-img">
             </a>
         </li>
-        
     {% else %}
         <li><a href="{% url 'account_login' %}" class="btn btn-green">Log In</a></li>
     {% endif %}
@@ -25,7 +24,7 @@
         <div class="inner-container">
             <ul>
                 <li>
-                    <a href="{% url 'user_profile' request.user.pk %}">
+                    <a href="{% url 'profile_or_redirect' %}">
                         <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
                             alt="User profile image" id="desktop-sidenav-profile-img">
                     </a>
