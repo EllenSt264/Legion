@@ -11,11 +11,11 @@
 
     - [Bussiness Model](#bussiness-model)
 
-- [Contents](#contents)
+    - [Structure Plane](#structure-plane)
 
-    - [credits](#credits)
+- [Credits](#credits)
 
-        - [Code](#code)
+    - [Code](#code)
 
 
 
@@ -80,10 +80,20 @@ The full spreedsheet that defines all of the user stories can be accessed [here]
 
 -----
 
-## Contents
+### Structure Plane
+
+Below is a diagram illustrating the different steps used to define the user model and its user type:
+
+![User model steps](documentation/media/usermodel-frontend-steps.png)
+
+![User model steps](documentation/media/usermodel-steps.png)
 
 
-### Credits
+
+
+-----
+
+## Credits
 
 #### Code
 
