@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'profiles',
+    'services',
 
     # Other
     'django_extensions',
