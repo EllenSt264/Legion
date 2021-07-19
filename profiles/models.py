@@ -73,10 +73,6 @@ class Creator(models.Model):
 
 
 class Category(models.Model):
-    DEV = 'DE'
-    CREATIVE = 'CR'
-    WRITING = 'WR'
-    TRANSLATION = 'TR'
     CATEGORY_CHOICES = [
         ('Web, Mobile & Software Dev', (
                 ('DESKTOP', 'Desktop Software Development'),
@@ -123,7 +119,6 @@ class Category(models.Model):
     category_name = models.CharField(
         max_length=70,
         choices=CATEGORY_CHOICES,
-        default=DEV,
         null=False,
         blank=False,
     )
@@ -138,7 +133,7 @@ class CreatorWork(models.Model):
         blank=True,
     )
 
-    skills = models.CharField(max_length=70, null=True, blank=True)
+    skills = models.CharField(max_length=120, null=True, blank=True)
 
     class Expertise(models.IntegerChoices):
         ENTRY = 1
