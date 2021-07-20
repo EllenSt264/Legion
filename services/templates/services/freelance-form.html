@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+{% load static %}
+{% load materializecss %}
+
+{% block content %}
+    <div class="account-container start-profile" id="FreelanceService">
+        <div class="container content">
+            <form action="{% url 'add_service' user.pk %}" method="POST" id="AddServiceForm">
+                {% csrf_token %}
+                <!-- Service category -->
+                <div class="tab" id="ServiceCategory">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Select a Category</h4>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'service_category' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'service_subcategory' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- Headline -->
+                <div class="tab" id="ServiceHeadline">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Service Headline</h4>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'service_headline' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col s12">
+                            <p style="text-align: left;">Example Headlines:</p>
+                            <ul>
+                                <li>I will build a responsive WordPress site with booking and payment functionality.</li>
+                                <li>I will test and fully document the UI/UX design and functionality of your website.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search tags -->
+                <div class="tab" id="SearchTags">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Search Tags</h4>
+                        </div>
+                    </div>
+                    <!-- Dummy form input -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" id="searchTags" placeholder="Type a skill and press enter">
+                        </div>
+                    </div>
+                    <!-- Hidden form input -->
+                    {% for field in form %}
+                        {% if field.name == 'service_search_tags' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Chips container -->
+                    <div class="row">
+                        <div class="col s12">
+                            <h6>Current tags</h6>
+                        </div>
+                    </div>
+                    <div class="row current-tags">
+                        <div class="col s12 center-align">
+
+                        </div>
+                    </div>
+                    <div class="row popular-tags">
+                        <div class="col s12">
+                            <h6>Popular tags</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description and FAQ -->
+                <div class="tab" id="DescriptionFAQ">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Description</h4>
+                            <p>
+                                This is where you can explain what service you’re offering, and why clients should choose your service! Please be as
+                                detailed as possible so that clients can understand exactly what you are offering and how you can meet their needs.
+                            </p>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'service_description' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col s12">
+                            <h6>Frequently Asked Questions</h6>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-purple" id="showFAQBtn">
+                                <i class="fas fa-plus-circle"></i> Add FAQ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hide" id="FAQSection">
+                        {% for field in form %}
+                            {% if field.name == 'faq_question' %}
+                                {{ field | materializecss }}
+                            {% endif %}
+                            {% if field.name == 'faq_answer' %}
+                                {{ field | materializecss }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="row FAQ-btns">
+                            <div class="col s4 offset-s4">
+                                <a href="#!" class="btn btn-white" id="cancelFAQ">Cancel</a>
+                            </div>
+                            <div class="col s4">
+                                <a href="#!" class="btn btn-green" id="addFAQ">Add</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Scope and Pricing -->
+                <div class="tab" id="ScopePricing">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Scope and Pricing</h4>
+                            <p>
+                                Please specify the details of your basic, standard and premium package.
+                            </p>
+                            <p>
+                                Please click each button below and complete the forms to continue to the next stage.
+                            </p>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'enable_all_packages' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Package buttons - smaller screens -->
+                    <div class="row hide-on-large-only">
+                        <div class="col s12">
+                            <a href="#!" class="btn btn-large btn-purple service-package-btn" id="basicBtn">Basic</a>
+                        </div>
+                        <div class="col s12">
+                            <a href="#!" class="btn btn-large btn-purple service-package-btn" id="standardBtn">Standard</a>
+                        </div>
+                        <div class="col s12">
+                            <a href="#!" class="btn btn-large btn-purple service-package-btn" id="premiumBtn">Premium</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Packages - smaller screens -->
+                <div class="hide packages-smscreen" id="basicPackage">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Basic</h4>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'basic_package_title' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'basic_delivery_time' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'basic_revisions' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'basic_details' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'basic_price' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row center-align">
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                        </div>
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hide packages-smscreen" id="standardPackage">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Standard</h4>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'standard_package_title' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'standard_delivery_time' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'standard_revisions' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'standard_details' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'standard_price' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row center-align">
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                        </div>
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hide packages-smscreen" id="premiumPackage">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Premium</h4>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'premium_package_title' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'premium_delivery_time' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'premium_revisions' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'premium_details' %}
+                            {{ field | materializecss }}
+                        {% elif field.name == 'premium_price' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row center-align">
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                        </div>
+                        <div class="col s12 m6">
+                            <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image -->
+                <div class="tab" id="ServiceImage">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="center title">Image</h4>
+                            <p>
+                                Add an image to make your services stand out more to clients.
+                            </p>
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        {% if field.name == 'service_image' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- Submit form, next and back buttons -->
+                <div class="row center-align">
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large btn-green next-btn" id="nextBtn-service" style="padding: 10px 45px;">Next</a>
+                    </div>
+                    <div class="col s12">
+                        <button type="submit" class="btn btn-large btn-green hide submit-btn">Submit</button>
+                    </div>
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large prev-btn btn-white">Back</a>
+                    </div>
+                    <div class="col s12">
+                        <a href="{% url 'profile_or_redirect' %}" class="btn btn-large btn-cancel btn-white hide">Cancel</a>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script src="{% static 'services/js/form-steps.js' %}"></script>
+{% endblock %}

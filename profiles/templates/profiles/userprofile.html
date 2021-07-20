@@ -5,7 +5,7 @@
 {% block content %}
     <div class="profile">
         <div class="border-blur"></div>
-        <div class="profile-page-border"><img src="{{ MEDIA_URL }}img50.jpg" alt=""></div>
+        <div class="profile-page-border"><img src="{{ MEDIA_URL }}img50.jpg" alt="Profile header"></div>
         <div class="container">
             <!-- Profile image -->
             <div class="row center-align">
@@ -223,7 +223,7 @@
                             <!-- Add services -->
                             <div class="row center-align">
                                 <div class="col s12">
-                                    <a href="#!" class="btn btn-green">Start Selling</a>
+                                    <a href="{% url 'add_service' user.pk %}" class="btn btn-green">Start Selling</a>
                                 </div>
                             </div>
                         </div>

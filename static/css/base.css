@@ -354,6 +354,10 @@ Buttons
     line-height: 15px;
 }
 
+.btn.btn-large.btn-green {
+    line-height: 32px;
+}
+
 .btn-purple {
     background: #6C5CE7;
     font-size: 16px;
@@ -363,7 +367,7 @@ Buttons
     border-radius: 25px;
 }
 
-.btn-cancel {
+.btn-white {
     background: #FFFFFF;
     color: #1E1E1E;
     font-size: 16px;
@@ -1198,6 +1202,38 @@ Tab content
 #scrollUpTab {
     margin-top: 6rem;
     margin-bottom: 0;
+}
+
+/* ======================================================
+Add freelance service form
+====================================================== */
+
+.FAQ-btns .col.s4.offset-s3 {
+    text-align: left;
+}
+
+.FAQ-btns .col.s4 {
+    text-align: left;
+}
+
+.service-package-btn {
+    width: 260px;
+}
+
+.save-package {
+    width: 135px;
+}
+
+#PackageCards .card {
+    background-color: #2a204a;
+    color: #ffffff;
+    margin: 25px;
+    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
+    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
+}
+
+#PackageCards .input-field {
+    width: 100% !important;
 }
 
 

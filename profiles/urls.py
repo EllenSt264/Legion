@@ -2,6 +2,8 @@ from django.urls import path
 from django.urls import path
 from django.urls.resolvers import URLPattern
 from . import views
+from services import views as services
+
 
 urlpatterns = [
     path('', views.profile_or_redirect, name='profile_or_redirect'),
@@ -12,5 +14,6 @@ urlpatterns = [
     path('get-started/client/success', views.success_client, name='success_client'),
     path('get-started/creator/success', views.success_creator, name='success_creator'),
     path('get-started/fail', views.fail, name='fail'),
-    path('<int:user_id>/', views.user_profile, name='user_profile')
+    path('<int:user_id>/', views.user_profile, name='user_profile'),
+    path('<int:user_id>/add-service', services.add_service, name='add_service'),
 ]
