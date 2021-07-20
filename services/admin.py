@@ -6,9 +6,9 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = (
         'service_category',
         'service_subcategory',
-        'user',
         'service_headline',
-        'service_search_tags'
+        'service_search_tags',
+        'user',
     )
 
     ordering = ('service_category',)
