@@ -166,6 +166,10 @@ aside {
     letter-spacing: 1px;
 }
 
+#servicesNav {
+    overflow-y: auto;
+}
+
 aside .close {
     margin: 10px;
     color: #0ACF83;
@@ -202,6 +206,10 @@ aside .img-overlay {
 
 aside img {
     width: 100%;
+}
+
+aside .container {
+    margin-bottom: 25px;
 }
 
 /* Fix positioning for some images */
