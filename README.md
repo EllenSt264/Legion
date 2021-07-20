@@ -165,6 +165,8 @@ Below is a diagram illustrating the different steps used to define the user mode
 
 - [This source](https://cssboxshadow.com/border-radius/) was used to create a box shadow with css.
 
+- I used [this](https://stackoverflow.com/questions/57337720/writing-django-signup-form-tests-for-checking-new-user-creation#61447865) and [this source](https://www.valentinog.com/blog/testing-modelform/) for helping write my unit testing with Django.
+
 
 
 #### Acknowledgements
