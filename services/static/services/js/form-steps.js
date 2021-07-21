@@ -163,6 +163,79 @@ $(document).ready(function() {
 
 
     /* ======================================================
+    Category Sections
+    ====================================================== */
+
+    // Update category id names
+    $('#id_service_category_0').attr('id', 'DevCategories');
+    $('#id_service_category_1').attr('id', 'CreativeCategories');
+    $('#id_service_category_2').attr('id', 'WritingCategories');
+    $('#id_service_category_3').attr('id', 'TranslationCategories');
+
+
+    var categoryTypes = ['Dev', 'Creative', 'Writing', 'Translation']
+
+    // Add id attributes to category list elements
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).parent().attr('id', `${categoryTypes[i]}Container`);
+    };
+
+    // Wrap heading text inside a header element
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Container`).contents().filter(function() {
+            return this.nodeType == 3; // Node.TEXT_NODE
+        }).wrap('<h6 class="center title smaller"></h6>');
+    };
+
+    // Add icons to radio list items
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
+    };
+
+    // Add fullscreen overlay class and close button to each category
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');
+
+        // Add close button for fullscreen overlay
+        $(`#${categoryTypes[i]}Categories`).prepend('<li><a href="#!"><i class="far fa-times-circle close-category"></i></a></li>');
+    };
+
+    // Trigger category fullscreen overlay
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Container h6`).on('click', function() {
+            // Trigger fullscreen overlay
+            $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
+            // Change content container to mimic a fullscreen overlay
+            $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
+        });
+    }
+
+    // Close overlay
+    $('.close-category').on('click', function() {
+        // Hide fullscreen overlay
+        $(this).parent().parent().parent().css('visibility', 'hidden').css('opacity', '0');
+        // Change content container back to default
+        $('.container.content').css('top', '6%').css('height', '94%').css(
+            'overflow', 'auto').css('border-top-left-radius', '40px').css('border-top-right-radius', '40px');
+    });
+
+
+    /* ======================================================
+    Radio buttons - Categories
+    ====================================================== */
+
+    var categoryRadios = $('input[name=service_category]');
+
+    // Toggle checked for category radio buttons
+    $(categoryRadios).on('click', function() {
+        categoryRadios.parent().siblings('i').css('color', 'white');
+        categoryRadios.attr('checked', false);
+        $(this).attr('checked', true);
+        $(this).parent().siblings('i').css('color', '#0ACF83');
+    });
+
+
+    /* ======================================================
     Form steps
     ----------
 

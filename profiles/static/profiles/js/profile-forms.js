@@ -238,24 +238,10 @@ $(document).ready(function() {
 
 
     /* ======================================================
-    Radio buttons - Categories
-    ====================================================== */
-
-    var categoryRadios = $('input[name=category_name]');
-
-    // Toggle checked for category radio buttons
-    $(categoryRadios).on('click', function() {
-        categoryRadios.parent().siblings('i').css('color', 'white');
-        categoryRadios.attr('checked', false);
-        $(this).attr('checked', true);
-        $(this).parent().siblings('i').css('color', '#0ACF83');
-    });
-
-    var expertiseRadios = $('input[name=expertise_level]');
-
-    /* ======================================================
     Radio buttons - Expertise level
     ====================================================== */
+
+    var expertiseRadios = $('input[name=expertise_level]');
 
     $(expertiseRadios).parent().addClass('btn btn-large')
 
@@ -311,16 +297,44 @@ $(document).ready(function() {
         $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
     };
 
-    // Add hidden classes to category radio buttons
+    // Add fullscreen overlay class and close button to each category
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).addClass('hide');
-        $(`#${categoryTypes[i]}Categories`).addClass('category-tab');
+        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');
+
+        // Add close button for fullscreen overlay
+        $(`#${categoryTypes[i]}Categories`).prepend('<li><a href="#!"><i class="far fa-times-circle close-category"></i></a></li>');
     };
 
-    // Activate relevant tabs
+    // Trigger category fullscreen overlay
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Container .title`).on('click', function() {
-            $(`#${categoryTypes[i]}Categories`).toggleClass('hide');
+        $(`#${categoryTypes[i]}Container h6`).on('click', function() {
+            // Trigger fullscreen overlay
+            $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
+            // Change content container to mimic a fullscreen overlay
+            $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
         });
-    };
+    }
+
+    // Close overlay
+    $('.close-category').on('click', function() {
+        // Hide fullscreen overlay
+        $(this).parent().parent().parent().css('visibility', 'hidden').css('opacity', '0');
+        // Change content container back to default
+        $('.container.content').css('top', '6%').css('height', '94%').css(
+            'overflow', 'auto').css('border-top-left-radius', '40px').css('border-top-right-radius', '40px');
+    });
+
+    /* ======================================================
+    Radio buttons - Categories
+    ====================================================== */
+
+    var categoryRadios = $('input[name=category_name]');
+
+    // Toggle checked for category radio buttons
+    $(categoryRadios).on('click', function() {
+        categoryRadios.parent().siblings('i').css('color', 'white');
+        categoryRadios.attr('checked', false);
+        $(this).attr('checked', true);
+        $(this).parent().siblings('i').css('color', '#0ACF83');
+    });
 });

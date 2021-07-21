@@ -889,16 +889,16 @@ Form styles
     box-shadow: 0 1px 0 0 #26a69a;
 }
 
-.category-tab li {
+.category-overlay li {
     padding: 15px 0 15px 20px;
 }
 
-.category-tab li i {
+.category-overlay li i {
     font-size: 20px;
 }
 
-.category-tab li,
-.category-tab li label {
+.category-overlay li,
+.category-overlay li label {
     font-size: 15px;
     font-weight: 500;
     color: #ffffff;
@@ -1244,6 +1244,25 @@ Add freelance service form
     width: 100% !important;
 }
 
+.category-overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* Gradient taken from this source: 'https://www.css-gradient.com/' */
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #0B1C2A, #6C5CE7);
+    background: -moz-linear-gradient(bottom, #0B1C2A, #6C5CE7);
+    background: linear-gradient(to top, #0B1C2A, #6C5CE7);
+    /* To create space with navbar */
+    padding-top: 56px;
+	opacity: 0;
+    overflow-x: hidden;
+    visibility: hidden;
+    transition: all .5s ease;
+}
 
 /* ======================================================
 Carousel styles
