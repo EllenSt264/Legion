@@ -36,7 +36,6 @@ $(document).ready(function () {
         });
     };
 
-
     /* ======================================================
     Materialize switch
     ====================================================== */
@@ -164,7 +163,6 @@ $(document).ready(function () {
     $('#id_category_name_2').attr('id', 'WritingCategories');
     $('#id_category_name_3').attr('id', 'TranslationCategories');
 
-
     var categoryTypes = ['Dev', 'Creative', 'Writing', 'Translation']
 
     // Add id attributes to category list elements
@@ -186,29 +184,34 @@ $(document).ready(function () {
 
     // Add fullscreen overlay class and close button to each category
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');
-
-        // Add close button for fullscreen overlay
-        $(`#${categoryTypes[i]}Categories`).prepend('<li><a href="#!"><i class="far fa-times-circle close-category"></i></a></li>');
+        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');  
     };
 
     // Trigger category fullscreen overlay
     for (let i in categoryTypes) {
         $(`#${categoryTypes[i]}Container h6`).on('click', function() {
+            $(this).siblings().addClass('active-category');
             // Trigger fullscreen overlay
             $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
             // Change content container to mimic a fullscreen overlay
             $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
+        
+            // Show close button for fullscreen overlay
+            $('.close-category').removeClass('hide');
         });
-    }
+    };
 
     // Close overlay
     $('.close-category').on('click', function() {
         // Hide fullscreen overlay
-        $(this).parent().parent().parent().css('visibility', 'hidden').css('opacity', '0');
+        $('.active-category').css('visibility', 'hidden').css('opacity', '0');
+
         // Change content container back to default
         $('.container.content').css('top', '6%').css('height', '94%').css(
             'overflow', 'auto').css('border-top-left-radius', '40px').css('border-top-right-radius', '40px');
+        
+        // Hide close button for fullscreen overlay
+        $('.close-category').addClass('hide');
     });
 
     /* ======================================================

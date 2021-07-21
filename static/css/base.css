@@ -749,6 +749,11 @@ Container styles
     display: none;
 }
 
+.tab h6:hover,
+.tab li label:hover {
+    cursor: pointer;
+}
+
 #TitleOverview p a {
     margin: auto;
     width: 100%;
@@ -1262,6 +1267,18 @@ Add freelance service form
     overflow-x: hidden;
     visibility: hidden;
     transition: all .5s ease;
+}
+
+.close-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 99 !important;
+}
+
+.close-category i {
+    font-size: 28px !important;
+    color: #ffffff;
 }
 
 /* ======================================================
