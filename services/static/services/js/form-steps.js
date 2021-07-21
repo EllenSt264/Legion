@@ -20,11 +20,11 @@ $(document).ready(function() {
     showTab(currentTab);
 
     $('.next-btn').on('click', function() {
-        nextPrev(1);
+        next();
     });
 
     $('.prev-btn').on('click', function() {
-        nextPrev(-1);
+        prev();
     });
 
     $('.skip-section').on('click', function() {
@@ -42,32 +42,47 @@ $(document).ready(function() {
         } else {
             $('.prev-btn').removeClass('hide');
             $('.btn-cancel').addClass('hide');
-        }
+        };
 
         // if you have reached the end of the form... :
         if (n == (x.length - 1)) {
             // show the submit to submit the form
             $('.next-btn').addClass('hide');
             $('.submit-btn').removeClass('hide');
-        }
-    }
+        };
+    };
     
-    // Display the next or previous tab
-    function nextPrev(n) {
+    // Display the next tab
+    function next() {
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
         if (!validateForm()) return false;
         // Hide the current tab:
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:
-        currentTab = currentTab + n;
+        currentTab = currentTab + 1;
         // if you have reached the end of the form... :
         if (currentTab >= x.length) {
             return false;
         }
         // Otherwise, display the correct tab:
         showTab(currentTab);
-    }
+    };
+
+    // Display the previous tab
+    function prev() {
+        var x = document.getElementsByClassName("tab");
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab - 1;
+        // if you have reached the end of the form... :
+        if (currentTab >= x.length) {
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    };
     
     // An option to skip tabs
     function skipSection(n) {
@@ -78,30 +93,27 @@ $(document).ready(function() {
         currentTab = currentTab + 1;
         // Display the correct tab:
         showTab(currentTab);
-    }
+    };
     
     // Ensure input fields are filled before moving to the next tab
     function validateForm() {
         var x, y, i, valid = true;
-        x = $('.tab')
+        x = $('.tab');
 
         currentFields = $(x[currentTab]).find('input');
 
         // Check if required fields are filled
-
         if ($(currentFields).attr('required')) {
             for (i = 0; i < currentFields.length; i++) {
                 if ($(currentFields[i]).val() === '') {
                     valid = false;
-                }
-            }
-
+                };
+            };
             if (valid === false) {
                 alert('Please complete all required fields!');
-            }
-        }
-
+            };
+        };
         // If the valid status is true, mark the step as finished and valid:
         return valid;
-    }
+    };
 });
