@@ -18,17 +18,46 @@ class FreelanceService(models.Model):
         primary_key=True,
     )
 
+    CATEGORY_CHOICES = [
+        ('Web, Mobile & Software Dev', (
+                ('DESKTOP', 'Desktop Software Development'),
+                ('MOBILE', 'Mobile Development'),
+                ('GAME', 'Game Development'),
+                ('OTHER', 'Other Software Development'),
+                ('TESTING', 'Testing'),
+                ('UX', 'Web UX & Mobile Design'),
+                ('WEB', 'Web Development'),
+            )),
+        ('Design & Creative', (
+                ('ART', 'Art & Illustration'),
+                ('AUDIO', 'Audio & Music Production'),
+                ('VIDEO', 'Video & Animation'),
+                ('DESIGN', 'Graphic, Editorial & Presentation Design'),
+                ('ARTS', 'Performing Arts'),
+                ('PHOTO', 'Photography'),
+                ('BRANDING', 'Branding & Logo Design'),
+                ('GAMING', 'Gaming AR/VR'),
+            )),
+        ('Writing', (
+                ('CONTENT', 'Content & Copyright'),
+                ('CREATIVE', 'Creative'),
+                ('EDITING', 'Editing & Proofreading'),
+                ('RESUMES', 'Resumes & Cover Letters'),
+                ('TECHNICAL', 'Technical Writing'),
+            )),
+        ('Translation', (
+                ('GENERAL', 'General'),
+                ('LEGAL', 'Legal'),
+                ('MEDICAL', 'Medical'),
+                ('TECHNICAL', 'Technical'),
+            )),
+    ]
+
     service_category = models.CharField(
-        max_length=50,
+        max_length=80,
+        choices=CATEGORY_CHOICES,
         null=False,
         blank=False,
-        default=''
-    )
-    service_subcategory = models.CharField(
-        max_length=50,
-        null=False,
-        blank=False,
-        default=''
     )
 
     service_headline = models.CharField(max_length=50, null=False, blank=False)

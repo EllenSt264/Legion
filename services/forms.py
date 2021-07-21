@@ -9,7 +9,6 @@ class FreelanceServiceForm(forms.ModelForm):
 
         labels = {
             'service_category': '',
-            'service_subcategory': '',
             'service_headline': '',
             'service_search_tags': '',
             'service_description': 'Description',
@@ -45,7 +44,6 @@ class FreelanceServiceForm(forms.ModelForm):
 
         placeholders = {
             'service_category': 'Category',
-            'service_subcategory': 'Subcategory',
             'service_headline': 'Headline',
             'service_search_tags': 'Search tags',
             'service_description': 'Describe what service you are offering',
@@ -73,3 +71,13 @@ class FreelanceServiceForm(forms.ModelForm):
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
+
+        # Overwrite category choice field as radio buttons
+        categories = forms.ChoiceField(
+            choices=FreelanceService.CATEGORY_CHOICES,
+            widget=forms.RadioSelect(
+                attrs={'class': 'radio-btn'},
+            ),
+            label='',
+        )
+        self.fields['service_category'] = categories
