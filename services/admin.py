@@ -4,13 +4,13 @@ from .models import FreelanceService
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = (
-        'service_category',
+        'category_name',
         'service_headline',
         'service_search_tags',
         'user',
     )
 
-    ordering = ('service_category',)
+    ordering = ('category_name',)
 
 
 admin.site.register(FreelanceService, ServiceAdmin)

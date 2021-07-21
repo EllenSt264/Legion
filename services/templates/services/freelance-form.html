@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     {% for field in form %}
-                        {% if field.name == 'service_category' %}
+                        {% if field.name == 'category_name' %}
                             {{ field | materializecss }}
                         {% endif %}
                     {% endfor %}
@@ -52,7 +52,7 @@
                     <!-- Dummy form input -->
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" id="searchTags" placeholder="Type a skill and press enter">
+                            <input type="text" class="chips-input" id="searchTags" placeholder="Type a skill and press enter">
                         </div>
                     </div>
                     <!-- Hidden form input -->
@@ -63,7 +63,7 @@
                     {% endfor %}
                     <!-- Chips container -->
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s12 chips-container">
                             <h6>Current tags</h6>
                         </div>
                     </div>

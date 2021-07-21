@@ -97,7 +97,8 @@ class CreatorWorkForm(forms.ModelForm):
         exclude = ('profile', 'creator', 'category')
 
         widgets = {
-            'skills': forms.HiddenInput(),
+            'skills': forms.HiddenInput(
+                attrs={'class': "chips-hidden-input"}),
         }
 
         labels = {

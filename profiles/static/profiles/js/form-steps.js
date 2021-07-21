@@ -30,6 +30,18 @@ $(document).ready(function() {
     $('.skip-section').on('click', function() {
         skipSection();
     });
+
+    $('.skip-section-2').on('click', function() {
+        skipSection2();
+    });
+
+    $('#skipEducation').on('click', function() {
+        makeEducationOptional();
+    });
+
+    $('#skipWorkExperience').on('click', function() {
+        makeWorkExperienceOptional();
+    });
     
     // Display the specified tab of the the form
     function showTab(n) {
@@ -37,20 +49,20 @@ $(document).ready(function() {
         x[n].style.display = "block";
 
         if (n == 0) {
-            $('.btn-cancel').removeClass('hide');
+            $('#cancelBtn').removeClass('hide');
             $('.prev-btn').addClass('hide');
         } else {
             $('.prev-btn').removeClass('hide');
-            $('.btn-cancel').addClass('hide');
-        }
+            $('#cancelBtn').addClass('hide');
+        };
 
         // if you have reached the end of the form... :
         if (n == (x.length - 1)) {
             // show the submit to submit the form
             $('.next-btn').addClass('hide');
             $('.submit-btn').removeClass('hide');
-        }
-    }
+        };
+    };
     
     // Display the next or previous tab
     function nextPrev(n) {
@@ -64,10 +76,10 @@ $(document).ready(function() {
         // if you have reached the end of the form... :
         if (currentTab >= x.length) {
             return false;
-        }
+        };
         // Otherwise, display the correct tab:
         showTab(currentTab);
-    }
+    };
     
     // An option to skip tabs
     function skipSection(n) {
@@ -78,30 +90,65 @@ $(document).ready(function() {
         currentTab = currentTab + 1;
         // Display the correct tab:
         showTab(currentTab);
-    }
+    };
+
+    // For skipping the Education and/or Work Experience tabs
+    function skipSection2(n) {
+        var x = document.getElementsByClassName("tab");
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase current tab by 1:
+        currentTab = currentTab + 2;
+        // Display the correct tab:
+        showTab(currentTab);
+    };
+
+    // Update Education fields as optional
+    function makeEducationOptional() {
+        var educationForm = $('#AddEducation');
+        var inputFields = $(educationForm).find('input:required');
+
+        inputFields.prop('required', false);
+    };
+
+    // Update Work Experience fields as optional
+    function makeWorkExperienceOptional() {
+        var workexperienceForm = $('#AddWorkExperience');
+        var inputFields = $(workexperienceForm).find('input:required');
+
+        inputFields.prop('required', false);
+    };
     
     // Ensure input fields are filled before moving to the next tab
     function validateForm() {
         var x, y, i, valid = true;
-        x = $('.tab')
+        x = $('.tab');
+        y = x[currentTab].getElementsByTagName("input");
 
         currentFields = $(x[currentTab]).find('input');
 
         // Check if required fields are filled
 
+        for (i = 0; i < currentFields.length; i++) {
+            if (($(currentFields[i]).is('required') && $(currentFields[i]).value === '') || ($(currentFields[i]).is('required') && currentFields[i].is(':checked') !== true)) {
+                alert('Please complete all required fields');
+            };
+        };
+
+
         if ($(currentFields).attr('required')) {
             for (i = 0; i < currentFields.length; i++) {
-                if ($(currentFields[i]).val() === '') {
+                if (($(currentFields[i]).val() === '') || ($(currentFields).is(':checked') !== true)) {
                     valid = false;
-                }
-            }
+                };
+            };
 
             if (valid === false) {
                 alert('Please complete all required fields!');
-            }
-        }
+            };
+        };
 
         // If the valid status is true, mark the step as finished and valid:
         return valid;
-    }
+    };
 });

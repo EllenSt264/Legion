@@ -39,7 +39,7 @@
                     </div>
                     <div class="chips-container"></div>
                     <div class="input-field col s12">
-                        <input type="text" id="skillsChips" placeholder="Type a skill and press enter">
+                        <input type="text" class="chips-input" id="skillsChips" placeholder="Type a skill and press enter">
                     </div>
                     <!-- Django hidden input field -->
                     {% for field in work_form  %}
@@ -239,5 +239,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script src="{% static 'profiles/js/profile-forms.js' %}"></script>
+    <script src="{% static 'profiles/js/form-steps.js' %}"></script>
 {% endblock %}

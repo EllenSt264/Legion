@@ -53,7 +53,7 @@ class FreelanceService(models.Model):
             )),
     ]
 
-    service_category = models.CharField(
+    category_name = models.CharField(
         max_length=80,
         choices=CATEGORY_CHOICES,
         null=False,

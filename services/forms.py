@@ -8,7 +8,7 @@ class FreelanceServiceForm(forms.ModelForm):
         exclude = ('user',)
 
         labels = {
-            'service_category': '',
+            'category_name': '',
             'service_headline': '',
             'service_search_tags': '',
             'service_description': 'Description',
@@ -34,7 +34,8 @@ class FreelanceServiceForm(forms.ModelForm):
         }
 
         widgets = {
-            'service_search_tags': forms.HiddenInput(),
+            'service_search_tags': forms.HiddenInput(
+                attrs={'class': "chips-hidden-input"}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +44,7 @@ class FreelanceServiceForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         placeholders = {
-            'service_category': 'Category',
+            'category_name': 'Category',
             'service_headline': 'Headline',
             'service_search_tags': 'Search tags',
             'service_description': 'Describe what service you are offering',
@@ -80,4 +81,4 @@ class FreelanceServiceForm(forms.ModelForm):
             ),
             label='',
         )
-        self.fields['service_category'] = categories
+        self.fields['category_name'] = categories
