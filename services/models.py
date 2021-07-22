@@ -155,4 +155,4 @@ class FreelanceService(models.Model):
     )
 
     def __str__(self):
-        return self.service_category
+        return self.category_name
