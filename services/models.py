@@ -12,10 +12,9 @@ class FreelanceService(models.Model):
     class Meta:
         verbose_name_plural = 'Freelance Services'
 
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        primary_key=True,
     )
 
     CATEGORY_CHOICES = [
