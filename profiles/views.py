@@ -78,7 +78,7 @@ def creator_form(request, user_id):
                 languages.profile = profile
                 languages.save()
 
-                return redirect(reverse('success_client'))
+                return redirect(reverse('success_creator'))
             else:
                 return redirect(reverse('fail'))
     else:
