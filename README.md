@@ -167,11 +167,13 @@ Below is a diagram illustrating the different steps used to define the user mode
 
 - I used [this](https://stackoverflow.com/questions/57337720/writing-django-signup-form-tests-for-checking-new-user-creation#61447865) and [this source](https://www.valentinog.com/blog/testing-modelform/) for helping write my unit testing with Django.
 
+- Both [this](https://pythonprogramming.net/messages-django-tutorial/) and [this source](https://stackoverflow.com/questions/41711127/how-to-extract-django-form-errors-message-without-the-html-tags) was used to add Django messages with Materialize toasts.
+
 
 
 #### Acknowledgements
 
-- I want to say thank you to Igor and Scott from Code Institute for their help with some features.
+- I want to say thank you to Igor, Jo and Scott from Code Institute for their help with some features.
 
 - I also want to thank my mentor, Can Sucullu, for his help and valuable suggestions throughout this project.
 
