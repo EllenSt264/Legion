@@ -22,9 +22,11 @@ def add_service(request, user_id):
             messages.success(request, 'Successfully added service!')
             return redirect(reverse('profile_or_redirect'))
         else:
-            messages.error(request, 'There was an error with your form. \
-                Please double check your information.')
-            return redirect(reverse('home'))
+            for field, error in form.errors.items():
+                messages.error(
+                    request, 'Error! Form field: "{}" {}'.format(
+                        field, ','.join(error).replace('This field', ''))
+                )
     else:
         form = FreelanceServiceForm()
 
