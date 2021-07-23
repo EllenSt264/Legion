@@ -11,7 +11,7 @@
         <div class="container content">
             <form action="" method="POST" id="CreatorForm">
                 {% csrf_token %}
-                <!-- Work and services - dummy field -->
+                <!-- Work and services -->
                 <div class="tab" id="CreatorWork">
                     <div class="row">
                         <div class="col s12">
@@ -23,26 +23,44 @@
                             </p>
                         </div>
                     </div>
-                </div>
-                <!-- Work and services -->
-                <div class="tab" id="CreatorWork">
-                    <div class="row">
-                        <div class="col s12">
-                            <h4 class="center title">Select a Category</h4>
-                        </div>
-                    </div>
                     {{ category_form | materializecss }}
                 </div>
                 <!-- Skills -->
                 <div class="tab" id="Skills">
+                    <!-- Title -->
                     <div class="row">
                         <div class="col s12">
                             <h4 class="center title">Add your Skills</h4>
                             <p class="center">Add your skills tags by entering text and pressing enter</p>
                         </div>
                     </div>
-                    <div class="chips-container"></div>
-                    <div class="input-field col s12">
+                    <!-- Current skills title -->
+                    <div class="row">
+                        <div class="col s12 m6 offset-m1">
+                            <h5>Current Skills</h5>
+                        </div>
+                    </div>
+                    <!-- Current skills -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 chips-container"></div>
+                    </div>
+                    <!-- Popular skills title -->
+                    <div class="row">
+                        <div class="col s12 m6 offset-m1">
+                            <h5>Select your Skills</h5>
+                        </div>
+                    </div>
+                    <!-- Popular skills -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 popular-tags"></div>
+                    </div>
+                    <!-- Add skills -->
+                    <div class="row">
+                        <div class="col s12 m6 offset-m1">
+                            <h5>Or Add Your Own</h5>
+                        </div>
+                    </div>
+                    <div class="input-field col s12 m6">
                         <input type="text" class="chips-input" id="skillsChips" placeholder="Type a skill and press enter">
                     </div>
                     <!-- Django hidden input field -->

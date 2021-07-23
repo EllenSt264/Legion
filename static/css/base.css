@@ -1291,6 +1291,17 @@ Add freelance service form
     margin-top: 25px;
 }
 
+.account-container .chip {
+    font-size: 14px;
+    background-color: #6C5CE7;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+}
+
+.account-container .chip .fas.fa-plus-circle {
+    margin-left: 5px;
+}
+
 /* ======================================================
 Carousel styles
 ====================================================== */
@@ -1443,6 +1454,11 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     =========================== */
     .start-profile .container.content {
         min-width: 2000px !important;
+    }
+    /* Add service form
+    =========================== */
+    .category-overlay-active .close-category {
+        left: 12% !important;
     }
 }
 
@@ -1755,8 +1771,14 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     #languagesTab h5 {
         text-align: left !important;
     }
-    /* Add service form
+    /* Forms
     =========================== */
+    #Skills h5 {
+        text-align: left !important;
+    }
+    #Skills .chips-container {
+        text-align: left !important;
+    }
     #FreelanceService .container.content {
         height: 92%;
         top: 8%;
@@ -1766,7 +1788,7 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     }
     .category-overlay-active .close-category {
         top: 7.5rem;
-        left: 8rem;
+        left: 10%;
     }
     .category-overlay-active .close-category i.fa-times-circle {
         font-size: 34px !important;
@@ -1972,6 +1994,24 @@ REPSONSIVE STYLES FOR SMALLER SCREENS
     .profile-page-img {
         width: 100px !important;
         height: 100px !important;
+    }
+}
+
+@media (min-width: 485px) {
+    .category-overlay li i.fa-check {
+        margin-right: 25px;
+        font-size: 25px;
+    }
+    .category-overlay li label {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 992px) and (min-width: 485px) {
+    /* Add service form
+    =========================== */
+    .category-overlay li {
+        text-align: center;
     }
 }
 

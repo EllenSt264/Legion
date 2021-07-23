@@ -230,7 +230,6 @@ $(document).ready(function () {
         $(this).parent().siblings('i').css('color', '#0ACF83');
     });
 
-
     /* ======================================================
     Toggle FAQ section
     ====================================================== */
@@ -314,4 +313,393 @@ $(document).ready(function () {
         var inputFields = $('.packages-smscreen').find('input');
         inputFields.prop('required', false);
     };
+
+
+    /* ======================================================
+    Chips container - Freelance Service
+    ====================================================== */
+
+    /* =======================================
+    Define skills for each cateogory
+    ======================================= */
+
+    /* WEB, MOBILE & SOFTWARE DEVELOPMENT */
+    var desktopArr = [
+        'MySQL', 'API', 'Windows Forms', 'PostgreSQL', 'SQL',
+        '.NET Framework', 'Mac OS App Development', 'Azure Cosmos DB',
+        'Multithreading Programming', 'MongoDB', 'Microsoft SQL Server',
+        'XML', 'Application Installer', 'Apache CouchDB'
+    ];
+    var mobileArr = [
+        'MySQL', 'Social Media Account Integration', 'Swift', 'Tablet', 'SQLite',
+        'In-App Purchases', 'React Native', 'Firebase', 'User Authentication',
+        'Objective-C', 'MongoDB', 'Microsoft SQL Server',
+        'In-App Advertising', 'Map Integration'
+    ];
+    var gameArr = [
+        'HTML', 'Game Programming', 'UX', 'Python', 'AR', 'Unity',
+        'Web Design', 'iOS Development', 'Graphic Design',
+        '.io Game', 'Animation', 'Prototypes',
+        'Game Design', '3D Modeling', 'VR'
+    ];
+    var otherArr = [
+        'RTOS', 'Embedded Systems', 'Arduino', 'Embedded Linux', 'ESP32',
+        'PIC', 'BLE', 'Device Firmware', 'Zigbee', 'WiFi', 'NFC',
+    ];
+    var testingArr = [
+        'Mobile App Testing', 'Usability Testing', 'User Experience Design',
+        'Visual Communication', 'JUnit', 'DevTools', 'Automated Testing',
+    ];
+    var uxArr = [
+        'Visual Communication', 'Web Design', 'Usability Testing', 'Axure RP',
+        'User Interface Desgin', 'Software Design', 'User Experience Design', 
+        'Webflow', 'Competitive Analysis', 'Adobe XD', 'Mobile App Design',
+        'Game Design', 'iPhone UI Design', 'Figma', 'Adobe Photoshop'
+    ];
+    var webArr = [
+        'MySQL', 'API', 'Hibernate', 'Python', 'SQL', 'PostgreSQL', 'CI/CD',
+        'Business Logic Layer', 'Automatic Deployment Pipeline', 'PHP',
+        'AngularJS', 'Microsoft SQL Server', 'Spring Framework',
+        'Requirements Specification', 'MongoDB'
+    ];
+
+    /* DESIGN & CREATIVE */
+    var artArr = [
+        '2D Animation', 'Freestyle Drawing', 'Caricature Drawing', 'Drawing',
+        'Graphic Design', 'Digital Painting', 'Storyboarding', 'Manga',
+        'Clip Studio Paint', 'Facebook Games Development', 'Anime',
+        '2D Design', 'Animation', 'Adobe Illustrator', 'Cartoons'
+    ];
+    var audioArr = [
+        'Jazz', 'Guitar Compostion', 'Percussion', 'MIDI', 'Piano',
+        'Guitar Performance', 'Sibelius', 'Adobe Audition', 'Rock',
+        'Musical Composition', 'Vocals', 'Musical Transcription',
+    ];
+    var videoArr = [
+        'Animation', 'Adobe Character Animator', 'Flipbook',
+        'Blender', 'Adobe Animate', 'Dragonframe',
+        'Luminar AI', 'Lightworks'
+    ];
+    var designArr = [
+        'Adobe Photoshop', 'Figma', 'Adobe Illustrator',
+        'Design Wizard', 'Adobe InDesign', 'Canva',
+        'Microsoft Office'
+    ];
+    var artsArr = [
+        'Translation', 'Musical Composition',
+        'Voice Talent', 'Creative Writing', 'Vocals',
+    ];
+    var photoArr = [
+        'Adobe Photoshop', 'Lightworks', 'Graphic Design',
+        'Adobe Lightroom', 'Good Communication',
+    ];
+    var brandingArr = [
+        'HTML', 'Brand Positioning', 'Layout Design', 'Web Design',
+        'Graphic Design', 'Drawing', 'Adobe Creative Suite',
+        'Print Marketing Materials', 'Brand Guidelines',
+        'Print Advertising', 'User Experience Design',
+        'Adobe Illustrator', 'Business Card Design',
+        'Packaging'
+    ];
+    var gamingArr = [
+        'Fusion 360', 'Substance Painter', 'MarvelousDesigner', 'Adobe After Effects', 
+        'The Foundry NUKE', 'Autodesk 3ds Max', 'Graphic Design', 'Virtual Reality',
+        'Motion Graphics', 'Adobe Illustrator', '3D Animation', 'Animation',
+        'Game Design', '3D Modeling', 'VFX Animation', 'UV Mapping'
+    ];
+
+    /* WRITING */
+    var contentArr = [
+        'Media & Entertainment', 'Article Writing', 'Website Content', 'Education', 
+        'Business Services', 'Art', 'Copywriting', 'Research', 'Fact-Checking',
+        'About Us Page', 'Creative Writing', 'Product Page', 'Landing Page',
+    ];
+    var creativeArr = [
+        'Fiction Writing', 'Explainer Video', 'Screencast', 'Trailer', 
+        'Screenwriting', 'Microsoft Word', 'Copywriting', 'Feature',
+        'Proofreading', 'Broadcast Journalism', 'Commercial',
+        'Documentary', 'Final Draft'
+    ];
+    var editingArr = [
+        'Error Checking', 'English Spelling', 'Document Version Control', 'Editing', 
+        'Text Formatting', 'Microsoft Word', 'Copywriting', 'Research', 'Markup',
+        'Proofreading', 'English Punctuation', 'English Grammar'
+    ];
+    var resumesArr = [
+        'Media & Entertainment', 'Operations Management', 'Proofreading', 'Life Coaching', 
+        'Business Services', 'Arts', 'AccountAbility', 'Interview Preparation',
+        'Management Skills', 'Resume Design', 'Data Entry', 'Education',
+    ];
+    var technicalArr = [
+        'IT', 'Quantitative Research', 'Proofreading', 'Tutorial', 'Content Management', 
+        'Technical Editing', 'Article', 'FAQ', 'Instruction Manual', 'Statistics',
+        'Software', 'SEO Audit', 'Qualitative Research', 'Technical Writing'
+    ];
+
+    /* TRANSLATION */
+    var generalArr = [
+        'Microsoft Word', 'Translation', 'Spanish - Latin American', 'Engish Tutoring', 'German', 
+        'French', 'Spanish - Mexico', 'Chinese - Mandarin', 'Chinese - Cantonese', 'Education',
+        'Korean', 'Japanese', 'Russian', 'Ukrainian', 'Editing', 'Proofreading', 'Dutch'
+    ];
+    var legalArr = [
+        'Microsoft Word', 'Translation', 'Official Correspondence Translation', 'Documentation', 'Writing', 
+        'Contract Translations', 'Product Documentation', 'Article Rewriting', 'Transcription', 'Editing',
+        'Technical Manuals', 'Agreements', 'Official Documents Translation', 'Proofreading',
+    ];
+    var medicalArr = [
+        'Translation', 'Data Analysis', 'Stata', 'Documentation', 'Medical', 
+        'Contract Translations', 'Product Documentation', 'Adobe Acrobat', 
+        'Technical Manuals', 'Medical Terminology', 'Technical Editing'
+    ];
+
+    /* =======================================
+    Add skills of chosen category
+    to popular search tags
+    ======================================= */
+
+    categoryRadios.on('change', function() {
+        // Define value for category selection variable
+        if ($(categoryRadios).is(':checked')) {
+            var categorySelection = $(this).val();
+        };
+
+        // Grab popular search tags container
+        var popularTagsContainer = $('.popular-tags');
+
+
+        // Ensure that the container is empty before adding chips
+        if ($(popularTagsContainer).is(':empty')) {
+            setPopularTags();
+        } else {    
+            $(popularTagsContainer).empty();
+            setPopularTags();
+        };
+
+        /* =======================================
+        Add appropriate chips to popular search
+        tags container by iterating through
+        the category skills array and
+        adding the html as chips 
+        ======================================= */
+
+        function setPopularTags() {
+            if (categorySelection == 'DESKTOP') {
+                // Iterate through category skills array and add to html as chips
+                for (i in desktopArr) {
+                    chip_html = `<div class="chip">${desktopArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'MOBILE') {
+                // Iterate through category skills array and add to html as chips
+                for (i in mobileArr) {
+                    chip_html = `<div class="chip">${mobileArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'GAME') {
+                // Iterate through category skills array and add to html as chips
+                for (i in gameArr) {
+                    chip_html = `<div class="chip">${gameArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'OTHER') {
+                // Iterate through category skills array and add to html as chips
+                for (i in otherArr) {
+                    chip_html = `<div class="chip">${otherArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'TESTING') {
+                // Iterate through category skills array and add to html as chips
+                for (i in testingArr) {
+                    chip_html = `<div class="chip">${testingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'UX') {
+                // Iterate through category skills array and add to html as chips
+                for (i in uxArr) {
+                    chip_html = `<div class="chip">${uxArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'WEB') {
+                // Iterate through category skills array and add to html as chips
+                for (i in webArr) {
+                    chip_html = `<div class="chip">${webArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'ART') {
+                // Iterate through category skills array and add to html as chips
+                for (i in artArr) {
+                    chip_html = `<div class="chip">${artArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'AUDIO') {
+                // Iterate through category skills array and add to html as chips
+                for (i in audioArr) {
+                    chip_html = `<div class="chip">${audioArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'VIDEO') {
+                // Iterate through category skills array and add to html as chips
+                for (i in videoArr) {
+                    chip_html = `<div class="chip">${videoArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'DESIGN') {
+                // Iterate through category skills array and add to html as chips
+                for (i in designArr) {
+                    chip_html = `<div class="chip">${designArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'ARTS') {
+                // Iterate through category skills array and add to html as chips
+                for (i in artsArr) {
+                    chip_html = `<div class="chip">${artsArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'PHOTO') {
+                // Iterate through category skills array and add to html as chips
+                for (i in photoArr) {
+                    chip_html = `<div class="chip">${photoArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'BRANDING') {
+                // Iterate through category skills array and add to html as chips
+                for (i in brandingArr) {
+                    chip_html = `<div class="chip">${brandingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'GAMING') {
+                // Iterate through category skills array and add to html as chips
+                for (i in gamingArr) {
+                    chip_html = `<div class="chip">${gamingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'CONTENT') {
+                // Iterate through category skills array and add to html as chips
+                for (i in contentArr) {
+                    chip_html = `<div class="chip">${contentArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'CREATIVE') {
+                // Iterate through category skills array and add to html as chips
+                for (i in creativeArr) {
+                    chip_html = `<div class="chip">${creativeArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'EDITING') {
+                // Iterate through category skills array and add to html as chips
+                for (i in editingArr) {
+                    chip_html = `<div class="chip">${editingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'RESUMES') {
+                // Iterate through category skills array and add to html as chips
+                for (i in resumesArr) {
+                    chip_html = `<div class="chip">${resumesArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'TECHNICAL') {
+                // Iterate through category skills array and add to html as chips
+                for (i in technicalArr) {
+                    chip_html = `<div class="chip">${technicalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'GENERAL') {
+                // Iterate through category skills array and add to html as chips
+                for (i in generalArr) {
+                    chip_html = `<div class="chip">${generalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'LEGAL') {
+                // Iterate through category skills array and add to html as chips
+                for (i in legalArr) {
+                    chip_html = `<div class="chip">${legalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            } else if (categorySelection == 'MEDICAL') {
+                // Iterate through category skills array and add to html as chips
+                for (i in medicalArr) {
+                    chip_html = `<div class="chip">${medicalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
+                    popularTagsContainer.append(chip_html);
+                };
+            };
+        };
+
+
+        /* =======================================
+        Add functionality to allow users to
+        add chips from the popular search
+        tags container to the hidden
+        chips input form
+        ======================================= */
+
+        function addChipsFromPopularTags() {
+            // Grab the tags from popular tags div and add to array
+            var tagsText = $('.popular-tags').text();
+            var popularTagsArr = tagsText.split(' ');
+
+            // Remove empty fields from array 
+            // ! Work around for a minor bug
+            for (i=0; i < popularTagsArr.length; i++) {
+                if (popularTagsArr[i] === '') {
+                    popularTagsArr.splice(i, 1);
+                };
+            };
+
+            var popularChip = $('.popular-tags .chip');
+
+            popularChip.on('click', function() {
+                // Grab chips from html container to prevent duplicate chips from being added
+                var current_container = $('.chips-container').text();
+
+                // Add chip to container if it does not already exist
+                if (!current_container.includes($(this).text())) {
+                    container = $('.chips-container');
+                    html_code = `<div class="chip">${$(this).text()}<i class="close material-icons">close</i></div>`;
+                    container.append(html_code);
+                };
+                // Refresh value of input field
+                chips.val('');
+
+                /* Remove chip from popular tags container once
+                add to the current tags container */
+                $(this).remove();
+            });
+        };
+
+        addChipsFromPopularTags();
+
+    
+        /* =======================================
+        Add the chip back into the popular tags
+        container if the chip was removed 
+        from current tags
+        ======================================= */
+
+        function deleteSuggestedChip() {
+            $('.chips-container').on('click', '.chip .close', function() {
+                // Add the value of the removed tag to a variable
+                var removedTag = $(this).parent().text()
+                // Remove the close text from the times button
+                removedTag = removedTag.replace('close', '');
+    
+                var popularContainer = $('.popular-tags').text();
+    
+                // Grab the appropriate popular tags for the chosen category
+                let chosenCategory = categorySelection.toLowerCase();
+                let categoryTags = eval(`${chosenCategory}Arr`);
+    
+                /* Add chip to container if it does not already exist and
+                if it is in the chosen category's tags array */
+                if (!popularContainer.includes(removedTag) && categoryTags.includes(removedTag)) {
+                    container = $('.popular-tags');
+                    html_code = `<div class="chip">${removedTag} <i class="fas fa-plus-circle"></i></div>`;
+                    container.append(html_code);
+                };
+            });
+        };
+
+        deleteSuggestedChip();
+        
+    });
 });
