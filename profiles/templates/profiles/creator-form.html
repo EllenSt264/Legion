@@ -223,17 +223,17 @@
                 </div>
                 <!-- Submit form, next and back buttons -->
                 <div class="row center-align">
-                    <div class="col s12 m6">
+                    <div class="col s12 m6 l3 offset-l3">
                         <a href="#!" class="btn btn-large btn-green next-btn">Continue</a>
                     </div>
-                    <div class="col s12 m6">
-                        <button type="submit" class="btn btn-large btn-green hide submit-btn" id="submitBtn-creator">Submit</button>
+                    <div class="col s12 m6 l3 offset-l3 hide">
+                        <button type="submit" class="btn btn-large btn-green submit-btn" id="submitBtn-creator">Submit</button>
                     </div>
-                    <div class="col s12 m6">
-                        <a href="#!" class="btn btn-large btn-cancel prev-btn">Go Back</a>
+                    <div class="col s12 m6 l3">
+                        <a href="#!" class="btn btn-large btn-cancel prev-btn btn-white">Go Back</a>
                     </div>
-                    <div class="col s12 m6">
-                        <a href="{% url 'start' %}" class="btn btn-large btn-cancel hide" id="cancelBtn">Cancel</a>
+                    <div class="col s12 m6 l3 hide">
+                        <a href="{% url 'start' %}" class="btn btn-large btn-cancel btn-white" id="cancelBtn">Cancel</a>
                     </div>
                 </div>
             </form>

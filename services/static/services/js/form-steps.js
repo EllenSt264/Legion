@@ -37,18 +37,18 @@ $(document).ready(function() {
         x[n].style.display = "block";
 
         if (n == 0) {
-            $('.btn-cancel').removeClass('hide');
-            $('.prev-btn').addClass('hide');
+            $('.btn-cancel').parent().removeClass('hide');
+            $('.prev-btn').parent().addClass('hide');
         } else {
-            $('.prev-btn').removeClass('hide');
-            $('.btn-cancel').addClass('hide');
+            $('.prev-btn').parent().removeClass('hide');
+            $('.btn-cancel').parent().addClass('hide');
         };
 
         // if you have reached the end of the form... :
         if (n == (x.length - 1)) {
             // show the submit to submit the form
-            $('.next-btn').addClass('hide');
-            $('.submit-btn').removeClass('hide');
+            $('.next-btn').parent().addClass('hide');
+            $('.submit-btn').parent().removeClass('hide');
         };
     };
     

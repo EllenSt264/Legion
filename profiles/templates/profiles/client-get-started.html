@@ -32,8 +32,8 @@
                 </div>
                 <!-- Title and Overview -->
                 <div class="tab" id="TitleOverview">
-                    <div class="row">
-                        <div class="col">
+                    <div class="row center">
+                        <div class="col s12">
                             <h4 class="center title">Profile Personalisation</h4>
                             <p>Begin adding the personal touches to your Profile to make you stand out!</p>
                             <p>Let’s begin by adding your job title and professional overview.</p>
@@ -98,11 +98,11 @@
                     <div class="col s12 m6">
                         <a href="#!" class="btn btn-large btn-green next-btn" id="nextBtn">Continue</a>
                     </div>
-                    <div class="col s12 m6">
-                        <button type="submit" class="btn btn-large btn-green hide submit-btn" id="submitBtn">Submit</button>
+                    <div class="col s12 m6 hide">
+                        <button type="submit" class="btn btn-large btn-green submit-btn" id="submitBtn">Submit</button>
                     </div>
                     <div class="col s12 m6">
-                        <a href="{% url 'start' %}" class="btn btn-large btn-cancel">Go Back</a>
+                        <a href="{% url 'start' %}" class="btn btn-large btn-cancel btn-white">Go Back</a>
                     </div>
                 </div>
             </form>
@@ -112,5 +112,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script src="{% static 'profiles/js/profile-forms.js' %}"></script>
+    <script src="{% static 'profiles/js/form-steps.js' %}"></script>
 {% endblock %}

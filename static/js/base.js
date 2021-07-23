@@ -195,7 +195,8 @@ $(document).ready(function () {
             $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
             // Change content container to mimic a fullscreen overlay
             $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
-        
+            
+            $('body').addClass('category-overlay-active');
             // Show close button for fullscreen overlay
             $('.close-category').removeClass('hide');
         });
@@ -210,6 +211,7 @@ $(document).ready(function () {
         $('.container.content').css('top', '6%').css('height', '94%').css(
             'overflow', 'auto').css('border-top-left-radius', '40px').css('border-top-right-radius', '40px');
         
+        $('body').removeClass('category-overlay-active');
         // Hide close button for fullscreen overlay
         $('.close-category').addClass('hide');
     });
@@ -249,8 +251,6 @@ $(document).ready(function () {
     Toggle Package sections
     ====================================================== */
 
-    var packageContainer = $('#ScopePricing');
-
     var showBasic = $('#basicBtn');
     var showStandard = $('#standardBtn');
     var showPremium = $('#premiumBtn');
@@ -260,36 +260,47 @@ $(document).ready(function () {
     var premiumPackage = $('#premiumPackage');
 
     showBasic.on('click', function() {
-        basicPackage.removeClass('hide');
-        packageContainer.addClass('hide');
+        basicPackage.removeClass('hide-on-med-and-down');
+        $('.packages').removeClass('hide-on-med-and-down');
+        $('.info-row').addClass('hide');
+        $('#id_enable_all_packages').parent().parent().parent().addClass('hide');
+        $('.package-btns').addClass('hide');
         $('.next-btn').addClass('hide');
         $('.prev-btn').addClass('hide');
     });
 
     showStandard.on('click', function() {
-        standardPackage.removeClass('hide');
-        packageContainer.addClass('hide');
+        standardPackage.removeClass('hide-on-med-and-down');
+        $('.info-row').addClass('hide');
+        $('#id_enable_all_packages').parent().parent().parent().addClass('hide');
+        $('.package-btns').addClass('hide');
         $('.next-btn').addClass('hide');
         $('.prev-btn').addClass('hide');
     });
 
     showPremium.on('click', function() {
-        premiumPackage.removeClass('hide');
-        packageContainer.addClass('hide');
+        premiumPackage.removeClass('hide-on-med-and-down');
+        $('.info-row').addClass('hide');
+        $('#id_enable_all_packages').parent().parent().parent().addClass('hide');
+        $('.package-btns').addClass('hide');
         $('.next-btn').addClass('hide');
         $('.prev-btn').addClass('hide');
     });
 
     $('.cancel-package').on('click', function() {
         $(this).parent().parent().parent().addClass('hide');
-        packageContainer.removeClass('hide');
+        $('.info-row').removeClass('hide');
+        $('#id_enable_all_packages').parent().parent().parent().removeClass('hide');
+        $('.package-btns').removeClass('hide');
         $('.next-btn').removeClass('hide');
         $('.prev-btn').removeClass('hide');
     });
 
     $('.save-package').on('click', function() {
         $(this).parent().parent().parent().addClass('hide');
-        packageContainer.removeClass('hide');
+        $('.info-row').removeClass('hide');
+        $('#id_enable_all_packages').parent().parent().parent().removeClass('hide');
+        $('.package-btns').removeClass('hide');
         $('.next-btn').removeClass('hide');
         $('.prev-btn').removeClass('hide');
     });

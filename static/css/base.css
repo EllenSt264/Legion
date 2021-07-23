@@ -1281,6 +1281,16 @@ Add freelance service form
     color: #ffffff;
 }
 
+#ScopePricing .card {
+    background-color: #191935;
+}
+
+#basicPackage,
+#standardPackage,
+#premiumPackage {
+    margin-top: 25px;
+}
+
 /* ======================================================
 Carousel styles
 ====================================================== */
@@ -1744,6 +1754,56 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     }
     #languagesTab h5 {
         text-align: left !important;
+    }
+    /* Add service form
+    =========================== */
+    #FreelanceService .container.content {
+        height: 92%;
+        top: 8%;
+    }
+    #ScopePricing .input-field {
+        margin: 28px 10% !important;
+    }
+    .category-overlay-active .close-category {
+        top: 7.5rem;
+        left: 8rem;
+    }
+    .category-overlay-active .close-category i.fa-times-circle {
+        font-size: 34px !important;
+    }
+    .category-overlay li {
+        text-align: center;
+    }
+    .category-overlay li {
+        margin: 25px auto;
+    }
+    .category-overlay li:first-child {
+        margin-top: 8rem;
+    }
+    .category-overlay li i.fa-check {
+        margin-right: 25px;
+        font-size: 25px;
+    }
+    .category-overlay li label {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Add service form
+    =========================== */
+    #ScopePricing .input-field {
+        width: 100% !important;
+    }
+    #ScopePricing input,
+    #ScopePricing input:focus,
+    #ScopePricing input.valid input.invalid {
+        width: 100% !important;
+    }
+    #basicPackage .card,
+    #standardPackage .card,
+    #premiumPackage .card {
+        border-radius: 40px;
     }
 }
 
