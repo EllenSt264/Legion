@@ -3,7 +3,7 @@
 <a href="#!" data-target="mobile-sidenav--main" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
 <ul class="right hide-on-med-and-down">
     <li><a href="#!">About Us</a></li>
-    <li><a href="#!">Services</a></li>
+    <li><a href="{% url 'services' %}">Services</a></li>
     <li><a href="#!">Discover</a></li>
     <li><a href="#!">Contact</a></li>
     {% if request.user.is_authenticated %}

@@ -1406,6 +1406,255 @@ ul.indicators {
     background-color: #6979F8;
 }
 
+/* ======================================================
+Services
+====================================================== */
+
+/* =======================
+Services page header
+====================== */
+
+.services-searchbar {
+    margin-bottom: 0;
+}
+
+.services-searchbar .input-field {
+    width: 95% !important;
+    margin-bottom: 0;
+}
+
+.service-page-title {
+    margin-top: 10px;
+    margin-left: 10px !important;
+}
+
+.service-page-title .page-steps {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.service-page-title .page-steps a {
+    color: #ffffff;
+}
+
+.service-page-title .title {
+    margin-top: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.sort-and-filter-btns {
+    margin-left: 10px !important;
+}
+
+.sort-and-filter-btns .carousel {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+#filterIcon {
+    position: relative;
+}
+
+#filterIcon img {
+    width: 20px;
+    height: 18px;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    vertical-align: middle;
+}
+
+/* Based upon the following source:
+'https://stackoverflow.com/questions/25028040/jquery-horizontal-scroll-using-buttons' */
+
+.filter-btns-tab {
+    width: 95%;
+    margin: 0 auto;
+    margin-left: 0;
+    height: 50px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.tab-item-btn {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.filter-btns-tab .tab-item-btn:first-child {
+    margin-right: 20px;
+    margin-left: 0;
+}
+
+.filter-btn {
+    font-size: 15px;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+
+.filter-btn span {
+    margin-left: 25px !important;
+}
+
+/* =======================
+Services container
+====================== */
+
+.services-container {
+    padding: 25px 5px;
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #0A1A29, #373454);
+    background: -moz-linear-gradient(bottom, #0A1A29, #373454);
+    background: linear-gradient(to top, #0A1A29, #373454);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.view-grid-list {
+    text-align: right;
+}
+
+.view-grid-list i {
+    padding-right: 15px;
+    font-size: 28px;
+    color: #0ACF83;
+    line-height: 10px;
+}
+
+.filter-btn {
+    background-color: rgba(11, 11, 11, 80%);
+    color: #0ACF83;
+    border-radius: 15px;
+    text-transform: none;
+    line-height: 32px;
+}
+
+.filter-btn i {
+    font-size: 18px;
+    padding-right: 0;
+    padding-left: 10px;
+}
+
+.services-filter-btns .filter-btn {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-left: 25px;
+}
+
+.view-grid-list .filter-btn {
+    margin-right: 22px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.view-grid-list .filter-btn i {
+    font-size: 16px;
+}
+
+.service-count {
+    padding: 0 !important;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.services-container .cards-row {
+    margin-bottom: 0;
+}
+
+/* =======================
+Service cards
+====================== */
+
+.services-container .card {
+    background-color: #151522;
+    color: #ffffff;
+    border-radius: 15px;
+}
+
+.services-container .card-content {
+    padding: 0;
+}
+
+.services-container .user-header {
+    background-color: #6C5CE7;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 2px 0 5px;
+    text-align: right;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.services-container .servicecard-username,
+.services-container .servicecard-userlevel {
+    padding-right: 40px;
+    letter-spacing: 1px;
+}
+
+.services-container .servicecard-username {
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.services-container .servicecard-userlevel {
+    font-size: 11px;
+    line-height: 8px;
+    color: #2D2D2D;
+}
+
+.services-container .user-img {
+    height: 38px;
+    width: 36px;
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.services-container .card-image,
+.services-container .card-image img {
+    width: 95%;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.services-container .service-details {
+    padding: 0 12px;
+}
+
+.service-details .service-title {
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 15px;
+    letter-spacing: 1px;
+}
+
+.service-details .starting-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0ACF83;
+    padding: 3px 0;
+}
+
+.service-details .user-rating {
+    font-size: 11px;
+    padding-bottom: 11px;
+}
+
+.service-details .user-rating i {
+    color: #FFC120;
+    padding-right: 3px;
+}
+
 /* ==========================================================================
 REPSONSIVE STYLES FOR LARGER SCREENS
 ========================================================================== */
@@ -1477,6 +1726,17 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     }
 }
 
+@media (min-width: 1820px) {
+    /* Services
+    =========================== */
+    .services-filter-btns {
+        margin-left: 70px;
+    }
+    .service-page-title {
+        margin-left: 100px !important;
+    }
+}
+
 @media (min-width: 1820px) and (max-width: 2125px) {
     .profile {
         width: 60% !important;
@@ -1489,6 +1749,26 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     =========================== */
     .start-profile .container.content {
         min-width: 1650px !important;
+    }
+}
+
+@media (min-width: 1640px) {
+    /* Services
+    =========================== */
+    .services-container {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1640px) and (max-width: 1820px) {
+    /* Services
+    =========================== */
+    .services-filter-btns {
+        margin-left: 50px;
+    }
+    .service-page-title {
+        margin-left: 80px !important;
     }
 }
 
@@ -1526,6 +1806,15 @@ REPSONSIVE STYLES FOR LARGER SCREENS
     #LogIn blockquote,
     #SignUp blockquote {
         width: 50%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1640px) {
+    /* Services
+    =========================== */
+    .services-container {
+        width: 95%;
         margin: auto;
     }
 }
@@ -1809,6 +2098,35 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     .category-overlay li label {
         font-size: 20px;
     }
+    /* Services
+    =========================== */
+    .services-container .container {
+        width: 80%;
+    }
+    .service-count p {
+        padding-left: 10px;
+        line-height: 50px;
+    }
+    .service-page-title {
+        margin-top: 35px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1640px) {
+    /* Services
+    =========================== */
+    .service-page-title {
+        margin-left: 35px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1280px) {
+    /* Services
+    =========================== */
+    .services-container {
+        width: 98%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1827,6 +2145,22 @@ REPSONSIVE STYLES FOR MEDIUM SCREENS
     #premiumPackage .card {
         border-radius: 40px;
     }
+    /* Services
+    =========================== */
+    .services-container .container {
+        width: 100%;
+    }
+    .service-count p {
+        padding-left: 16px;
+    }
+    .services-container .cards-row .col.s6.odd {
+        padding-right: 5px !important;
+    }
+    
+    .services-container .cards-row .col.s6.even {
+        padding-left: 5px !important;
+    }
+    
 }
 
 @media (min-width: 800px) {
@@ -1969,6 +2303,15 @@ REPSONSIVE STYLES FOR SMALLER SCREENS
     }
 }
 
+@media (max-width: 600px) {
+    /* Services
+    =========================== */
+    .services-container .card-image,
+    .services-container .card-image img {
+        height: 125px;
+    }
+}
+
 @media (max-width: 540px) and (max-height: 720px) {
     /* Carousel content styles
     =========================== */
@@ -2031,6 +2374,15 @@ REPSONSIVE STYLES FOR SMALLER SCREENS
     =========================== */
     ul.indicators {
         top: 76% !important;
+    }
+}
+
+@media (max-width: 385px) {
+    /* Services
+    =========================== */
+    .services-container .card-image,
+    .services-container .card-image img {
+        height: 105px;
     }
 }
 

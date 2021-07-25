@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Search bar -->
+    <div class="row hide-on-large-only services-searchbar">
+        <div class="col s12">
+            <form action="" method="GET" class="searchbar">
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+            </form>
+        </div>
+    </div>
+    <!-- Current service page title  -->
+    <div class="row service-page-title">
+        <div class="col s12">
+            <h6 class="page-steps">
+                <a href="{% url 'home' %}">Legion</a>
+                >
+                <a href="#!">Service Category</a>
+                >
+            </h6>
+            <h4 class="title">Service</h4>
+        </div>
+    </div>
+    <!-- Filter buttons - larger screens -->
+    <div class="row services-filter-btns hide-on-med-and-down">
+        <div class="col l8">
+            <a href="#!" class="btn filter-btn">
+                Category
+                <i class="fas fa-caret-down"></i>
+            </a>
+            <a href="#!" class="btn filter-btn">
+                Budget
+                <i class="fas fa-caret-down"></i>
+            </a>
+            <a href="#!" class="btn filter-btn">
+                Delivery Time
+                <i class="fas fa-caret-down"></i>
+            </a>
+        </div>
+    </div>
+    <!-- Filter buttons - smaller screens -->
+    <div class="row sort-and-filter-btns hide-on-large-only">
+        <div class="col s12">
+            <!-- <a href="#!" class="btn filter-btn">
+                <div id="filterIcon"><img src="{{ MEDIA_URL }}icons/filter.svg" alt="Filter icon" class="center"></div>
+                <span>Filter</span>
+            </a> -->
+
+            <!-- <div class="carousel">
+                <a href="#!" class="carousel-item btn filter-btn">
+                    <div id="filterIcon"><img src="{{ MEDIA_URL }}icons/filter.svg" alt="Filter icon" class="center"></div>
+                    <span>Filter</span>
+                </a>
+                <a href="#!" class="carousel-item btn filter-btn">
+                    Popularity
+                </a>
+                <a href="#!" class="carousel-item btn filter-btn">
+                    Popularity
+                </a>
+                <a href="#!" class="carousel-item btn filter-btn">
+                    Popularity
+                </a>
+            </div> -->
+            
+            <div class="filter-btns-tab">
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">
+                        <div id="filterIcon"><img src="{{ MEDIA_URL }}icons/filter.svg" alt="Filter icon" class="center"></div>
+                        <span>Filter</span>
+                    </a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Popularity</a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Newest</a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Rating</a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Highest Price</a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Lowest Price</a>
+                </div>
+                <div class="tab-item-btn">
+                    <a href="#!" class="btn filter-btn">Oldest</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services -->
+    <div class="services-container">
+        <div class="container content">
+            <!-- Service count, grid/list view and sort filter -->
+            <div class="row">
+                <!-- Service count -->
+                <div class="col s6 service-count">
+                    <p>
+                        <a href="#!" class="hide-on-med-and-down">Services home</a>
+                        <span class="hide-on-med-and-down"> |</span>
+                        {{ services|length }} services available
+                    </p>
+                </div>
+                <!-- Sort filter and grid/list view -->
+                <div class="col s6 view-grid-list">
+                    <a href="#!" class="btn filter-btn hide-on-med-and-down">
+                        Sort by
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <i class="fas fa-th-list"></i>
+                    <i class="fas fa-th"></i>
+                </div>
+            </div>
+            <!-- Services -->
+            <div class="row cards-row">
+                {% for service in services %}
+                    {% if forloop.counter|divisibleby:2 %}
+                    <div class="col s6 m4 l3 even">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="user-header">
+                                    <p class="servicecard-username">{{ service.user.get_full_name }}</p>
+                                    <p class="servicecard-userlevel">Level 3 Seller</p>
+                                    {% for profile in creator_profile.all %}
+                                        {% if profile.user == service.user %}
+                                            <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                                            alt="User profile image" class="user-img">
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" alt="">
+                                </div>
+                                <div class="service-details">
+                                    <p class="service-title">{{ service.service_headline }}</p>
+                                    <p class="starting-price">{{ service.basic_price }}</p>
+                                    <p class="user-rating"><i class="fas fa-star"></i> 4.5 (30)</p>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col s6 m4 l3 odd">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="user-header">
+                                    <p class="servicecard-username">{{ service.user.get_full_name }}</p>
+                                    <p class="servicecard-userlevel">Level 3 Seller</p>
+                                    {% for profile in creator_profile.all %}
+                                        {% if profile.user == service.user %}
+                                            <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                                            alt="User profile image" class="user-img">
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" alt="">
+                                </div>
+                                <div class="service-details">
+                                    <p class="service-title">{{ service.service_headline }}</p>
+                                    <p class="starting-price">{{ service.basic_price }}</p>
+                                    <p class="user-rating"><i class="fas fa-star"></i> 4.5 (30)</p>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

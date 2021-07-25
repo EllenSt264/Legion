@@ -5,6 +5,23 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import FreelanceServiceForm
 from .models import FreelanceService
+from profiles.models import UserProfile
+
+
+def services(request):
+    """ A view to display all services, including
+    sorting and searching queries """
+
+    services = FreelanceService.objects.all()
+    creator_profile = UserProfile.objects.all()
+
+    template = 'services/services.html'
+    context = {
+        'services': services,
+        'creator_profile': creator_profile,
+    }
+
+    return render(request, template, context)
 
 
 @login_required
