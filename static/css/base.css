@@ -1,0 +1,766 @@
+/* ==========================================================================
+BASE STYLES
+========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: white;
+    
+    /*
+        A large majority of the colour gradients used throughout the
+        project were taken or based upon the following source:
+        'https://cssgradient.io/gradient-backgrounds/' 
+    */
+
+    background: linear-gradient( to bottom,  rgba(9,32,63,1) 25%, rgba(83,120,149,1) 85% ) no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ======================================================
+Global styles
+====================================================== */
+
+.btn-green {
+    background-color: #0acf83;
+    color: #ffffff;
+    border-radius: 25px;
+}
+
+.btn-google {
+    background-color: #4285f4;
+    color: #ffffff;
+    border-radius: 25px;
+}
+
+/* =======================
+Google button styles
+====================== */
+
+.google-btn {
+    position: relative;
+    width: 90%;
+    padding: 25px 15px 25px 0;
+    background-color: #4285f4;
+    color: #ffffff;
+    border-radius: 25px;
+    line-height: 0px;
+}
+
+.google-btn .icon-outer {
+    position: absolute;
+    top: 0;
+}
+
+.google-btn .icon {
+    background: #ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.google-btn img {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 0;
+}
+
+.google-btn span {
+    margin-left: 30px;
+}
+
+/* ======================================================
+Navbar
+====================================================== */
+
+nav {
+    color: #fff;
+    background-color: rgba(24, 24, 24, 0);
+    box-shadow: none;
+}
+
+/* ======================================================
+Homepage for non-authenticated users
+====================================================== */
+
+/* ============================
+Animation for carousel
+=========================== */
+
+/* Based upon the following source:
+'https://www.w3docs.com/snippets/css/how-to-create-animation-on-page-load.html' */
+
+@keyframes slideInTop {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-0.5%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: 1s ease-in 1s 1 slideInTop;
+}
+
+.fade-in {
+    animation: fadeIn ease-in 1;
+    animation-duration: 1s;
+}
+
+/* ============================
+Carousel for desktop
+=========================== */
+
+#homeCarousel {
+    width: 100%;
+    height: 95%;
+    height: 95vh;
+}
+
+#homeCarousel .carousel-item {
+    transform: translateX(0px) translateX(0px) translateX(0px) !important;
+}
+
+#homeCarousel .carousel-content,
+#homeCarousel .home-carousel-imgs {
+    transition: opacity 1s ease-in-out;
+}
+
+#homeCarousel .carousel-content,
+#homeCarousel ul.indicators {
+    opacity: 0;
+}
+
+#homeCarousel p {
+    width: 40%;
+    margin: 35px auto;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 32px;
+}
+
+#four h5 {
+    width: 30%;
+    margin: 35px auto;
+    font-size: 36px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 42px;
+}
+
+#four .btn {
+    width: 125px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#homeCarousel ul.indicators {
+    top: 26%;
+}
+
+.carousel .indicators .indicator-item {
+    background-color: #041429;
+    border: 1px solid #041429;
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid #03ffff;
+}
+
+/* ============================
+Apply carousel images for
+the first panel
+=========================== */
+
+#homeCarousel-imgs-panel1 .img-row-1 .column-1 .home-carousel-img {
+    content: url('/media/img16.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-1 .column-2 .home-carousel-img {
+    content: url('/media/img25.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-1 .column-3 .home-carousel-img {
+    content: url('/media/img5.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-1 .column-4 .home-carousel-img {
+    content: url('/media/img4.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-1 .column-5 .home-carousel-img {
+    content: url('/media/img24.jpg');
+}
+
+#homeCarousel-imgs-panel1 .img-row-2 .column-1 .home-carousel-img {
+    content: url('/media/img19.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-2 .column-2 .home-carousel-img {
+    content: url('/media/img2.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-2 .column-3 .home-carousel-img {
+    content: url('/media/img12.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-2 .column-4 .home-carousel-img {
+    content: url('/media/img47.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-2 .column-5 .home-carousel-img {
+    content: url('/media/img30.jpg');
+}
+
+#homeCarousel-imgs-panel1 .img-row-3 .column-1 .home-carousel-img {
+    content: url('/media/img9.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-3 .column-2 .home-carousel-img {
+    content: url('/media/img38.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-3 .column-3 .home-carousel-img {
+    content: url('/media/img32.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-3 .column-4 .home-carousel-img {
+    content: url('/media/img10.jpg');
+}
+#homeCarousel-imgs-panel1 .img-row-3 .column-5 .home-carousel-img {
+    content: url('/media/img23.jpg');
+}
+
+/* ============================
+Apply carousel images for
+the second panel
+=========================== */
+
+#homeCarousel-imgs-panel2 .img-row-1 .column-1 .home-carousel-img {
+    content: url('/media/img21.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-1 .column-2 .home-carousel-img {
+    content: url('/media/img48.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-1 .column-3 .home-carousel-img {
+    content: url('/media/img8.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-1 .column-4 .home-carousel-img {
+    content: url('/media/img13.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-1 .column-5 .home-carousel-img {
+    content: url('/media/img11.jpg');
+}
+
+#homeCarousel-imgs-panel2 .img-row-2 .column-1 .home-carousel-img {
+    content: url('/media/img22.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-2 .column-2 .home-carousel-img {
+    content: url('/media/img18.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-2 .column-3 .home-carousel-img {
+    content: url('/media/img7.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-2 .column-4 .home-carousel-img {
+    content: url('/media/img18.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-2 .column-5 .home-carousel-img {
+    content: url('/media/img29.jpg');
+}
+
+#homeCarousel-imgs-panel2 .img-row-3 .column-1 .home-carousel-img {
+    content: url('/media/img15.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-3 .column-2 .home-carousel-img {
+    content: url('/media/img6.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-3 .column-3 .home-carousel-img {
+    content: url('/media/img3.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-3 .column-4 .home-carousel-img {
+    content: url('/media/img20.jpg');
+}
+#homeCarousel-imgs-panel2 .img-row-3 .column-5 .home-carousel-img {
+    content: url('/media/img27.jpg');
+}
+
+/* ============================
+Apply carousel images for
+the third panel
+=========================== */
+
+#homeCarousel-imgs-panel3 .img-row-1 .column-1 .home-carousel-img {
+    content: url('/media/img24.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-1 .column-2 .home-carousel-img {
+    content: url('/media/img2.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-1 .column-3 .home-carousel-img {
+    content: url('/media/img10.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-1 .column-4 .home-carousel-img {
+    content: url('/media/img16.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-1 .column-5 .home-carousel-img {
+    content: url('/media/img30.jpg');
+}
+
+#homeCarousel-imgs-panel3 .img-row-2 .column-1 .home-carousel-img {
+    content: url('/media/img19.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-2 .column-2 .home-carousel-img {
+    content: url('/media/img23.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-2 .column-3 .home-carousel-img {
+    content: url('/media/img25.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-2 .column-4 .home-carousel-img {
+    content: url('/media/img4.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-2 .column-5 .home-carousel-img {
+    content: url('/media/img9.jpg');
+}
+
+#homeCarousel-imgs-panel3 .img-row-3 .column-1 .home-carousel-img {
+    content: url('/media/img47.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-3 .column-2 .home-carousel-img {
+    content: url('/media/img12.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-3 .column-3 .home-carousel-img {
+    content: url('/media/img5.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-3 .column-4 .home-carousel-img {
+    content: url('/media/img38.jpg');
+}
+#homeCarousel-imgs-panel3 .img-row-3 .column-5 .home-carousel-img {
+    content: url('/media/img32.jpg');
+}
+
+/* ============================
+Apply carousel images for
+the fourth panel
+=========================== */
+
+#homeCarousel-imgs-panel4 .img-row-1 .column-1 .home-carousel-img {
+    content: url('/media/img2.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-1 .column-2 .home-carousel-img {
+    content: url('/media/img30.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-1 .column-3 .home-carousel-img {
+    content: url('/media/img47.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-1 .column-4 .home-carousel-img {
+    content: url('/media/img12.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-1 .column-5 .home-carousel-img {
+    content: url('/media/img32.jpg');
+}
+
+#homeCarousel-imgs-panel4 .img-row-2 .column-1 .home-carousel-img {
+    content: url('/media/img16.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-2 .column-2 .home-carousel-img {
+    content: url('/media/img32.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-2 .column-3 .home-carousel-img {
+    content: url('/media/img4.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-2 .column-4 .home-carousel-img {
+    content: url('/media/img19.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-2 .column-5 .home-carousel-img {
+    content: url('/media/img25.jpg');
+}
+
+#homeCarousel-imgs-panel4 .img-row-3 .column-1 .home-carousel-img {
+    content: url('/media/img10.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-3 .column-2 .home-carousel-img {
+    content: url('/media/img24.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-3 .column-3 .home-carousel-img {
+    content: url('/media/img23.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-3 .column-4 .home-carousel-img {
+    content: url('/media/img9.jpg');
+}
+#homeCarousel-imgs-panel4 .img-row-3 .column-5 .home-carousel-img {
+    content: url('/media/img5.jpg');
+}
+
+
+/* ============================
+Carousel image styles
+=========================== */
+
+#homeCarousel img {
+    width: 235px;
+    height: 270px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.home-carousel-imgs {
+    position: relative;
+    opacity: 0;
+}
+
+.home-carousel-imgs .home-carousel-img {
+    content: url('/media/noimage.jpg');
+    width: 235px;
+    height: 270px;
+    border-radius: 35px;
+    object-fit: cover;
+}
+
+#homeCarousel .img-row-1 .column-2 .home-carousel-img,
+#homeCarousel .img-row-2 .column-2 .home-carousel-img,
+#homeCarousel .img-row-3 .column-2 .home-carousel-img {
+    position: absolute;
+    left: 26.8%;
+}
+
+#homeCarousel .img-row-1 .column-3 .home-carousel-img,
+#homeCarousel .img-row-2 .column-3 .home-carousel-img,
+#homeCarousel .img-row-3 .column-3 .home-carousel-img {
+    position: absolute;
+    left: 43.5%;
+}
+
+#homeCarousel .img-row-1 .column-4 .home-carousel-img,
+#homeCarousel .img-row-2 .column-4 .home-carousel-img,
+#homeCarousel .img-row-3 .column-4 .home-carousel-img {
+    position: absolute;
+    left: 60.1%;
+}
+
+/* ============================
+Carousel - 2nd & 4th column
+=========================== */
+
+#homeCarousel .img-row-1 .column-2 .home-carousel-img,
+#homeCarousel .img-row-1 .column-4 .home-carousel-img {
+    top: 10%;
+}
+
+#homeCarousel .img-row-2 .column-2 .home-carousel-img,
+#homeCarousel .img-row-2 .column-4 .home-carousel-img {
+    top: 45%;
+}
+
+#homeCarousel .img-row-3 .column-2 .home-carousel-img,
+#homeCarousel .img-row-3 .column-4 .home-carousel-img {
+    top: 80%;
+}
+
+/* ============================
+Carousel - 3rd column
+=========================== */
+
+#homeCarousel .img-row-1 .column-3 .home-carousel-img {
+    top: 20%;
+}
+
+#homeCarousel .img-row-2 .column-3 .home-carousel-img {
+    top: 55%;
+}
+
+#homeCarousel .img-row-3 .column-3 .home-carousel-img {
+    top: 55%;
+}
+
+#homeCarousel .img-row-3 .column-3 .home-carousel-img {
+    top: 90%;
+}
+
+/* ============================
+Homepage sign up prompt
+=========================== */
+
+#home {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.home-title {
+    margin-top: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 48px;
+}
+
+.home-title span {
+    font-size: 46px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.home-login-prompt .btn-large {
+    margin: 15px auto;
+}
+
+.home-login-prompt .col.s12:first-child {
+    margin-top: 70px;
+}
+
+.homepage-btn {
+    width: 90% !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.login-text {
+    margin-top: 65px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.login-text a {
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ============================
+Homepage background images
+=========================== */
+
+#home-img-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 23%;
+    top: 21vh;
+    left: 0%;
+    margin: 0 auto;
+    object-fit: cover;
+    z-index: -5;
+}
+
+.home-mobile-bg .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: linear-gradient( to bottom,  rgba(9,32,63,50%) 25%, rgba(83,120,149,50%) 85% ) no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+}
+
+.home-mobile-img-bg {
+    width: 100%;
+    position: absolute;
+    top: 23%;
+    top: 23vh;
+    margin: 0 auto;
+    z-index: -5;
+}
+
+.home-mobile-img-bg .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: linear-gradient( to bottom,  rgba(9,32,63,50%) 25%, rgba(83,120,149,50%) 85% ) no-repeat center center fixed;
+    background-size: cover;
+    z-index: 1;
+}
+
+.home-img-mobile {
+    width: 105px;
+    height: 145px;
+    border-radius: 35px;
+    object-fit: cover;
+}
+
+.home-mobile-img-bg .row {
+    position: relative;
+}
+
+.middle-img {
+    margin-top: 25px !important;
+}
+
+/* ============================
+Homepage container 1
+=========================== */
+
+.home-content-container-1 {
+    width: 100%;
+    margin-top: 30%;
+    margin-top: 14vh;
+    background: linear-gradient(180.3deg, rgba(209,0,116,1) 37.2%, rgba(110,44,107,1) 137.3%) no-repeat center center fixed;
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.home-content-container-2 {
+    width: 100%;
+    margin-top: 30%;
+    margin-top: 14vh;
+    background: linear-gradient(180.3deg, rgba(103,19,210,1) 37.2%, rgba(204,32,142,1) 137.3%) no-repeat center center fixed;
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.home-content-container-1 .scroll-down-prompt {
+    margin: 60px auto;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.home-content-container-1 .scroll-down-prompt i {
+    vertical-align: top;
+    font-size: 22px;
+}
+
+.home-content-container-1 h5,
+.home-content-container-2 h5 {
+    margin-top: 85px;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 32px;
+}
+
+.home-content-container-1 p,
+.home-content-container-2 p {
+    margin-top: 25px;
+    padding: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.img-cluster {
+    position: relative;
+    width: 338px;
+    height: 370px;
+    margin: 50px 0;
+}
+
+.img-cluster img {
+    border-radius: 35px;
+    object-fit: cover;
+    position: absolute;
+}
+
+#imgCluster {
+    width: 328px;
+    height: 350px;
+}
+
+.img-cluster-row {
+    position: relative;
+}
+
+#container1-img-1 {
+    width: 170px;
+    height: 255px;
+    position: absolute;
+    top: 0;
+    left: 38%;
+    margin-left: -38px;
+    object-fit: cover;
+    border-radius: 35px;
+}
+
+#container1-img-2,
+#container1-img-3 {
+    width: 112px;
+    height: 140px;
+}
+
+#container1-img-2 {
+    top: -10%;
+    right: -3.5%;
+}
+
+#container1-img-3 {
+    top: 10%;
+    left: 5%;
+}
+
+#container1-img-4 {
+    width: 128px;
+    height: 100px;
+    top: 32%;
+    right: -7.5%;
+}
+
+/* ============================
+Homepage container 2
+=========================== */
+
+.home-content-container-2 img {
+    border-radius: 35px;
+    object-fit: cover;
+}
+
+.home-content-container-2 .row:nth-child(3) {
+    margin: 0 !important;
+}
+
+#container1-img-5 {
+    width: 170px;
+    height: 118px;
+    top: 52%;
+    right: 3.5%;
+}
+
+#container2-img-1 {
+    width: 260px;
+    height: 255px;
+    margin: 55px auto 35px;
+}
+
+#container2-img-2 {
+    width: 335px;
+    height: 255px;
+    margin: 5px auto 15px;
+    object-fit: contain;
+}
+
+#container2-img-3 {
+    width: 255px;
+    height: 255px;
+    margin: 25px auto 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ============================
+Homepage container 3
+=========================== */
+
+.home-content-container-3 h4 {
+    margin: 160px auto 80px;
+}
+
+.home-content-container-3 .login-text {
+    margin-bottom: 85px;
+}

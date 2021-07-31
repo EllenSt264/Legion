@@ -1,91 +1,378 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="carousel carousel-slider center">
-        <div class="carousel-item soft-blue white-text">
-            <img src="{{ MEDIA_URL }}img5.jpg" alt="Homepage carousel image" class="responsive-img" id="home-carousel-img1">
-            <div class="content-container center-align">
-                <h4>Join the World's Marketplace</h4>
-                <p>Find great talent. Build your bussiness. Take your career to the next level.</p>
-                <!-- Mobile -->
-                <div class="row login-register-btns hide-on-med-and-up">
-                    {% if request.user.is_authenticated %}
-                        <div class="col s6 l2 offset-l4">
-                            <a class="btn btn-large waves-effect">Find Creators</a>
-                        </div>
-                        <div class="col s6 l2">
-                            <a class="btn btn-large waves-effect">Find Work</a>
-                        </div>
-                    {% else %}
-                        <div class="col s6 l2 offset-l4">
-                            <a href="{% url 'account_signup' %}" class="btn btn-large waves-effect">Sign Up</a>
-                        </div>
-                        <div class="col s6 l2">
-                            <a href="{% url 'account_login' %}" class="btn btn-large waves-effect">Log In</a>
-                        </div>
-                    {% endif %}
+
+<div class="container" id="home">
+    <!-- Welcome title -->
+    <div class="row center hide-on-large-only">
+        <div class="col s12">
+            <h4 class="home-title">Welcome to <span>Legion</span></h4>
+        </div>
+    </div>
+    </div>
+    <!-- Login buttons -->
+    <div class="row center home-login-prompt hide-on-large-only">
+        <div class="col s12">
+            <a href="#!" class="btn btn-large btn-green homepage-btn">Continue with Email</a>
+        </div>
+        <div class="col s12">
+            <a href="#!" class="btn google-btn">
+                <div class="icon-outer">
+                    <div class="icon">
+                        <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="Google icon" class="center">
+                    </div>
                 </div>
-                <!-- Desktop -->
-                <div class="row hide-on-small-only get-started-btn">
-                    {% if request.user.is_authenticated %}
-                        <div class="col s6 l2 offset-l4">
-                            <a class="btn btn-large waves-effect">Find Creators</a>
+                <span>Continue with Google</span>
+            </a>
+        </div>
+        <div class="col s12">
+            <p class="login-text">Already a member? <a href="#!">Log In</a></p>
+        </div>
+    </div>
+    <!-- Background image -->
+    <div class="row home-mobile-bg hide-on-large-only">
+        <div class="overlay"></div>
+        <img src="{{ MEDIA_URL }}home-bg-img-1.png" alt="Homepage background image for mobile" id="home-img-bg">
+    </div>
+    <!-- Content container 1 -->
+    <div class="home-content-container-1 hide-on-large-only">
+        <!-- Scroll down indicator -->
+        <div class="row">
+            <div class="col s12">
+                <h6 class="center scroll-down-prompt">
+                    Here's how we work
+                    <i class="material-icons">expand_more</i>
+                </h6>
+            </div>
+        </div>
+        <!-- Text content -->
+        <div class="row center">
+            <div class="col s12">
+                <h5>
+                    Recruit, buy, advertise, sell
+                </h5>
+            </div>
+            <div class="col s12">
+                <p>
+                    Discover a leading marketplace, where you can hire, sell, advertise and recruit creative professionals.
+                </p>
+            </div>
+        </div>
+        <!-- Images -->
+        <div class="row center img-cluster-row">
+            <img src="{{ MEDIA_URL }}img31.jpg" alt="" id="container1-img-1">
+            <img src="{{ MEDIA_URL }}home-bg-img-2.png" alt="Homepage image" id="imgCluster">
+        </div>
+    </div>
+    <!-- Content container 2 -->
+    <div class="home-content-container-2 hide-on-large-only">
+        <div class="row center">
+            <div class="col s12">
+                <h5>Do. Don't dream</h5>
+            </div>
+            <div class="col s12">
+                <p>
+                    Take control of your career by utilizing our platform to sell, freelance, job hunt and promote your talents all in
+                    one place!
+                </p>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <img src="{{ MEDIA_URL }}img13.jpg" alt="Homepage image" id="container2-img-2">
+            </div>
+            <div class="img-gradient-fade"></div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <p>
+                    Expand your business by hiring talented, creative professionals and purchasing their work or services.
+                </p>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <img src="{{ MEDIA_URL }}img3.jpg" alt="Homepage image" id="container2-img-3">
+            </div>
+        </div>
+    </div>
+    <!-- Content container 3  -->
+    <div class="home-content-container-3 hide-on-large-only">
+        <div class="row center">
+            <div class="col s12">
+                <h4 class="home-title">
+                    <span>Sign up</span><br>
+                    To join the world'd leading marketplace
+                </h4>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <a href="#!" class="btn btn-large btn-green homepage-btn">Continue with Email</a>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <a href="#!" class="btn google-btn">
+                    <div class="icon-outer">
+                        <div class="icon">
+                            <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="Google icon" class="center">
                         </div>
-                        <div class="col s6 l2">
-                            <a class="btn btn-large waves-effect">Find Work</a>
-                        </div>
-                    {% else %}
-                        <div class="col s12">
-                            <a href="{% url 'account_login' %}" class="btn btn-large waves-effect">Get Started</a>
-                        </div>
-                    {% endif %}
+                    </div>
+                    <span>Continue with Google</span>
+                </a>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s12">
+                <p class="login-text">Already a member? <a href="#!">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop carousel -->
+    <div class="carousel carousel-slider center hide-on-med-and-down" id="homeCarousel">
+        <!-- First panel -->
+        <div class="carousel-item" href="#one!" id="one">
+            <!-- Heading and paragraph -->
+            <h4 class="home-title carousel-content">Welcome to <span>Legion</span></h4>
+            <p class="carousel-content">Discover a leading marketplace, where you can hire, sell, advertise and recruit creative professionals.</p>
+            <!-- Images -->
+            <div class="home-carousel-imgs" id="homeCarousel-imgs-panel1">
+                <div class="row img-row-1">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-2">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-3">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="carousel-item soft-blue white-text">
-            <img src="{{ MEDIA_URL }}img16.jpg" alt="Homepage carousel image" class="responsive-img" id="home-carousel-img2">
-            <div class="content-container center-align">
-                <h4>Kickstart your career</h4>
-                <p>LEGION isn’t just a freelance or recruitment service, it’s a growing network full of professional and talented individuals who want to....</p>
-                <div class="row login-register-btns">
-                    <div class="col s6 l2 offset-l4">
-                        <a class="btn btn-large waves-effect">Find Creators</a>
+        <!-- Second panel -->
+        <div class="carousel-item" href="#two!" id="two">
+            <h4 class="home-title carousel-content"><span>Do.</span> Don't dream</h4>
+            <p class="carousel-content">Take control of your career by utilizing our platform to sell, freelance, job hunt and promote your talents all
+                in one place!</p>
+            <!-- Images -->
+            <div class="home-carousel-imgs" id="homeCarousel-imgs-panel2">
+                <div class="row img-row-1">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
                     </div>
-                    <div class="col s6 l2">
-                        <a class="btn btn-large waves-effect">Find Work</a>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-2">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-3">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="carousel-item soft-blue white-text">
-            <img src="{{ MEDIA_URL }}img15.jpg" alt="Homepage carousel image" class="responsive-img" id="home-carousel-img3">
-            <div class="content-container center-align">
-                <h4>Recruit, buy, advertise, sell</h4>
-                <p>LEGION isn’t just a freelance or recruitment service, it’s a growing network full of professional and talented individuals who want to...</p>
-                <div class="row login-register-btns">
-                    <div class="col s6 l2 offset-l4">
-                        <a class="btn btn-large waves-effect">Find Creators</a>
+        <!-- Third panel -->
+        <div class="carousel-item" href="#three!" id="three">
+            <h4 class="home-title carousel-content"><span>Expand</span> your business</h4>
+            <p class="carousel-content">Expand your business by hiring talented, creative professionals and purchasing their work or services. Build your
+                network by connecting!</p>
+            <!-- Images -->
+            <div class="home-carousel-imgs" id="homeCarousel-imgs-panel3">
+                <div class="row img-row-1">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
                     </div>
-                    <div class="col s6 l2">
-                        <a class="btn btn-large waves-effect">Find Work</a>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-2">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-3">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="carousel-item soft-blue white-text">
-            <img src="{{ MEDIA_URL }}img3.jpg" alt="Homepage carousel image" class="responsive-img" id="home-carousel-img4">
-            <div class="content-container center-align">
-                <h4>Take control of your career</h4>
-                <p>LEGION isn’t just a freelance or recruitment service, it’s a growing network full of professional and talented individuals who want to....</p>
-                <div class="row login-register-btns">
-                    <div class="col s6 l2 offset-l4">
-                        <a class="btn btn-large waves-effect">Find Creators</a>
+        <!-- Fourth panel -->
+        <div class="carousel-item" href="#four!" id="four">
+            <h4 class="home-title carousel-content"><span>Sign up</span></h4>
+            <h5 class="carousel-content">To join the world's marketplace</h5>
+            <a href="#!" class="btn btn-green carousel-content">Sign Up</a>
+            <!-- Images -->
+            <div class="home-carousel-imgs" id="homeCarousel-imgs-panel4">
+                <div class="row img-row-1">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
                     </div>
-                    <div class="col s6 l2">
-                        <a class="btn btn-large waves-effect">Find Work</a>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-2">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                </div>
+                <div class="row img-row-3">
+                    <div class="col l2 column-1 offset-l1">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-2">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-3">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-4">
+                        <div class="home-carousel-img"></div>
+                    </div>
+                    <div class="col l2 column-5">
+                        <div class="home-carousel-img"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}

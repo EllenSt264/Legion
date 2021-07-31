@@ -9,7 +9,7 @@ $(document).ready(function () {
             $('aside').toggleClass('open');
         });
     });
-    
+
     var profileSidenav = true;
 
     // Trigger profile sidenav with mobile nav
@@ -39,7 +39,7 @@ $(document).ready(function () {
     /* ======================================================
     Materialize switch
     ====================================================== */
-    
+
     // Grab checkboxes
     var checkbox = $('input[type=checkbox]');
     var recruiterSwitch = $('#id_is_recruiter');
@@ -101,12 +101,12 @@ $(document).ready(function () {
         $('.next-btn').on('click', function() {
             // Grab chips from html container
             var container = $('.chips-container').text();
-    
+
             // Add to array
             chipsString = container.toString();
             $.trim(chipsString);
             chips_arr = chipsString.split('close');
-    
+
             // Remove empty string fields
             i = 0
             for (i=0; i < chips_arr.length; i++) {
@@ -114,7 +114,7 @@ $(document).ready(function () {
                     chips_arr.splice(i, 1);
                 };
             };
-    
+
             // Update hidden input field value with the chips array
             $('.chips-hidden-input').val(chips_arr);
         });
@@ -184,7 +184,7 @@ $(document).ready(function () {
 
     // Add fullscreen overlay class and close button to each category
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');  
+        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');
     };
 
     // Trigger category fullscreen overlay
@@ -195,7 +195,7 @@ $(document).ready(function () {
             $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
             // Change content container to mimic a fullscreen overlay
             $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
-            
+
             $('body').addClass('category-overlay-active');
             // Show close button for fullscreen overlay
             $('.close-category').removeClass('hide');
@@ -210,7 +210,7 @@ $(document).ready(function () {
         // Change content container back to default
         $('.container.content').css('top', '6%').css('height', '94%').css(
             'overflow', 'auto').css('border-top-left-radius', '40px').css('border-top-right-radius', '40px');
-        
+
         $('body').removeClass('category-overlay-active');
         // Hide close button for fullscreen overlay
         $('.close-category').addClass('hide');
@@ -235,7 +235,7 @@ $(document).ready(function () {
     ====================================================== */
 
     var showFAQ = $('#showFAQBtn');
-    var cancelFAQ = $('#cancelFAQ'); 
+    var cancelFAQ = $('#cancelFAQ');
 
     showFAQ.on('click', function() {
         $('#FAQSection').removeClass('hide');
@@ -253,7 +253,7 @@ $(document).ready(function () {
     var showBasic = $('#basicBtn');
     var showStandard = $('#standardBtn');
     var showPremium = $('#premiumBtn');
-    
+
     var basicPackage = $('#basicPackage');
     var standardPackage = $('#standardPackage');
     var premiumPackage = $('#premiumPackage');
@@ -352,7 +352,7 @@ $(document).ready(function () {
     ];
     var uxArr = [
         'Visual Communication', 'Web Design', 'Usability Testing', 'Axure RP',
-        'User Interface Desgin', 'Software Design', 'User Experience Design', 
+        'User Interface Desgin', 'Software Design', 'User Experience Design',
         'Webflow', 'Competitive Analysis', 'Adobe XD', 'Mobile App Design',
         'Game Design', 'iPhone UI Design', 'Figma', 'Adobe Photoshop'
     ];
@@ -402,7 +402,7 @@ $(document).ready(function () {
         'Packaging'
     ];
     var gamingArr = [
-        'Fusion 360', 'Substance Painter', 'MarvelousDesigner', 'Adobe After Effects', 
+        'Fusion 360', 'Substance Painter', 'MarvelousDesigner', 'Adobe After Effects',
         'The Foundry NUKE', 'Autodesk 3ds Max', 'Graphic Design', 'Virtual Reality',
         'Motion Graphics', 'Adobe Illustrator', '3D Animation', 'Animation',
         'Game Design', '3D Modeling', 'VFX Animation', 'UV Mapping'
@@ -410,46 +410,46 @@ $(document).ready(function () {
 
     /* WRITING */
     var contentArr = [
-        'Media & Entertainment', 'Article Writing', 'Website Content', 'Education', 
+        'Media & Entertainment', 'Article Writing', 'Website Content', 'Education',
         'Business Services', 'Art', 'Copywriting', 'Research', 'Fact-Checking',
         'About Us Page', 'Creative Writing', 'Product Page', 'Landing Page',
     ];
     var creativeArr = [
-        'Fiction Writing', 'Explainer Video', 'Screencast', 'Trailer', 
+        'Fiction Writing', 'Explainer Video', 'Screencast', 'Trailer',
         'Screenwriting', 'Microsoft Word', 'Copywriting', 'Feature',
         'Proofreading', 'Broadcast Journalism', 'Commercial',
         'Documentary', 'Final Draft'
     ];
     var editingArr = [
-        'Error Checking', 'English Spelling', 'Document Version Control', 'Editing', 
+        'Error Checking', 'English Spelling', 'Document Version Control', 'Editing',
         'Text Formatting', 'Microsoft Word', 'Copywriting', 'Research', 'Markup',
         'Proofreading', 'English Punctuation', 'English Grammar'
     ];
     var resumesArr = [
-        'Media & Entertainment', 'Operations Management', 'Proofreading', 'Life Coaching', 
+        'Media & Entertainment', 'Operations Management', 'Proofreading', 'Life Coaching',
         'Business Services', 'Arts', 'AccountAbility', 'Interview Preparation',
         'Management Skills', 'Resume Design', 'Data Entry', 'Education',
     ];
     var technicalArr = [
-        'IT', 'Quantitative Research', 'Proofreading', 'Tutorial', 'Content Management', 
+        'IT', 'Quantitative Research', 'Proofreading', 'Tutorial', 'Content Management',
         'Technical Editing', 'Article', 'FAQ', 'Instruction Manual', 'Statistics',
         'Software', 'SEO Audit', 'Qualitative Research', 'Technical Writing'
     ];
 
     /* TRANSLATION */
     var generalArr = [
-        'Microsoft Word', 'Translation', 'Spanish - Latin American', 'Engish Tutoring', 'German', 
+        'Microsoft Word', 'Translation', 'Spanish - Latin American', 'Engish Tutoring', 'German',
         'French', 'Spanish - Mexico', 'Chinese - Mandarin', 'Chinese - Cantonese', 'Education',
         'Korean', 'Japanese', 'Russian', 'Ukrainian', 'Editing', 'Proofreading', 'Dutch'
     ];
     var legalArr = [
-        'Microsoft Word', 'Translation', 'Official Correspondence Translation', 'Documentation', 'Writing', 
+        'Microsoft Word', 'Translation', 'Official Correspondence Translation', 'Documentation', 'Writing',
         'Contract Translations', 'Product Documentation', 'Article Rewriting', 'Transcription', 'Editing',
         'Technical Manuals', 'Agreements', 'Official Documents Translation', 'Proofreading',
     ];
     var medicalArr = [
-        'Translation', 'Data Analysis', 'Stata', 'Documentation', 'Medical', 
-        'Contract Translations', 'Product Documentation', 'Adobe Acrobat', 
+        'Translation', 'Data Analysis', 'Stata', 'Documentation', 'Medical',
+        'Contract Translations', 'Product Documentation', 'Adobe Acrobat',
         'Technical Manuals', 'Medical Terminology', 'Technical Editing'
     ];
 
@@ -471,7 +471,7 @@ $(document).ready(function () {
         // Ensure that the container is empty before adding chips
         if ($(popularTagsContainer).is(':empty')) {
             setPopularTags();
-        } else {    
+        } else {
             $(popularTagsContainer).empty();
             setPopularTags();
         };
@@ -480,7 +480,7 @@ $(document).ready(function () {
         Add appropriate chips to popular search
         tags container by iterating through
         the category skills array and
-        adding the html as chips 
+        adding the html as chips
         ======================================= */
 
         function setPopularTags() {
@@ -638,7 +638,7 @@ $(document).ready(function () {
             var tagsText = $('.popular-tags').text();
             var popularTagsArr = tagsText.split(' ');
 
-            // Remove empty fields from array 
+            // Remove empty fields from array
             // ! Work around for a minor bug
             for (i=0; i < popularTagsArr.length; i++) {
                 if (popularTagsArr[i] === '') {
@@ -669,10 +669,10 @@ $(document).ready(function () {
 
         addChipsFromPopularTags();
 
-    
+
         /* =======================================
         Add the chip back into the popular tags
-        container if the chip was removed 
+        container if the chip was removed
         from current tags
         ======================================= */
 
@@ -682,13 +682,13 @@ $(document).ready(function () {
                 var removedTag = $(this).parent().text()
                 // Remove the close text from the times button
                 removedTag = removedTag.replace('close', '');
-    
+
                 var popularContainer = $('.popular-tags').text();
-    
+
                 // Grab the appropriate popular tags for the chosen category
                 let chosenCategory = categorySelection.toLowerCase();
                 let categoryTags = eval(`${chosenCategory}Arr`);
-    
+
                 /* Add chip to container if it does not already exist and
                 if it is in the chosen category's tags array */
                 if (!popularContainer.includes(removedTag) && categoryTags.includes(removedTag)) {
@@ -700,6 +700,87 @@ $(document).ready(function () {
         };
 
         deleteSuggestedChip();
-        
+
     });
+});
+
+$(window).on('load', function() {
+    /* ======================================================
+    Detect when the carousel keyfrfame animation ends
+    ====================================================== */
+
+    /* Taken from the following source:
+    'https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/' */
+
+    function whichAnimationEvent() {
+        var t,
+        el = document.createElement("fakeelement");
+
+        var animations = {
+            animation: "animationend",
+            OAnimation: "oAnimationEnd",
+            MozAnimation: "animationend",
+            WebkitAnimation: "webkitAnimationEnd",
+        };
+
+        for (t in animations) {
+            if (el.style[t] !== undefined) {
+                return animations[t];
+            };
+        };
+    };
+
+    var animationEvent = whichAnimationEvent();
+
+    /* ======================================================
+    Load carousel and images
+    ====================================================== */
+
+    $('#homeCarousel').carousel({
+        fullWidth: true,
+        indicators: true,
+        duration: 600,
+        onCycleTo : function($current_item, dragged) {
+            stopAutoplay();
+            startAutoplay();
+            carouselFadeIn($current_item);
+        }
+    });
+
+    function carouselFadeIn($current_item) {
+        $('.carousel-content').removeClass('fade-out');
+        $('.home-carousel-imgs').removeClass('fade-out');
+        $($current_item).children('.carousel-content').addClass('fade-in');
+        $($current_item).children('.carousel-content').css('opacity', '1');
+        $($current_item).children('.home-carousel-imgs').addClass('slide-in');
+        $($current_item).children('.home-carousel-imgs').one(animationEvent, function (event) {
+            // Do something when the animation ends
+            $(this).css('opacity', '1');
+        });
+    };
+
+    function carouselFadeOut() {
+        $('.carousel-content').removeClass('fade-in');
+        $('.home-carousel-imgs').removeClass('fade-in');
+        $('.home-carousel-imgs').removeClass('slide-in');
+        $('.carousel-content').css('opacity', '0');
+        $('.home-carousel-imgs').css('opacity', '0');
+    };
+
+    $('#homeCarousel .indicators').addClass('fade-in');
+    $('#homeCarousel .indicators').css('opacity', '1');
+
+    var autoplay
+    function startAutoplay() {
+        autoplay = setInterval(function() {
+            $('#homeCarousel').carousel('next');
+        }, 5000);
+    };
+
+    function stopAutoplay() {
+        if (autoplay) {
+            carouselFadeOut();
+            clearInterval(autoplay);
+        };
+    };
 });
