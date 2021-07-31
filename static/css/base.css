@@ -1,4 +1,91 @@
 /* ==========================================================================
+CUSTOM FONTS
+========================================================================== */
+
+/* ======================================================
+Product Sans
+====================================================== */
+
+@font-face {
+    font-family: 'Product Sans';
+    src: local('ProductSans-Regular'), url('/static/fonts/ProductSans-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - Bold';
+    src: local('ProductSans-Bold'), url('/static/fonts/ProductSans-Bold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - Italic';
+    src: local('ProductSans-Italic'), url('/static/fonts/ProductSans-Italic.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - BoldItalic';
+    src: local('ProductSans-BoldItalic'), url('/static/fonts/ProductSans-BoldItalic.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - Light';
+    src: local('ProductSans-Light'), url('/static/fonts/ProductSans-Light.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - LightItalic';
+    src: local('ProductSans-LightItalic'), url('/static/fonts/ProductSans-LightItalic.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - Medium';
+    src: local('ProductSans-Medium'), url('/static/fonts/ProductSans-Medium.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - MediumItalic';
+    src: local('ProductSans-MediumItalic'), url('/static/fonts/ProductSans-MediumItalic.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - Thin';
+    src: local('ProductSans-Thin'), url('/static/fonts/ProductSans-Thin.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Product Sans - ThinItalic';
+    src: local('ProductSans-ThinItalic'), url('/static/fonts/ProductSans-ThinItalic.ttf') format("truetype");
+}
+
+/* ======================================================
+Hurme Geometic Sans 3
+====================================================== */
+
+@font-face {
+    font-family: 'Hurme Geometric Sans 3';
+    src: local('HurmeGeometricSans3'), url('/static/fonts/HurmeGeometricSans3.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Hurme Geometric Sans 3 - Bold';
+    src: local('HurmeGeometricSans3-Bold'), url('/static/fonts/HurmeGeometricSans3-Bold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    src: local('HurmeGeometricSans3-Light'), url('/static/fonts/HurmeGeometricSans3-Light.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    src: local('HurmeGeometricSans3-SemiBold'), url('/static/fonts/HurmeGeometricSans3-SemiBold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Hurme Geometric Sans 3 - Thin';
+    src: local('HurmeGeometricSans3-Thin'), url('/static/fonts/HurmeGeometricSans3-Thin.ttf') format("truetype");
+}
+
+/* ==========================================================================
 BASE STYLES
 ========================================================================== */
 
