@@ -43,20 +43,21 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <!-- Desktop sidenav -->
-                {% include 'includes/desktop-nav.html' %}
+                <a href="#" data-target="sidenav-main" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+                {% if not request.user.is_authenticated %}
+                    <ul class="right">
+                        <li><a href="{% url 'account_login' %}" class="btn navbar-login">Log In</a></li>
+                        <li><a href="{% url 'account_signup' %}" class="btn navbar-signup">Sign Up</a></li>
+                    </ul>
+                {% endif %}
             </div>
         </nav>
-        <!-- Mobile sidenav -->
-        {% include 'includes/mobile-nav.html' %}
-
+        <!-- Sidenav -->
+        {% include 'includes/main-nav.html' %}
         <!-- Profile sidenav -->
         {% if request.user.is_authenticated %}
             {% include 'includes/profile-sidenav.html' %}
         {% endif %}
-
-        <!-- Mobile services fullscreen overlay -->
-        {% include 'includes/services-nav.html' %}
     </header>
 
     <!-- Toasts messages -->
