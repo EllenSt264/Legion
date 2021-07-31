@@ -178,11 +178,7 @@ Carousel for desktop
     width: 125px;
     font-size: 18px;
     font-weight: 500;
-}
-
-#homeCarousel ul.indicators {
-    top: 26%;
-}
+}   
 
 .carousel .indicators .indicator-item {
     background-color: #041429;
@@ -406,17 +402,9 @@ the fourth panel
     content: url('/media/img5.jpg');
 }
 
-
 /* ============================
 Carousel image styles
 =========================== */
-
-#homeCarousel img {
-    width: 235px;
-    height: 270px;
-    border-radius: 25px;
-    object-fit: cover;
-}
 
 .home-carousel-imgs {
     position: relative;
@@ -764,3 +752,61 @@ Homepage container 3
 .home-content-container-3 .login-text {
     margin-bottom: 85px;
 }
+
+/* ==========================================================================
+MEDIA QUERIES FOR RESPONSIVE DESIGN
+========================================================================== */
+
+/* ======================================================
+RESPONSIVE STYLES FOR LARGER SCREENS
+====================================================== */
+
+@media (max-width: 1440px) and (min-height: 900px) {
+    /* Home carousel images
+    =========================== */
+    .home-carousel-imgs .home-carousel-img {
+        content: url('/media/noimage.jpg');
+        width: 200px;
+        height: 235px;
+        border-radius: 35px;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* Home carousel images
+    =========================== */
+    .home-carousel-imgs .home-carousel-img {
+        width: 180px;
+        height: 225px;
+    }
+}
+
+@media (max-height: 800px) {
+    /* Home carousel images
+    =========================== */
+    #homeCarousel .home-title {
+        margin-top: 10px;
+    }
+}
+
+/* ======================================================
+RESPONSIVE STYLES FOR MEDIUM SCREENS
+====================================================== */
+
+@media (max-width: 1024px) {
+    /* Home carousel images
+    =========================== */
+    .home-carousel-imgs .home-carousel-img {
+        content: url('/media/noimage.jpg');
+        width: 150px;
+        height: 225px;
+        border-radius: 35px;
+    }
+    #homeCarousel p {
+        font-size: 18px;
+    }
+}
+
+/* ======================================================
+RESPONSIVE STYLES FOR SMALLER SCREENS
+====================================================== */
