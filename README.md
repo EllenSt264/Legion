@@ -169,11 +169,19 @@ Below is a diagram illustrating the different steps used to define the user mode
 
 - Both [this](https://pythonprogramming.net/messages-django-tutorial/) and [this source](https://stackoverflow.com/questions/41711127/how-to-extract-django-form-errors-message-without-the-html-tags) was used to add Django messages with Materialize toasts.
 
+- I used [this source](https://makeitspendit.com/fix-jquery-click-event-not-working-with-dynamically-added-elements/) to get the JQuery `.click()` or `.on('click')` event to work with dynamically added elements.
+
+- I used [this source](https://stackoverflow.com/questions/5613834/convert-string-to-variable-name-in-javascript) to access a variable defined in JavaSript via a string.
+
+- I used [this source](https://stackoverflow.com/questions/25028040/jquery-horizontal-scroll-using-buttons) to add horizontal scrolling to a div.
+
+- [This source](https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay) was used to the add autoplay to the Materialize carousel on the home page.
+
 
 
 #### Acknowledgements
 
-- I want to say thank you to Igor, Jo and Scott from Code Institute for their help with some features.
+- I want to say thank you to Igor, Jo, John, Sheryl, and Scott from Code Institute for their help with some features.
 
 - I also want to thank my mentor, Can Sucullu, for his help and valuable suggestions throughout this project.
 
