@@ -7,39 +7,62 @@
 
 {% block inner_content %}
 
-<h4 class="center-align account-title register">{% trans "Create your account" %}</h4>
+<!-- Sign up title -->
+<h4 class="center title">{% trans "Create your account" %}</h4>
 
+<!-- Continue with Google -->
+<div class="row center">
+    <div class="col s12">
+        <a href="#!" class="btn google-btn">
+            <div class="icon-outer">
+                <div class="icon">
+                    <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="Google icon" class="center">
+                </div>
+            </div>
+            <span>Log In with Google</span>
+        </a>
+    </div>
+</div>
+
+<div class="word-divider">
+    <span class="div-line"></span><h6 class="word">or</h6><span class="div-line"></span>
+</div>
+
+<!-- Sign up form -->
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
-    {{ form | materializecss }}
+
+    <div class="row">
+        {% for field in form %}
+            {% if field.name == 'first_name' %}
+                <div class="input-field col s6">
+                    {{ field }}
+                    <label for="id_{{ field.name }}">First Name</label>
+                </div>
+            {% elif field.name == 'last_name' %}
+                <div class="input-field col s6 right">
+                    {{ field }}
+                    <label for="id_{{ field.name }}">Last Name</label>
+                </div>
+            {% else %}
+                {{ field | materializecss }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-
     <!-- Register -->
-    <div class="row center-align text-center form-btn-row">
+    <div class="row center">
         <div class="col s12">
-            <button class="btn" type="submit">{% trans "Create Account" %}</button>
-        </div>
-    </div>
-    <p class="center-align or">OR</p>
-    <!-- Continue with Google -->
-    <div class="row center-align text-center">
-        <div class="col s12">
-            <a href="#!" class="btn google-btn">
-                <div class="icon-outer">
-                    <div class="icon">
-                        <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="" class="center">
-                    </div>
-                </div>
-                <span>Continue with Google</span>
-            </a>
+            <button class="btn btn-large btn-purple-gradient" type="submit">{% trans "Create Account" %}</button>
         </div>
     </div>
     <!-- Resgister -->
-    <div class="row center-align text-center">
+    <div class="row center">
         <div class="col s12">
-            <p class="register-login-message">Already have an account? <a href="{{ login_url }}">Sign In</a></p>
+            <p class="register-login-message">Already have an account? <a href="{{ login_url }}">Log In</a></p>
         </div>
     </div>
 

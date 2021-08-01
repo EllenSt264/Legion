@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="account-container" id="{% if request.get_full_path == '/accounts/signup/' %}SignUp{% elif request.get_full_path == '/accounts/login/' %}LogIn{% endif %}">
-        <div class="inner-container">
-            <div class="content">
+    <div class="container" id="SignupLoginPage">
+        <div class="row">
+            <div class="col l2 hide-on-med-and-down">
+                <div class="page-side-panel">
+                    <h3 class="home-title">Legion</h3>
+                    <h5>A whole world of freelance talent for you to discover.</h5>
+                </div>
+            </div>
+            <div class="col s12 l6 offset-l1">
                 {% block inner_content %}
                 {% endblock %}
             </div>

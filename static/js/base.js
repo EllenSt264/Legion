@@ -37,6 +37,26 @@ $(document).ready(function () {
     };
 
     /* ======================================================
+    Remove placeholders and label active class from 
+    log in and sign up form input fields
+    ====================================================== */
+
+    $(function(){
+        var fields = $("#signup_form").find('input');
+        var labels = $("#signup_form").find('label');
+        $(fields).removeAttr('placeholder');
+        $(labels).removeClass('active');
+    });
+
+    /* ======================================================
+    Add 'filled in' class to Log in checkbox 
+    ====================================================== */
+
+    $('#id_remember').addClass('filled-in');
+    $('#id_remember').siblings('span').addClass('checkbox-label');
+    
+
+    /* ======================================================
     Materialize switch
     ====================================================== */
 
@@ -47,8 +67,11 @@ $(document).ready(function () {
     var packageSwitch = $('#id_enable_all_packages');
 
     // Add materalize switch classes to checkbox
-    checkbox.parent().parent().addClass('switch');
-    checkbox.next().addClass('lever');
+    if (checkbox.attr('id') !== 'id_remember') {
+        // Ignore Sign up form checkbox
+        checkbox.parent().parent().addClass('switch');
+        checkbox.next().addClass('lever');
+    }
     recruiterSwitch.after("I'm a Recruiter");
     workingHereSwitch.after("I'm currently working here");
     packageSwitch.after('3 Packages');

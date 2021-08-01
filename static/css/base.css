@@ -134,22 +134,98 @@ Global styles
     border-radius: 25px;
 }
 
+/* The button gradient is based upon the following source:
+'https://cssgradient.io/gradient-backgrounds/' */
+
+.btn-purple-gradient {
+    background-image: linear-gradient(to right, #6a3093 0%, #a044ff  51%, #6a3093  100%);
+    background-size: 200% auto;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 40px;
+    border-radius: 72px;
+    box-shadow: 0 0 3px #e14aff;
+    transition: 1s;
+}
+
+.btn-purple-gradient:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.input-field {
+    height: 45px;
+    margin-bottom: 25px;
+    background-color: #F3F3F4;
+    border-radius: 10px;
+}
+
+.input-field input {
+    height: 34px !important;
+    width: 90% !important;
+    margin-left: 5% !important;
+    font-family: 'Hurme Geometric Sans 3';
+    letter-spacing: 1px;
+}
+
+.input-field input::placeholder {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    color: #7D7D7D;
+    font-size: 12px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.input-field label {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    color: #7D7D7D;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.input-field label.active {
+    font-family: 'Hurme Geometric Sans 3';
+    color: #03FFFF;
+    text-transform: none;
+    letter-spacing: 2px;
+}
+
+[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
+    border: 2px solid #DEDEDE;
+}
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 2px solid #1CE89A;
+    background-color: #1CE89A;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    color: #F3F3F4;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 /* =======================
 Google button styles
 ====================== */
 
-.btn-google {
-    background-color: #4285F4;
-    color: #FFFFFF;
-    border-radius: 25px;
-}
-
 .google-btn {
     position: relative;
     width: 90%;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
     padding: 25px 15px 25px 0;
     background-color: #4285F4;
-    color: #FFFFFF;
     border-radius: 25px;
     line-height: 0px;
 }
@@ -207,15 +283,6 @@ nav {
 .navbar-signup {
     width: 125px;
     height: 38px;
-    background: linear-gradient( to bottom,  rgba(108,92,231,1) 25%, rgba(167,112,239,1) 85% ) no-repeat center center fixed;
-    background-size: cover;
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 40px;
-    border-radius: 72px;
 }
 
 .nav-wrapper .sidenav-trigger {
@@ -1222,6 +1289,118 @@ Homepage for non-authenticated users
     left: 65px;
 }
 
+/* ======================================================
+Register and Log In page styles
+====================================================== */
+
+#SignupLoginPage .title {
+    margin-bottom: 45px;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 32px;
+}
+
+/* Based upon the following source:
+'https://stackoverflow.com/questions/17467227/css-divider-text-positioning' */
+
+.word-divider {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+} 
+
+.word-divider .div-line {
+    border-bottom: 1px solid #f0f0f0;
+	width: 40%;
+	height: 0px;
+	display: inline-block;
+    vertical-align: middle;
+}
+
+.word-divider .word {
+    width: 10%;
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: middle;
+    font-size: 12px;
+	font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+form.login {
+    margin: 80px auto;
+}
+
+form.signup {
+    margin: 20px auto 10px;
+}
+
+form.login [type="checkbox"]+span:not(.lever) {
+    margin-bottom: 80px;
+}
+
+form.login .checkbox-label {
+    text-transform: none;
+}
+
+.forgot-password {
+    font-family: 'Hurme Geometric Sans 3';
+    color: #2997FF;
+    font-size: 12px;
+    line-height: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.register-login-message {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    line-height: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.register-login-message a {
+    color: #1CE89A;
+}
+
+form.signup .input-field {
+    margin-bottom: 12px;
+}
+
+.page-side-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 390px;
+    height: 100%;
+    height: 100vh;
+    background: linear-gradient( to bottom,  rgba(103,19,210,1) 15%, rgba(204,32,142,1) 85% ) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-side-panel h3,
+.page-side-panel h5 {
+    margin-left: 25px;
+}
+
+.page-side-panel h3 {
+    margin-top: 120px;
+}
+
+.page-side-panel h5 {
+    width: 70%;
+    font-size: 24px;
+    margin-top: 25px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 32px;
+}
+
 /* ==========================================================================
 MEDIA QUERIES FOR RESPONSIVE DESIGN
 ========================================================================== */
@@ -1273,6 +1452,28 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
     #homeCarousel p {
         font-size: 18px;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Log In & Sign Up pages
+    =========================== */
+    #SignupLoginPage .btn {
+        width: 100%;
+    }
+    form.signup .input-field.col.s6 {
+        width: 280px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Log In & Sign Up pages
+    =========================== */
+    #SignupLoginPage .btn {
+        width: 100%;
+    }
+    form.signup .input-field.col.s6 {
+        width: 160px;
     }
 }
 

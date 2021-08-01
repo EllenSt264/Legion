@@ -8,7 +8,8 @@
 
 {% block inner_content %}
 
-<h4 class="center-align account-title login">{% trans "Welcome Back!" %}</h4>
+<!-- Log in title -->
+<h4 class="center title">{% trans "Welcome Back!" %}</h4>
 
 {% get_providers as socialaccount_providers %}
 
@@ -29,47 +30,57 @@
 
 {% include "socialaccount/snippets/login_extra.html" %}
 
-{% else %}
-<p class="subtitle">
-    {% blocktrans %}
-    Log in or register a new account to continue growing your network
-    {% endblocktrans %}
-</p>
 {% endif %}
 
+<!-- Continue with Google -->
+<div class="row center">
+    <div class="col s12">
+        <a href="#!" class="btn google-btn">
+            <div class="icon-outer">
+                <div class="icon">
+                    <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="Google icon" class="center">
+                </div>
+            </div>
+            <span>Log In with Google</span>
+        </a>
+    </div>
+</div>
+
+<div class="word-divider">
+    <span class="div-line"></span><h6 class="word">or</h6><span class="div-line"></span>
+</div>
+
 <form class="login" method="POST" action="{% url 'account_login' %}">
+    <!-- Form input fields -->
     {% csrf_token %}
-    {{ form | materializecss  }}
+
+    {% for field in form %}
+        {% if field.name == 'password' %}
+            {{ field | materializecss }}
+            <!-- Forgot Password -->
+            <div class="row center">
+                <div class="col s12">
+                    <a class="forgot-password" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </div>
+            </div>
+        {% else %}
+            {{ field | materializecss }}
+        {% endif %}
+    {% endfor %}
+    
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
+
+    
     <!-- Login -->
-    <div class="row center-align text-center form-btn-row">
+    <div class="row center">
         <div class="col s12">
-            <button class="primaryAction btn" type="submit">{% trans "Sign In" %}</button>
-        </div>
-    </div>
-    <!-- Forgot Password -->
-    <div class="row center-align text-center reset-password-row">
-        <div class="col s12">
-            <a class="secondaryAction reset-password" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-        </div>
-    </div>
-    <!-- Continue with Google -->
-    <div class="row center-align text-center google-btn-row">
-        <div class="col s12">
-            <a href="#!" class="btn google-btn">
-                <div class="icon-outer">
-                    <div class="icon">
-                        <img src="{{ MEDIA_URL }}icons/icons8-google.svg" alt="" class="center">
-                    </div>
-                </div>
-                <span>Continue with Google</span>
-            </a>
+            <button class="primaryAction btn btn-large btn-purple-gradient" type="submit">{% trans "Log In" %}</button>
         </div>
     </div>
     <!-- Resgister -->
-    <div class="row center-align text-center">
+    <div class="row center">
         <div class="col s12">
             <p class="register-login-message">Don't have an account? <a href="{% url 'account_signup' %}">Sign Up</a></p>
         </div>
