@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // Initialize sidenav
-    $('.sidenav').sidenav();
+    $('.sidenav').sidenav({
+        inDuration: 350,
+    });
 
     // Profile sidenav for desktop
     $('#slide-out').sidenav({edge: 'right'});
