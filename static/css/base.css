@@ -833,16 +833,6 @@ Homepage background images
     z-index: -5;
 }
 
-.home-mobile-bg .overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    background: linear-gradient( to bottom,  rgba(9,32,63,50%) 25%, rgba(83,120,149,50%) 85% ) no-repeat center center fixed;
-    background-size: cover;
-    z-index: -1;
-}
-
 .home-mobile-img-bg {
     width: 100%;
     position: absolute;
@@ -1039,6 +1029,197 @@ Homepage container 3
 
 .home-content-container-3 .login-text {
     margin-bottom: 85px;
+}
+
+/* ======================================================
+Homepage for non-authenticated users
+====================================================== */
+
+#home-AuthenticatedUserCreator,
+#home-AuthenticatedUserRecruiter {
+    font-family: 'Product Sans - Bold', sans-serif;
+}
+
+#home-AuthenticatedUserCreator .title,
+#home-AuthenticatedUserRecruiter .title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+#home-AuthenticatedUserCreator p,
+#home-AuthenticatedUserRecruiter p {
+    font-family: 'Product Sans - Light', sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+.home-img-links {
+    position: relative;
+    height: 600px; /* To create space at the bottom */
+}
+
+#home-AuthenticatedUserCreator .img-title,
+#home-AuthenticatedUserRecruiter .img-title {
+    width: 40%;
+    font-family: 'Product Sans - Medium', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+.contrast-card {
+    background: linear-gradient(180.3deg, rgba(103,19,210,1) 25%, rgba(204,32,142,1) 60%) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#porfolio-img .img-card {
+    content: url('/media/img17.jpg');
+    width: 160px;
+    height: 345px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    border-radius: 15px;
+    object-fit: cover;
+    z-index: 5;
+}
+
+#porfolio-img .contrast-card {
+    width: 140px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 25px;
+}
+
+#porfolio-img .img-title {
+    position: absolute;
+    top: 275px;
+    left: 45px;
+}
+
+#network-img .img-card {
+    content: url('/media/img1.jpg');
+    width: 135px;
+    height: 310px;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    border-radius: 15px;
+    object-fit: cover;
+    z-index: 5;
+}
+
+#network-img .contrast-card {
+    width: 110px;
+    height: 265px;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    border-top-left-radius: 25px;
+}
+
+#network-img .img-title {
+    width: 30%;
+    position: absolute;
+    top: 68px;
+    right: 20px;
+    text-align: right;
+}
+
+#tips-img .img-card {
+    content: url('/media/img14.jpg');
+    width: 332px;
+    height: 155px;
+    position: absolute;
+    top: 410px;
+    left: 10px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+#tips-img .contrast-card {
+    width: 280px;
+    height: 135px;
+    position: absolute;
+    top: 395px;
+    left: 0;
+}
+
+#tips-img .img-title {
+    width: 30%;
+    position: absolute;
+    top: 455px;
+    left: 10px;
+}
+
+.bg-img-cluster {
+    content: url('/media/home-bg-img-1.png');
+    width: 110%;
+    min-height: 600px;
+    height: 80%;
+    position: absolute;
+    top: -50px;
+    left: -5%;
+    z-index: -5;
+}
+
+#home-AuthenticatedUserRecruiter .overlay {
+    width: 110%;
+    min-height: 600px;
+    height: 80%;
+    position: absolute;
+    top: -50px;
+    left: -5%;
+    background: linear-gradient( to bottom,  rgba(9,32,63,50%) 25%, rgba(83,120,149,50%) 85% ) no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+}
+
+#home-AuthenticatedUserRecruiter .images {
+    position: relative;
+}
+
+#home-AuthenticatedUserRecruiter .img-container {
+    content: url('/media/img26.jpg');
+    width: 240px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin: 35px auto;
+}
+
+#home-AuthenticatedUserRecruiter .contrast-card {
+    width: 200px;
+    height: 275px;
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    z-index: -1;
+}
+
+#home-AuthenticatedUserRecruiter .title1 {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 65px;
+}
+
+#home-AuthenticatedUserRecruiter .title2 {
+    width: 20%;
+    position: absolute;
+    bottom: 5px;
+    left: 65px;
 }
 
 /* ==========================================================================

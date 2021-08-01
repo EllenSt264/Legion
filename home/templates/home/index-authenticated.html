@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if profile.is_creator %}
+    <div class="container" id="home-AuthenticatedUserCreator">
+        <div class="row center">
+            <div class="col s12">
+                <h5 class="title">Discover the world's top creators, designers and freelancers</h5>
+            </div>
+            <div class="col s12">
+                <p>
+                    Begin your professional journey, and starting selling your services, building your portfolio or connecting to
+                    other creators and business owners!
+                </p>
+            </div>
+        </div>
+        <div class="home-img-links">
+            <div class="img-container" id="porfolio-img">
+                <div class="contrast-card"></div>
+                <div class="img-card"></div>
+                <h6 class="img-title">Building a great porfolio</h6>
+            </div>
+            <div class="img-container" id="network-img">
+                <div class="contrast-card"></div>
+                <div class="img-card"></div>
+                <h6 class="img-title">Growing your network</h6>
+            </div>
+            <div class="img-container" id="tips-img">
+                <div class="contrast-card"></div>
+                <div class="img-card"></div>
+                <h6 class="img-title">Tips for getting started</h6>
+            </div>
+        </div>
+    </div>
+{% elif profile.is_recruiter %}
+    <div class="container" id="home-AuthenticatedUserRecruiter">
+        <div class="row center">
+            <div class="col s12">
+                <h5 class="title">Discover the world's top creators, designers and freelancers</h5>
+            </div>
+            <div class="col s12">
+                <p>
+                    Begin your professional journey, and starting selling your services, building your portfolio or connecting to
+                    other creators and business owners!
+                </p>
+            </div>
+        </div>
+        <div class="outer-img-container">
+            <div class="images">
+                <div class="overlay"></div>
+                <div class="bg-img-cluster"></div>
+                <div class="img-container"></div>
+                <div class="contrast-card"></div>
+                <h6 class="img-title title1">Try Legion Premium</h6>
+                <h6 class="img-title title2">Stand out from the rest</h6>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
