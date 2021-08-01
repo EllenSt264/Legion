@@ -213,6 +213,18 @@ Global styles
     text-transform: uppercase;
 }
 
+.clear-btn-cyan {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #03FFFF;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
 /* =======================
 Google button styles
 ====================== */
@@ -1401,6 +1413,260 @@ form.signup .input-field {
     line-height: 32px;
 }
 
+/* ======================================================
+Profile page styles
+====================================================== */
+
+/* =======================
+Profile header
+====================== */
+
+.header {
+    position: relative;
+}
+
+#Profile .contrast-card {
+    background: linear-gradient(180.3deg, rgba(232,5,5,1) 25%, rgba(245,49,191,1) 75%);
+    background-size: cover;
+    width: 140px;
+    height: 190px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 5px;
+}
+
+#Profile .img-card {
+    content: url('/media/img17.jpg');
+    width: 225px;
+    height: 190px;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    border-radius: 35px;
+    object-fit: cover;
+    z-index: 5;
+}
+
+.profile-page-img {
+    width: 89px;
+    height: 89px !important;
+    border-radius: 50%;
+    border: 1px solid #D7D7D7;
+    object-fit: cover;
+}
+
+.image-name-and-title {
+    padding-top: 250px;
+    margin-bottom: 10px;
+}
+
+.image-name-and-title .user-fullname {
+    margin-top: 10px;
+}
+
+#Profile .user-fullname {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 1px;
+}
+
+#Profile .user-title {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+}
+
+.profile-social-btn {
+    width: 100px;
+    height: 35px;
+    padding: 0 7px;
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.profile-social-btn span {
+    position: absolute;
+    margin-left: 6px;
+}
+
+.profile-social-btn.follow {
+    padding-left: 15px;
+}
+
+/* =======================
+Tabs
+====================== */
+
+.profile-navigation {
+    position: relative;
+}
+
+.scroll-me i {
+    position: absolute;
+    top: 15px;
+    right: -12px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 75%);
+}
+
+.tabs {
+    background: none;
+}
+
+.tabs .tab {
+    min-width: 93px;
+    border-bottom: none;
+}
+
+.tabs .tab a {
+    color: rgba(3, 255, 255, 50%);
+    border-bottom: 4px solid rgba(3, 255, 255, 50%);
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a:focus,
+.tabs .tab a.active {
+    color: #03FFFF;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background: none;
+}
+
+.tabs .indicator {
+    height: 4px;    
+    background-color: #03FFFF;
+}
+
+.service-tab {
+    min-width: 130px !important;
+}
+
+.service-tab a {
+    padding: 0 !important;
+}
+
+/* =======================
+Profile content
+====================== */
+
+#Profile .divider {
+    background-color: rgba(255, 255, 255, 50%);
+}
+
+.missing-feature {
+    padding-left: 10px;
+}
+
+.tab-content h6 {
+    margin-bottom: 20px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.missing-feature a {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    color: #03FFFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #03FFFF;
+}
+
+/* =======================
+Bio
+====================== */
+
+.bio-card {
+    width: 115%;
+    margin-left: -7.5%;
+    padding: 25px;
+    background: linear-gradient(180.3deg, rgba(232,5,5,1) 25%, rgba(245,49,191,1) 75%);
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.bio-card .card-panel {
+    background-color: #0B1D36;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.bio-card h5 {
+    margin-bottom: 20px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.add-to-bio {
+    width: 235px;
+    position: relative;
+    margin-top: 10px;
+    background: linear-gradient(180.3deg, rgba(253,108,247,1) 25%, rgba(189,104,255,1) 75%);
+    background-size: cover;
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.add-to-bio i {
+    font-size: 22px;
+    margin-left: 25px;
+}
+
+.add-to-bio span {
+    position: absolute;
+}
+
+#languagesCard .add-to-bio i {
+    margin-left: 25px;
+}
+
+#languagesCard  .add-to-bio span {
+    left: 70px;
+}
+
+#skillsCard .add-to-bio i {
+    margin-left: 45px;
+}
+
+#skillsCard  .add-to-bio span {
+    left: 90px;
+}
+
+#educationCard .add-to-bio i {
+    margin-left: 25px;
+}
+
+#educationCard  .add-to-bio span {
+    left: 70px;
+}
+
+#workexperienceCard .add-to-bio i {
+    margin-left: 0;
+}
+
+#workexperienceCard  .add-to-bio span {
+    left: 43px;
+}
+
 /* ==========================================================================
 MEDIA QUERIES FOR RESPONSIVE DESIGN
 ========================================================================== */
@@ -1417,6 +1683,22 @@ RESPONSIVE STYLES FOR LARGER SCREENS
         width: 200px;
         height: 235px;
         border-radius: 35px;
+    }
+}
+
+@media (min-width: 1280px) {
+    /* Profile page styles
+    =========================== */
+    #Profile .img-card {
+        width: 465px;
+        height: 490px;
+    }
+    #Profile .contrast-card {
+        width: 390px;
+        height: 390px;
+    }
+    .image-name-and-title {
+        padding-top: 450px;
     }
 }
 
@@ -1480,3 +1762,19 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
 /* ======================================================
 RESPONSIVE STYLES FOR SMALLER SCREENS
 ====================================================== */
+
+@media (min-width: 585px) and (max-width: 1280px) {
+    /* Profile page styles
+    =========================== */
+    #Profile .img-card {
+        width: 365px;
+        height: 290px;
+    }
+    #Profile .contrast-card {
+        width: 290px;
+        height: 290px;
+    }
+    .image-name-and-title {
+        padding-top: 350px;
+    }
+}

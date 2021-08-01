@@ -3,67 +3,61 @@
 {% load materializecss %}
 
 {% block content %}
-    <div class="profile">
-        <div class="border-blur"></div>
-        <div class="profile-page-border"><img src="{{ MEDIA_URL }}img50.jpg" alt="Profile header"></div>
-        <div class="container">
-            <!-- Profile image -->
-            <div class="row center-align">
-                <div class="col s12">
+    <div class="container" id="Profile">
+        <div class="header">
+            <!-- Header image -->
+            <div class="header-image">
+                <div class="contrast-card"></div>
+                <div class="img-card"></div>
+            </div>
+            <!-- Profile image, name and title -->
+            <div class="row image-name-and-title">
+                <div class="col s4 m3 l2">
                     <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
                         alt="User profile image" class="responsive-img profile-page-img">
                 </div>
-                <!-- Settings -->
-                <a href="#!" class="settings">
-                    <img src="{{ MEDIA_URL }}icons/settings-cog.svg" alt="Settings cog icon" class="center">
-                </a>
-            </div>
-            <!-- Name, title and user type -->
-            <div class="row center-align">
-                <div class="col s12">
-                    <h6 class="user-fullname">{{ user.get_full_name }}</h6>
-                    {% if profile.is_creator %}
-                        <h6 class="user-type">Creator</h6>
-                    {% elif profile.is_recruiter %}
-                        <h6 class="user-type">Creator</h6>
-                    {% endif %}
-                    <h6 class="user-title">{{ profile.title }}</h6>
+                <div class="col s8 m4 l3">
+                    <p class="user-fullname">{{ user.get_full_name }}</p>
+                    <p class="user-title">{{ profile.title }}</p>
                 </div>
             </div>
             <!-- Buttons -->
-            {% if profile.is_creator %}
-                <div class="row center-align buttons">
-                    <div class="col s6">
-                        <a href="#!" class="btn btn-large profile-btn-purple">Open To</a>
-                    </div>
-                    <div class="col s6">
-                        <a href="#!" class="btn btn-large profile-btn-white">Edit Header</a>
-                    </div>
+            <div class="row follow-and-message">
+                <div class="col s4 m3 l2">
+                    <a href="#!" class="btn btn-small profile-social-btn follow">
+                        <i class="material-icons">add_circle_outline</i>
+                        <span>Follow</span>
+                    </a>
                 </div>
-            {% elif profile.is_recruiter %}
-                <div class="row center-align buttons">
-                    <div class="col s12">
-                        <a href="#!" class="btn btn-large profile-btn-white">Edit Header</a>
-                    </div>
+                <div class="col s4 m3 l2">
+                    <a href="#!" class="btn btn-small profile-social-btn message">
+                        <i class="material-icons">email</i>
+                        <span>Message</span>
+                    </a>
                 </div>
-            {% endif %}
+            </div>
+        </div>
 
-            <!-- Tabs -->
+        <!-- Profile navigation tabs -->
 
-            {% if profile.is_creator %}
-            <div class="row center-align">
+        {% if profile.is_creator %}
+            <div class="row center-align profile-navigation">
                 <div class="col s12">
+                    <span class="scroll-me right hide-on-med-and-up"><i class="material-icons">chevron_right</i></span>
                     <ul class="tabs">
                         <li class="tab col s4 m3"><a href="#projects">Projects</a></li>
+                        <li class="tab col s4 m3 service-tab"><a href="#services">Services & Goods</a></li>
                         <li class="tab col s4 m3"><a href="#bio">Bio</a></li>
-                        <li class="tab col s4 m3"><a href="#work">Work</a></li>
                         <li class="tab col s4 m3"><a href="#reviews">Reviews</a></li>
                     </ul>
                 </div>
             </div>
-            {% endif %}
+        {% endif %}
 
-            {% if profile.is_recruiter %}
+        {% if profile.is_recruiter %}
+            <div class="row">
+                <div class="divider"></div>
+            </div>
             <div class="row center-align">
                 <div class="col s12">
                     <ul class="tabs">
@@ -73,67 +67,81 @@
                     </ul>
                 </div>
             </div>
-            {% endif %}
+        {% endif %}
 
-            <!-- Tab content -->
+        <!-- Profile content -->
 
-            {% if profile.is_creator %}
-                <!-- Projects -->
-                <div class="tab-content" id="projects">
-                    <div class="row">
+        {% if profile.is_creator %}
+            <!-- Divider -->
+            <div class="row">
+                <div class="divider"></div>
+            </div>
+
+            <!-- Projects -->
+            <div class="tab-content" id="projects">
+                <!-- Button -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn clear-btn-cyan">Add new project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="tab-content" id="services">
+                <!-- Button -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn clear-btn-cyan">Add new service</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio -->
+            <div class="tab-content" id="bio">
+                <!-- Button -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn clear-btn-cyan">Edit bio</a>
+                    </div>
+                </div>
+                <!-- About Me -->
+                <div class="row">
+                    <div class="col s12">
+                        <h6>About Me</h6>
+                    </div>
+                    <!-- Professional Overview -->
+                    {% if profile.overview %}
                         <div class="col s12">
-                            <h5>Projects</h5>
-                            <!-- Add project -->
-                            <div class="row center-align">
+                            <p>{{ profile.overview }}</p>
+                        </div>
+                    {% else %}
+                        <div class="missing-feature">
+                            <!-- Missing overview -->
+                            <div class="row">
                                 <div class="col s12">
-                                    <a href="#!" class="btn btn-green">Add Project</a>
+                                    <p>
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Your missing a professional overview!
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Add professional overview -->
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <a href="#!">Add Bio</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
                 </div>
-                <!-- Bio -->
-                <div class="tab-content" id="bio">
-                    <!-- Overview / About me -->
-                    <div class="row">
-                        <div class="col s12">
-                            <h5>About Me</h5>
-                            {% if profile.overview %}
-                                <!-- Professional overview -->
-                                <p>{{ profile.overview }}</p>
-                                <!-- Edit button -->
-                                <div class="edit-btn center-align">
-                                    <a href="#!"><i class="fas fa-pen"></i></a>
-                                </div>
-                            {% else %}
-                                <!-- Missing feature -->
-                                <div class="missing-feature">
-                                    <div class="col s2">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </div>
-                                    <div class="col s10">
-                                        <p>Your profile is missing a professional overview!</p>
-                                        <p>
-                                            This is an important feature to have, as it allows you to tell employers, or clients, who you are and what type of
-                                            work you do. We recommend that you add one to complete your profile.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Add professional overview -->
-                                <div class="row">
-                                    <div class="col s12 center-align">
-                                        <a href="#!" class="btn profile-btn-white">Add Bio</a>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="tab-container">
-                        <!-- Languages -->
-                        <div class="row" id="languagesTab">
-                            <div class="col s12 m6">
-                                <h5>Languages</h5>
-                                <!-- English proficiency -->
+                <!-- Languages -->
+                <div class="row center">
+                    <div class="col s12">
+                        <div class="bio-card" id="languagesCard">
+                            <h5>Languages</h5>
+                            <!-- Content -->
+                            <div class="card-panel">
                                 <p>
                                     English
                                     <span>
@@ -170,150 +178,157 @@
                                     </p>
                                 {% endif %}
                             </div>
-                        </div>
-                        <div class="divider"></div>
-                        <!-- Skills -->
-                        <div class="row" id="skillsTab">
-                            <div class="col s12">
-                                <h5>Skills</h5>
-                                {% if work.skills %}
-                                    <p>{{ work.skills }}</p>
-                                {% else %}
-                                    <a href="#!" class="btn profile-btn-white">Add skills</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <!-- Education -->
-                        <div class="row" id="educationTab">
-                            <div class="col s12">
-                                <h5>Education</h5>
-                                {% if education.institution_name %}
-                                    <p></p>
-                                {% else %}
-                                    <a href="#!" class="btn profile-btn-white">Add Education</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <!-- Work experience -->
-                        <div class="row" id="workexperienceTab">
-                            <div class="col s12">
-                                <h5>Work Experience</h5>
-                                {% if workexperience.company_name %}
-                                    <p></p>
-                                {% else %}
-                                    <a href="#!" class="btn profile-btn-white">Add Work Experience</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <!-- Scroll to top -->
-                        <div class="row center-align" id=scrollUpTab>
-                            <div class="col s12">
-                                <a href="#" class="text-link-green">Back to Top</a>
-                            </div>
+                            <!-- Add languages -->
+                            <a href="#!" class="btn add-to-bio">
+                                <i class="material-icons">add_circle_outline</i>
+                                <span>Add language</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!-- Current work -->
-                <div class="tab-content" id="work">
-                    <div class="row">
-                        <div class="col s12">
-                            <h5>Current Work</h5>
-                            <!-- Add services -->
-                            <div class="row center-align">
-                                <div class="col s12">
-                                    <a href="{% url 'add_service' user.pk %}" class="btn btn-green">Start Selling</a>
-                                </div>
+                <!-- Skills -->
+                <div class="row center">
+                    <div class="col s12">
+                        <div class="bio-card" id="skillsCard">
+                            <h5>Skills</h5>
+                            <!-- Content -->
+                            {% if work.skills %}
+                            <div class="card-panel">
+                                <p>{{ work.skills }}</p>
                             </div>
+                            {% endif %}
+                            <!-- Add languages -->
+                            <a href="#!" class="btn add-to-bio">
+                                <i class="material-icons">add_circle_outline</i>
+                                <span>Add Skills</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!-- Reviews -->
-                <div class="tab-content" id="reviews">
-                    <div class="row">
-                        <div class="col s12">
-                            <h5>Reviews</h5>
-                            <div class="row">
-                                <div class="col s12 center-align">
-                                    <p>You have no reviews yet</p>
-                                </div>
+                <!-- Education -->
+                <div class="row center">
+                    <div class="col s12">
+                        <div class="bio-card" id="educationCard">
+                            <h5>Education</h5>
+                            <!-- Content -->
+                            <div class="card-panel">
                             </div>
+                            <!-- Add languages -->
+                            <a href="#!" class="btn add-to-bio">
+                                <i class="material-icons">add_circle_outline</i>
+                                <span>Add Education</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+                <!-- Work experience -->
+                <div class="row center">
+                    <div class="col s12">
+                        <div class="bio-card" id="workexperienceCard">
+                            <h5>Work Experience</h5>
+                            <!-- Content -->
+                            <div class="card-panel">
+                            </div>
+                            <!-- Add languages -->
+                            <a href="#!" class="btn add-to-bio">
+                                <i class="material-icons">add_circle_outline</i>
+                                <span>Add Work Experience</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            {% if profile.is_recruiter %}
+            <!-- Reviews -->
+            <div class="tab-content" id="reviews">
+                <div class="row">
+                    <div class="col s12">
+                        <h6>Reviews</h6>
+                    </div>
+                    <div class="col s12">
+                        <p>No reviews yet</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if profile.is_recruiter %}
+            <!-- Divider -->
+            <div class="row">
+                <div class="divider"></div>
+            </div>
+
+            <!-- Jobs -->
+            <div class="tab-content" id="jobs">
+                <!-- Button -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn clear-btn-cyan">Add job</a>
+                    </div>
+                </div>
                 <!-- Jobs -->
-                <div class="tab-content" id="jobs">
-                    <div class="row">
+                <div class="row">
+                    <div class="col s12">
+                        <h6>About Me</h6>
+                    </div>
+                    <div class="col s12">
+                        <p>You haven't posted any jobs yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio -->
+            <div class="tab-content" id="bio2">
+                <!-- Button -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn clear-btn-cyan">Edit bio</a>
+                    </div>
+                </div>
+                <!-- About Me -->
+                <div class="row">
+                    <div class="col s12">
+                        <h6>About Me</h6>
+                    </div>
+                    <!-- Professional Overview -->
+                    {% if profile.overview %}
                         <div class="col s12">
-                            <h5>My Jobs</h5>
-                            <!-- Add job -->
-                            <div class="row center-align">
+                            <p>{{ profile.overview }}</p>
+                        </div>
+                    {% else %}
+                        <div class="missing-feature">
+                            <!-- Missing overview -->
+                            <div class="row">
                                 <div class="col s12">
-                                    <a href="#!" class="btn btn-green">Add job</a>
+                                    <p>
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Your missing a professional overview!
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Bio -->
-                <div class="tab-content" id="bio2">
-                    <!-- Overview / About me -->
-                    <div class="row">
-                        <div class="col s12">
-                            <h5>About Me</h5>
-                            {% if profile.overview %}
-                                <!-- Professional overview -->
-                                <p>{{ profile.overview }}</p>
-                                <!-- Edit button -->
-                                <div class="edit-btn center-align">
-                                    <a href="#!"><i class="fas fa-pen"></i></a>
-                                </div>
-                            {% else %}
-                                <!-- Missing feature -->
-                                <div class="missing-feature">
-                                    <div class="col s2">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </div>
-                                    <div class="col s10">
-                                        <p>Your profile is missing a professional overview!</p>
-                                        <p>
-                                            This is an important feature to have, as it allows you to tell freelancers and other businesses who you are and what
-                                            you do in your company
-                                        </p>
-                                        <p>
-                                            We recommend that you add one to complete your profile.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Add professional overview -->
-                                <div class="row">
-                                    <div class="col s12 center-align">
-                                        <a href="#!" class="btn profile-btn-white">Add Bio</a>
-                                    </div>
-                                </div>
-                            {% endif %}                                
-                        </div>
-                    </div>
-                </div>
-                <!-- Reviews -->
-                <div class="tab-content" id="reviews2">
-                    <div class="row">
-                        <div class="col s12">
-                            <h5>Reviews</h5>
+                            <!-- Add professional overview -->
                             <div class="row">
                                 <div class="col s12 center-align">
-                                    <p>You have no reviews yet</p>
+                                    <a href="#!">Add Bio</a>
                                 </div>
                             </div>
                         </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="tab-content" id="reviews2">
+                <div class="row">
+                    <div class="col s12">
+                        <h6>Reviews</h6>
+                    </div>
+                    <div class="col s12">
+                        <p>No reviews yet</p>
                     </div>
                 </div>
-            {% endif %}
-        </div>
-    </div>
+            </div>
+        {% endif %}
 
+    </div>
 {% endblock %}
