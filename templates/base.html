@@ -41,17 +41,19 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" data-target="sidenav-main" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
-                {% if not request.user.is_authenticated %}
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="{% url 'account_login' %}" class="btn navbar-login">Log In</a></li>
-                        <li><a href="{% url 'account_signup' %}" class="btn navbar-signup btn-purple-gradient">Sign Up</a></li>
-                    </ul>
-                {% endif %}
-            </div>
-        </nav>
+        <div class="navbar-fixed">
+            <nav id="navbar">
+                <div class="nav-wrapper">
+                    <a href="#" data-target="sidenav-main" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+                    {% if not request.user.is_authenticated %}
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{% url 'account_login' %}" class="btn navbar-login">Log In</a></li>
+                            <li><a href="{% url 'account_signup' %}" class="btn navbar-signup btn-purple-gradient">Sign Up</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
         <!-- Sidenav -->
         {% include 'includes/main-nav.html' %}
         <!-- Profile sidenav -->

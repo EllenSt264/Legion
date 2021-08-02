@@ -147,14 +147,12 @@ Global styles
     letter-spacing: 1px;
     line-height: 40px;
     border-radius: 72px;
-    box-shadow: 0 0 3px #e14aff;
     transition: 1s;
 }
 
 .btn-purple-gradient:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
-    text-decoration: none;
 }
 
 .input-field {
@@ -225,6 +223,19 @@ Global styles
     border-radius: 15px;
 }
 
+.clear-btn-green {
+    background: rgba(0, 0, 0, 0);
+    color: #1CE89A;
+    border: 1px solid #1CE89A;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
 /* =======================
 Google button styles
 ====================== */
@@ -276,6 +287,7 @@ nav {
     color: #FFFFFF;
     background-color: rgba(24, 24, 24, 0);
     box-shadow: none;
+    transition: background-color 0.2s linear;
 }
 
 .navbar-login {
@@ -1667,6 +1679,267 @@ Bio
     left: 43px;
 }
 
+/* ======================================================
+Service page styles
+====================================================== */
+
+/* =======================
+Service page header
+====================== */
+
+#ServiceHeader .top-header-box {
+    width: 100%;
+    height: 425px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1A355A;
+    z-index: -20;
+}
+
+#ServiceHeader .row:first-child p {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+#services-mobile-topnav .nav-wrapper {
+    width: 100vw;
+    margin-left: -5vw;
+    background-color: #162E4F;
+    border: 1px solid #1D2A4B;
+    transition: 0.6s;
+}
+
+#services-mobile-topnav .brand-logo {
+    padding-top: 10px;
+    padding-left: 25px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+
+.current-category {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#services-mobile-topnav .filter-icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    transition: 0.4s;
+}
+
+#services-mobile-topnav .sort-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    transition: 0.4s;
+}
+
+#service-count {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* =======================
+Premium card
+====================== */
+
+#tryPremium {
+    margin-bottom: 0;
+}
+
+#tryPremium .card-panel {
+    margin-top: 70px;
+    background: linear-gradient(180.3deg, rgba(28,38,68,1) 25%, rgba(41,65,130,1) 75%);
+    background-size: cover;
+    border-radius: 15px;
+}
+
+#tryPremium h6 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.premium-btn {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 40px;
+    background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+    background-size: 200% auto;
+    border-radius: 25px;
+    transition: 1s;
+}
+
+.premium-btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+}
+
+/* =======================
+Service cards
+====================== */
+
+.service-card {
+    margin-top: 50px;
+}
+
+.service-card {
+    padding: 15px 25px;
+    background: linear-gradient(180.3deg, rgba(83,120,149,1) 25%, rgba(26,53,90,1) 75%);
+    background-size: cover;
+}
+
+.service-card .card {
+    background-color: #0B1D36;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.service-card .card-reveal {
+    background-color: #0B1D36;
+    color: #FFFFFF;
+}
+
+.service-card .card-action {
+    padding: 16px 15px;
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
+.service-card .card-image img {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.service-card .price-and-details {
+    padding: 0 15px;
+}
+
+.service-card .price-and-details a {
+    color: #03FFFF;
+}
+
+.service-card .price-and-details .col.s6:first-child {
+    height: 33px;
+}
+
+.service-card .price-and-details .col.s6:first-child p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.service-card .card-title {
+    padding: 15px 20px;
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 18px;
+    text-align: right;
+}
+
+.service-card .price {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+.service-card .price span {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.service-card .heart-icon {
+    width: 24px;
+    height: 24px;
+    margin-top: 5px;
+}
+
+.service-card .creator-profile-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.creator-name-location {
+    padding: 0 !important;
+}
+
+.service-card .creator-name,
+.service-card .creator-location  {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 18px;
+    text-align: right;
+}
+
+.service-card .creator-location {
+    font-weight: 200;
+}
+
+.service-card .card-action .row:nth-child(2) {
+    margin-bottom: 0;
+}
+
+.service-card .card-action .row:nth-child(2) .col.s8 .row {
+    margin-bottom: 0;
+}
+
+.service-card .card-action .row:nth-child(2) .col.s4 {
+    height: 48px;
+}
+
+.rating {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.rating i {
+    font-size: 14px;
+    color: #FFC120;
+}
+
+.rating .score {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.rating .vote-count {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
 /* ==========================================================================
 MEDIA QUERIES FOR RESPONSIVE DESIGN
 ========================================================================== */
@@ -1676,7 +1949,7 @@ RESPONSIVE STYLES FOR LARGER SCREENS
 ====================================================== */
 
 @media (max-width: 1440px) and (min-height: 900px) {
-    /* Home carousel images
+    /* Home carousel styles
     =========================== */
     .home-carousel-imgs .home-carousel-img {
         content: url('/media/noimage.jpg');
@@ -1703,7 +1976,7 @@ RESPONSIVE STYLES FOR LARGER SCREENS
 }
 
 @media (max-width: 1280px) {
-    /* Home carousel images
+    /* Home carousel styles
     =========================== */
     .home-carousel-imgs .home-carousel-img {
         width: 180px;
@@ -1712,7 +1985,7 @@ RESPONSIVE STYLES FOR LARGER SCREENS
 }
 
 @media (max-height: 800px) {
-    /* Home carousel images
+    /* Home carousel styles
     =========================== */
     #homeCarousel .home-title {
         margin-top: 10px;
@@ -1724,7 +1997,7 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
 ====================================================== */
 
 @media (max-width: 1024px) {
-    /* Home carousel images
+    /* Home carousel styles
     =========================== */
     .home-carousel-imgs .home-carousel-img {
         content: url('/media/noimage.jpg');
@@ -1738,7 +2011,7 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
 }
 
 @media (min-width: 992px) {
-    /* Log In & Sign Up pages
+    /* Log In & Sign Up styles
     =========================== */
     #SignupLoginPage .btn {
         width: 100%;
@@ -1749,13 +2022,19 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
 }
 
 @media (max-width: 992px) {
-    /* Log In & Sign Up pages
+    /* Log In & Sign Up styles
     =========================== */
     #SignupLoginPage .btn {
         width: 100%;
     }
     form.signup .input-field.col.s6 {
         width: 160px;
+    }
+    /* Services page styles
+    =========================== */
+    .service-card {
+        width: 100vw;
+        margin-left: -5vw;
     }
 }
 
