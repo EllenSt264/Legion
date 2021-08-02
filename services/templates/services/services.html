@@ -2,133 +2,224 @@
 {% load static %}
 
 {% block content %}
-    <div class="container" id="ServiceHeader">
-        <div class="top-header-box"></div>
-        <!-- Fixed mobile nav -->
-        <div class="navbar-fixed">
-            <!-- Page and category -->
-            <div class="row">
-                <div class="col s12">
-                    <p>Services / Design & Creative</p>
-                </div>
-            </div>
-            <div class="row hide-on-med-and-down">
-                <div class="col s12">
-                    <h6 class="current-category">Logo Design</h6>
-                </div>
-            </div>
-            <nav class="hide-on-large-only" id="services-mobile-topnav">
-                <div class="nav-wrapper white-text">
-                    <h6 class="brand-logo left">Logo Design</h6>
-                    <ul class="right">
-                        <li><a href="#!"><img src="{{ MEDIA_URL }}icons/filter.svg" alt="Filter icon" class="filter-icon"></a></li>
-                        <li><a href="#!"><img src="{{ MEDIA_URL }}icons/sort.svg" alt="Sort icon" class="sort-icon"></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- Text -->
-        <div class="row hide-on-med-and-down">
-            <div class="col s12">
-                <p>Find and hire professional and creative freelancers for your business.</p>
-            </div>
-        </div>
-        <!-- Try premium -->
-        <div class="row" id="tryPremium">
-            <div class="col s12">
-                <div class="card-panel center">
-                    <h6>Want greater control over your searches?</h6>
-                    <a href="#!" class="btn btn-large premium-btn">Go premium</a>
-                </div>
-            </div>
-        </div>
-        <!-- Service count -->
-        <div class="row" id="service-count">
-            <div class="col s12">
-                <p>{{ services|length }} services available</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="container" id="Services">
-        <!-- Service cards -->
-        {% for service in services %}
-        <div class="card-panel service-card">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card">
-                        <!-- Image -->
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
-                            alt="Service image">
+    <div class="row">
+        <!-- Filter side panel -->
+        <div class="col s2 hide-on-med-and-down">
+            <div class="filter-side-panel"></div>
+        </div>
+        <!-- Services middle container -->
+        <div class="col s12 l8 services-container">
+            <!-- Service header -->
+            <div class="container" id="ServiceHeader">
+                <div class="top-header-box"></div>
+                <!-- Fixed mobile nav -->
+                <div class="navbar-fixed">
+                    <!-- Page and category -->
+                    <div class="row">
+                        <div class="col s12">
+                            <p>Services / Design & Creative</p>
                         </div>
-                        <!-- Title -->
-                        <div class="row">
-                            <div class="col s12">
-                                <p class="card-title">{{ service.service_headline }}</p>
-                            </div>
+                    </div>
+                    <div class="row hide-on-med-and-down">
+                        <div class="col s12">
+                            <h6 class="current-category">Logo Design</h6>
                         </div>
-                        <!-- Price and details link -->
-                        <div class="row price-and-details">
-                            <!-- View details link -->
-                            <div class="col s6">
-                                <p><a href="#!">View details</a></p>
-                            </div>
-                            <!-- Price -->
-                            <div class="col s6">
-                                <p class="price">
-                                    from 
-                                    <span>{{ service.basic_price }}</span>
-                                </p>
-                            </div>
+                    </div>
+                    <nav class="hide-on-large-only" id="services-mobile-topnav">
+                        <div class="nav-wrapper white-text">
+                            <h6 class="brand-logo left">Logo Design</h6>
+                            <ul class="right">
+                                <li><a href="#!"><img src="{{ MEDIA_URL }}icons/filter.svg" alt="Filter icon" class="filter-icon"></a></li>
+                                <li><a href="#!"><img src="{{ MEDIA_URL }}icons/sort.svg" alt="Sort icon" class="sort-icon"></a></li>
+                            </ul>
                         </div>
-                        <!-- Card action -->
-                        <div class="card-action">
-                            <!-- Like and Quick Buy button -->
-                            <div class="row">
-                                <div class="col s4">
-                                    <a href="#!"><img src="{{ MEDIA_URL }}icons/heart.svg" alt="Heart icon" class="heart-icon"></a>
-                                </div>
-                                <div class="col s8">
-                                    <a href="#!" class="btn clear-btn-green right">Quick buy</a>
-                                </div>
-                            </div>
-                            <!-- Rating and seller info -->
-                            <div class="row">
-                                <div class="col s4">
-                                    <!-- Rating -->
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <span class="score">4.6</span>
-                                        <span class="vote-count">(127)</span>
+                    </nav>
+                </div>
+                <!-- Text -->
+                <div class="row hide-on-med-and-down">
+                    <div class="col s12">
+                        <p>Find and hire professional and creative freelancers for your business.</p>
+                    </div>
+                </div>
+                <!-- Try premium -->
+                <div class="row" id="tryPremium">
+                    <div class="col s12">
+                        <div class="card-panel center">
+                            <h6>Want greater control over your searches?</h6>
+                            <a href="#!" class="btn btn-large premium-btn">Go premium</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Service count -->
+                <div class="row" id="service-count">
+                    <div class="col s12">
+                        <p>{{ services|length }} services available</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Services -->
+            <div class="container" id="Services">
+                <div class="row">
+                    <div class="col s12">
+                        {% for service in services %}
+                            <div class="card-panel service-card">
+                                <div class="row">
+                                    <!-- Service details card -->
+                                    <div class="col s12 m10 offset-m1 l6">
+                                        <div class="card">
+                                            <!-- Image -->
+                                            <div class="card-image">
+                                                <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                                                alt="Service image">
+                                            </div>
+                                            <!-- Title -->
+                                            <div class="row service-headline">
+                                                <div class="col s12">
+                                                    <p class="card-title">{{ service.service_headline }}</p>
+                                                </div>
+                                            </div>
+                                            <!-- Price and details link -->
+                                            <div class="row price-and-details">
+                                                <!-- View details link -->
+                                                <div class="col s6 view-details hide-on-large-only">
+                                                    <p><a href="#!">View details</a></p>
+                                                </div>
+                                                <!-- Price -->
+                                                <div class="col s6">
+                                                    <p class="price">
+                                                        from 
+                                                        <span>{{ service.basic_price }}</span>
+                                                    </p>
+                                                </div>
+                                                <!-- Like button -->
+                                                <div class="col l1 hide-on-med-and-down">
+                                                    <a href="#!"><img src="{{ MEDIA_URL }}icons/heart.svg" alt="Heart icon" class="heart-icon"></a>
+                                                </div>
+                                                <!-- Quick buy -->
+                                                <div class="col l5 hide-on-med-and-down">
+                                                    <a href="#!" class="btn clear-btn-green right">Quick buy</a>
+                                                </div>
+                                            </div>
+                                            <!-- Carousel -->
+                                            <div class="row hide-on-med-and-down extra-images">
+                                                <div class="col l12">
+                                                    <div class="image-container">
+                                                        <a href="#!" class="extra-service-img">
+                                                            <img src="{{ MEDIA_URL }}img32.jpg" alt="Additional images for the service">
+                                                        </a>
+                                                        <a href="#!" class="extra-service-img">
+                                                            <img src="{{ MEDIA_URL }}img32.jpg" alt="Additional images for the service">
+                                                        </a>
+                                                        <a href="#!" class="extra-service-img">
+                                                            <img src="{{ MEDIA_URL }}img32.jpg" alt="Additional images for the service">
+                                                        </a>
+                                                        <a href="#!" class="extra-service-img">
+                                                            <img src="{{ MEDIA_URL }}img32.jpg" alt="Additional images for the service">
+                                                        </a>
+                                                        <a href="#!" class="extra-service-img">
+                                                            <img src="{{ MEDIA_URL }}img32.jpg" alt="Additional images for the service">
+                                                        </a>
+                                                        <a href="#!" class="next">
+                                                            <i class="material-icons">chevron_right</i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Card action -->
+                                            <div class="card-action">
+                                                <!-- Like and Quick Buy button -->
+                                                <div class="row hide-on-large-only">
+                                                    <div class="col s4">
+                                                        <a href="#!"><img src="{{ MEDIA_URL }}icons/heart.svg" alt="Heart icon" class="heart-icon"></a>
+                                                    </div>
+                                                    <div class="col s8">
+                                                        <a href="#!" class="btn clear-btn-green right">Quick buy</a>
+                                                    </div>
+                                                </div>
+                                                <!-- Rating and seller info -->
+                                                <div class="row rating-creator-info hide-on-large-only">
+                                                    <div class="col s4">
+                                                        <!-- Rating -->
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <span class="score">4.6</span>
+                                                            <span class="vote-count">(127)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s8">
+                                                        <div class="row">
+                                                            <!-- Seller name and location -->
+                                                            <div class="col s10 l10 creator-name-location">
+                                                                <p class="creator-name">{{ service.user.get_full_name }}</p>
+                                                                <p class="creator-location">United Kingdom</p>
+                                                            </div>
+                                                            <!-- Seller profile picture -->
+                                                            <div class="col s2 l2 creator-picture right">
+                                                                {% for profile in creator_profile.all %}
+                                                                    {% if profile.user == service.user %}
+                                                                        <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                                                                        alt="Creator profile image" class="creator-profile-img">
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row l6 rating-creator-info hide-on-med-and-down">
+                                                    <div class="col l12">
+                                                        <div class="row">
+                                                            <!-- Seller profile picture -->
+                                                            <div class="col l2">
+                                                                {% for profile in creator_profile.all %}
+                                                                    {% if profile.user == service.user %}
+                                                                        <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                                                                        alt="Creator profile image" class="creator-profile-img">
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                            <!-- Seller name and location -->
+                                                            <div class="col l9 creator-name-location">
+                                                                <p class="creator-name">{{ service.user.get_full_name }}</p>
+                                                                <p class="creator-location">United Kingdom</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <!-- Rating -->
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <span class="score">4.6</span>
+                                                            <span class="vote-count">(127)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s6 view-details">
+                                                        <p><a href="#!">View details</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Additional image -->
+                                    <div class="col l6 hide-on-med-and-down">
+                                    <div class="service-card-img-large">
+                                            <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                                            alt="Service image">
+                                    </div> 
                                     </div>
                                 </div>
-                                <div class="col s8">
-                                    <div class="row">
-                                        <!-- Seller name and location -->
-                                        <div class="col s8 creator-name-location">
-                                            <p class="creator-name">{{ service.user.get_full_name }}</p>
-                                            <p class="creator-location">United Kingdom</p>
-                                        </div>
-                                        <!-- Seller profile picture -->
-                                        <div class="col s3">
-                                            {% for profile in creator_profile.all %}
-                                                {% if profile.user == service.user %}
-                                                    <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
-                                                    alt="Creator profile image" class="creator-profile-img">
-                                                {% endif %}
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <!-- Side panel -->
+        <div class="col s2 hide-on-med-and-down">
+            <div class="page-side-panel-2"></div>
+        </div>
     </div>
+    
 {% endblock %}
 
 {% block postloadjs %}
@@ -136,8 +227,6 @@
     /* Shrink and move mobile fixed navbar up and change
     the background colour of the main nav on scroll   */
 
-    window.onscroll = function() {scrollFunction()};
-    
     function scrollFunction() {
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
             $('#services-mobile-topnav .nav-wrapper').css('margin-top', '-40px');
@@ -153,5 +242,14 @@
             $('#navbar').css('background-color', 'rgba(24, 24, 24, 0)');
         };
     };
+
+    if (window.matchMedia('(max-width: 992px)').matches) {
+        window.onscroll = function() {scrollFunction()};
+    }
+
+    if (window.matchMedia('(min-width: 992px)').matches) {
+        $('#navbar .nav-wrapper').css('background-color', '#09203F');
+        $('#navbar').css('border-bottom', '1px solid rgba(145, 181, 219, 85%)');
+    }
 </script>
 {% endblock %}
