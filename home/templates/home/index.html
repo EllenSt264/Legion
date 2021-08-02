@@ -14,7 +14,7 @@
     <!-- Login buttons -->
     <div class="row center home-login-prompt hide-on-large-only">
         <div class="col s12">
-            <a href="#!" class="btn btn-large btn-green homepage-btn">Continue with Email</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-large btn-green homepage-btn">Continue with Email</a>
         </div>
         <div class="col s12">
             <a href="#!" class="btn google-btn">
@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="col s12">
-            <p class="login-text">Already a member? <a href="#!">Log In</a></p>
+            <p class="login-text">Already a member? <a href="{% url 'account_login' %}">Log In</a></p>
         </div>
     </div>
     <!-- Background image -->
@@ -126,7 +126,7 @@
         </div>
         <div class="row center">
             <div class="col s12">
-                <p class="login-text">Already a member? <a href="#!">Log In</a></p>
+                <p class="login-text">Already a member? <a href="{% url 'account_login' %}">Log In</a></p>
             </div>
         </div>
     </div>
