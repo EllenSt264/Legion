@@ -24,11 +24,17 @@ def services(request):
     return render(request, template, context)
 
 
+def service_details(request):
+    """ A view to display individual service details """
+
+    template = 'services/service-details.html'
+
+    return render(request, template)
+
+
 @login_required
 def add_service(request, user_id):
     """ A view to render the form for creators to add new services """
-
-    user = get_object_or_404(get_user_model(), pk=user_id)
 
     if request.method == 'POST':
         form = FreelanceServiceForm(request.POST, request.FILES)

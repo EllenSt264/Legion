@@ -96,6 +96,7 @@ BASE STYLES
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -123,7 +124,7 @@ Global styles
     border-radius: 25px;
 }
 
-.login-btn-green {
+.btn-green {
     background: linear-gradient( to bottom,  rgba(10,207,131,1) 25%, rgba(33,239,187,1) 85% ) no-repeat center center fixed;
     background-size: cover;
     font-size: 18px;
@@ -153,6 +154,62 @@ Global styles
 .btn-purple-gradient:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
+}
+
+.btn-green-gradient {
+    background-image: linear-gradient(to right, rgba(10, 207, 131, 1) 0%, rgba(33, 239, 187, 1)  35%, rgba(10, 207, 131, 1)  100%);
+    background-size: 200% auto;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 40px;
+    border-radius: 72px;
+    transition: 1s;
+}
+
+.btn-green-gradient.btn-large {
+    line-height: 54px;
+}
+
+.btn-green-gradient:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+}
+
+.btn-white-gradient {
+    background-image: linear-gradient(to right, #E0EAFC 0%, #CFDEF3  51%, #E0EAFC  100%);
+    background-size: 200% auto;
+    color: #2B2B2B;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 40px;
+    border-radius: 72px;
+    transition: 1s;
+}
+
+.btn-white-gradient:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+}
+
+.blue-link {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    color: #03FFFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #03FFFF;
+}
+
+.headline {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
+    line-height: 20px;
+    text-transform: uppercase;
 }
 
 .input-field {
@@ -1991,6 +2048,167 @@ Service cards carousel
     text-align: center;
 }
 
+/* ======================================================
+Service details page styles
+====================================================== */
+
+.service-details-img {
+    width: 325px;
+    height: 305px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#ServiceDetails .headline:first-child {
+    font-size: 17px;
+    line-height: 22px;
+}
+
+#ServiceDetails p {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+
+#ServiceDetails .creator-profile-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#ServiceDetails .creator-name-location {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+#ServiceDetails .social-btn {
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#ServiceDetails .message-btn {
+    width: 45px;
+}
+
+#ServiceDetails .social-btn i {
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    right: 0;
+    transform: translateX(-50%);
+}
+
+#ServiceDetails .img-row {
+    margin-bottom: 0;
+}
+
+#ServiceDetails .carousel {
+    height: 225px;
+}
+
+#ServiceDetails .indicators {
+    height: 40px;
+}
+
+#ServiceDetails .carousel-item,
+#ServiceDetails .carousel-item img {
+    width: 280px;
+    height: 165px;
+}
+
+#ServiceDetails .tabs,
+#ServiceDetails .tab,
+#ServiceDetails .tab a  {
+    height: 60px;
+}
+
+#ServiceDetails .package-navigation {
+    margin-bottom: 0;
+}
+
+#ServiceDetails .tab {
+    width: 33.33%;
+}
+
+#ServiceDetails .package-navigation .col.s12 {
+    padding: 0;
+}
+
+.service-package-container {
+    padding: 25px 15px;
+    background-color: rgba(3, 255, 255, 20%);
+    border: 2px solid #03FFFF;
+}
+
+#ServiceDetails .tab a {
+    line-height: 40px;
+}
+
+#ServiceDetails .tab span {
+    display: block;
+    line-height: 0;
+}
+
+#ServiceDetails .word-divider .div-line {
+    width: 30%;
+}
+
+#ServiceDetails .word-divider .delivery-icon {
+    width: 60px;
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+.delivery-icon {
+    width: 53px;
+    height: 53px;
+    background-color: #1A355A;
+    border-radius: 50%;
+}
+
+.delivery-icon img {
+    width: 32px;
+    height: 32px;
+    margin-top: 20%;
+}
+
+#ServiceDetails .refresh-icon,
+#ServiceDetails .time-icon {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 0;
+    transform: translateY(25%);
+}
+
+.delivery-revisions h6 {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.delivery-revisions .col.s6 {
+    padding: 0;
+}
+
+.overview-list li {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 35px;
+    text-transform: uppercase;
+}
+
+.overview-list li i {
+    position: relative;
+    top: 0;
+    transform: translateY(25%);
+}
+
 /* ==========================================================================
 MEDIA QUERIES FOR RESPONSIVE DESIGN
 ========================================================================== */
@@ -2168,7 +2386,6 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
 }
 
-
 @media (max-width: 1024px) {
     /* Home carousel styles
     =========================== */
@@ -2271,6 +2488,67 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
         color: #03FFFF !important;
         text-align: right;
     }
+    /* Service details styles
+    =========================== */
+    .service-details-img {
+        width: 975px;
+        height: 552px;
+        margin: 25px auto;
+    }
+    /* Service details styles
+    =========================== */
+    #ServiceDetails .message-btn {
+        margin-left: 5px;
+    }
+    #ServiceDetails {
+        position: relative;
+    }
+    .user-image-and-social {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .user-image-and-social .creator-profile-img {
+        width: 65px;
+        height: 65px;
+    }
+    .user-image-and-social .social-btn {
+        margin-bottom: -15px;
+        margin-left: 15px;
+    }
+    #ServiceDetails .package-navigation {
+        margin-top: 35px;
+    }
+    .service-package-container {
+        padding: 35px;
+        margin: 0 auto 25px;
+    }
+    .service-package-container p {
+        width: 80%;
+        margin: auto;
+    }
+    .service-package-container .requirements p {
+        width: 60%;
+        margin: auto;
+    }
+    .service-package-container .requirements {
+        margin-bottom: 40px;
+    }
+    .service-package-container .headline {
+        margin-bottom: 15px;
+    }
+    .service-package-container .row:nth-child(3) {
+        margin: 45px auto 35px;
+    }
+    .service-package-container .overview-list li i {
+        margin-right: 50px;
+    }
+    .service-package-container .delivery-revisions {
+        margin: 5px auto 45px;
+    }
+    .service-package-container .payment {
+        margin-top: 50px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -2301,6 +2579,12 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
         position: relative;
         top: 50%;
         transform: translateY(-30%);
+    }
+    /* Service details styles
+    =========================== */
+    #ServiceDetails .creator-profile-img {
+        width: 54px;
+        height: 54px;
     }
 }
 

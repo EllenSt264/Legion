@@ -13,6 +13,8 @@ $(document).ready(function () {
         indicators: true
     });
 
+    $('.carousel').carousel({indicators: true});
+
     // Initialize collapsible
     $('.collapsible').collapsible();
 
