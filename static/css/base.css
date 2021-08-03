@@ -1944,6 +1944,10 @@ Service cards
     text-align: right;
 }
 
+.service-card .service-headline a {
+    color: #FFFFFF;
+}
+
 .service-card .price {
     font-family: 'Hurme Geometric Sans 3 - Light';
     font-size: 13px;

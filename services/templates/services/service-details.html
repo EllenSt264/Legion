@@ -6,7 +6,7 @@
         <!-- Service headline -->
         <div class="row">
             <div class="col s12 center">
-                <h6 class="headline">A beautiful, graphic design logo for a creative company</h6>
+                <h6 class="headline">{{ service.service_headline }}</h6>
             </div>
         </div>
         <!-- Creator username and social buttons -->
@@ -18,7 +18,7 @@
             </div>
             <!-- Creator name and location -->
             <div class="col s6 creator-name-location">
-                <p class="creator-name">Claire Davies</p>
+                <p class="creator-name">{{ service.user.get_full_name }}</p>
                 <p class="creator-location">United Kingdom</p>
             </div>
             <!-- Social buttons -->
@@ -71,13 +71,7 @@
         <!-- Service description -->
         <div class="row center">
             <div class="col s12">
-                <p>
-                    I will create an imaginative and elegant fully custom design for your business.
-                
-                    Logos are very important and this service treats them with the depth and detail they deserve. The logos I design are
-                    of the highest quality and perfect for any company who wants to add a splash of beauty and creativity to their
-                    brand.
-                </p>
+                <p>{{ service.service_description }}</p>
             </div>
         </div>
         <!-- Package tabs -->
@@ -87,19 +81,19 @@
                     <li class="tab col s4 m3">
                         <a href="#basic">
                             Basic
-                            <span>£85</span>
+                            <span>{{ service.basic_price }}</span>
                         </a>
                     </li>
                     <li class="tab col s4 m3 service-tab">
                         <a href="#standard">
                             Standard
-                            <span>£160</span>
+                            <span>{{ service.standard_price }}</span>
                         </a>
                     </li>
                     <li class="tab col s4 m3">
                         <a href="#premium">
                             Premium
-                            <span>£280</span>
+                            <span>{{ service.premium_price }}</span>
                         </a>
                     </li>
                 </ul>
@@ -111,16 +105,13 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">Minimal, elegant logo concept</h6>
+                    <h6 class="headline">{{ service.basic_package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>
-                        A minimal, yet elegant, logo concept; mostly in greyscale (a splash of colour is permitted). Maximum work time will
-                        be 2 - 3 hours, meaning the design complexity will be limited.
-                    </p>
+                    <p>{{ service.basic_details }}</p>
                 </div>
             </div>
             <!-- References -->
@@ -156,13 +147,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        5 day delivery
+                        {{ service.basic_delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        3 revisions
+                        {{ service.basic_revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -183,7 +174,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue (£85)</a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.basic_price }})</span></a>
                 </div>
             </div>
         </div>
@@ -192,16 +183,13 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">Minimal, elegant logo concept</h6>
+                    <h6 class="headline">{{ service.standard_package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>
-                        A minimal, yet elegant, logo concept; mostly in greyscale (a splash of colour is permitted). Maximum work time will
-                        be 2 - 3 hours, meaning the design complexity will be limited.
-                    </p>
+                    <p>{{ service.standard_details }}</p>
                 </div>
             </div>
             <!-- References -->
@@ -237,13 +225,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        5 day delivery
+                        {{ service.standard_delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        3 revisions
+                        {{ service.standard_revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -264,7 +252,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue (£160)</a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.standard_price }})</span></a>
                 </div>
             </div>
         </div>
@@ -273,16 +261,13 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">Minimal, elegant logo concept</h6>
+                    <h6 class="headline">{{ service.premium_package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>
-                        A minimal, yet elegant, logo concept; mostly in greyscale (a splash of colour is permitted). Maximum work time will
-                        be 2 - 3 hours, meaning the design complexity will be limited.
-                    </p>
+                    <p>{{ service.premium_details }}</p>
                 </div>
             </div>
             <!-- References -->
@@ -318,13 +303,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        5 day delivery
+                        {{ service.premium_delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        3 revisions
+                        {{ service.premium_revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -345,7 +330,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue (£280)</a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.premium_price }})</span></a>
                 </div>
             </div>
         </div>

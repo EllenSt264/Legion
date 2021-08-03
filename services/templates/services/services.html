@@ -70,20 +70,24 @@
                                         <div class="card">
                                             <!-- Image -->
                                             <div class="card-image">
-                                                <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
-                                                alt="Service image">
+                                                <a href="{% url 'service_details' service.id %}">
+                                                    <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                                                    alt="Service image">
+                                                </a>
                                             </div>
                                             <!-- Title -->
                                             <div class="row service-headline">
                                                 <div class="col s12">
-                                                    <p class="card-title">{{ service.service_headline }}</p>
+                                                    <a href="{% url 'service_details' service.id %}">
+                                                        <p class="card-title">{{ service.service_headline }}</p>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <!-- Price and details link -->
                                             <div class="row price-and-details">
                                                 <!-- View details link -->
                                                 <div class="col s6 view-details hide-on-large-only">
-                                                    <p><a href="#!">View details</a></p>
+                                                    <p><a href="{% url 'service_details' service.id %}">View details</a></p>
                                                 </div>
                                                 <!-- Price -->
                                                 <div class="col s6">
@@ -194,7 +198,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col s6 view-details">
-                                                        <p><a href="#!">View details</a></p>
+                                                        <p><a href="{% url 'service_details' service.id %}">View details</a></p>
                                                     </div>
                                                 </div>
                                             </div>

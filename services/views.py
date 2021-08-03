@@ -24,12 +24,17 @@ def services(request):
     return render(request, template, context)
 
 
-def service_details(request):
+def service_details(request, service_id):
     """ A view to display individual service details """
 
-    template = 'services/service-details.html'
+    service = get_object_or_404(FreelanceService, pk=service_id)
 
-    return render(request, template)
+    template = 'services/service-details.html'
+    context = {
+        'service': service,
+    }
+
+    return render(request, template, context)
 
 
 @login_required
