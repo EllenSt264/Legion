@@ -196,6 +196,31 @@ Global styles
     color: #fff;
 }
 
+.clear-btn-cyan {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #03FFFF;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
+.clear-btn-green {
+    background: rgba(0, 0, 0, 0);
+    color: #1CE89A;
+    border: 1px solid #1CE89A;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
 .blue-link {
     font-family: 'Hurme Geometric Sans 3 - SemiBold';
     color: #03FFFF;
@@ -213,7 +238,7 @@ Global styles
 }
 
 .input-field {
-    height: 45px;
+    height: 52px;
     margin-bottom: 25px;
     background-color: #F3F3F4;
     border-radius: 10px;
@@ -234,6 +259,14 @@ Global styles
     line-height: 32px;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+.input-field textarea::placeholder {
+    font-family: 'Hurme Geometric Sans 3';
+    color: #7D7D7D;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 0 10px;
 }
 
 .input-field label {
@@ -268,29 +301,20 @@ Global styles
     text-transform: uppercase;
 }
 
-.clear-btn-cyan {
-    background: rgba(0, 0, 0, 0);
-    border: 1px solid #03FFFF;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 5px 16px;
-    line-height: 25px;
-    border-radius: 15px;
+.text-field {
+    min-height: 85px !important;
+    height: auto;
 }
 
-.clear-btn-green {
-    background: rgba(0, 0, 0, 0);
-    color: #1CE89A;
-    border: 1px solid #1CE89A;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 5px 16px;
-    line-height: 25px;
-    border-radius: 15px;
+.text-field textarea {
+    min-height: 85px !important;
+}
+
+.character-counter {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: #7D7D7D;
 }
 
 /* =======================

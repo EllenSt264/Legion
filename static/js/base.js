@@ -54,7 +54,27 @@ $(document).ready(function () {
 
     $('#id_remember').addClass('filled-in');
     $('#id_remember').siblings('span').addClass('checkbox-label');
+
+
+    /* ======================================================
+    Add 'text-field' class to all textarea form inputs 
+    ====================================================== */
     
+    $('textarea').parent().addClass('text-field');
+
+
+    /* ======================================================
+    Add character count to input fields
+    ====================================================== */
+
+    allInputs = $('.input-field').find('input[type="text"], textarea');
+
+    for (i=0; i < allInputs.length; i++) {
+        if ($(allInputs[i]).attr('maxlength')) {
+            var maxlength = $(allInputs[i]).attr('maxlength');
+            $(allInputs[i]).attr('data-length', maxlength);
+        }
+    }
 
     /* ======================================================
     Materialize switch

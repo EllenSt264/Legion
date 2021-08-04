@@ -35,4 +35,7 @@ $(document).ready(function () {
 
     // Initialize tabs
     $('.tabs').tabs();
+
+    // Initialize character counter 
+    $('input[type="text"], textarea').characterCounter();
 });
