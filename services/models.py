@@ -48,7 +48,7 @@ class FreelanceService(models.Model):
                 ('GENERAL', 'General'),
                 ('LEGAL', 'Legal'),
                 ('MEDICAL', 'Medical'),
-                ('TECHNICAL', 'Technical'),
+                ('TECH', 'Technical'),
             )),
     ]
 
