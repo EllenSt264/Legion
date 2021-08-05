@@ -553,6 +553,284 @@ Profile sidenav styles
 }
 
 /* ======================================================
+Form step styles
+====================================================== */
+
+.form-step-container .tab {
+    display: none;
+}
+
+/* =======================
+Titles and content
+====================== */
+
+.form-step-container .title {
+    margin: 25px auto;
+    padding: 0 33px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 26px;
+    line-height: 40px;
+}
+
+.form-step-container .title.smaller {
+    font-size: 18px;
+    padding: 0;
+    color: #ffffff;
+}
+
+.form-step-container p,
+.form-step-container h4,
+.form-step-container h6 {
+    padding: 10px 25px;
+
+}
+
+.form-step-container ol {
+    padding: 5px 40px;
+}
+
+.form-step-container li {
+    padding: 5px 25px;
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.form-step-container p {
+    margin: 10px auto;
+    font-weight: 300;
+    line-height: 22px;
+    letter-spacing: 1px;
+}
+
+.form-step-container .btn {
+    margin: 15px auto;
+}
+
+.form-step-container .fa-check-circle {
+    color: #0ACF83;
+}
+
+/* =======================
+Form styles
+====================== */
+
+.form-step-container .switch {
+    width: 85%;
+    margin: auto;
+    text-align: right;
+}
+
+.form-step-container .switch label {
+    font-size: 16px;
+    color: #FEFEFE;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.form-step-container .switch label .lever {
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 28px;
+    background-color: white;
+    border-radius: 15px;
+    margin-right: 10px;
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    vertical-align: middle;
+    margin: 0 16px;
+}
+
+.form-step-container .switch label .lever:before,
+.form-step-container .switch label .lever:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    left: 4px;
+    top: 2px;
+    -webkit-transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+}
+
+.form-step-container .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #6979F8;
+}
+
+.form-step-container .switch label input[type=checkbox]:checked+.lever:before,
+.form-step-container .switch label input[type=checkbox]:checked+.lever:after {
+    left: 20px;
+}
+
+.form-step-container .switch label .lever:after {
+    background-color: #a7a7a7;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: white;
+}
+
+.form-step-container .select-dropdown {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding-left: 20px !important;
+    font-size: 16px;
+    color: #1f1f1f;
+    letter-spacing: 0.5px;
+}
+
+.input-field.chips {
+    padding-left: 20px !important;
+}
+
+.chips.focus {
+    border-bottom: 1px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}
+
+.category-overlay li {
+    padding: 15px 0 15px 20px;
+}
+
+.category-overlay li i {
+    font-size: 20px;
+}
+
+.category-overlay li,
+.category-overlay li label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#id_expertise_level label {
+    position: relative;
+    height: inherit;
+    font-size: 16px;
+    padding: 0 15px 50px;
+    font-weight: 600;
+    background-color: rgba(108, 92, 231, 75%);
+    border-radius: 15px;
+    vertical-align: top;
+}
+
+/* ======================================================
+Add freelancer service form
+====================================================== */
+
+#ServiceCategory h6:hover,
+#ServiceCategory li label:hover {
+    cursor: pointer;
+}
+
+.category-overlay {
+    height: 100%;
+    width: 100%;
+    width: 105%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Gradient taken from this source: 'https://www.css-gradient.com/' */
+    background: #0B1C2A;
+    background: -webkit-linear-gradient(bottom, #792D81, #241F62);
+    background: -moz-linear-gradient(bottom, #792D81, #241F62);
+    background: linear-gradient(to top, #792D81, #241F62);
+    /* To create space with navbar */
+    padding-top: 56px;
+	opacity: 0;
+    overflow-x: hidden;
+    visibility: hidden;
+    transition: all .5s ease;
+}
+
+
+.category-overlay .row {
+    margin: 0 auto;   
+}
+
+.category-overlay .row .col.s5 {
+    margin-left: 12px;
+}
+
+.close-category {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 999 !important;
+}
+
+.close-category i {
+    font-size: 28px !important;
+    color: #ffffff;
+}
+
+.FAQ-btns .col.s4.offset-s3 {
+    text-align: left;
+}
+
+.FAQ-btns .col.s4 {
+    text-align: left;
+}
+
+.service-package-btn {
+    width: 260px;
+}
+
+.save-package {
+    width: 135px;
+}
+
+#PackageCards .card {
+    background-color: #2a204a;
+    color: #ffffff;
+    margin: 25px;
+    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
+    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
+}
+
+#PackageCards .input-field {
+    width: 100% !important;
+}
+
+#ScopePricing .card {
+    background-color: #191935;
+}
+
+#basicPackage,
+#standardPackage,
+#premiumPackage {
+    margin-top: 25px;
+}
+
+.form-step-title {
+    margin-top: 15px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 35px;
+    text-transform: uppercase;
+}
+
+.form-step-subtitle {
+    color: #FFFFFF;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 28px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* ======================================================
 Homepage for non-authenticated users
 ====================================================== */
 
