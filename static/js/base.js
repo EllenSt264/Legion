@@ -217,13 +217,13 @@ $(document).ready(function () {
     for (let i in categoryTypes) {
         $(`#${categoryTypes[i]}Container`).contents().filter(function() {
             return this.nodeType == 3; // Node.TEXT_NODE
-        }).wrap('<h6 class="center title smaller"></h6>');
+        }).wrap('<div class="category-box"><h6 class="center title category-title"></h6></div>');
     };
 
     // Add icons to radio list items
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
-    };
+    // for (let i in categoryTypes) {
+    //     $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
+    // };
 
     // Add fullscreen overlay class and close button to each category
     for (let i in categoryTypes) {
@@ -232,7 +232,7 @@ $(document).ready(function () {
 
     // Trigger category fullscreen overlay
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Container h6`).on('click', function() {
+        $(`#${categoryTypes[i]}Container .category-box`).on('click', function() {
             $(this).siblings().addClass('active-category');
             // Trigger fullscreen overlay
             $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
@@ -244,6 +244,90 @@ $(document).ready(function () {
             $('.close-category').removeClass('hide');
         });
     };
+
+
+    // Update id of category list items
+
+    var devCategoryListItems = $('#DevCategories').find('li');
+    var creativeCategoryListItems = $('#CreativeCategories').find('li');
+    var writingCategoryListItems = $('#WritingCategories').find('li');
+    var translationCategoryListItems = $('#TranslationCategories').find('li');
+
+    for (i = 0; i < devCategoryListItems.length; i++) {
+        var categoryInputField = devCategoryListItems.children('label').children('input'); 
+        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
+        $(devCategoryListItems[i]).attr('id', `id_${categoryVal}`);
+    };
+
+    for (i = 0; i < creativeCategoryListItems.length; i++) {
+        var categoryInputField = creativeCategoryListItems.children('label').children('input'); 
+        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
+        $(creativeCategoryListItems[i]).attr('id', `id_${categoryVal}`);
+    };
+
+    for (i = 0; i < writingCategoryListItems.length; i++) {
+        var categoryInputField = writingCategoryListItems.children('label').children('input'); 
+        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
+        $(writingCategoryListItems[i]).attr('id', `id_${categoryVal}`);
+    };
+
+    for (i = 0; i < translationCategoryListItems.length; i++) {
+        var categoryInputField = translationCategoryListItems.children('label').children('input'); 
+        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
+        $(translationCategoryListItems[i]).attr('id', `id_${categoryVal}`);
+    };
+
+
+    // Wrap inner list elements inside 'category box' div
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).wrapInner('<div class="row"></div>');
+        $(`#${categoryTypes[i]}Categories li`).wrapInner('<div class="category-box"></div>');
+    };
+
+    // Add heading element to subcateogory 
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).prepend(
+            '<h5 class="form-step-subtitle">What subcategory best aligns with the service you are selling?</h5>')
+    }
+
+
+    // Add materialize collumn clases to category list items
+    for (let i in categoryTypes) {
+        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5');
+    }
+
+
+    // Click effect 
+    function categoryClickEffect() {
+        var clicks = 0
+
+        $('.category-overlay li.col.s5').on('click', function() {
+            // Increment click count
+            clicks += 1
+
+            // Remove selected class from previously selected category
+            $('.category-overlay li').children().removeClass('selected-category');
+
+            // Add selected class
+            if ($(this).children('input').attr('checked', true)) {
+                $(this).children().addClass('selected-category');
+            };
+
+            // Remove selected class and checked attribute from the default checked radio value
+            if ($(this).attr('id') === 'id_desktop' && clicks === 1) {
+                $(this).children().removeClass('selected-category');
+                $(this).children().children().children().attr('checked', false);
+            };
+        });
+
+        // Reset click count
+        $('.close-category').on('click', function() {
+            clicks = 0;
+        });
+    }
+
+    categoryClickEffect()
+
 
     // Close overlay
     $('.close-category').on('click', function() {

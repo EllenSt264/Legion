@@ -830,6 +830,180 @@ Add freelancer service form
     text-align: center;
 }
 
+/* =======================
+Category overlay
+====================== */
+
+.category-overlay .form-step-subtitle {
+    width: 70%;
+    margin: 0 auto 25px;
+}
+
+.category-box {
+    width: 155px;
+    height: 115px;
+    display: flex;
+    margin: 10px auto;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.category-overlay .category-box {
+    padding: 5px 10px;
+}
+
+.category-box label {
+    display: flex;
+    height: 100%;   /* so that the radio can be clicked anywhere in the box */
+    margin: 0 auto;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.category-box .category-title {
+    font-family: 'Hurme Geometric Sans 3';
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.category-overlay .category-box {
+    transition: background-color 0.8s ease-in;
+    transition: 500ms linear; 
+}
+
+.category-overlay .category-box.selected-category {
+    background: red !important;
+    background: linear-gradient(to top, #FE8C00, #F83600) !important;
+    transform: scale(1.1);
+    border-radius: 32px;
+    text-transform: uppercase;
+}
+
+/* =======================
+Category radio images
+====================== */
+
+#DevContainer .category-box,
+#id_desktop .category-box {
+    background: url('/media/img36.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#CreativeContainer .category-box,
+#id_art .category-box {
+    background: url('/media/img42.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#WritingContainer .category-box {
+    background: url('/media/img41.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#TranslationContainer .category-box,
+#id_resumes .category-box {
+    background: url('/media/img38.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_mobile .category-box {
+    background: url('/media/img40.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_game .category-box {
+    background: url('/media/img44.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_other .category-box {
+    background: url('/media/img37.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_testing .category-box {
+    background: url('/media/img45.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_ux .category-box {
+    background: url('/media/img16.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_web .category-box,
+#id_content .category-box {
+    background: url('/media/img57.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_audio .category-box {
+    background: url('/media/img35.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_video .category-box {
+    background: url('/media/img43.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_design .category-box {
+    background: url('/media/img9.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_arts .category-box {
+    background: url('/media/img49.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_photo .category-box {
+    background: url('/media/img39.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_branding .category-box {
+    background: url('/media/img51.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_gaming .category-box {
+    background: url('/media/img50.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_creative .category-box {
+    background: url('/media/img52.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_editing .category-box,
+#id_general .category-box {
+    background: url('/media/img56.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_technical .category-box,
+#id_medical .category-box {
+    background: url('/media/img53.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_legal .category-box {
+    background: url('/media/img55.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#id_tech .category-box {
+    background: url('/media/img52.jpg') no-repeat center center;
+    background-size: cover;
+}
+
 /* ======================================================
 Homepage for non-authenticated users
 ====================================================== */
