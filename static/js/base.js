@@ -293,7 +293,7 @@ $(document).ready(function () {
 
     // Add materialize collumn clases to category list items
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5');
+        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5 subcategory');
     }
 
 
