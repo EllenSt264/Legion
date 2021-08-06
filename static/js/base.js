@@ -64,6 +64,12 @@ $(document).ready(function () {
 
 
     /* ======================================================
+    Hide all hidden input types
+    ====================================================== */
+
+    $('.input-field input[type="hidden"]').parent().css('display', 'none');
+
+    /* ======================================================
     Add character count to input fields
     ====================================================== */
 
@@ -73,8 +79,11 @@ $(document).ready(function () {
         if ($(allInputs[i]).attr('maxlength')) {
             var maxlength = $(allInputs[i]).attr('maxlength');
             $(allInputs[i]).attr('data-length', maxlength);
-        }
-    }
+        };
+    };
+
+    // Remove character counter from select fields
+    $('.select-wrapper').children('.character-counter').remove();
 
     /* ======================================================
     Materialize switch
@@ -94,12 +103,32 @@ $(document).ready(function () {
     }
     recruiterSwitch.after("I'm a Recruiter");
     workingHereSwitch.after("I'm currently working here");
-    packageSwitch.after('3 Packages');
+    packageSwitch.after('enable 3 packages');
 
 
     /* ======================================================
     Materialize chips
     ====================================================== */
+
+    /* =======================================
+    Hide and show current tags container
+    depending on whether or not a 
+    user has added any tags
+    ======================================= */
+
+    function isChipsContainerEmpty() {
+        if ($('.chips-container').is(':empty')) {
+            $('.current-tags').fadeOut(100);
+        } else {
+            $('.current-tags').fadeIn(100);
+        };
+    };
+    isChipsContainerEmpty();
+
+
+    /* =======================================
+    Add functionality to chips
+    ======================================= */
 
     var chips = $('.chips-input');
 
@@ -120,7 +149,7 @@ $(document).ready(function () {
             let keycode = (event.keyCode ? event.keyCode : event.which);
             // Get text value from input field
             let value = chips.val();
-            if(keycode == '13') {
+            if (keycode == '13') {
                 // Prevent string with only whitespace and/or special characters
                 var regExp = /[a-zA-Z]/g;
 
@@ -134,10 +163,20 @@ $(document).ready(function () {
                 };
                 // Refresh value of input field
                 chips.val('');
+
+                isChipsContainerEmpty();
             }
         });
     };
     addChips();
+
+
+    // Trigger isChipsContainerEmpty function on delete chip
+    $('.chips-container').on('click', '.chip .close', function() {
+        setTimeout(() => {
+            isChipsContainerEmpty();
+        }, 100);
+    });
 
     // Add chips to hidden form
     function chipsToForm() {
@@ -245,7 +284,6 @@ $(document).ready(function () {
         });
     };
 
-
     // Update id of category list items
 
     var devCategoryListItems = $('#DevCategories').find('li');
@@ -293,7 +331,7 @@ $(document).ready(function () {
 
     // Add materialize collumn clases to category list items
     for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5 subcategory');
+        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5 m4 subcategory');
     }
 
 
@@ -330,7 +368,7 @@ $(document).ready(function () {
 
 
     // Close overlay
-    $('.close-category').on('click', function() {
+    $('.close-category, .exit-overlay').on('click', function() {
         // Hide fullscreen overlay
         $('.active-category').css('visibility', 'hidden').css('opacity', '0');
 
@@ -341,6 +379,7 @@ $(document).ready(function () {
         $('body').removeClass('category-overlay-active');
         // Hide close button for fullscreen overlay
         $('.close-category').addClass('hide');
+        $('.exit-overlay').parent().addClass('hide');
     });
 
     /* ======================================================
@@ -365,10 +404,12 @@ $(document).ready(function () {
     var cancelFAQ = $('#cancelFAQ');
 
     showFAQ.on('click', function() {
+        $(showFAQ).addClass('hide');
         $('#FAQSection').removeClass('hide');
     });
 
     cancelFAQ.on('click', function() {
+        $(showFAQ).removeClass('hide');
         $('#FAQSection').addClass('hide');
     });
 
@@ -414,7 +455,7 @@ $(document).ready(function () {
     });
 
     $('.cancel-package').on('click', function() {
-        $(this).parent().parent().parent().addClass('hide');
+        $(this).parent().parent().parent().parent().parent().addClass('hide-on-med-and-down');
         $('.info-row').removeClass('hide');
         $('#id_enable_all_packages').parent().parent().parent().removeClass('hide');
         $('.package-btns').removeClass('hide');
@@ -423,7 +464,7 @@ $(document).ready(function () {
     });
 
     $('.save-package').on('click', function() {
-        $(this).parent().parent().parent().addClass('hide');
+        $(this).parent().parent().parent().parent().parent().addClass('hide-on-med-and-down');
         $('.info-row').removeClass('hide');
         $('#id_enable_all_packages').parent().parent().parent().removeClass('hide');
         $('.package-btns').removeClass('hide');
@@ -441,6 +482,20 @@ $(document).ready(function () {
         inputFields.prop('required', false);
     };
 
+
+    /* ======================================================
+    Disable / enable packages
+    ====================================================== */
+
+    $('#id_enable_all_packages').on('click', function() {
+        if ($('#id_enable_all_packages').is(':checked') == false) {
+            $('#standardBtn').addClass('disabled');
+            $('#premiumBtn').addClass('disabled');
+        } else {
+            $('#standardBtn').removeClass('disabled');
+            $('#premiumBtn').removeClass('disabled');
+        }
+    });
 
     /* ======================================================
     Chips container - Freelance Service
@@ -789,8 +844,10 @@ $(document).ready(function () {
                 chips.val('');
 
                 /* Remove chip from popular tags container once
-                add to the current tags container */
+                added to the current tags container */
                 $(this).remove();
+
+                isChipsContainerEmpty();
             });
         };
 

@@ -118,21 +118,31 @@ body {
 Global styles
 ====================================================== */
 
+.bg-gradient-darkpurple {
+    background: linear-gradient( to bottom,  rgba(121,45,129,1) 25%, rgba(36,31,98,1) 85% ) no-repeat center center fixed;
+    background-size: cover;
+}
+
 .btn-green {
     background-color: #0ACF83;
     color: #FFFFFF;
     border-radius: 25px;
 }
 
-.btn-green {
-    background: linear-gradient( to bottom,  rgba(10,207,131,1) 25%, rgba(33,239,187,1) 85% ) no-repeat center center fixed;
-    background-size: cover;
-    font-size: 18px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 41px;
+.btn-black {
+    width: 175px;
+    background-color: #151515;
+    color: #FFFFFF;
     border-radius: 25px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.btn-black:hover,
+.btn-black:focus {
+    background-color: #FFFFFF;
+    color: #151515;
 }
 
 /* The button gradient is based upon the following source:
@@ -154,6 +164,18 @@ Global styles
 .btn-purple-gradient:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
+}
+
+.btn-green {
+    background-color: #0ACF83;
+    color: #FFFFFF;
+    border-radius: 25px;
+}
+
+.btn-white {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 25px;
 }
 
 .btn-green-gradient {
@@ -196,6 +218,24 @@ Global styles
     color: #fff;
 }
 
+.btn-orange-gradient {
+    background-image: linear-gradient(to right, #FE8C00 0%, #F83600  51%, #FE8C00  100%);
+    background-size: 200% auto;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 40px;
+    border-radius: 72px;
+    transition: 1s;
+}
+
+.btn-orange-gradient:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+}
+
 .clear-btn-cyan {
     background: rgba(0, 0, 0, 0);
     border: 1px solid #03FFFF;
@@ -221,6 +261,12 @@ Global styles
     border-radius: 15px;
 }
 
+.next-btn {
+    width: 175px;
+    line-height: 34px;
+    padding: 10px 45px;
+}
+
 .blue-link {
     font-family: 'Hurme Geometric Sans 3 - SemiBold';
     color: #03FFFF;
@@ -238,7 +284,7 @@ Global styles
 }
 
 .input-field {
-    height: 52px;
+    height: 54px;
     margin-bottom: 25px;
     background-color: #F3F3F4;
     border-radius: 10px;
@@ -250,6 +296,29 @@ Global styles
     margin-left: 5% !important;
     font-family: 'Hurme Geometric Sans 3';
     letter-spacing: 1px;
+}
+
+.input-field textarea {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-bottom: 12px !important;
+    font-family: 'Hurme Geometric Sans 3';
+    letter-spacing: 1px;
+}
+
+.input-field input.select-dropdown {
+    margin-top: 10px;
+    margin-left: 3px !important;
+    padding-left: 0 !important;
+}
+
+.select-wrapper+label {
+    top: -28px;
+    font-family: 'Hurme Geometric Sans 3' !important;
+    font-size: 11px !important;
+    color: #03FFFF !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .input-field input::placeholder {
@@ -280,7 +349,7 @@ Global styles
 .input-field label.active {
     font-family: 'Hurme Geometric Sans 3';
     color: #03FFFF;
-    text-transform: none;
+    text-transform: uppercase;
     letter-spacing: 2px;
 }
 
@@ -564,28 +633,6 @@ Form step styles
 Titles and content
 ====================== */
 
-.form-step-container .title {
-    margin: 25px auto;
-    padding: 0 33px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    font-size: 26px;
-    line-height: 40px;
-}
-
-.form-step-container .title.smaller {
-    font-size: 18px;
-    padding: 0;
-    color: #ffffff;
-}
-
-.form-step-container p,
-.form-step-container h4,
-.form-step-container h6 {
-    padding: 10px 25px;
-
-}
-
 .form-step-container ol {
     padding: 5px 40px;
 }
@@ -598,10 +645,12 @@ Titles and content
 }
 
 .form-step-container p {
-    margin: 10px auto;
+    margin: 25px auto;
+    font-size: 12px;
     font-weight: 300;
     line-height: 22px;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .form-step-container .btn {
@@ -730,6 +779,112 @@ Add freelancer service form
     cursor: pointer;
 }
 
+.FAQ-btns .col.s4.offset-s3 {
+    text-align: right;
+}
+
+.FAQ-btns .col.s4 {
+    text-align: right;
+}
+
+.FAQ-btns .btn {
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+#showFAQBtn {
+    line-height: 50px;
+}
+
+.service-package-btn {
+    width: 260px;
+}
+
+.save-package {
+    width: 135px;
+}
+
+#PackageCards .card {
+    background-color: #2a204a;
+    background-color: rgba(11, 29, 54, 80%);
+    color: #ffffff;
+    margin: 25px;
+    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
+    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
+}
+
+#PackageCards .input-field {
+    width: 100% !important;
+}
+
+#ScopePricing .card {
+    background-color: #191935;
+}
+
+.form-step-title {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 26px;
+    letter-spacing: 2px;
+    line-height: 35px;
+    text-transform: uppercase;
+}
+
+.form-step-title.smaller {
+    font-size: 16px;
+}
+
+.form-step-subtitle {
+    color: #FFFFFF;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 28px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.chip {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #03FFFF;
+    margin-bottom: 10px;
+}
+
+.popular-tags .chip i {
+    padding-left: 15px;
+}
+
+.chips-row {
+    margin: 15px auto;
+    text-align: center;
+}
+
+#ScopePricing .service-package-btn {
+    width: 265px;
+    height: 50px;
+    margin: 18px auto;
+    border-radius: 25px;
+    background-color: #6C5CE7;
+    color: #FFFFFF;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.btn-cancel {
+    margin-top: 85px !important;
+}
+
+/* =======================
+Category overlay
+====================== */
+
+.category-box h6 {
+    width: 100%;
+}
+
 .category-overlay {
     height: 100%;
     width: 100%;
@@ -752,7 +907,6 @@ Add freelancer service form
     transition: all .5s ease;
 }
 
-
 .category-overlay .row {
     margin: 0 auto;   
 }
@@ -772,67 +926,6 @@ Add freelancer service form
     font-size: 28px !important;
     color: #ffffff;
 }
-
-.FAQ-btns .col.s4.offset-s3 {
-    text-align: left;
-}
-
-.FAQ-btns .col.s4 {
-    text-align: left;
-}
-
-.service-package-btn {
-    width: 260px;
-}
-
-.save-package {
-    width: 135px;
-}
-
-#PackageCards .card {
-    background-color: #2a204a;
-    color: #ffffff;
-    margin: 25px;
-    /* Box shadow taken from this source: 'https://cssboxshadow.com/border-radius/' */
-    box-shadow: 3px 7px 20px 17px rgba(0,0,0,0.55);
-}
-
-#PackageCards .input-field {
-    width: 100% !important;
-}
-
-#ScopePricing .card {
-    background-color: #191935;
-}
-
-#basicPackage,
-#standardPackage,
-#premiumPackage {
-    margin-top: 25px;
-}
-
-.form-step-title {
-    margin-top: 15px;
-    font-family: 'Hurme Geometric Sans 3 - SemiBold';
-    font-size: 26px;
-    letter-spacing: 2px;
-    line-height: 35px;
-    text-transform: uppercase;
-}
-
-.form-step-subtitle {
-    color: #FFFFFF;
-    font-family: 'Hurme Geometric Sans 3 - SemiBold';
-    font-size: 20px;
-    letter-spacing: 2px;
-    line-height: 28px;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-/* =======================
-Category overlay
-====================== */
 
 .category-overlay .form-step-subtitle {
     width: 70%;
@@ -878,7 +971,7 @@ Category overlay
 
 .category-overlay .category-box.selected-category {
     background: red !important;
-    background: linear-gradient(to top, #FE8C00, #F83600) !important;
+    background: linear-gradient(to top, #6713D2, #CC208E) !important;
     transform: scale(1.1);
     border-radius: 32px;
     text-transform: uppercase;
@@ -887,10 +980,19 @@ Category overlay
 .next-btn.for-category-overlay {
     width: 175px;
     position: fixed;
-    bottom: 10px;
+    bottom: 15%;
     left: 0;
     right: 0;
     margin: 0 auto;
+    z-index: 50;
+}
+
+.exit-overlay {
+    width: 175px;
+    position: fixed;
+    bottom: 5%;
+    left: 0;
+    right: 0;
     z-index: 50;
 }
 
@@ -3039,6 +3141,33 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     .service-package-container .payment {
         margin-top: 50px;
     }
+    /* Add service form styles
+    =========================== */
+    #FreelanceService .input-field {
+        width: 60%;
+        margin: 25px auto;
+    }
+    #ScopePricing .input-field {
+        width: 100%;
+    }
+    #FreelanceService p {
+        width: 60%;
+        margin: 35px auto;
+    }
+    #id_category_name .form-step-subtitle {
+        width: 35%;
+        margin: 35px auto 80px;
+    }
+    .chips-row {
+        width: 50% !important;
+    }
+    .FAQ-btns .col.l3 {
+        text-align: center;
+    }
+    #ScopePricing {
+        width: 120%;
+        margin-left: -10%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -3076,6 +3205,46 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
         width: 54px;
         height: 54px;
     }
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .switch {
+        margin-left: 0;
+    }
+    #ScopePricing .row:nth-child(2) span.lever {
+        float: left;
+        margin-right: 0;
+    }
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 42%;
+        line-height: 25px;
+        font-family: 'Hurme Geometric Sans 3 - Light';
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    #ScopePricing label.active {
+        top: -5px;
+    }
+    #ScopePricing label.control-label {
+        top: -33px;
+    }
+    #basicPackage,
+    #standardPackage,
+    #premiumPackage {
+        width: 100% !important;
+    }
+    #basicPackage .card,
+    #standardPackage .card,
+    #premiumPackage .card {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0;
+        box-shadow: none;
+    }
+    #basicPackage .card-content,
+    #standardPackage .card-content,
+    #premiumPackage .card-content {
+        padding: 0;
+    }
 }
 
 @media (max-width: 750px) {
@@ -3103,6 +3272,25 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     =========================== */
     #ServiceHeader .navbar-fixed .row:first-child p {
         padding-left: 18px;
+    }
+}
+
+@media (min-width: 600px) {
+    /* Add service form styles
+    =========================== */
+    .category-overlay .subcategory:nth-child(1),
+    .category-overlay .subcategory:nth-child(3),
+    .category-overlay .subcategory:nth-child(5),
+    .category-overlay .subcategory:nth-child(7) {
+        margin-left: 15% !important;
+    }
+}
+
+@media (max-width: 560px) {
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 30%;
     }
 }
 
@@ -3138,6 +3326,15 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     .rating-creator-info .col.s8 {
         padding-right: 35px;
     }
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 20%;
+    }
+    .chips-row {
+        margin: 10px auto;
+        text-align: left;
+    }
 }
 
 @media (min-width: 434px) and (max-width: 500px) {
@@ -3157,12 +3354,58 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
 }
 
+@media (max-width: 400px) {
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 15%;
+    }
+}
+
+@media (max-width: 375px) {
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 352px) {
+    /* Add service form styles
+    =========================== */
+    .category-box {
+        width: 125px;
+        height: 105px;
+    }
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 5%;
+    }
+}
+
+@media (max-width: 334px) {
+    /* Add service form styles
+    =========================== */
+    #ScopePricing .row:nth-child(2) label {
+        margin-right: 0;
+    }
+    #ScopePricing .row:nth-child(2) .lever {
+        margin-left: 0;
+    }
+}
+
+
 @media (max-width: 299px) {
     /* Services page styles
     =========================== */
     #services-mobile-topnav .nav-wrapper {
         width: 102%;
         margin-left: -2%;
+    }
+    /* Add service form styles
+    =========================== */
+    .category-box {
+        width: 115px;
+        height: 95px;
     }
 }
 

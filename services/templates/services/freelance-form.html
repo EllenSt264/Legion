@@ -27,7 +27,7 @@
             <div class="tab" id="ServiceHeadline">
                 <div class="row">
                     <div class="col s12">
-                        <h4 class="center title">Service Headline</h4>
+                        <h4 class="center form-step-title">Service Headline</h4>
                     </div>
                 </div>
                 {% for field in form %}
@@ -36,7 +36,7 @@
                     {% endif %}
                 {% endfor %}
                 <div class="row">
-                    <div class="col s12 m6 offset-m1">
+                    <div class="col s12 m6 offset-m1 l5 offset-l2">
                         <p style="text-align: left;">Example Headlines:</p>
                         <ul>
                             <li>I will build a responsive WordPress site with booking and payment functionality.</li>
@@ -49,7 +49,7 @@
             <div class="tab" id="SearchTags">
                 <div class="row">
                     <div class="col s12">
-                        <h4 class="center title">Search Tags</h4>
+                        <h4 class="center form-step-title">Search Tags</h4>
                     </div>
                 </div>
                 <!-- Dummy form input -->
@@ -65,23 +65,23 @@
                     {% endif %}
                 {% endfor %}
                 <!-- Chips container -->
-                <div class="row">
+                <div class="row current-tags">
                     <div class="col s12">
-                        <h6>Current tags</h6>
+                        <h6 class="form-step-title smaller center">Current tags</h6>
                     </div>
                 </div>
                 <!-- Current tags -->
-                <div class="row">
+                <div class="row chips-row">
                     <div class="col s12 chips-container"></div>
                 </div>
                 <!-- Popular tags -->
                 <div class="row">
                     <div class="col s12">
-                        <h6>Popular tags</h6>
+                        <h6 class="form-step-title smaller center">Popular tags</h6>
                     </div>
                 </div>
                 <!-- Popular tags -->
-                <div class="row">
+                <div class="row chips-row">
                     <div class="col s12 popular-tags"></div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
             <div class="tab" id="DescriptionFAQ">
                 <div class="row">
                     <div class="col s12">
-                        <h4 class="center title">Description</h4>
+                        <h4 class="center form-step-title">Description</h4>
                         <p>
                             This is where you can explain what service you’re offering, and why clients should choose your service! Please be as
                             detailed as possible so that clients can understand exactly what you are offering and how you can meet their needs.
@@ -103,12 +103,12 @@
                 {% endfor %}
                 <div class="row">
                     <div class="col s12">
-                        <h6>Frequently Asked Questions</h6>
+                        <h6 class="form-step-subtitle">Frequently Asked Questions</h6>
                     </div>
                 </div>
                 <div class="row center-align">
                     <div class="col s12 m6 offset-m3">
-                        <a href="#!" class="btn btn-purple" id="showFAQBtn">
+                        <a href="#!" class="btn btn-large btn-purple-gradient" id="showFAQBtn">
                             <i class="fas fa-plus-circle"></i> Add FAQ
                         </a>
                     </div>
@@ -123,10 +123,10 @@
                         {% endif %}
                     {% endfor %}
                     <div class="row FAQ-btns">
-                        <div class="col s4 offset-s4">
+                        <div class="col s4 offset-s4 l3 offset-l3">
                             <a href="#!" class="btn btn-white" id="cancelFAQ">Cancel</a>
                         </div>
-                        <div class="col s4">
+                        <div class="col s4 l3">
                             <a href="#!" class="btn btn-green" id="addFAQ">Add</a>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
             <div class="tab" id="ScopePricing">
                 <div class="row info-row">
                     <div class="col s12">
-                        <h4 class="center title">Scope and Pricing</h4>
+                        <h4 class="center form-step-title">Scope and Pricing</h4>
                         <p>
                             Please specify the details of your basic, standard and premium package.
                         </p>
@@ -147,19 +147,21 @@
                 </div>
                 {% for field in form %}
                     {% if field.name == 'enable_all_packages' %}
-                        {{ field | materializecss }}
+                        <div class="row">
+                            {{ field | materializecss }}
+                        </div>
                     {% endif %}
                 {% endfor %}
                 <!-- Package buttons - smaller screens -->
-                <div class="row hide-on-large-only package-btns">
+                <div class="row hide-on-large-only package-btns center">
                     <div class="col s12">
-                        <a href="#!" class="btn btn-large btn-purple service-package-btn" id="basicBtn">Basic</a>
+                        <a href="#!" class="btn btn-large service-package-btn" id="basicBtn">Basic</a>
                     </div>
                     <div class="col s12">
-                        <a href="#!" class="btn btn-large btn-purple service-package-btn" id="standardBtn">Standard</a>
+                        <a href="#!" class="btn btn-large service-package-btn" id="standardBtn">Standard</a>
                     </div>
                     <div class="col s12">
-                        <a href="#!" class="btn btn-large btn-purple service-package-btn" id="premiumBtn">Premium</a>
+                        <a href="#!" class="btn btn-large service-package-btn" id="premiumBtn">Premium</a>
                     </div>
                 </div>
                 <!-- Packages -->
@@ -167,7 +169,7 @@
                     <div class="col s12 l4 hide-on-med-and-down" id="basicPackage">
                         <div class="card">
                             <div class="card-content">
-                                <h4 class="card-title title center">Basic</h4>
+                                <h4 class="card-title form-step-title center">Basic</h4>
                                 <div class="row">
                                     {% for field in form %}
                                         {% if field.name == 'basic_package_title' %}
@@ -183,7 +185,7 @@
                                         {% endif %}
                                     {% endfor %}   
                                 </div>
-                                <div class="row center-align">
+                                <div class="row center-align hide-on-large-only">
                                     <div class="col s12 m6">
                                         <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
                                     </div>
@@ -197,7 +199,7 @@
                     <div class="col s12 l4 hide-on-med-and-down" id="standardPackage">
                         <div class="card">
                             <div class="card-content">
-                                <h4 class="card-title title center">Standard</h4>
+                                <h4 class="card-title form-step-title center">Standard</h4>
                                 <div class="row">
                                     {% for field in form %}
                                         {% if field.name == 'standard_package_title' %}
@@ -213,7 +215,7 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                                <div class="row center-align">
+                                <div class="row center-align hide-on-large-only">
                                     <div class="col s12 m6">
                                         <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
                                     </div>
@@ -227,7 +229,7 @@
                     <div class="col s12 l4 hide-on-med-and-down" id="premiumPackage">
                         <div class="card">
                             <div class="card-content">
-                                <h4 class="card-title title center">Premium</h4>
+                                <h4 class="card-title form-step-title center">Premium</h4>
                                 <div class="row center-align center">
                                     {% for field in form %}
                                         {% if field.name == 'premium_package_title' %}
@@ -243,7 +245,7 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                                <div class="row center-align">
+                                <div class="row center-align hide-on-large-only">
                                     <div class="col s12 m6">
                                         <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
                                     </div>
@@ -260,7 +262,7 @@
             <div class="tab" id="ServiceImage">
                 <div class="row">
                     <div class="col s12">
-                        <h4 class="center title">Image</h4>
+                        <h4 class="center form-step-title">Image</h4>
                         <p>
                             Add an image to make your services stand out more to clients.
                         </p>
@@ -274,17 +276,20 @@
             </div>
             <!-- Submit form, next and back buttons -->
             <div class="row center-align">
-                <div class="col s12 l3 offset-l3">
-                    <a href="#!" class="btn btn-large btn-green next-btn" id="nextBtn-service" style="padding: 10px 45px;">Next</a>
+                <div class="col s12 l3 push-l3 offset-l3">
+                    <a href="#!" class="btn btn-large next-btn btn-orange-gradient" id="nextBtn-service">Next</a>
                 </div>
-                <div class="col s12 l3 hide offset-l3">
-                    <button type="submit" class="btn btn-large btn-green submit-btn">Submit</button>
+                <div class="col s12 l3 hide offset-l3 push-l3">
+                    <button type="submit" class="btn btn-large btn-green-gradient submit-btn">Submit</button>
                 </div>
-                <div class="col s12 l3">
-                    <a href="#!" class="btn btn-large prev-btn btn-white">Back</a>
+                <div class="col s12 l3 pull-l3">
+                    <a href="#!" class="btn btn-large prev-btn btn-black">Go back</a>
                 </div>
-                <div class="col s12 l3 hide">
-                    <a href="{% url 'profile_or_redirect' %}" class="btn btn-large btn-cancel btn-white">Cancel</a>
+                <div class="col s12 l3 pull-l3 hide">
+                    <a href="#!" class="btn btn-large exit-overlay btn-black">Go back</a>
+                </div>
+                <div class="col s12 hide">
+                    <a href="{% url 'profile_or_redirect' %}" class="btn btn-large btn-cancel btn-black">Cancel</a>
                 </div>
             </div> 
         </form>
@@ -293,5 +298,11 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script src="{% static 'services/js/form-steps.js' %}"></script>
+    <!-- Change background color -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').addClass('bg-gradient-darkpurple');
+        });
+    </script>
+    <script src="{% static 'services/js/form-steps.js' %}" type="text/javascript"></script>
 {% endblock %}
