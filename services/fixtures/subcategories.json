@@ -1,0 +1,209 @@
+[
+    {
+        "pk": 1,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "desktop",
+            "friendly_name": "Desktop Software Development"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "mobile",
+            "friendly_name": "Mobile Development"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "game",
+            "friendly_name": "Game Development"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "other",
+            "friendly_name": "Other Software Development"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "test",
+            "friendly_name": "Testing"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "ux",
+            "friendly_name": "Web UX & Mobile Design"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "web",
+            "friendly_name": "Web Development"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "art",
+            "friendly_name": "Art & Illustration"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "audio",
+            "friendly_name": "Audio & Music Production"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "video",
+            "friendly_name": "Video & Animation"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "design",
+            "friendly_name": "Graphic, Editorial & Presentation Design"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "photo",
+            "friendly_name": "Photography"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "branding",
+            "friendly_name": "Branding & Logo Design"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "gaming",
+            "friendly_name": "Gaming AR/VR"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "content",
+            "friendly_name": "Content & Copyright"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "creative",
+            "friendly_name": "Creative Writing"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "editing",
+            "friendly_name": "Editing & Proofreading"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "resumes",
+            "friendly_name": "Resumes & Cover Letters"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "academic",
+            "friendly_name": "Technical & Academic Writing"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "general",
+            "friendly_name": "General"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "legal",
+            "friendly_name": "Legal"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "medical",
+            "friendly_name": "Medicial"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "services.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "technical",
+            "friendly_name": "Technical"
+        }
+    }
+]

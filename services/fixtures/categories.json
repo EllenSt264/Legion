@@ -1,0 +1,34 @@
+[
+    {
+        "pk": 1,
+        "model": "services.category",
+        "fields": {
+            "name": "dev",
+            "friendly_name": "Web, Mobile & Software Development"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "services.category",
+        "fields": {
+            "name": "creative",
+            "friendly_name": "Design & Creative"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "services.category",
+        "fields": {
+            "name": "writing",
+            "friendly_name": "Writing"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "services.category",
+        "fields": {
+            "name": "translation",
+            "friendly_name": "Translation"
+        }
+    }
+]

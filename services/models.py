@@ -1,8 +1,45 @@
 from django.db import models
 from django.conf import settings
 
-
 User = settings.AUTH_USER_MODEL
+
+
+class Category(models.Model):
+    """ A model class for services' category fixtures """
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
+class SubCategory(models.Model):
+    """ A model class for services' subcategory fixtures """
+
+    class Meta:
+        verbose_name_plural = 'SubCategories'
+
+    category = models.ForeignKey(
+        'Category',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
 
 
 class FreelanceService(models.Model):
@@ -59,7 +96,7 @@ class FreelanceService(models.Model):
         blank=False,
     )
 
-    service_headline = models.CharField(max_length=50, null=False, blank=False)
+    service_headline = models.CharField(max_length=90, null=False, blank=False)
     service_description = models.TextField(null=False, blank=False)
     service_search_tags = models.CharField(
         max_length=120,
@@ -98,7 +135,7 @@ class FreelanceService(models.Model):
     enable_all_packages = models.BooleanField(default=True)
 
     basic_package_title = models.CharField(
-        max_length=50,
+        max_length=90,
         null=False,
         blank=False
     )
@@ -108,7 +145,7 @@ class FreelanceService(models.Model):
     basic_price = models.DecimalField(max_digits=6, decimal_places=2)
 
     standard_package_title = models.CharField(
-        max_length=50,
+        max_length=90,
         null=True,
         blank=True
     )
@@ -131,7 +168,7 @@ class FreelanceService(models.Model):
     )
 
     premium_package_title = models.CharField(
-        max_length=50,
+        max_length=90,
         null=True,
         blank=True
     )

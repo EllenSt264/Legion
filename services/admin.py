@@ -1,5 +1,20 @@
 from django.contrib import admin
-from .models import FreelanceService
+from .models import Category, SubCategory, FreelanceService
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'friendly_name',
+        'name',
+    )
+
+
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'friendly_name',
+        'name',
+        'category',
+    )
 
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -14,4 +29,6 @@ class ServiceAdmin(admin.ModelAdmin):
     ordering = ('category_name',)
 
 
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(FreelanceService, ServiceAdmin)
