@@ -69,6 +69,15 @@ $(document).ready(function () {
 
     $('.input-field input[type="hidden"]').parent().css('display', 'none');
 
+
+    $('input').each(function() {
+        if ($(this).length && $(this).val().length) {
+            console.log($(this).val());
+            $(this).siblings('label').addClass('force-active');
+        }
+    })
+    
+    
     /* ======================================================
     Add character count to input fields
     ====================================================== */
@@ -239,107 +248,72 @@ $(document).ready(function () {
     Category Sections
     ====================================================== */
 
+    // Hides subcategory options
+    $('#id_category').removeClass('radio-btn')
+    $('.subcategory-selection .radio-btn').addClass('hide');
+
+    //  Add and remove radio, category-overlay and hide classes to category radios
+
+    $('#id_dev_categories').removeClass('radio-btn');
+    $('#id_dev_categories').addClass('category-overlay');
+    $('#id_dev_categories .radio-btn').removeClass('hide');
+
+    $('#id_creative_categories').removeClass('radio-btn');
+    $('#id_creative_categories').addClass('category-overlay');
+    $('#id_creative_categories .radio-btn').removeClass('hide');
+
+    $('#id_writing_categories').removeClass('radio-btn');
+    $('#id_writing_categories').addClass('category-overlay');
+    $('#id_writing_categories .radio-btn').removeClass('hide');
+
+    $('#id_translation_categories').removeClass('radio-btn');
+    $('#id_translation_categories').addClass('category-overlay');
+    $('#id_translation_categories .radio-btn').removeClass('hide');
+
+    // Wrap category list items in a category box div
+    $('#id_category li').wrapInner('<div class="category-box"></div>');
+    $('.category-overlay li').wrapInner('<div class="category-box"></div>');
+
+    // Add materialize rows and collumns to make the radios more responsive
+    $('.category-overlay').wrapInner('<div class="row"></div>');
+    $('.category-overlay li').addClass(' col s6 m4');
+    
+    // Make other category radios not required to fix form validation error
+    $('#ServiceCategory .radio-btn').prop('required', false);
+
+    // Subcategory fullscreen overlay
+            
+    $('.subcategory-selection .radio-btn').addClass('category-overlay');
+
+    var categoryNames = [
+        'dev', 'creative',
+        'writing', 'translation'
+    ];
+
     // Update category id names
-    $('#id_category_name_0').attr('id', 'DevCategories');
-    $('#id_category_name_1').attr('id', 'CreativeCategories');
-    $('#id_category_name_2').attr('id', 'WritingCategories');
-    $('#id_category_name_3').attr('id', 'TranslationCategories');
+    $('#id_category_0').attr('id', 'dev_category');
+    $('#id_category_1').attr('id', 'creative_category');
+    $('#id_category_2').attr('id', 'writing_category');
+    $('#id_category_3').attr('id', 'translation_category');
 
-    var categoryTypes = ['Dev', 'Creative', 'Writing', 'Translation']
-
-    // Add id attributes to category list elements
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).parent().attr('id', `${categoryTypes[i]}Container`);
-    };
-
-    // Wrap heading text inside a header element
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Container`).contents().filter(function() {
-            return this.nodeType == 3; // Node.TEXT_NODE
-        }).wrap('<div class="category-box"><h6 class="center title category-title"></h6></div>');
-    };
-
-    // Add icons to radio list items
-    // for (let i in categoryTypes) {
-    //     $(`#${categoryTypes[i]}Categories label`).before('<i class="fas fa-check"></i>');
-    // };
-
-    // Add fullscreen overlay class and close button to each category
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).addClass('category-overlay');
-    };
+    
 
     // Trigger category fullscreen overlay
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Container .category-box`).on('click', function() {
-            $(this).siblings().addClass('active-category');
-            // Trigger fullscreen overlay
-            $(`#${categoryTypes[i]}Container .category-overlay`).css('visibility', 'visible').css('opacity', '1');
-            // Change content container to mimic a fullscreen overlay
-            $('.container.content').css('top', '0').css('height', '100%').css('overflow', 'hidden').css('border-radius', '0');
-
+    for (let i in categoryNames) {
+        $(`#${categoryNames[i]}_category`).parent().on('click', function() {
+            $(`#id_${categoryNames[i]}_categories`).removeClass('hide');
+            $(`#id_${categoryNames[i]}_categories`).addClass('active-category');
+            $(`#id_${categoryNames[i]}_categories`).css('visibility', 'visible').css('opacity', '1');
             $('body').addClass('category-overlay-active');
             // Show close button for fullscreen overlay
             $('.close-category').removeClass('hide');
         });
     };
 
-    // Update id of category list items
-
-    var devCategoryListItems = $('#DevCategories').find('li');
-    var creativeCategoryListItems = $('#CreativeCategories').find('li');
-    var writingCategoryListItems = $('#WritingCategories').find('li');
-    var translationCategoryListItems = $('#TranslationCategories').find('li');
-
-    for (i = 0; i < devCategoryListItems.length; i++) {
-        var categoryInputField = devCategoryListItems.children('label').children('input'); 
-        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
-        $(devCategoryListItems[i]).attr('id', `id_${categoryVal}`);
-    };
-
-    for (i = 0; i < creativeCategoryListItems.length; i++) {
-        var categoryInputField = creativeCategoryListItems.children('label').children('input'); 
-        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
-        $(creativeCategoryListItems[i]).attr('id', `id_${categoryVal}`);
-    };
-
-    for (i = 0; i < writingCategoryListItems.length; i++) {
-        var categoryInputField = writingCategoryListItems.children('label').children('input'); 
-        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
-        $(writingCategoryListItems[i]).attr('id', `id_${categoryVal}`);
-    };
-
-    for (i = 0; i < translationCategoryListItems.length; i++) {
-        var categoryInputField = translationCategoryListItems.children('label').children('input'); 
-        var categoryVal = $(categoryInputField[i]).val().toLowerCase();
-        $(translationCategoryListItems[i]).attr('id', `id_${categoryVal}`);
-    };
-
-
-    // Wrap inner list elements inside 'category box' div
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).wrapInner('<div class="row"></div>');
-        $(`#${categoryTypes[i]}Categories li`).wrapInner('<div class="category-box"></div>');
-    };
-
-    // Add heading element to subcateogory 
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).prepend(
-            '<h5 class="form-step-subtitle">What subcategory best aligns with the service you are selling?</h5>')
-    }
-
-
-    // Add materialize collumn clases to category list items
-    for (let i in categoryTypes) {
-        $(`#${categoryTypes[i]}Categories`).children().children('li').addClass('col s5 m4 subcategory');
-    }
-
-
     // Click effect 
     function categoryClickEffect() {
         var clicks = 0
-
-        $('.category-overlay li.col.s5').on('click', function() {
+        $('.category-overlay li.col.s6').on('click', function() {
             // Increment click count
             clicks += 1
 
@@ -362,10 +336,9 @@ $(document).ready(function () {
         $('.close-category').on('click', function() {
             clicks = 0;
         });
-    }
+    };
 
-    categoryClickEffect()
-
+    categoryClickEffect();
 
     // Close overlay
     $('.close-category, .exit-overlay').on('click', function() {
@@ -402,15 +375,25 @@ $(document).ready(function () {
 
     var showFAQ = $('#showFAQBtn');
     var cancelFAQ = $('#cancelFAQ');
+    var addFAQ = $('#addFAQ');
 
     showFAQ.on('click', function() {
         $(showFAQ).addClass('hide');
-        $('#FAQSection').removeClass('hide');
+        $('#FAQSection1').removeClass('hide');
     });
 
     cancelFAQ.on('click', function() {
         $(showFAQ).removeClass('hide');
-        $('#FAQSection').addClass('hide');
+        $('#FAQSection1').addClass('hide');
+    });
+
+    addFAQ.on('click', function() {
+    if ($('#id_faq_question_1').val() != '' && $('#id_faq_answer_1').val() != '') {
+        console.log($('#id_faq_question_1').val())
+        console.log($('#id_faq_answer_1').val())
+    } else {
+        console.log('no value')
+    }
     });
 
 

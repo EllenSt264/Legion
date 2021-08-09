@@ -284,14 +284,12 @@ Global styles
 }
 
 .input-field {
-    height: 54px;
     margin-bottom: 25px;
     background-color: #F3F3F4;
     border-radius: 10px;
 }
 
 .input-field input {
-    height: 34px !important;
     width: 90% !important;
     margin-left: 5% !important;
     font-family: 'Hurme Geometric Sans 3';
@@ -351,6 +349,22 @@ Global styles
     color: #03FFFF;
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+.input-field label.force-active {
+    transform: translateY(-18px) scale(0.8);
+    font-family: 'Hurme Geometric Sans 3';
+    color: #03FFFF;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.input-field .help-block {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 [type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
@@ -905,6 +919,7 @@ Category overlay
     overflow-x: hidden;
     visibility: hidden;
     transition: all .5s ease;
+    text-align: center;
 }
 
 .category-overlay .row {
@@ -952,6 +967,13 @@ Category overlay
     margin: 0 auto;
     vertical-align: middle;
     align-items: center;
+    font-family: 'Hurme Geometric Sans 3';
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .category-box .category-title {
@@ -1000,118 +1022,113 @@ Category overlay
 Category radio images
 ====================== */
 
-#DevContainer .category-box,
-#id_desktop .category-box {
+#id_category li:nth-child(1) .category-box,
+#id_dev_categories li:nth-child(1) .category-box {
     background: url('/media/img36.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#CreativeContainer .category-box,
-#id_art .category-box {
+#id_category li:nth-child(2) .category-box,
+#id_creative_categories li:nth-child(1) .category-box {
     background: url('/media/img42.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#WritingContainer .category-box {
+#id_category li:nth-child(3) .category-box {
     background: url('/media/img41.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#TranslationContainer .category-box,
-#id_resumes .category-box {
+#id_category li:nth-child(4) .category-box,
+#id_writing_categories li:nth-child(4) .category-box {
     background: url('/media/img38.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_mobile .category-box {
+#id_dev_categories li:nth-child(2) .category-box {
     background: url('/media/img40.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_game .category-box {
+#id_dev_categories li:nth-child(3) .category-box {
     background: url('/media/img44.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_other .category-box {
+#id_dev_categories li:nth-child(4) .category-box {
     background: url('/media/img37.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_testing .category-box {
+#id_dev_categories li:nth-child(5) .category-box{
     background: url('/media/img45.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_ux .category-box {
+#id_dev_categories li:nth-child(6) .category-box {
     background: url('/media/img16.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_web .category-box,
-#id_content .category-box {
+#id_dev_categories li:nth-child(7) .category-box,
+#id_writing_categories li:nth-child(1) .category-box {
     background: url('/media/img57.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_audio .category-box {
+#id_creative_categories li:nth-child(2) .category-box {
     background: url('/media/img35.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_video .category-box {
+#id_creative_categories li:nth-child(3) .category-box {
     background: url('/media/img43.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_design .category-box {
+#id_creative_categories li:nth-child(4) .category-box {
     background: url('/media/img9.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_arts .category-box {
-    background: url('/media/img49.jpg') no-repeat center center;
-    background-size: cover;
-}
-
-#id_photo .category-box {
+#id_creative_categories li:nth-child(5) .category-box {
     background: url('/media/img39.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_branding .category-box {
+#id_creative_categories li:nth-child(6) .category-box {
     background: url('/media/img51.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_gaming .category-box {
+#id_creative_categories li:nth-child(7) .category-box {
     background: url('/media/img50.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_creative .category-box {
+#id_writing_categories li:nth-child(2) .category-box {
     background: url('/media/img52.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_editing .category-box,
-#id_general .category-box {
+#id_writing_categories li:nth-child(3) .category-box,
+#id_translation_categories li:nth-child(1) .category-box {
     background: url('/media/img56.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_technical .category-box,
-#id_medical .category-box {
+#id_writing_categories li:nth-child(5) .category-box,
+#id_translation_categories li:nth-child(3) .category-box {
     background: url('/media/img53.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_legal .category-box {
+#id_translation_categories li:nth-child(2) .category-box {
     background: url('/media/img55.jpg') no-repeat center center;
     background-size: cover;
 }
 
-#id_tech .category-box {
+#id_translation_categories li:nth-child(4) .category-box {
     background: url('/media/img52.jpg') no-repeat center center;
     background-size: cover;
 }
