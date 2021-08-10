@@ -1,8 +1,14 @@
-{% extends "base.html" %}
+{% extends "base-alternative.html" %}
 {% load static %}
 
-{% block content %}
+{% block breadcrumbs %}
+    <a href="#!" class="breadcrumb active"><div class="numberCircle">1</div> Order Review</a>
+    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">2</div> Shipping</a>
+    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">3</div> Billing</a>
+    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">4</div> Payment</a>
+{% endblock %}
 
+{% block content %}
 <div id="checkout-orderSummary">
     <div class="row">
         <div class="col s12 l5 offset-l1">

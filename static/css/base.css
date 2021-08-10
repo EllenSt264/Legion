@@ -118,6 +118,37 @@ body {
 Global styles
 ====================================================== */
 
+.breadcrumb.upcoming {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+.breadcrumb.active {
+    color: #FFFFFF !important;
+    color: #FE8C00 !important;
+}
+
+.numberCircle {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #C5C6C9;
+    font-size: 14px;
+    text-align: center;
+    line-height: 26px;
+    margin-right: 5px;
+    background-color: #C5C6C9;
+    
+}
+
+.breadcrumb.active .numberCircle {
+    background-image: linear-gradient(to right, #FE8C00 0%, #F83600  51%, #FE8C00  100%);
+    border: 2px solid #FFFFFF;
+    background-size: 200% auto;
+    color: #FFFFFF;
+}
+
 .bg-gradient-darkpurple {
     background: linear-gradient( to bottom,  rgba(121,45,129,1) 25%, rgba(36,31,98,1) 85% ) no-repeat center center fixed;
     background-size: cover;
@@ -3166,6 +3197,13 @@ table.extra-costs .extra-price,
 table.subtotal .total-price,
 table.grandtotal-table .grand-total {
     text-align: right;
+}
+
+.grandtotal-table .grand-total {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* ==========================================================================
