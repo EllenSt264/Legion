@@ -59,9 +59,9 @@
         </div>
         <!-- Service image -->
         <div class="row img-row">
-            <div class="col s12 m10 offset-m1">
+            <div class="col s12">
                 <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}" 
-                alt="Service image" class="service-details-img">
+                alt="Service image" class="service-details-img responsive-img">
             </div>
         </div>
         <!-- Image carousel -->
@@ -85,6 +85,8 @@
         <!-- Package tabs -->
         <div class="row center-align package-navigation">
             <div class="col s12">
+
+                {% if service.basicpackage.enable_all_packages %}
                 <ul class="tabs">
                     <li class="tab col s4 m3">
                         <a href="#basic">
@@ -105,8 +107,10 @@
                         </a>
                     </li>
                 </ul>
+                {% endif %}
             </div>
         </div>
+
         <!-- Packages -->
 
         <div class="tab-content service-package-container" id="basic">
@@ -159,18 +163,62 @@
             </div>
             <!-- Delivery and revsions -->
             <div class="row center delivery-revisions">
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.basicpackage.delivery_time }} day delivery
-                    </h6>
-                </div>
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.basicpackage.revisions }} revisions
-                    </h6>
-                </div>
+                <!-- If fast delivery is available -->
+                {% if service.basicpackage.fast_delivery_time %}
+                    <!-- Choose between fast or standard delivery -->
+                    <form action="">
+                        <!-- Delivery options -->
+                        <div class="col s6 m8">
+                            <div class="row">
+                                <div class="col s12 l4">
+                                    <h6>
+                                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                        day delivery:
+                                    </h6>
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_basic" id="delivery_basic" checked>
+                                            <span>{{ service.basicpackage.delivery_time }} days</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_basic" id="fast_delivery_basic">
+                                            <span>{{ service.basicpackage.fast_delivery_time }} days ( +£{{ service.basicpackage.fast_delivery_price }} )</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6 m4">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.basicpackage.revisions }} revisions
+                            </h6>
+                        </div>
+                    </form>
+                <!-- Else display standard delivery time -->
+                {% else %}
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                            {{ service.basicpackage.delivery_time }} day delivery
+                        </h6>
+                    </div>
+                    <!-- Revisions -->
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                            {{ service.basicpackage.revisions }} revisions
+                        </h6>
+                    </div>
+                {% endif %}
+                
             </div>
             <!-- Package overview -->
             <div class="row overview-list">
@@ -193,7 +241,7 @@
                 </div>
             </div>
         </div>
-
+        {% if service.basicpackage.enable_all_packages %}
         <div class="tab-content service-package-container" id="standard">
             <!-- Package headline -->
             <div class="row center">
@@ -250,18 +298,61 @@
             </div>
             <!-- Delivery and revsions -->
             <div class="row center delivery-revisions">
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.standardpackage.standard_delivery_time }} day delivery
-                    </h6>
-                </div>
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.standardpackage.standard_revisions }} revisions
-                    </h6>
-                </div>
+                <!-- If fast delivery is available -->
+                {% if service.standardpackage.standard_fast_delivery_time %}
+                    <!-- Choose between fast or standard delivery -->
+                    <form action="">
+                        <!-- Delivery options -->
+                        <div class="col s6 m8">
+                            <div class="row">
+                                <div class="col s12 l4">
+                                    <h6>
+                                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                        day delivery:
+                                    </h6>
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_standard" id="delivery_standard" checked>
+                                            <span>{{ service.standardpackage.standard_delivery_time }} days</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_standard" id="fast_delivery_standard">
+                                            <span>{{ service.standardpackage.standard_fast_delivery_time }} days ( +£{{ service.standardpackage.standard_fast_delivery_price }} )</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6 m4">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.standardpackage.standard_revisions }} revisions
+                            </h6>
+                        </div>
+                    </form>
+                <!-- Else display standard delivery time -->
+                {% else %}
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                            {{ service.standardpackage.standard_delivery_time }} day delivery
+                        </h6>
+                    </div>
+                    <!-- Revisions -->
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                            {{ service.standardpackage.standard_revisions }} revisions
+                        </h6>
+                    </div>
+                {% endif %}
             </div>
             <!-- Package overview -->
             <div class="row overview-list">
@@ -341,18 +432,61 @@
             </div>
             <!-- Delivery and revsions -->
             <div class="row center delivery-revisions">
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.premiumpackage.premium_delivery_time }} day delivery
-                    </h6>
-                </div>
-                <div class="col s6">
-                    <h6>
-                        <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.premiumpackage.premium_revisions }} revisions
-                    </h6>
-                </div>
+                <!-- If fast delivery is available -->
+                {% if service.premiumpackage.premium_fast_delivery_time %}
+                    <!-- Choose between fast or premium delivery -->
+                    <form action="">
+                        <!-- Delivery options -->
+                        <div class="col s6 m8">
+                            <div class="row">
+                                <div class="col s12 l4">
+                                    <h6>
+                                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                        day delivery:
+                                    </h6>
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_premium" id="delivery_premium" checked>
+                                            <span>{{ service.premiumpackage.premium_delivery_time }} days</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                                <div class="col s12 l4 delivery-options">
+                                    <h6>
+                                        <label>
+                                            <input type="radio" name="delivery_premium" id="fast_delivery_premium">
+                                            <span>{{ service.premiumpackage.premium_fast_delivery_time }} days ( +£{{ service.premiumpackage.premium_fast_delivery_price }} )</span>
+                                        </label>
+                                    </h6>   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6 m4">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.premiumpackage.premium_revisions }} revisions
+                            </h6>
+                        </div>
+                    </form>
+                <!-- Else display premium delivery time -->
+                {% else %}
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                            {{ service.premiumpackage.premium_delivery_time }} day delivery
+                        </h6>
+                    </div>
+                    <!-- Revisions -->
+                    <div class="col s6">
+                        <h6>
+                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                            {{ service.premiumpackage.premium_revisions }} revisions
+                        </h6>
+                    </div>
+                {% endif %}
             </div>
             <!-- Package overview -->
             <div class="row overview-list">
@@ -375,6 +509,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 {% endblock %}
 

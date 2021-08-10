@@ -106,7 +106,7 @@ $(document).ready(function () {
     var shippingRequiredSwitch = $('#id_shipping_required');
 
     // Add materalize switch classes to checkbox
-    if (checkbox.attr('id') !== 'id_remember') {
+    if (checkbox.attr('id') !== 'id_remember' && checkbox.attr('id') !== 'fast_delivery_basic') {
         // Ignore Sign up form checkbox
         checkbox.parent().parent().addClass('switch');
         checkbox.next().addClass('lever');

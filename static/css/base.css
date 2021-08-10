@@ -2663,8 +2663,10 @@ Service details page styles
 ====================================================== */
 
 .service-details-img {
-    width: 325px;
-    height: 305px;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    max-height: 750px !important;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -2805,15 +2807,40 @@ Service details page styles
     transform: translateY(25%);
 }
 
-.delivery-revisions h6 {
+.delivery-revisions h6,
+.delivery-revisions h6 span {
+    color: #FFFFFF;
     font-family: 'Hurme Geometric Sans 3 - Light';
     font-size: 14px;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
+.delivery-revisions .delivery-options h6 {
+    height: 32px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.delivery-revisions [type="radio"]:not(:checked)+span:before,
+.delivery-revisions [type="radio"]:not(:checked)+span:after {
+    border: 1px solid #FFFFFF;
+}
+
 .delivery-revisions .col.s6 {
     padding: 0;
+}
+
+.delivery-revisions .delivery-options span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding-left: 30px;
+}
+
+.delivery-revisions .delivery-options span::before {
+    height: 15px;
+    width: 15px;
+    margin: 5px;
 }
 
 .overview-list li {
@@ -2847,6 +2874,10 @@ RESPONSIVE STYLES FOR LARGER SCREENS
         height: 235px;
         border-radius: 35px;
     }
+}
+
+@media (max-width: 1320px) {
+
 }
 
 @media (min-width: 1280px) {
@@ -2968,6 +2999,14 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     .price-and-details .col.l5.hide-on-med-and-down {
         width: 140px;
         padding-right: 5px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1540px) {
+    /* Service details styles
+    =========================== */
+    #ServiceDetails {
+        width: 85%;
     }
 }
 
@@ -3111,13 +3150,6 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
     /* Service details styles
     =========================== */
-    .service-details-img {
-        width: 975px;
-        height: 552px;
-        margin: 25px auto;
-    }
-    /* Service details styles
-    =========================== */
     #ServiceDetails .message-btn {
         margin-left: 5px;
     }
@@ -3169,6 +3201,12 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
     .service-package-container .payment {
         margin-top: 50px;
+    }
+    #ServiceDetails .delivery-revisions .delivery-options {
+        width: 120px !important;
+    }
+    #ServiceDetails .delivery-revisions .delivery-options:last-of-type {
+        width: 200px !important;
     }
     /* Add service form styles
     =========================== */
@@ -3233,6 +3271,16 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     #ServiceDetails .creator-profile-img {
         width: 54px;
         height: 54px;
+    }
+    #ServiceDetails {
+        width: 95%;
+    }
+    #ServiceDetails .delivery-revisions .delivery-options {
+        text-align: center;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
     }
     /* Add service form styles
     =========================== */
