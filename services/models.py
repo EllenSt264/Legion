@@ -139,6 +139,9 @@ class BasicPackage(models.Model):
     )
     reference_images = models.ImageField(null=True, blank=True)
 
+    def package_type(self):
+        return 'basic'
+
 
 class StandardPackage(models.Model):
     """ A model for creators to specify
@@ -174,43 +177,46 @@ class StandardPackage(models.Model):
         SEVEN = 7
         EIGHT = 8
 
-    standard_package_title = models.CharField(
+    package_title = models.CharField(
         max_length=90,
         null=True,
         blank=True
     )
-    standard_package_description = models.TextField(null=True, blank=True)
-    standard_client_requirements = models.TextField(null=True, blank=True)
+    package_description = models.TextField(null=True, blank=True)
+    client_requirements = models.TextField(null=True, blank=True)
 
-    standard_delivery_time = models.IntegerField(
+    delivery_time = models.IntegerField(
         choices=DeliveryTimes.choices,
         null=True,
         blank=True,
     )
-    standard_revisions = models.IntegerField(
+    revisions = models.IntegerField(
         choices=NumberRevisions.choices,
         null=True,
         blank=True,
     )
-    standard_price = models.DecimalField(
+    price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         null=True,
         blank=True,
     )
 
-    standard_fast_delivery_time = models.IntegerField(
+    fast_delivery_time = models.IntegerField(
         choices=DeliveryTimes.choices,
         null=True,
         blank=True,
     )
-    standard_fast_delivery_price = models.DecimalField(
+    fast_delivery_price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    standard_reference_images = models.ImageField(null=True, blank=True)
+    reference_images = models.ImageField(null=True, blank=True)
+
+    def package_type(self):
+        return 'standard'
 
 
 class PremiumPackage(models.Model):
@@ -247,43 +253,46 @@ class PremiumPackage(models.Model):
         SEVEN = 7
         EIGHT = 8
 
-    premium_package_title = models.CharField(
+    package_title = models.CharField(
         max_length=90,
         null=True,
         blank=True
     )
-    premium_package_description = models.TextField(null=True, blank=True)
-    premium_client_requirements = models.TextField(null=True, blank=True)
+    package_description = models.TextField(null=True, blank=True)
+    client_requirements = models.TextField(null=True, blank=True)
 
-    premium_delivery_time = models.IntegerField(
+    delivery_time = models.IntegerField(
         choices=DeliveryTimes.choices,
         null=True,
         blank=True,
     )
-    premium_revisions = models.IntegerField(
+    revisions = models.IntegerField(
         choices=NumberRevisions.choices,
         null=True,
         blank=True,
     )
-    premium_price = models.DecimalField(
+    price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         null=True,
         blank=True,
     )
 
-    premium_fast_delivery_time = models.IntegerField(
+    fast_delivery_time = models.IntegerField(
         choices=DeliveryTimes.choices,
         null=True,
         blank=True,
     )
-    premium_fast_delivery_price = models.DecimalField(
+    fast_delivery_price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    premium_reference_images = models.ImageField(null=True, blank=True)
+    reference_images = models.ImageField(null=True, blank=True)
+
+    def package_type(self):
+        return 'standard'
 
 
 class FreelanceService(models.Model):
