@@ -52,8 +52,13 @@
                                 <h4 class="card-title form-step-title center">Basic</h4>
                                 <div class="row">
                                     {% for field in basic_package_form %}
-                                        {% if field.name != 'enable_all_packages' %}
+                                        {% if field.name != 'enable_all_packages' and field.name != 'client_requirements' %}
                                             {{ field | materializecss }}
+                                        {% endif %}
+                                        {% if service.include_client_requirements %}
+                                            {% if field.name == 'client_requirements' %}
+                                                {{ field | materializecss }}
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </div>
@@ -73,7 +78,16 @@
                             <div class="card-content">
                                 <h4 class="card-title form-step-title center">Standard</h4>
                                 <div class="row">
-                                    {{ standard_package_form | materializecss }}
+                                    {% for field in standard_package_form %}
+                                        {% if field.name != 'standard_client_requirements' %}
+                                            {{ field | materializecss }}
+                                        {% endif %}
+                                        {% if service.include_client_requirements and not service.requirements_same_for_all %}
+                                            {% if field.name == 'standard_client_requirements' %}
+                                                {{ field | materializecss }}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <div class="row center-align hide-on-large-only">
                                     <div class="col s12 m6">
@@ -91,7 +105,16 @@
                             <div class="card-content">
                                 <h4 class="card-title form-step-title center">Premium</h4>
                                 <div class="row center-align center">
-                                    {{ premium_package_form | materializecss }}
+                                    {% for field in premium_package_form %}
+                                        {% if field.name != 'premium_client_requirements' %}
+                                            {{ field | materializecss }}
+                                        {% endif %}
+                                        {% if service.include_client_requirements and not service.requirements_same_for_all %}
+                                            {% if field.name == 'premium_client_requirements' %}
+                                                {{ field | materializecss }}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <div class="row center-align hide-on-large-only">
                                     <div class="col s12 m6">
