@@ -1,5 +1,6 @@
 from django import forms
-from .models import FreelanceService
+from django.forms.widgets import HiddenInput, Textarea
+from .models import BasicPackage, FreelanceService, PremiumPackage, Service, Category, StandardPackage, SubCategory
 
 
 class FreelanceServiceForm(forms.ModelForm):
@@ -82,3 +83,99 @@ class FreelanceServiceForm(forms.ModelForm):
             label='',
         )
         self.fields['category_name'] = categories
+
+
+class ServiceForm(forms.ModelForm):
+    """ NEED TO FIX SUBCATEGORY VARIABLE """
+
+    dev_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=1),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    creative_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=2),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    writing_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=3),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    translation_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=4),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+
+    class Meta:
+        model = Service
+        exclude = ('user',)
+
+        labels = {
+            'include_client_requirements': '',
+            'requirements_same_for_all': '',
+            'shipping_required': '',
+        }
+
+    def save(self, commit=True):
+        return super(ServiceForm, self).save(commit=commit)
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        categories = forms.ModelChoiceField(
+            queryset=Category.objects.all(),
+            widget=forms.RadioSelect(
+                attrs={'class': 'radio-btn'},
+            ),
+            label='',
+        )
+        self.fields['category'] = categories
+        self.fields['subcategory'].required = False
+
+        for field in self.fields:
+            if 'categories' in field:
+                self.fields[field].required = False
+
+        self.fields['search_tags'] = forms.CharField(
+            widget=HiddenInput(
+                attrs={'class': 'chips-hidden-input'},
+            ),
+        )
+
+
+class BasicPackageForm(forms.ModelForm):
+    class Meta:
+        model = BasicPackage
+        exclude = ('service',)
+
+        labels = {
+            'enable_all_packages': '',
+        }
+
+
+class StandardPackageForm(forms.ModelForm):
+    class Meta:
+        model = StandardPackage
+        exclude = ('service',)
+
+
+class PremiumPackageForm(forms.ModelForm):
+    class Meta:
+        model = PremiumPackage
+        exclude = ('service',)

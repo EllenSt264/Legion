@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load static %}
+{% load materializecss %}
+
+{% block content %}
+    <!-- Close button for category fullscreen overlay -->
+    <a href="#!" class="hide close-category"><i class="far fa-times-circle"></i></a>
+    
+    <!-- Form container -->
+    <div class="container form-step-container">
+        <form action="{% url 'add_service' user.pk %}" method="POST" id="addService">
+            {% csrf_token %}
+
+            <!-- Service category -->
+            <div class="tab" id="ServiceCategory">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Select your job category</h4>
+                    </div>
+                </div>
+
+                <div class="category-selection">
+                    {% for field in form %}
+                        {% if field.name == 'category' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="subcategory-selection">
+                    {% for field in form %}
+                        {% if field.name == 'dev_categories' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'creative_categories' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'writing_categories' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                        {% if field.name == 'translation_categories' %}
+                            {{ field | materializecss }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+    
+                <div class="row center subcategory-container">
+                    <div class="col s12"></div>
+                </div>
+
+            </div>
+            <!-- Headline -->
+            <div class="tab" id="ServiceHeadline">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Service Headline</h4>
+                    </div>
+                </div>
+                {% for field in form %}
+                    {% if field.name == 'headline' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                {% endfor %}
+                <div class="row">
+                    <div class="col s12 m6 offset-m1 l5 offset-l2">
+                        <p style="text-align: left;">Example Headlines:</p>
+                        <ul>
+                            <li>I will build a responsive WordPress site with booking and payment functionality.</li>
+                            <li>I will test and fully document the UI/UX design and functionality of your website.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Search tags -->
+            <div class="tab" id="SearchTags">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Search Tags</h4>
+                    </div>
+                </div>
+                <!-- Dummy form input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="chips-input" id="searchTags" placeholder="Type a skill and press enter">
+                    </div>
+                </div>
+                <!-- Hidden form input -->
+                {% for field in form %}
+                    {% if field.name == 'search_tags' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                {% endfor %}
+                <!-- Chips container -->
+                <div class="row current-tags">
+                    <div class="col s12">
+                        <h6 class="form-step-title smaller center">Current tags</h6>
+                    </div>
+                </div>
+                <!-- Current tags -->
+                <div class="row chips-row">
+                    <div class="col s12 chips-container"></div>
+                </div>
+                <!-- Popular tags -->
+                <div class="row">
+                    <div class="col s12">
+                        <h6 class="form-step-title smaller center">Popular tags</h6>
+                    </div>
+                </div>
+                <!-- Popular tags -->
+                <div class="row chips-row">
+                    <div class="col s12 popular-tags"></div>
+                </div>
+            </div>
+            <!-- Description and FAQ -->
+            <div class="tab" id="Description">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Description</h4>
+                        <p>
+                            This is where you can explain what service you’re offering, and why clients should choose your service! Please be as
+                            detailed as possible so that clients can understand exactly what you are offering and how you can meet their needs.
+                        </p>
+                    </div>
+                </div>
+                <!-- Description -->
+                {% for field in form %}
+                    {% if field.name == 'description' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!-- Image -->
+            <div class="tab" id="ServiceImage">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Image</h4>
+                        <p>
+                            Add an image to make your services stand out more to clients. At least one image is required.
+                        </p>
+                    </div>
+                </div>
+                {% for field in form %}
+                    {% if field.name == 'images' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!-- Scope -->
+            <div class="tab" id="ServiceScope">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Scope</h4>
+                        <p>
+                            Before you specify the contents of you service, please check the options that apply to your service below.
+                        
+                            If you intend on customizing different packages then ensure that ‘enable 3 packages’ is selected. This will prompt
+                            you to complete a form for a basic, standard and premium package.
+                        
+                            If your service involves a physical product that needs to be shipped to the client, then check the ‘product
+                            shipping’ option. Finally, if the client needs to provide anything to in order for you to complete your service,
+                            then check ‘include client requirements’
+                        </p>
+                    </div>
+                </div>
+                {% for field in form %}
+                    {% if field.name == 'enable_all_packages' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                    {% if field.name == 'include_client_requirements' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                    {% if field.name == 'requirements_same_for_all' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                    {% if field.name == 'shipping_required' %}
+                        {{ field | materializecss }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Submit form, next and back buttons -->
+            <div class="row center-align">
+                <div class="col s12 l3 push-l3 offset-l3">
+                    <a href="#!" class="btn btn-large next-btn btn-orange-gradient" id="nextBtn-service">Next</a>
+                </div>
+                <div class="col s12 l3 hide offset-l3 push-l3">
+                    <button type="submit" class="btn btn-large btn-green-gradient submit-btn">Submit</button>
+                </div>
+                <div class="col s12 l3 pull-l3">
+                    <a href="#!" class="btn btn-large prev-btn btn-black">Go back</a>
+                </div>
+                <div class="col s12 l3 pull-l3 hide">
+                    <a href="#!" class="btn btn-large exit-overlay btn-black">Go back</a>
+                </div>
+                <div class="col s12 hide">
+                    <a href="{% url 'profile_or_redirect' %}" class="btn btn-large btn-cancel btn-black">Cancel</a>
+                </div>
+            </div> 
+        </form>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Change background color -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').addClass('bg-gradient-darkpurple');
+        });
+    </script>
+    <!-- Form steps -->
+    <script src="{% static 'services/js/form-steps.js' %}" type="text/javascript"></script>
+{% endblock %}

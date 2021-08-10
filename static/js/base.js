@@ -72,11 +72,9 @@ $(document).ready(function () {
 
     $('input').each(function() {
         if ($(this).length && $(this).val().length) {
-            console.log($(this).val());
             $(this).siblings('label').addClass('force-active');
-        }
-    })
-    
+        };
+    });
     
     /* ======================================================
     Add character count to input fields
@@ -103,6 +101,9 @@ $(document).ready(function () {
     var recruiterSwitch = $('#id_is_recruiter');
     var workingHereSwitch = $('#id_currently_working_here');
     var packageSwitch = $('#id_enable_all_packages');
+    var clientRequirementsSwitch = $('#id_include_client_requirements');
+    var requirementSameSwitch = $('#id_requirements_same_for_all');
+    var shippingRequiredSwitch = $('#id_shipping_required');
 
     // Add materalize switch classes to checkbox
     if (checkbox.attr('id') !== 'id_remember') {
@@ -113,6 +114,10 @@ $(document).ready(function () {
     recruiterSwitch.after("I'm a Recruiter");
     workingHereSwitch.after("I'm currently working here");
     packageSwitch.after('enable 3 packages');
+    clientRequirementsSwitch.after('Include client requirements');
+    requirementSameSwitch.after('Same requirements for all packages');
+    shippingRequiredSwitch.after('Product Shipping required');
+
 
 
     /* ======================================================
@@ -356,48 +361,6 @@ $(document).ready(function () {
     });
 
     /* ======================================================
-    Radio buttons - Categories
-    ====================================================== */
-
-    var categoryRadios = $('input[name=category_name]');
-
-    // Toggle checked for category radio buttons
-    $(categoryRadios).on('click', function() {
-        categoryRadios.parent().siblings('i').css('color', 'white');
-        categoryRadios.attr('checked', false);
-        $(this).attr('checked', true);
-        $(this).parent().siblings('i').css('color', '#0ACF83');
-    });
-
-    /* ======================================================
-    Toggle FAQ section
-    ====================================================== */
-
-    var showFAQ = $('#showFAQBtn');
-    var cancelFAQ = $('#cancelFAQ');
-    var addFAQ = $('#addFAQ');
-
-    showFAQ.on('click', function() {
-        $(showFAQ).addClass('hide');
-        $('#FAQSection1').removeClass('hide');
-    });
-
-    cancelFAQ.on('click', function() {
-        $(showFAQ).removeClass('hide');
-        $('#FAQSection1').addClass('hide');
-    });
-
-    addFAQ.on('click', function() {
-    if ($('#id_faq_question_1').val() != '' && $('#id_faq_answer_1').val() != '') {
-        console.log($('#id_faq_question_1').val())
-        console.log($('#id_faq_answer_1').val())
-    } else {
-        console.log('no value')
-    }
-    });
-
-
-    /* ======================================================
     Toggle Package sections
     ====================================================== */
 
@@ -623,6 +586,9 @@ $(document).ready(function () {
     to popular search tags
     ======================================= */
 
+    var categoryRadios = $('#ServiceCategory input[type="radio"]');
+    var categorySelection;
+
     categoryRadios.on('change', function() {
         // Define value for category selection variable
         if ($(categoryRadios).is(':checked')) {
@@ -649,139 +615,133 @@ $(document).ready(function () {
         ======================================= */
 
         function setPopularTags() {
-            if (categorySelection == 'DESKTOP') {
+            if (categorySelection == 1) {
                 // Iterate through category skills array and add to html as chips
                 for (i in desktopArr) {
                     chip_html = `<div class="chip">${desktopArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'MOBILE') {
+            } else if (categorySelection == 2) {
                 // Iterate through category skills array and add to html as chips
                 for (i in mobileArr) {
                     chip_html = `<div class="chip">${mobileArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'GAME') {
+            } else if (categorySelection == 4) {
                 // Iterate through category skills array and add to html as chips
                 for (i in gameArr) {
                     chip_html = `<div class="chip">${gameArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'OTHER') {
+            } else if (categorySelection == 5) {
                 // Iterate through category skills array and add to html as chips
                 for (i in otherArr) {
                     chip_html = `<div class="chip">${otherArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'TESTING') {
+            } else if (categorySelection == 6) {
                 // Iterate through category skills array and add to html as chips
                 for (i in testingArr) {
                     chip_html = `<div class="chip">${testingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'UX') {
+            } else if (categorySelection == 7) {
                 // Iterate through category skills array and add to html as chips
                 for (i in uxArr) {
                     chip_html = `<div class="chip">${uxArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'WEB') {
+            } else if (categorySelection == 8) {
                 // Iterate through category skills array and add to html as chips
                 for (i in webArr) {
                     chip_html = `<div class="chip">${webArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'ART') {
+            } else if (categorySelection == 9) {
                 // Iterate through category skills array and add to html as chips
                 for (i in artArr) {
                     chip_html = `<div class="chip">${artArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'AUDIO') {
+            } else if (categorySelection == 10) {
                 // Iterate through category skills array and add to html as chips
                 for (i in audioArr) {
                     chip_html = `<div class="chip">${audioArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'VIDEO') {
+            } else if (categorySelection == 11) {
                 // Iterate through category skills array and add to html as chips
                 for (i in videoArr) {
                     chip_html = `<div class="chip">${videoArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'DESIGN') {
+            } else if (categorySelection == 12) {
                 // Iterate through category skills array and add to html as chips
                 for (i in designArr) {
                     chip_html = `<div class="chip">${designArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'ARTS') {
-                // Iterate through category skills array and add to html as chips
-                for (i in artsArr) {
-                    chip_html = `<div class="chip">${artsArr[i]}<i class="fas fa-plus-circle"></i></div>`;
-                    popularTagsContainer.append(chip_html);
-                };
-            } else if (categorySelection == 'PHOTO') {
+            } else if (categorySelection == 13) {
                 // Iterate through category skills array and add to html as chips
                 for (i in photoArr) {
                     chip_html = `<div class="chip">${photoArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'BRANDING') {
+            } else if (categorySelection == 14) {
                 // Iterate through category skills array and add to html as chips
                 for (i in brandingArr) {
                     chip_html = `<div class="chip">${brandingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'GAMING') {
+            } else if (categorySelection == 15) {
                 // Iterate through category skills array and add to html as chips
                 for (i in gamingArr) {
                     chip_html = `<div class="chip">${gamingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'CONTENT') {
+            } else if (categorySelection == 16) {
                 // Iterate through category skills array and add to html as chips
                 for (i in contentArr) {
                     chip_html = `<div class="chip">${contentArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'CREATIVE') {
+            } else if (categorySelection == 17) {
                 // Iterate through category skills array and add to html as chips
                 for (i in creativeArr) {
                     chip_html = `<div class="chip">${creativeArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'EDITING') {
+            } else if (categorySelection == 18) {
                 // Iterate through category skills array and add to html as chips
                 for (i in editingArr) {
                     chip_html = `<div class="chip">${editingArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'RESUMES') {
+            } else if (categorySelection == 19) {
                 // Iterate through category skills array and add to html as chips
                 for (i in resumesArr) {
                     chip_html = `<div class="chip">${resumesArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'TECHNICAL') {
+            } else if (categorySelection == 20) {
                 // Iterate through category skills array and add to html as chips
                 for (i in technicalArr) {
                     chip_html = `<div class="chip">${technicalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'GENERAL') {
+            } else if (categorySelection == 21) {
                 // Iterate through category skills array and add to html as chips
                 for (i in generalArr) {
                     chip_html = `<div class="chip">${generalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'LEGAL') {
+            } else if (categorySelection == 22) {
                 // Iterate through category skills array and add to html as chips
                 for (i in legalArr) {
                     chip_html = `<div class="chip">${legalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
                     popularTagsContainer.append(chip_html);
                 };
-            } else if (categorySelection == 'MEDICAL') {
+            } else if (categorySelection == 23) {
                 // Iterate through category skills array and add to html as chips
                 for (i in medicalArr) {
                     chip_html = `<div class="chip">${medicalArr[i]}<i class="fas fa-plus-circle"></i></div>`;
@@ -853,8 +813,56 @@ $(document).ready(function () {
                 var popularContainer = $('.popular-tags').text();
 
                 // Grab the appropriate popular tags for the chosen category
-                let chosenCategory = categorySelection.toLowerCase();
-                let categoryTags = eval(`${chosenCategory}Arr`);
+                let chosenCategory = categorySelection
+                let textValue;
+
+                if (chosenCategory == 1) {
+                    textValue = 'desktop';
+                } else if (chosenCategory == 2) {
+                    textValue = 'mobile';
+                } else if (chosenCategory == 4) {
+                    textValue = 'game';
+                } else if (chosenCategory == 5) {
+                    textValue = 'other';
+                } else if (chosenCategory == 6) {
+                    textValue = 'testing';
+                } else if (chosenCategory == 7) {
+                    textValue = 'ux';
+                } else if (chosenCategory == 8) {
+                    textValue = 'web';
+                } else if (chosenCategory == 9) {
+                    textValue = 'art';
+                } else if (chosenCategory == 10) {
+                    textValue = 'audio';
+                } else if (chosenCategory == 11) {
+                    textValue = 'video';
+                } else if (chosenCategory == 12) {
+                    textValue = 'design';
+                } else if (chosenCategory == 13) {
+                    textValue = 'photo';
+                } else if (chosenCategory == 14) {
+                    textValue = 'branding';
+                } else if (chosenCategory == 15) {
+                    textValue = 'gaming';
+                } else if (chosenCategory == 16) {
+                    textValue = 'content';
+                } else if (chosenCategory == 17) {
+                    textValue = 'creative';
+                } else if (chosenCategory == 18) {
+                    textValue = 'editing';
+                } else if (chosenCategory == 19) {
+                    textValue = 'resumes';
+                } else if (chosenCategory == 20) {
+                    textValue = 'technical';
+                } else if (chosenCategory == 21) {
+                    textValue = 'general';
+                } else if (chosenCategory == 22) {
+                    textValue = 'legal';
+                } else if (chosenCategory == 23) {
+                    textValue = 'medical';
+                }
+
+                let categoryTags = eval(`${textValue}Arr`);
 
                 /* Add chip to container if it does not already exist and
                 if it is in the chosen category's tags array */

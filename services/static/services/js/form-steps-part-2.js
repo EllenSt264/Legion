@@ -20,13 +20,7 @@ $(document).ready(function() {
     showTab(currentTab);
 
     $('.next-btn').on('click', function() {
-        if (currentTab === 0) {
-            if ($('.active-category .category-box').hasClass('selected-category')) {
-                next();
-            }
-        } else {
-            next()
-        }
+        next();
     });
 
     $('.prev-btn').on('click', function() {
@@ -43,12 +37,9 @@ $(document).ready(function() {
         x[n].style.display = "block";
 
         if (n == 0) {
-            nextForCategorySection()
             $('.btn-cancel').parent().removeClass('hide');
-            $('.next-btn').parent().addClass('hide');
             $('.prev-btn').parent().addClass('hide');
         } else {
-            $('.next-btn').parent().removeClass('hide');
             $('.prev-btn').parent().removeClass('hide');
             $('.btn-cancel').parent().addClass('hide');
         };
@@ -60,44 +51,12 @@ $(document).ready(function() {
             $('.submit-btn').parent().removeClass('hide');
         };
     };
-
-    function nextForCategorySection() {
-        /* Show form steps next button once a category box is clicked
-        and the subcategory overlay is active  */
-        $('.category-box').on('click', function() {
-            if ($('body').hasClass('category-overlay-active')) {
-                $('.next-btn').parent().removeClass('hide');
-                $('.exit-overlay').parent().removeClass('hide');
-                $('.next-btn').addClass('for-category-overlay');
-            };
-        });
-
-        /* Hide the next button and remove its 'for-category-overlay'
-        class when the close button is clicked */
-        $('.close-category, .exit-overlay').on('click', function() {
-            $('.next-btn').removeClass('for-category-overlay');
-            $('.next-btn').parent().addClass('hide');
-            $('.exit-overlay').parent().addClass('hide');
-        });
-
-        /* Remove the 'for-category-overlay' class once the next button 
-        is clicked to reset it to its default behaviour. 
-        Only trigger the next form step if 
-        a category has been chosen. */
-        $('.next-btn').on('click', function() {
-            if ($('.active-category .category-box').hasClass('selected-category')) {
-                $('.next-btn').removeClass('for-category-overlay');
-                $('.close-category').addClass('hide');
-                $('.exit-overlay').parent().addClass('hide');
-            };
-        });
-    };
     
     // Display the next tab
     function next() {
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
-        // if (!validateForm()) return false;
+        if (!validateForm()) return false;
         // Hide the current tab:
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:

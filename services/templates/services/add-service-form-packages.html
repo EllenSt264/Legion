@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% load materializecss %}
+
+{% block content %}
+    <!-- Close button for category fullscreen overlay -->
+    <a href="#!" class="hide close-category"><i class="far fa-times-circle"></i></a>
+    
+    <!-- Form container -->
+    <div class="container form-step-container" id="FreelanceService">
+
+        <form action="{% url 'add_service_part_two' user.pk service.pk %}" method="POST" id="categoryForm">
+            {% csrf_token %}
+
+            <!-- Scope and Pricing -->
+            <div class="tab" id="ScopePricing">
+                <div class="row info-row">
+                    <div class="col s12">
+                        <h4 class="center form-step-title">Scope and Pricing</h4>
+                        <p>
+                            Please specify the details of your basic, standard and premium package.
+                        </p>
+                        <p class="hide-on-large-only">
+                            Please click each button below and complete the forms to continue to the next stage.
+                        </p>
+                    </div>
+                </div>
+                {% for field in basic_package_form %}
+                    {% if field.name == 'enable_all_packages' %}
+                        <div class="row">
+                            {{ field | materializecss }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <!-- Package buttons - smaller screens -->
+                <div class="row hide-on-large-only package-btns center">
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large service-package-btn" id="basicBtn">Basic</a>
+                    </div>
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large service-package-btn" id="standardBtn">Standard</a>
+                    </div>
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large service-package-btn" id="premiumBtn">Premium</a>
+                    </div>
+                </div>
+                <!-- Packages -->
+                <div class="row">
+                    <div class="col s12 l4 hide-on-med-and-down" id="basicPackage">
+                        <div class="card">
+                            <div class="card-content">
+                                <h4 class="card-title form-step-title center">Basic</h4>
+                                <div class="row">
+                                    {% for field in basic_package_form %}
+                                        {% if field.name != 'enable_all_packages' %}
+                                            {{ field | materializecss }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="row center-align hide-on-large-only">
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 l4 hide-on-med-and-down" id="standardPackage">
+                        <div class="card">
+                            <div class="card-content">
+                                <h4 class="card-title form-step-title center">Standard</h4>
+                                <div class="row">
+                                    {{ standard_package_form | materializecss }}
+                                </div>
+                                <div class="row center-align hide-on-large-only">
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 l4 hide-on-med-and-down" id="premiumPackage">
+                        <div class="card">
+                            <div class="card-content">
+                                <h4 class="card-title form-step-title center">Premium</h4>
+                                <div class="row center-align center">
+                                    {{ premium_package_form | materializecss }}
+                                </div>
+                                <div class="row center-align hide-on-large-only">
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-white cancel-package">Cancel</a>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <a href="#!" class="btn btn-large btn-green save-package">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit form, next and back buttons -->
+            <div class="row center-align">
+                <div class="col s12 l3 push-l3 offset-l3">
+                    <a href="#!" class="btn btn-large next-btn btn-orange-gradient" id="nextBtn-service">Next</a>
+                </div>
+                <div class="col s12 l3 hide offset-l3 push-l3">
+                    <button type="submit" class="btn btn-large btn-green-gradient submit-btn">Submit</button>
+                </div>
+                <div class="col s12 l3 pull-l3">
+                    <a href="#!" class="btn btn-large prev-btn btn-black">Go back</a>
+                </div>
+                <div class="col s12 l3 pull-l3 hide">
+                    <a href="#!" class="btn btn-large exit-overlay btn-black">Go back</a>
+                </div>
+                <div class="col s12 hide">
+                    <a href="{% url 'profile_or_redirect' %}" class="btn btn-large btn-cancel btn-black">Cancel</a>
+                </div>
+            </div> 
+        </form>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Change background color -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').addClass('bg-gradient-darkpurple');
+        });
+    </script>
+    <!-- Form steps -->
+    <script src="{% static 'services/js/form-steps-part-2.js' %}" type="text/javascript"></script>
+{% endblock %}

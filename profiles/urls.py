@@ -15,4 +15,5 @@ urlpatterns = [
     path('get-started/fail', views.fail, name='fail'),
     path('<int:user_id>/', views.user_profile, name='user_profile'),
     path('<int:user_id>/add-service', services.add_service, name='add_service'),
+    path('<int:user_id>/add-service/<int:service_id>/packages', services.add_service_part_two, name='add_service_part_two'),
 ]
