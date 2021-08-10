@@ -401,6 +401,10 @@ Global styles
     color: #7D7D7D;
 }
 
+#alternative-base-template {
+    margin-top: 25px;
+}
+
 /* =======================
 Google button styles
 ====================== */
@@ -3052,6 +3056,10 @@ table.extras {
     margin: 25px auto;
 }
 
+table.extras tr.checked {
+    background-color: rgba(11, 35, 65, 50%);
+}
+
 table.extras tr {
     border: 1px solid white;
     transition: background-color 0.2s linear;
@@ -3151,6 +3159,12 @@ table.extras .extra-price {
     font-size: 14px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-align: right;
+}
+
+table.extra-costs .extra-price,
+table.subtotal .total-price,
+table.grandtotal-table .grand-total {
     text-align: right;
 }
 
