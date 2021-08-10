@@ -69,18 +69,6 @@ class Service(models.Model):
     )
     images = models.ImageField(null=True, blank=True)
 
-    faq_question_1 = models.CharField(max_length=120, null=True, blank=True)
-    faq_answer_1 = models.TextField(null=True, blank=True)
-
-    faq_question_2 = models.CharField(max_length=120, null=True, blank=True)
-    faq_answer_2 = models.TextField(null=True, blank=True)
-
-    faq_question_3 = models.CharField(max_length=120, null=True, blank=True)
-    faq_answer_3 = models.TextField(null=True, blank=True)
-
-    faq_question_4 = models.CharField(max_length=120, null=True, blank=True)
-    faq_answer_4 = models.TextField(null=True, blank=True)
-
     include_client_requirements = models.BooleanField(default=False)
     requirements_same_for_all = models.BooleanField(default=True)
 
