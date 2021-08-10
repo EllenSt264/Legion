@@ -92,6 +92,24 @@ $(document).ready(function () {
     // Remove character counter from select fields
     $('.select-wrapper').children('.character-counter').remove();
 
+    
+    /* ======================================================
+    Checkout page checkbox click effect 
+    ====================================================== */
+
+    var tableCheckbox = $('table.extras input[type="checkbox"]');
+    
+    tableCheckbox.on('click', function() {
+        if (tableCheckbox.is(':checked')) {
+            console.log('checked')
+            $(this).parent().parent().parent().parent().css('background-color', 'rgba(11, 35, 65, 50%)');
+        } else if (!tableCheckbox.is(':checked')) {
+            console.log('not checked')
+            $(this).parent().parent().parent().parent().css('background-color', 'rgba(255, 255, 255, 0)');
+        }
+    });
+    
+    
     /* ======================================================
     Materialize switch
     ====================================================== */
@@ -106,7 +124,7 @@ $(document).ready(function () {
     var shippingRequiredSwitch = $('#id_shipping_required');
 
     // Add materalize switch classes to checkbox
-    if (checkbox.attr('id') !== 'id_remember' && checkbox.attr('id') !== 'fast_delivery_basic') {
+    if (checkbox.attr('id') !== 'id_remember' && checkbox.attr('id') !== 'fast_delivery_basic' && !$('.extras input[type="checkbox"]')) {
         // Ignore Sign up form checkbox
         checkbox.parent().parent().addClass('switch');
         checkbox.next().addClass('lever');
@@ -117,7 +135,6 @@ $(document).ready(function () {
     clientRequirementsSwitch.after('Include client requirements');
     requirementSameSwitch.after('Same requirements for all packages');
     shippingRequiredSwitch.after('Product Shipping required');
-
 
 
     /* ======================================================

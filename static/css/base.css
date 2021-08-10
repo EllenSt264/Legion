@@ -2857,6 +2857,303 @@ Service details page styles
     transform: translateY(25%);
 }
 
+/* ======================================================
+Checkout page styles
+====================================================== */
+
+#checkout-orderSummary .headline {
+    margin: 45px auto 35px;
+    font-size: 20px;
+}
+
+.order-summary-card {
+    margin-top: 80px;
+    margin-right: 45px;
+    max-width: 525px;
+}
+
+.order-summary-card .card-panel {
+    background: linear-gradient( to bottom,  rgba(103,19,210,1) 25%, rgba(204,32,142,1) 85% ) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.order-img {
+    width: 110px;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.order-card-img {
+    width: 100px;
+    height: 115px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.order-summary-card .order-service-details h6 {
+    margin-top: 0;
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+}
+
+.order-service-details p a {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.order-service-details-container .divider {
+    margin-top: 25px;
+}
+
+.order-summary-card .order-service-details {
+    position: relative;
+    height: 115px;
+    margin-left: 20px !important;
+}
+
+.order-summary-card .service-price {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.order-summary-card .service-price h6 {
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.order-summary-card .row:first-child .divider {
+    background-color: #FFFFFF;
+}
+
+.order-summary-card .divider {
+    margin: 25px auto 15px;
+    background-color: rgba(243, 243, 244, 60%);
+}
+
+.order-summary-card .quantity {
+    margin-bottom: 0;
+    position: absolute;
+    bottom: -7px;
+}
+
+.order-summary-card .quantity .col.s6 {
+    margin-left: 12px;
+}
+
+.order-summary-card .quantity .col.s6 span {
+    font-size: 10px;
+}
+
+.order-summary-card .order-service-details .quantity input {
+    width: 50px;
+    margin-left: 17px;
+    background-color: #213958;
+}
+
+.order-summary-card .order-service-details .quantity .increment-qty {
+    margin-left: 39px;
+}
+
+.order-service-details {
+    margin-left: 10px !important;
+}
+
+.order-service-details h5 {
+    margin: 0 auto 5px;
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.order-service-details h6 {
+    margin: 10px auto 15px;
+    font-family: 'Hurme Geometric Sans 3';
+}
+
+.order-service-details .quantity span {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.order-service-details .quantity .row {
+    margin-top: 5px;
+}
+
+.order-service-details .quantity .btn {
+    width: 32px;
+    height: 25px;
+    background-color: #9068EC;
+}
+
+.order-service-details .quantity .btn.decrement-qty {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.order-service-details .quantity .btn.increment-qty {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.order-service-details .quantity .btn i {
+    height: 25px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    line-height: 25px;
+}
+
+.order-service-details .quantity .row {
+    margin-bottom: 0;
+}
+
+.order-service-details .quantity .col {
+    padding: 0;
+}
+
+.order-service-details .quantity .col:first-child {
+    margin-left: 10px;
+}
+
+.order-service-details .quantity .col.s3 {
+    margin-right: 3px;
+}
+
+.order-service-details .quantity input {
+    height: 25px;
+    background-color: #3E5A7E;
+    border-bottom: none;
+}
+
+.order-service-details p a {
+    margin-left: 10px;
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    text-transform: lowercase;
+}
+
+.order-service-details p a i {
+    position: relative;
+    transform: translateY(25%);
+}
+
+table.extras {
+    width: 90%;
+    margin: 25px auto;
+}
+
+table.extras tr {
+    border: 1px solid white;
+    transition: background-color 0.2s linear;
+}
+
+table.extras td {
+    padding: 15px;
+}
+
+table.extras label {
+    color: #FFFFFF;
+}
+
+table.extras .extra-name {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+table.extras .extra-price {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+#orderTotal .card-panel {
+    margin: 8px;
+    background-color: #0C2043;
+}
+
+#orderTotal .btn-green-gradient {
+    padding: 0 22px;
+}
+
+#orderTotal p.headline {
+    font-size: 18px;
+    margin: 5px auto 15px;
+    padding: 0 5px;
+}
+
+#orderTotal table td {
+    padding: 3px;
+    border: none;
+}
+
+#orderTotal tr {
+    border: none;
+}
+
+#orderTotal p.helper {
+    font-family: 'Hurme Geometric Sans 3 - Light';
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #F3F3F4;
+}
+
+.order-total .service-fee td {
+    padding-bottom: 25px !important;
+}
+
+.order-total .grand-total td {
+    padding-top: 20px !important;
+}
+
+.order-total .subtotal .title,
+.order-total .service-fee .title,
+.order-total .delivery .title {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.order-total .subtotal .price,
+.order-total .service-fee .price {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+.order-total .grand-total .price {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: right;
+    border-top: 1px solid #FFFFFF !important;
+}
+
+.order-total .grand-total .headline {
+    border-top: 1px solid #FFFFFF !important;
+}
+
+.order-total .delivery .time {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: right;
+}
+
 /* ==========================================================================
 MEDIA QUERIES FOR RESPONSIVE DESIGN
 ========================================================================== */
@@ -2933,6 +3230,14 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
 }
 
+@media (min-width: 1545px) {
+    /* Checkout styles
+    =========================== */
+    .order-service-details-container .col.s4.l3 {
+        min-width: 214px;
+    }
+}
+
 @media (max-width: 1475px) {
     /* Services page styles
     =========================== */
@@ -2990,6 +3295,13 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     .price-and-details .col.l5.hide-on-med-and-down {
         width: 150px;
         padding-right: 5px;
+    }
+}
+
+@media (min-width: 1225px) and (max-width: 1545px) {
+    .order-service-details-container .order-img {
+        width: 145px;
+        height: 130px;
     }
 }
 
@@ -3235,6 +3547,44 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
         width: 120%;
         margin-left: -10%;
     }
+    /* Checkout styles
+    =========================== */
+    .order-service-details-container {
+        padding: 35px 0 45px !important;
+    }
+    .order-service-details-container .col.l3 {
+        padding-right: 0;
+    }
+    .order-service-details-container .col.l8 {
+        padding-left: 0;
+    }
+    .order-service-details-container .order-service-details {
+        margin-left: 0 !important;
+    }
+    .order-img {
+        width: 185px;
+        height: 140px;
+        border-radius: 5px;
+    }
+    .order-service-details .col.s12:nth-child(2) {
+        font-family: 'Hurme Geometric Sans 3 - SemiBold';
+        font-size: 14px;
+    }
+    .order-service-details .col.s12:nth-child(2) h6 {
+        margin-top: 0;
+    }
+    .order-service-details .col.s12.col.hide-on-med-and-down p {
+        font-family: 'Hurme Geometric Sans 3 - Light';
+        font-size: 14px;
+        padding: 5px 0;
+    }
+    .order-service-details-container .col.s4.l3 {
+        min-width: 130px;
+    }
+    .order-service-details-container .order-img {
+        width: 105px;
+        height: 130px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -3321,6 +3671,14 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     #standardPackage .card-content,
     #premiumPackage .card-content {
         padding: 0;
+    }
+    /* Checkout styles
+    =========================== */
+    .order-service-details-container {
+        padding: 25px 10px !important;
+        background-color: #071B35;
+        border-top: 1px solid rgba(212, 216, 221, 50%);
+        border-bottom: 1px solid rgba(212, 216, 221, 50%);
     }
 }
 
@@ -3440,6 +3798,11 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
 }
 
 @media (max-width: 375px) {
+    /* General styles
+    =========================== */
+    .btn-large {
+        font-size: 16px;
+    }
     /* Add service form styles
     =========================== */
     #ScopePricing .row:nth-child(2) label {
@@ -3447,7 +3810,37 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     }
 }
 
+@media (max-width: 360px) {
+    /* Checkout styles
+    =========================== */
+    .order-service-details .col.s12 {
+        margin-left: 20px;
+    }
+    .order-service-details p a {
+        font-size: 12px;
+        margin-left: 30px;
+    }
+    .order-service-details p a i {
+        font-size: 16px;
+    }
+    .order-service-details p span {
+        display: none;
+    }
+}
+
 @media (max-width: 352px) {
+    /* General styles
+    =========================== */
+    .btn-large {
+        font-size: 14px;
+        padding: 0 15px;
+    }
+    .btn-large span.show {
+        display: none;
+    }
+    .btn-large span.hide {
+        display: inline !important;
+    }
     /* Add service form styles
     =========================== */
     .category-box {

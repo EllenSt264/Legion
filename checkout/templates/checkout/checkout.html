@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="checkout-orderSummary">
+    <div class="row">
+        <div class="col s12 l5 offset-l1">
+            <!-- Page steps -->
+            <div class="row hide-on-med-and-down">
+                <div class="col s12">
+                    <p>Order details > Shipping > Billing > Payment</p>
+                </div>
+            </div>
+            <!-- Service details container -->
+            <div class="row order-service-details-container">
+                <!-- Order image -->
+                <div class="col s4 l3">
+                    <img src="{{ MEDIA_URL }}img2.jpg" alt="Service order image" class="order-img">
+                </div>
+                <!-- Order details -->
+                <div class="col s7 l8 order-service-details">
+                    <div class="row">
+                        <!-- Service price -->
+                        <div class="col s12 hide-on-large-only">
+                            <h5>£95.00</h5>
+                        </div>
+                        <!-- Service headline -->
+                        <div class="col s12">
+                            <h6>Service name</h6>
+                        </div>
+                        <!-- Package details -->
+                        <div class="col s12 hide-on-med-and-down">
+                            <p>Package type and title</p>
+                        </div>
+                        <!-- Client requirements -->
+                        <div class="col s12 hide-on-med-and-down">
+                            <p>Client requirements</p>
+                        </div>
+                        <!-- Quantity -->
+                        <div class="col s12 quantity hide-on-large-only">
+                            <span>Quanity</span>
+                            <div class="row">
+                                <div class="col s2">
+                                    <button data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
+                                    class="decrement-qty btn">
+                                        <span><i class="fas fa-minus fa-sm"></i></span>
+                                    </button>
+                                </div>
+                                <div class="col s3">
+                                    <input type="number" name="quantity" value="{{ service.quantity }}" min="1" max="99"
+                                    data-item-id="{{ service.id }}" id="id_qty_{{ service.id }}">
+                                </div>
+                                <div class="col s2">
+                                    <button data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
+                                    class="increment-qty btn">
+                                        <span><i class="fas fa-plus fa-sm"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- See details -->
+                        <p>
+                            <a href="#!">See <span>service</span> details <i class="material-icons">expand_more</i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="divider hide-on-med-and-down"></div>
+                </div>
+            </div>
+            <div class="row center">
+                <h4 class="headline">Extras</h4>
+                <table class="extras">
+                    <tr>
+                        <td class="extra-name">
+                            <p>
+                                <label>
+                                    <input type="checkbox" />
+                                    <span>Fast delivery</span>
+                                </label>
+                            </p>
+                        </td>
+                        <td class="extra-price">£25</td>
+                    </tr>
+                    <tr>
+                        <td class="extra-name">
+                            <p>
+                                <label>
+                                    <input type="checkbox" />
+                                    <span>Extra revisions</span>
+                                </label>
+                            </p>
+                        </td>
+                        <td class="extra-price">£10</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col l5 order-summary-card right hide-on-med-and-down">
+            <div class="card-panel white-text">
+                <!-- Title -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <h6 class="headline">Order Summary</h6>
+                    </div>
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Order image, quantity and base price -->
+                <div class="row">
+                    <div class="col s3">
+                        <img src="{{ MEDIA_URL }}img2.jpg" alt="Service order image" class="order-card-img">
+                    </div>
+                    <div class="col s8 order-service-details">
+                        <!-- Service headline -->
+                        <h6>Service name</h6>
+                        <!-- Quantity -->
+                        <div class="row quantity">
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <span>Quantity</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s2">
+                                        <button data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
+                                        class="decrement-qty btn">
+                                            <span><i class="fas fa-minus fa-sm"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="col s3">
+                                        <input type="number" name="quantity" value="{{ service.quantity }}" min="1" max="99"
+                                        data-item-id="{{ service.id }}" id="id_qty_{{ service.id }}">
+                                    </div>
+                                    <div class="col s2">
+                                        <button data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
+                                        class="increment-qty btn">
+                                            <span><i class="fas fa-plus fa-sm"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Service price -->
+                        <div class="service-price">
+                            <h6>£190</h6>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Additional costs -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="extra-costs">
+                            <tr>
+                                <td class="extra-name">Fast delivery 1 day delivery</td>
+                                <td class="extra-qty"></td>
+                                <td class="extra-price">£15.00</td>
+                            </tr>
+                            <tr>
+                                <td class="extra-name">Extra revisions</td>
+                                <td class="extra-qty">x2</td>
+                                <td class="extra-price">£10.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Subtotal -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="subtotal">
+                            <tr>
+                                <td class="total-name">Subtotal</td>
+                                <td class="total-price">£215</td>
+                            </tr>
+                            <tr>
+                                <td class="total-name">Service fee</td>
+                                <td class="total-price">£10.75</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Grand total -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="grandtotal-table">
+                            <tr>
+                                <td class="headline">Total</td>
+                                <td class="grand-total">£255.75</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-summary-checkout hide-on-large-only" id="orderTotal">
+        <div class="card-panel white-text">
+            <p class="headline">Order summary</p>
+            <!-- Price summary -->
+            <div class="row">
+                <table class="order-total">
+                    <tr class="subtotal">
+                        <td class="title">Subtotal</td>
+                        <td class="price">£110.00</td>
+                    </tr>
+                    <tr class="service-fee">
+                        <td class="title">Service fee</td>
+                        <td class="price">£10</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td class="headline">Total</td>
+                        <td class="price">£110.00</td>
+                    </tr>
+                    <tr class="delivery">
+                        <td class="title">Delivery Time</td>
+                        <td class="time">1 day</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Checkout -->
+            <div class="row center">
+                <div class="col s12">
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p class="center helper">You won't be charged yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
