@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounts',
     'profiles',
     'services',
+    'checkout',
 
     # Other
     'django_extensions',
