@@ -2761,6 +2761,17 @@ Service details page styles
     line-height: 0;
 }
 
+.reference-img-modal {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+    text-align: center;
+}
+
+.reference-img-modal .reference-img {
+    width: 60%;
+    height: auto;
+}
+
 #ServiceDetails .word-divider .div-line {
     width: 30%;
 }

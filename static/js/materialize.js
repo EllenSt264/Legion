@@ -38,4 +38,7 @@ $(document).ready(function () {
 
     // Initialize character counter 
     $('input[type="text"], textarea').characterCounter();
+
+    // Initialize modal
+    $('.modal').modal();
 });

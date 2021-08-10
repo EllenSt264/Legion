@@ -12,7 +12,7 @@ def services(request):
     """ A view to display all services, including
     sorting and searching queries """
 
-    services = FreelanceService.objects.all()
+    services = Service.objects.all()
     creator_profile = UserProfile.objects.all()
 
     template = 'services/services.html'
@@ -27,11 +27,13 @@ def services(request):
 def service_details(request, service_id):
     """ A view to display individual service details """
 
-    service = get_object_or_404(FreelanceService, pk=service_id)
+    service = get_object_or_404(Service, pk=service_id)
+    creator_profile = UserProfile.objects.all()
 
     template = 'services/service-details.html'
     context = {
         'service': service,
+        'creator_profile': creator_profile,
     }
 
     return render(request, template, context)

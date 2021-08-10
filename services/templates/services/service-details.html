@@ -6,15 +6,19 @@
         <!-- Service headline -->
         <div class="row">
             <div class="col s12 center">
-                <h6 class="headline">{{ service.service_headline }}</h6>
+                <h6 class="headline">{{ service.headline }}</h6>
             </div>
         </div>
         <!-- Creator username and social buttons -->
         <div class="row hide-on-large-only">
             <!-- Creator profile image -->
             <div class="col s2">
-                <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
-                alt="Creator profile image" class="creator-profile-img">
+                {% for profile in creator_profile.all %}
+                    {% if profile.user == service.user %}
+                        <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                        alt="Creator profile image" class="creator-profile-img">
+                    {% endif %}
+                {% endfor %}
             </div>
             <!-- Creator name and location -->
             <div class="col s6 creator-name-location">
@@ -33,8 +37,12 @@
             <div class="row">
                 <div class="col s2 right">
                     <!-- Creator profile image -->
-                    <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
-                    alt="Creator profile image" class="creator-profile-img">
+                    {% for profile in creator_profile.all %}
+                        {% if profile.user == service.user %}
+                            <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                            alt="Creator profile image" class="creator-profile-img">
+                        {% endif %}
+                    {% endfor %}
                     <!-- Social buttons -->
                 </div>
             </div>
@@ -52,7 +60,7 @@
         <!-- Service image -->
         <div class="row img-row">
             <div class="col s12 m10 offset-m1">
-                <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}" 
                 alt="Service image" class="service-details-img">
             </div>
         </div>
@@ -71,7 +79,7 @@
         <!-- Service description -->
         <div class="row center">
             <div class="col s12">
-                <p>{{ service.service_description }}</p>
+                <p>{{ service.description }}</p>
             </div>
         </div>
         <!-- Package tabs -->
@@ -81,19 +89,19 @@
                     <li class="tab col s4 m3">
                         <a href="#basic">
                             Basic
-                            <span>{{ service.basic_price }}</span>
+                            <span>{{ service.basicpackage.price }}</span>
                         </a>
                     </li>
                     <li class="tab col s4 m3 service-tab">
                         <a href="#standard">
                             Standard
-                            <span>{{ service.standard_price }}</span>
+                            <span>{{ service.standardpackage.standard_price }}</span>
                         </a>
                     </li>
                     <li class="tab col s4 m3">
                         <a href="#premium">
                             Premium
-                            <span>{{ service.premium_price }}</span>
+                            <span>{{ service.premiumpackage.premium_price }}</span>
                         </a>
                     </li>
                 </ul>
@@ -105,35 +113,42 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">{{ service.basic_package_title }}</h6>
+                    <h6 class="headline">{{ service.basicpackage.package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>{{ service.basic_details }}</p>
+                    <p>{{ service.basicpackage.package_description }}</p>
                 </div>
             </div>
             <!-- References -->
-            <div class="row center">
-                <div class="col s12">
-                    <a href="#!" class="blue-link">See references</a>
+            {% if service.basicpackage.reference_images %}
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#basicReferenceImgs" class="blue-link modal-trigger">See references</a>
+                    </div>
                 </div>
-            </div>
+                <!-- Image modal -->
+                <div class="reference-img-modal modal" id="basicReferenceImgs">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <img src="{{ service.basicpackage.reference_images.url }}" 
+                        alt="Service reference image for the basic package" class="reference-img">
+                    </div>
+                </div>
+            {% endif %}
             <!-- Requirements -->
-            <div class="row center requirements">
-                <div class="col s12">
-                    <h6 class="headline">Requirements</h6>
+            {% if service.include_client_requirements %}
+                <div class="row center requirements">
+                    <div class="col s12">
+                        <h6 class="headline">Requirements</h6>
+                    </div>
+                    <div class="col s12">
+                        <p>{{ service.basicpackage.client_requirements }}</p>
+                    </div>
                 </div>
-                <div class="col s12">
-                    <p>
-                        Once payment has been verified, please contact me as soon as possible to discuss your logo’s design.
-                    
-                        While reference pictures are not necessary, they are helpful in ensuring that the final product is exactly how you
-                        want it.
-                    </p>
-                </div>
-            </div>
+            {% endif %}
             <!-- Divider -->
             <div class="word-divider">
                 <span class="div-line"></span>
@@ -147,13 +162,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.basic_delivery_time }} day delivery
+                        {{ service.basicpackage.delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.basic_revisions }} revisions
+                        {{ service.basicpackage.revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -174,7 +189,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.basic_price }})</span></a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.basicpackage.price }})</span></a>
                 </div>
             </div>
         </div>
@@ -183,35 +198,48 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">{{ service.standard_package_title }}</h6>
+                    <h6 class="headline">{{ service.standardpackage.standard_package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>{{ service.standard_details }}</p>
+                    <p>{{ service.standardpackage.standard_package_description }}</p>
                 </div>
             </div>
             <!-- References -->
-            <div class="row center">
-                <div class="col s12">
-                    <a href="#!" class="blue-link">See references</a>
+            {% if service.standardpackage.standard_reference_images %}
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#standardReferenceImgs" class="blue-link modal-trigger">See references</a>
+                    </div>
                 </div>
-            </div>
+                <!-- Image modal -->
+                <div class="reference-img-modal modal" id="standardReferenceImgs">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <img src="{{ service.standardpackage.standard_reference_images.url }}" 
+                        alt="Service reference image for the standard package" class="reference-img">
+                    </div>
+                </div>
+            {% endif %}
             <!-- Requirements -->
-            <div class="row center requirements">
-                <div class="col s12">
-                    <h6 class="headline">Requirements</h6>
+            {% if service.include_client_requirements %}
+                <div class="row center requirements">
+                    <div class="col s12">
+                        <h6 class="headline">Requirements</h6>
+                    </div>
+                    {% if service.requirements_same_for_all %}
+                        <div class="col s12">
+                            <p>{{ service.basicpackage.client_requirements }}</p>
+                        </div>
+                    {% else %}
+                        <div class="col s12">
+                            <p>{{ service.standardpackage.standard_client_requirements }}</p>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="col s12">
-                    <p>
-                        Once payment has been verified, please contact me as soon as possible to discuss your logo’s design.
-                    
-                        While reference pictures are not necessary, they are helpful in ensuring that the final product is exactly how you
-                        want it.
-                    </p>
-                </div>
-            </div>
+            {% endif %}
             <!-- Divider -->
             <div class="word-divider">
                 <span class="div-line"></span>
@@ -225,13 +253,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.standard_delivery_time }} day delivery
+                        {{ service.standardpackage.standard_delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.standard_revisions }} revisions
+                        {{ service.standardpackage.standard_revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -252,7 +280,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.standard_price }})</span></a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.standardpackage.standard_price }})</span></a>
                 </div>
             </div>
         </div>
@@ -261,35 +289,48 @@
             <!-- Package headline -->
             <div class="row center">
                 <div class="col s12">
-                    <h6 class="headline">{{ service.premium_package_title }}</h6>
+                    <h6 class="headline">{{ service.premiumpackage.premium_package_title }}</h6>
                 </div>
             </div>
             <!-- Package details -->
             <div class="row center">
                 <div class="col s12">
-                    <p>{{ service.premium_details }}</p>
+                    <p>{{ service.premiumpackage.premium_package_description }}</p>
                 </div>
             </div>
             <!-- References -->
-            <div class="row center">
-                <div class="col s12">
-                    <a href="#!" class="blue-link">See references</a>
+            {% if service.premiumpackage.premium_reference_images %}
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#premiumReferenceImgs" class="blue-link modal-trigger">See references</a>
+                    </div>
                 </div>
-            </div>
+                <!-- Image modal -->
+                <div class="reference-img-modal modal" id="premiumReferenceImgs">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <img src="{{ service.premiumpackage.premium_reference_images.url }}" 
+                        alt="Service reference image for the premium package" class="reference-img">
+                    </div>
+                </div>
+            {% endif %}
             <!-- Requirements -->
-            <div class="row center requirements">
-                <div class="col s12">
-                    <h6 class="headline">Requirements</h6>
+            {% if service.include_client_requirements %}
+                <div class="row center requirements">
+                    <div class="col s12">
+                        <h6 class="headline">Requirements</h6>
+                    </div>
+                    {% if service.requirements_same_for_all %}
+                        <div class="col s12">
+                            <p>{{ service.basicpackage.client_requirements }}</p>
+                        </div>
+                    {% else %}
+                        <div class="col s12">
+                            <p>{{ service.premiumpackage.premium_client_requirements }}</p>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="col s12">
-                    <p>
-                        Once payment has been verified, please contact me as soon as possible to discuss your logo’s design.
-                    
-                        While reference pictures are not necessary, they are helpful in ensuring that the final product is exactly how you
-                        want it.
-                    </p>
-                </div>
-            </div>
+            {% endif %}
             <!-- Divider -->
             <div class="word-divider">
                 <span class="div-line"></span>
@@ -303,13 +344,13 @@
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                        {{ service.premium_delivery_time }} day delivery
+                        {{ service.premiumpackage.premium_delivery_time }} day delivery
                     </h6>
                 </div>
                 <div class="col s6">
                     <h6>
                         <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                        {{ service.premium_revisions }} revisions
+                        {{ service.premiumpackage.premium_revisions }} revisions
                     </h6>
                 </div>
             </div>
@@ -330,7 +371,7 @@
             <!-- Continue to payment -->
             <div class="row center payment">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.premium_price }})</span></a>
+                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.premiumpackage.premium_price }})</span></a>
                 </div>
             </div>
         </div>

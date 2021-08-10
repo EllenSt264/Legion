@@ -71,7 +71,7 @@
                                             <!-- Image -->
                                             <div class="card-image">
                                                 <a href="{% url 'service_details' service.id %}">
-                                                    <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                                                    <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}" 
                                                     alt="Service image">
                                                 </a>
                                             </div>
@@ -79,7 +79,7 @@
                                             <div class="row service-headline">
                                                 <div class="col s12">
                                                     <a href="{% url 'service_details' service.id %}">
-                                                        <p class="card-title">{{ service.service_headline }}</p>
+                                                        <p class="card-title">{{ service.headline }}</p>
                                                     </a>
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@
                                                 <div class="col s6">
                                                     <p class="price">
                                                         from 
-                                                        <span>{{ service.basic_price }}</span>
+                                                        <span>{{ service.basicpackage.price }}</span>
                                                     </p>
                                                 </div>
                                                 <!-- Like button -->
@@ -207,8 +207,10 @@
                                     <!-- Additional image -->
                                     <div class="col l6 hide-on-med-and-down">
                                     <div class="service-card-img-large">
-                                            <img src="https://images.unsplash.com/photo-1545418742-191c52702f45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1003&q=80" 
+                                        <a href="{% url 'service_details' service.id %}">
+                                            <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}" 
                                             alt="Service image">
+                                        </a>
                                     </div> 
                                     </div>
                                 </div>
