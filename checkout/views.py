@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 from services.models import Service
 
+import stripe
+
 
 def checkout(request, service_id):
     """ A view to add a service to checkout and
@@ -106,8 +108,6 @@ def checkout_payment(request, service_id):
 
     if 'order' in request.session:
         order = request.session.get('order')
-        print(order)
-        print(request.user.email)
         if order['service_id'] is not service_id:
             return render(request, '404.html')
         if order['buyer'] != request.user.email:
@@ -136,6 +136,20 @@ def checkout_payment(request, service_id):
     service_fee = (subtotal / 10) / 2
     grand_total = subtotal + service_fee
 
+    total = grand_total
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
+
+    print(intent)
+
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. \
+            Did you forget to set it in your environment?')
+
     template = 'checkout/checkout-payment.html'
     context = {
         'service': service,
@@ -147,6 +161,6 @@ def checkout_payment(request, service_id):
         'quantity_total': quantity_total,
         'grand_total': grand_total,
         'stripe_public_key': stripe_public_key,
-        'client_secret': stripe_secret_key,
+        'client_secret': intent.client_secret,
     }
     return render(request, template, context)
