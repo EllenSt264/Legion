@@ -99,6 +99,9 @@ def checkout(request, service_id):
 def checkout_payment(request, service_id):
     """ A view to process payment for an order """
 
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+
     service = get_object_or_404(Service, pk=service_id)
 
     if 'order' in request.session:
@@ -143,5 +146,7 @@ def checkout_payment(request, service_id):
         'quantity': quantity,
         'quantity_total': quantity_total,
         'grand_total': grand_total,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': stripe_secret_key,
     }
     return render(request, template, context)

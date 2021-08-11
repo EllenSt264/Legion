@@ -12,6 +12,11 @@
     {% endif %}
 {% endblock %}
 
+{% block extra_css %}
+    <!-- Stripe CSS -->
+    <link rel="stylesheet" href="{% static 'checkout/css/stripe.css' %}" type="text/css">
+{% endblock %}
+
 {% block content %}
 <div class="checkout" id="checkout-payment">
     <div class="row">
@@ -180,4 +185,11 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe-elements.js' %}"></script>
 {% endblock %}
