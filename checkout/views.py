@@ -1,3 +1,4 @@
+from checkout.contexts import order_contents
 from django.shortcuts import redirect, render, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
@@ -115,28 +116,9 @@ def checkout_payment(request, service_id):
     else:
         return redirect(reverse('checkout', args=(service_id,)))
 
-    delivery = order['delivery']
-    package = order['package']
-    quantity = order['quantity']
+    current_order = order_contents(request)
 
-    # Determine the chosen package
-    if package == 'basic':
-        chosen_package = service.basicpackage
-    elif package == 'standard':
-        chosen_package = service.standardpackage
-    elif package == 'premium':
-        chosen_package = service.premium
-
-    # Calculate subtotal and grand total
-    starting_price = chosen_package.price
-    delivery_price = [
-        0 if delivery == 0 else chosen_package.fast_delivery_price]
-    quantity_total = starting_price * int(quantity)
-    subtotal = quantity_total + delivery_price[0]
-    service_fee = (subtotal / 10) / 2
-    grand_total = subtotal + service_fee
-
-    total = grand_total
+    total = current_order['grand_total']
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     intent = stripe.PaymentIntent.create(
@@ -152,14 +134,8 @@ def checkout_payment(request, service_id):
 
     template = 'checkout/checkout-payment.html'
     context = {
+        'current_order': current_order,
         'service': service,
-        'package': chosen_package,
-        'delivery': delivery,
-        'subtotal': subtotal,
-        'service_fee': service_fee,
-        'quantity': quantity,
-        'quantity_total': quantity_total,
-        'grand_total': grand_total,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
