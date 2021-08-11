@@ -49,6 +49,12 @@
        $(closestInput).val(currentValue - 1);
        var itemId = $(this).data('item_id');
        handleEnableDisable(itemId);
+
+       // Update form with quantity value   
+       setTimeout(function() {
+            var form = $('.update-form');
+            form.submit();
+        }, 500);
     });
 
 </script>
