@@ -8,43 +8,61 @@ def checkout(request, service_id):
     """ A view to add a service to checkout and
     render the content of the checkout page """
 
-    service = get_object_or_404(Service, pk=service_id)
+    if request.method == 'POST':
 
-    order = request.session.get('order', {})
+        # Grab service object
+        service = get_object_or_404(Service, pk=service_id)
 
-    delivery = request.POST.get('delivery', 0)
-    package = request.POST.get('package', 'basic')
+        # Create new session for order
+        order = request.session.get('order', {})
 
-    if 'quantity' in request.POST:
-        quantity = request.POST.get('quantity', None)
-    else:
-        quantity = 1
+        # Get delivery type (fast or standard)
+        if 'delivery' in request.POST:
+            delivery = request.POST.get('delivery')
+        else:
+            if order['service_id'] == service_id:
+                delivery = order['delivery']
+            else:
+                delivery = 0
+        delivery = int(delivery)
 
-    order['service_id'] = service_id
-    order['delivery'] = delivery
-    order['package'] = package
-    order['quantity'] = quantity
+        # Get service package type
+        package = request.POST.get('package', 'basic')
 
-    request.session['order'] = order
+        # Get order quantity
+        if 'quantity' in request.POST:
+            quantity = request.POST.get('quantity', 1)
+        else:
+            if order['service_id'] == service_id:
+                quantity = order['quantity']
+            else:
+                quantity = 1
 
-    if package == 'basic':
-        chosen_package = service.basicpackage
-    elif package == 'standard':
-        chosen_package = service.standardpackage
-    elif package == 'premium':
-        chosen_package = service.premium
+        # Add form values to order session
+        order['service_id'] = service_id
+        order['delivery'] = delivery
+        order['package'] = package
+        order['quantity'] = quantity
 
-    starting_price = chosen_package.price
-    if delivery != 0:
-        delivery_price = chosen_package.fast_delivery_price
-    else:
-        delivery_price = 0
+        # Update order session
+        request.session['order'] = order
 
-    quantity_total = starting_price * int(quantity)
+        # Determine the chosen package
+        if package == 'basic':
+            chosen_package = service.basicpackage
+        elif package == 'standard':
+            chosen_package = service.standardpackage
+        elif package == 'premium':
+            chosen_package = service.premium
 
-    subtotal = quantity_total + delivery_price
-    service_fee = (subtotal / 10) / 2
-    grand_total = subtotal + service_fee
+        # Calculate subtotal and grand total
+        starting_price = chosen_package.price
+        delivery_price = [
+            0 if delivery == 0 else chosen_package.fast_delivery_price]
+        quantity_total = starting_price * int(quantity)
+        subtotal = quantity_total + delivery_price[0]
+        service_fee = (subtotal / 10) / 2
+        grand_total = subtotal + service_fee
 
     template = 'checkout/checkout.html',
     context = {
@@ -58,3 +76,7 @@ def checkout(request, service_id):
         'grand_total': grand_total,
     }
     return render(request, template, context)
+
+
+def checkout_payment(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)

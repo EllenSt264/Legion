@@ -2,10 +2,14 @@
 {% load static %}
 
 {% block breadcrumbs %}
-    <a href="#!" class="breadcrumb active"><div class="numberCircle">1</div> Order Review</a>
-    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">2</div> Shipping</a>
-    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">3</div> Billing</a>
-    <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">4</div> Payment</a>
+    {% if service.shipping_required %}
+        <a href="#!" class="breadcrumb active"><div class="numberCircle">1</div> Order Review</a>
+        <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">2</div> Shipping</a>
+        <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">3</div> Confirm & Pay</a>
+    {% else %}
+        <a href="#!" class="breadcrumb active"><div class="numberCircle">1</div> Order Review</a>
+        <a href="#!" class="breadcrumb upcoming"><div class="numberCircle">2</div>Confirm & Pay</a>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -115,9 +119,9 @@
                                 <p>
                                     <label>
                                         {% if delivery == 0 %}
-                                            <input type="checkbox" />
+                                            <input type="checkbox" name="fastdelivery" id="fastdelivery" />
                                         {% else %}
-                                            <input type="checkbox" checked/>
+                                            <input type="checkbox" name="fastdelivery" id="fastdelivery" checked/>
                                         {% endif %}
                                         <span>Fast {{ package.delivery_time }} day delivery</span>
                                     </label>
@@ -132,6 +136,11 @@
                     </tr>
                 </table>
             </div>
+            <!-- Fast delivery hidden inputs -->
+            <form action="" method="POST" class="delivery-form">
+                {% csrf_token %}
+                <input type="hidden" name="delivery" val="{{ delivery }}">
+            </form>
         </div>
         <div class="col l5 order-summary-card right hide-on-med-and-down">
             <div class="card-panel white-text">
@@ -273,9 +282,15 @@
                         <td class="price">£{{ quantity_total }}</td>
                     </tr>
                     <tr class="extras-total">
-                        <td class="title">Delivery</td>
-                        <td></td>
-                        <td class="price">£{{ package.fast_delivery_price }}</td>
+                        {% if delivery == 0 %}
+                            <td class="title">Delivery</td>
+                            <td></td>
+                            <td class="price">FREE</td>
+                        {% else %}
+                            <td class="title">Delivery</td>
+                            <td></td>
+                            <td class="price">£{{ package.fast_delivery_price }}</td>
+                        {% endif %}
                     </tr>
                     <tr class="subtotal">
                         <td class="title">Subtotal</td>
@@ -321,4 +336,5 @@
 {% block postloadjs %}
     {{ block.super }}
     {% include 'checkout/includes/quantity-input.html' %}
+    {% include 'checkout/includes/toggle-fast-delivery.html' %}
 {% endblock %}

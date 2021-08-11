@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var deliveryVar = '{{ deliveryVal }}';
+        var fastDeliveryVal = '{{ package.fast_delivery_price }}'
+        var fastDelivery = $('input#fastdelivery');
+        fastDelivery.on('click', function() {
+            if (fastDelivery.is(':checked')) {
+                deliveryVar = parseInt(fastDeliveryVal);
+            } else {
+                deliveryVar = 0;
+            }
+            $('.delivery-form input[name="delivery"]').val(deliveryVar);
+
+            setTimeout(function() {
+                $('.delivery-form').submit();
+            }, 500);
+        });
+    });
+
+</script>
