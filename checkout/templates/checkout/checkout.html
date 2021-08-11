@@ -38,7 +38,7 @@
                         <!-- Client requirements -->
                         <div class="col s12 hide-on-med-and-down">
                             {% if service.include_client_requirements %}
-                                <p><a href="#!">Read client requirements</a></p>
+                                <a href="#clientRequirements" class="modal-trigger">Read client requirements</a>
                             {% else %}
                                 <p class="orange-text text-darken-3">
                                     No client requirements have been listed for this service, but we highly recommend that you contact the seller after making
@@ -46,8 +46,31 @@
                                 </p>
                             {% endif %}
                         </div>
+                        <!-- Client requirements modal -->
+                        <div id="clientRequirements" class="modal">
+                            <div class="modal-content black-text">
+                                <h4>Client Requirements</h4>
+                                <p>
+                                    In order for {{ service.user.get_full_name }} to make a start on your order, you first need to fulfill your client
+                                    requirements. You will prompted to contact your seller after making payment. Please do this ASAP, as delaying this will only delay
+                                    the delivery of your service. 
+                                </p>
+                                <p class="orange-text text-darken-3">
+                                    <strong>
+                                        Sellers are held not responsible for late delivery times, or cancellations, if client the requirements are not
+                                        met.
+                                    </strong>
+                                </p>
+                                <br>
+                                <h5>Requirements laid out by {{ service.user.get_full_name }}...</h5>
+                                <p>{{ package.client_requirements }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Okay, got it</a>
+                            </div>
+                        </div>
                         <!-- Quantity -->
-                        <form action="" method="POST" class="update-form">
+                        <form action="" method="POST" class="update-form small">
                             {% csrf_token %}
                             <div class="col s12 quantity hide-on-large-only">
                                 <span>Quanity</span>
@@ -60,9 +83,9 @@
                                             </button>
                                         </div>
                                         <div class="col s3">
-                                            <input type="number" name="quantity" value="{% if quantity == 0 %}1{% else %}{{ quantity }}{% endif %}" min="1" max="99"
+                                            <input type="number" name="quantity" value="{{ quantity }}" min="1" max="99"
                                             data-item-id="{{ service.id }}" id="id_qty_{{ service.id }}"
-                                            class="qty-input">
+                                            class="qty-input" readonly>
                                         </div>
                                         <div class="col s2">
                                             <button data-item_id="{{ service.id }}" id="increment-qty_{{ service.id }}"
@@ -82,6 +105,7 @@
                     <div class="divider hide-on-med-and-down"></div>
                 </div>
             </div>
+            <!-- Package extras -->
             <div class="row center">
                 <h4 class="headline">Extras</h4>
                 <table class="extras">
@@ -100,6 +124,10 @@
                                 </p>
                             </td>
                             <td class="extra-price">£{{ package.fast_delivery_price }}</td>
+                        {% else %}
+                            <p class="orange-text text-darken-3">
+                                There are no available extras for this package.
+                            </p>
                         {% endif %}
                     </tr>
                 </table>
@@ -126,36 +154,39 @@
                         <!-- Service headline -->
                         <h6>{{ service.headline }}</h6>
                         <!-- Quantity -->
-                        <div class="row quantity">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="col s6">
-                                        <span>Quantity</span>
+                        <form action="" method="POST" class="update-form large">
+                            {% csrf_token %}
+                            <div class="row quantity">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <span>Quantity</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field">
-                                        <div class="col s3">
-                                            <button data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
-                                            class="decrement-qty btn">
-                                                <span><i class="fas fa-minus fa-sm"></i></span>
-                                            </button>
-                                        </div>
-                                        <div class="col s4">
-                                            <input type="number" name="quantity" value="{% if quantity == 0 %}1{% else %}{{ quantity }}{% endif %}" min="1" max="99"
-                                            data-item-id="{{ service.id }}" id="id_qty_{{ service.id }}"
-                                            class="qty-input">
-                                        </div>
-                                        <div class="col s3">
-                                            <button data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
-                                            class="increment-qty btn">
-                                                <span><i class="fas fa-plus fa-sm"></i></span>
-                                            </button>
+                                    <div class="row">
+                                        <div class="input-field">
+                                            <div class="col s3">
+                                                <button data-item_id="{{ service.id }}" id="decrement-qty_{{ service.id }}"
+                                                class="decrement-qty btn">
+                                                    <span><i class="fas fa-minus fa-sm"></i></span>
+                                                </button>
+                                            </div>
+                                            <div class="col s4">
+                                                <input type="number" name="quantity" value="{{ quantity }}" min="1" max="99"
+                                                data-item-id="{{ service.id }}" id="id_qty_{{ service.id }}"
+                                                class="qty-input" readonly>
+                                            </div>
+                                            <div class="col s3">
+                                                <button data-item_id="{{ service.id }}" id="increment-qty_{{ service.id }}"
+                                                class="increment-qty btn">
+                                                    <span><i class="fas fa-plus fa-sm"></i></span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <!-- Service price -->
                         <div class="service-price">
                             <h6>£{{ quantity_total }}</h6>
