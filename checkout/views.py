@@ -34,7 +34,14 @@ def checkout(request, service_id):
     delivery = float(delivery)
 
     # Get service package type
-    package = request.POST.get('package', 'basic')
+    if 'package' in request.POST:
+        package = request.POST.get('package', 'basic')
+    else:
+        if 'order' in request.session:
+            if order['service_id'] == service_id:
+                package = order['package']
+            else:
+                package = request.POST.get('package', 'basic')
 
     # Get order quantity
     if 'quantity' in request.POST:
