@@ -1,0 +1,183 @@
+{% extends "base-alternative.html" %}
+{% load static %}
+
+{% block breadcrumbs %}
+    {% if service.shipping_required %}
+    <a href="#!" class="breadcrumb"><div class="numberCircle">1</div> Order Review</a>
+    <a href="#!" class="breadcrumb"><div class="numberCircle">2</div> Shipping</a>
+    <a href="#!" class="breadcrumb active"><div class="numberCircle">3</div> Confirm & Pay</a>
+    {% else %}
+    <a href="#!" class="breadcrumb"><div class="numberCircle">1</div> Order Review</a>
+    <a href="#!" class="breadcrumb active"><div class="numberCircle">2</div>Confirm & Pay</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="checkout" id="checkout-payment">
+    <div class="row">
+        <div class="col s12 l5 offset-l1">
+            <h5 class="headline center">Payment</h5>
+            <form action="{% url 'checkout_payment' service.id %}" class="payment-form">
+                {% csrf_token %}
+                <!-- Card payment -->
+                <div class="row">
+                    <div class="col s12">
+                        <fieldset>
+                            <legend class="fieldset-label center">Credit Card</legend>
+                            <!-- A Stripe card element will go here -->
+                            <div class="mb-3" id="card-element"></div>
+                            <!-- Used to display form errors -->
+                            <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                            <!-- Pass the client secret to the view so we can get the payment intent id -->
+                            <input type="hidden" value="{{ client_secret}}" name="client_secret">
+                        </fieldset>
+                    </div>
+                </div>
+                <!-- Billing address -->
+                <div class="row">
+                    <div class="col s12">
+                        <fieldset>
+                            <legend class="fieldset-label center">Billing Address</legend>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="save-address"/>
+                                    <span>Save address details</span>
+                                </label>
+                            </p>
+                        </fieldset>
+                    </div>
+                </div>
+                <!-- Submit payment -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <button type="submit" class="btn btn-black" id="submit-payment">Place Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col l5 order-summary-card right hide-on-med-and-down">
+            <div class="card-panel white-text">
+                <!-- Title -->
+                <div class="row">
+                    <div class="col s12 center">
+                        <h6 class="headline">Order Summary</h6>
+                    </div>
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Order image, quantity and base price -->
+                <div class="row">
+                    <div class="col s3">
+                        <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                        alt="Service order image" class="order-card-img">
+                    </div>
+                    <div class="col s8 order-service-details">
+                        <!-- Service headline -->
+                        <h6>{{ service.headline }}</h6>
+                        <!-- Service price -->
+                        <div class="service-price">
+                            <h6>
+                                <span>{% if quantity < 1 %}x{{ quantity }}{% endif %}</span>
+                                £{{ quantity_total }}
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Additional costs -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="extra-costs">
+                            {% if delivery == 0 %}
+                                <tr>
+                                    <td class="extra-name">{{ package.delivery_time }} day delivery</td>
+                                    <td class="extra-qty"></td>
+                                    <td class="extra-price">FREE</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td class="extra-name">Fast {{ package.fast_delivery_time }} day delivery</td>
+                                    <td class="extra-qty"></td>
+                                    <td class="extra-price">£{{ package.fast_delivery_price }}</td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Subtotal -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="subtotal">
+                            <tr>
+                                <td class="total-name">Subtotal</td>
+                                <td class="total-price">£{{ subtotal }}</td>
+                            </tr>
+                            <tr>
+                                <td class="total-name">Service fee</td>
+                                <td class="total-price">£{{ service_fee }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <!-- Grand total -->
+                <div class="row">
+                    <div class="col s12">
+                        <table class="grandtotal-table">
+                            <tr>
+                                <td class="headline">Total</td>
+                                <td class="grand-total">£{{ grand_total }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- Checkout -->
+                <div class="row center">
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="hide-on-large-only" id="fixedOrderSummary">
+        <div class="card-panel white-text">
+            <div class="row">
+                <div class="col s3">
+                    <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
+                        alt="Service order image" class="sticky-card-img">
+                </div>
+                <div class="col s5">
+                    <div class="row">
+                        <div class="col s12">
+                            <p>{{ package.package_type | title }} Package</p>
+                        </div>
+                        <div class="col s12">
+                            <a href="#!">Show details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="row">
+                        <div class="col 12">
+                            <h6>£{{ grand_total }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

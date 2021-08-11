@@ -2896,7 +2896,7 @@ Service details page styles
 Checkout page styles
 ====================================================== */
 
-#checkout-orderSummary .headline {
+.checkout .headline {
     margin: 45px auto 35px;
     font-size: 20px;
 }
@@ -2999,7 +2999,7 @@ Checkout page styles
     margin: 0 3px;
 }
 
-#checkout-orderSummary .input-field input {
+.checkout .input-field input {
     color: #FFFFFF;
     text-align: center;
 }
@@ -3256,6 +3256,76 @@ table.extra-costs tr,
 table.subtotal tr,
 .grandtotal-table tr {
     border-bottom: none;
+}
+
+#checkout-payment .service-price h6 span {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding-right: 25px;
+}
+
+#fixedOrderSummary {
+    width: 95%;
+    text-align: center;
+    margin: 0 auto;
+    position: sticky;
+    bottom: 0;
+}
+
+#fixedOrderSummary .card-panel {
+    background-color: #0C2043;
+    padding: 10px 15px;
+}
+
+#fixedOrderSummary .row {
+    margin-bottom: 0 !important;
+}
+
+#fixedOrderSummary .card-panel .s3 {
+    padding: 0;
+}
+
+#fixedOrderSummary .col.s5,
+#fixedOrderSummary .col.s5 .s12 {
+    padding-left: 5px;
+}
+
+.sticky-card-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+#fixedOrderSummary .card-panel .s5 {
+    text-align: left;
+}
+
+#fixedOrderSummary .col.s4 {
+    text-align: right;
+}
+
+#fixedOrderSummary h6 {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+#fixedOrderSummary p {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 16px;
+}
+
+#fixedOrderSummary a {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+#fixedOrderSummary .col.s5,
+#fixedOrderSummary .col.s4 {
+    transform: translateY(10%);
 }
 
 /* ==========================================================================

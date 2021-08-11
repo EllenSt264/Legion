@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="checkout-orderSummary">
+<div class="checkout" id="checkout-orderSummary">
     <form action="{% url 'checkout' service.id %}" id="orderReviewForm"></form>
     <div class="row">
         <div class="col s12 l5 offset-l1">
@@ -264,7 +264,7 @@
                 <!-- Checkout -->
                 <div class="row center">
                     <div class="col s12">
-                        <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
+                        <a href="{% url 'checkout_payment' service.id %}" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
                     </div>
                 </div>  
             </div>
@@ -320,7 +320,7 @@
             <!-- Checkout -->
             <div class="row center">
                 <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
+                    <a href="{% url 'checkout_payment' service.id %}" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
                 </div>
             </div>
             <div class="row">
