@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Prevent users from clicking minus and causing a quanity of zero 
+    var allQtyInputs = $('.qty-input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    $('.qty-input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    // Increment quantity
+    $('.increment-qty').click(function(e) {
+       e.preventDefault();
+       // Find the closest input box using the closest method
+       var closestInput = $(this).closest('.input-field').find('.qty-input')[0];
+       // Cache the value that's currently in it into a variable called currentValue
+       var currentValue = parseInt($(closestInput).val());
+       // Use that variable to set the input boxes new value to the current value plus one
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+
+        // Update form with quantity value   
+       setTimeout(function() {
+            var form = $('.update-form');
+            form.submit();
+        }, 500);
+    });
+
+    // Decrement quantity
+    $('.decrement-qty').click(function(e) {
+       e.preventDefault();
+       // Find the closest input box using the closest method
+       var closestInput = $(this).closest('.input-field').find('.qty-input')[0];
+       // Cache the value that's currently in it into a variable called currentValue
+       var currentValue = parseInt($(closestInput).val());
+       // Use that variable to set the input boxes new value to the current value minus one
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
+
+</script>

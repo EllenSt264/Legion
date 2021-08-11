@@ -97,13 +97,13 @@
                     <li class="tab col s4 m3 service-tab">
                         <a href="#standard">
                             Standard
-                            <span>{{ service.standardpackage.standard_price }}</span>
+                            <span>{{ service.standardpackage.price }}</span>
                         </a>
                     </li>
                     <li class="tab col s4 m3">
                         <a href="#premium">
                             Premium
-                            <span>{{ service.premiumpackage.premium_price }}</span>
+                            <span>{{ service.premiumpackage.price }}</span>
                         </a>
                     </li>
                 </ul>
@@ -113,60 +113,63 @@
 
         <!-- Packages -->
 
-        <div class="tab-content service-package-container" id="basic">
-            <!-- Package headline -->
-            <div class="row center">
-                <div class="col s12">
-                    <h6 class="headline">{{ service.basicpackage.package_title }}</h6>
-                </div>
-            </div>
-            <!-- Package details -->
-            <div class="row center">
-                <div class="col s12">
-                    <p>{{ service.basicpackage.package_description }}</p>
-                </div>
-            </div>
-            <!-- References -->
-            {% if service.basicpackage.reference_images %}
+        <!-- Basic package -->
+        <form action="{% url 'checkout' service.id %}" method="POST" id="basicCheckout">
+            {% csrf_token %}
+            <input type='hidden' value='basic' name='package'>
+            <div class="tab-content service-package-container" id="basic">
+                <!-- Package headline -->
                 <div class="row center">
                     <div class="col s12">
-                        <a href="#basicReferenceImgs" class="blue-link modal-trigger">See references</a>
+                        <h6 class="headline">{{ service.basicpackage.package_title }}</h6>
                     </div>
                 </div>
-                <!-- Image modal -->
-                <div class="reference-img-modal modal" id="basicReferenceImgs">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <img src="{{ service.basicpackage.reference_images.url }}" 
-                        alt="Service reference image for the basic package" class="reference-img">
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Requirements -->
-            {% if service.include_client_requirements %}
-                <div class="row center requirements">
+                <!-- Package details -->
+                <div class="row center">
                     <div class="col s12">
-                        <h6 class="headline">Requirements</h6>
-                    </div>
-                    <div class="col s12">
-                        <p>{{ service.basicpackage.client_requirements }}</p>
+                        <p>{{ service.basicpackage.package_description }}</p>
                     </div>
                 </div>
-            {% endif %}
-            <!-- Divider -->
-            <div class="word-divider">
-                <span class="div-line"></span>
-                <div class="delivery-icon">
-                    <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
+                <!-- References -->
+                {% if service.basicpackage.reference_images %}
+                    <div class="row center">
+                        <div class="col s12">
+                            <a href="#basicReferenceImgs" class="blue-link modal-trigger">See references</a>
+                        </div>
+                    </div>
+                    <!-- Image modal -->
+                    <div class="reference-img-modal modal" id="basicReferenceImgs">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <img src="{{ service.basicpackage.reference_images.url }}" 
+                            alt="Service reference image for the basic package" class="reference-img">
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Requirements -->
+                {% if service.include_client_requirements %}
+                    <div class="row center requirements">
+                        <div class="col s12">
+                            <h6 class="headline">Requirements</h6>
+                        </div>
+                        <div class="col s12">
+                            <p>{{ service.basicpackage.client_requirements }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Divider -->
+                <div class="word-divider">
+                    <span class="div-line"></span>
+                    <div class="delivery-icon">
+                        <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
+                    </div>
+                    <span class="div-line"></span>
                 </div>
-                <span class="div-line"></span>
-            </div>
-            <!-- Delivery and revsions -->
-            <div class="row center delivery-revisions">
-                <!-- If fast delivery is available -->
-                {% if service.basicpackage.fast_delivery_time %}
-                    <!-- Choose between fast or standard delivery -->
-                    <form action="">
+                <!-- Delivery and revsions -->
+                <div class="row center delivery-revisions">
+                    <!-- If fast delivery is available -->
+                    {% if service.basicpackage.fast_delivery_time %}
+                        <!-- Choose between fast or standard delivery -->
                         <!-- Delivery options -->
                         <div class="col s6 m8">
                             <div class="row">
@@ -179,7 +182,7 @@
                                 <div class="col s12 l4 delivery-options">
                                     <h6>
                                         <label>
-                                            <input type="radio" name="delivery_basic" id="delivery_basic" checked>
+                                            <input type="radio" name="delivery" id="delivery_basic" value="0" checked>
                                             <span>{{ service.basicpackage.delivery_time }} days</span>
                                         </label>
                                     </h6>   
@@ -187,7 +190,7 @@
                                 <div class="col s12 l4 delivery-options">
                                     <h6>
                                         <label>
-                                            <input type="radio" name="delivery_basic" id="fast_delivery_basic">
+                                            <input type="radio" name="delivery" id="fast_delivery_basic" value="{{ service.basicpackage.fast_delivery_price }}">
                                             <span>{{ service.basicpackage.fast_delivery_time }} days ( +£{{ service.basicpackage.fast_delivery_price }} )</span>
                                         </label>
                                     </h6>   
@@ -201,314 +204,325 @@
                                 {{ service.basicpackage.revisions }} revisions
                             </h6>
                         </div>
-                    </form>
-                <!-- Else display standard delivery time -->
-                {% else %}
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                            {{ service.basicpackage.delivery_time }} day delivery
-                        </h6>
+                    <!-- Else display standard delivery time -->
+                    {% else %}
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                {{ service.basicpackage.delivery_time }} day delivery
+                            </h6>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.basicpackage.revisions }} revisions
+                            </h6>
+                        </div>
+                    {% endif %}
+                    
+                </div>
+                <!-- Package overview -->
+                <div class="row overview-list">
+                    <div class="col s12 m8 offset-m2">
+                        <ul>
+                            <li> <i class="material-icons">check</i> 1 initial concept included</li>
+                            <li> <i class="material-icons">check</i> source file</li>
+                            <li> <i class="material-icons">check</i> logo transparency</li>
+                            <li> <i class="material-icons">check</i> vector file</li>
+                            <li> <i class="material-icons">check</i> full colour</li>
+                            <li> <i class="material-icons">check</i> multiple sizes</li>
+                            <li> <i class="material-icons">check</i> social media kit</li>
+                        </ul>
                     </div>
-                    <!-- Revisions -->
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                            {{ service.basicpackage.revisions }} revisions
-                        </h6>
+                </div>
+                <!-- Continue to payment -->
+                <div class="row center payment">
+                    <div class="col s12">
+                        <button type="submit" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.basicpackage.price }})</span></button>
                     </div>
-                {% endif %}
-                
-            </div>
-            <!-- Package overview -->
-            <div class="row overview-list">
-                <div class="col s12 m8 offset-m2">
-                    <ul>
-                        <li> <i class="material-icons">check</i> 1 initial concept included</li>
-                        <li> <i class="material-icons">check</i> source file</li>
-                        <li> <i class="material-icons">check</i> logo transparency</li>
-                        <li> <i class="material-icons">check</i> vector file</li>
-                        <li> <i class="material-icons">check</i> full colour</li>
-                        <li> <i class="material-icons">check</i> multiple sizes</li>
-                        <li> <i class="material-icons">check</i> social media kit</li>
-                    </ul>
                 </div>
             </div>
-            <!-- Continue to payment -->
-            <div class="row center payment">
-                <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.basicpackage.price }})</span></a>
-                </div>
-            </div>
-        </div>
+        </form>
+        
         {% if service.basicpackage.enable_all_packages %}
-        <div class="tab-content service-package-container" id="standard">
-            <!-- Package headline -->
-            <div class="row center">
-                <div class="col s12">
-                    <h6 class="headline">{{ service.standardpackage.standard_package_title }}</h6>
-                </div>
-            </div>
-            <!-- Package details -->
-            <div class="row center">
-                <div class="col s12">
-                    <p>{{ service.standardpackage.standard_package_description }}</p>
-                </div>
-            </div>
-            <!-- References -->
-            {% if service.standardpackage.standard_reference_images %}
+        <!-- Standard package -->
+        <form action="{% url 'checkout' service.id %}" method="POST" id="standardCheckout">
+            {% csrf_token %}
+            <input type='hidden' value='standard' name='package'>
+            <div class="tab-content service-package-container" id="standard">
+                <!-- Package headline -->
                 <div class="row center">
                     <div class="col s12">
-                        <a href="#standardReferenceImgs" class="blue-link modal-trigger">See references</a>
+                        <h6 class="headline">{{ service.standardpackage.package_title }}</h6>
                     </div>
                 </div>
-                <!-- Image modal -->
-                <div class="reference-img-modal modal" id="standardReferenceImgs">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <img src="{{ service.standardpackage.standard_reference_images.url }}" 
-                        alt="Service reference image for the standard package" class="reference-img">
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Requirements -->
-            {% if service.include_client_requirements %}
-                <div class="row center requirements">
+                <!-- Package details -->
+                <div class="row center">
                     <div class="col s12">
-                        <h6 class="headline">Requirements</h6>
+                        <p>{{ service.standardpackage.package_description }}</p>
                     </div>
-                    {% if service.requirements_same_for_all %}
+                </div>
+                <!-- References -->
+                {% if service.standardpackage.reference_images %}
+                    <div class="row center">
                         <div class="col s12">
-                            <p>{{ service.basicpackage.client_requirements }}</p>
+                            <a href="#standardReferenceImgs" class="blue-link modal-trigger">See references</a>
                         </div>
-                    {% else %}
+                    </div>
+                    <!-- Image modal -->
+                    <div class="reference-img-modal modal" id="standardReferenceImgs">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <img src="{{ service.standardpackage.reference_images.url }}" 
+                            alt="Service reference image for the standard package" class="reference-img">
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Requirements -->
+                {% if service.include_client_requirements %}
+                    <div class="row center requirements">
                         <div class="col s12">
-                            <p>{{ service.standardpackage.standard_client_requirements }}</p>
+                            <h6 class="headline">Requirements</h6>
+                        </div>
+                        {% if service.requirements_same_for_all %}
+                            <div class="col s12">
+                                <p>{{ service.basicpackage.client_requirements }}</p>
+                            </div>
+                        {% else %}
+                            <div class="col s12">
+                                <p>{{ service.standardpackage.client_requirements }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <!-- Divider -->
+                <div class="word-divider">
+                    <span class="div-line"></span>
+                    <div class="delivery-icon">
+                        <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
+                    </div>
+                    <span class="div-line"></span>
+                </div>
+                <!-- Delivery and revsions -->
+                <div class="row center delivery-revisions">
+                    <!-- If fast delivery is available -->
+                    {% if service.standardpackage.fast_delivery_time %}
+                        <!-- Choose between fast or standard delivery -->
+                        <form action="">
+                            <!-- Delivery options -->
+                            <div class="col s6 m8">
+                                <div class="row">
+                                    <div class="col s12 l4">
+                                        <h6>
+                                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                            day delivery:
+                                        </h6>
+                                    </div>
+                                    <div class="col s12 l4 delivery-options">
+                                        <h6>
+                                            <label>
+                                                <input type="radio" name="delivery" id="delivery_standard" value="0" checked>
+                                                <span>{{ service.standardpackage.delivery_time }} days</span>
+                                            </label>
+                                        </h6>   
+                                    </div>
+                                    <div class="col s12 l4 delivery-options">
+                                        <h6>
+                                            <label>
+                                                <input type="radio" name="delivery" id="fast_delivery_standard" value="{{ service.standardpackage.fast_delivery_price }}">
+                                                <span>{{ service.standardpackage.fast_delivery_time }} days ( +£{{ service.standardpackage.fast_delivery_price }} )</span>
+                                            </label>
+                                        </h6>   
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Revisions -->
+                            <div class="col s6 m4">
+                                <h6>
+                                    <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                    {{ service.standardpackage.revisions }} revisions
+                                </h6>
+                            </div>
+                        </form>
+                    <!-- Else display standard delivery time -->
+                    {% else %}
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                {{ service.standardpackage.delivery_time }} day delivery
+                            </h6>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.standardpackage.revisions }} revisions
+                            </h6>
                         </div>
                     {% endif %}
                 </div>
-            {% endif %}
-            <!-- Divider -->
-            <div class="word-divider">
-                <span class="div-line"></span>
-                <div class="delivery-icon">
-                    <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
-                </div>
-                <span class="div-line"></span>
-            </div>
-            <!-- Delivery and revsions -->
-            <div class="row center delivery-revisions">
-                <!-- If fast delivery is available -->
-                {% if service.standardpackage.standard_fast_delivery_time %}
-                    <!-- Choose between fast or standard delivery -->
-                    <form action="">
-                        <!-- Delivery options -->
-                        <div class="col s6 m8">
-                            <div class="row">
-                                <div class="col s12 l4">
-                                    <h6>
-                                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                                        day delivery:
-                                    </h6>
-                                </div>
-                                <div class="col s12 l4 delivery-options">
-                                    <h6>
-                                        <label>
-                                            <input type="radio" name="delivery_standard" id="delivery_standard" checked>
-                                            <span>{{ service.standardpackage.standard_delivery_time }} days</span>
-                                        </label>
-                                    </h6>   
-                                </div>
-                                <div class="col s12 l4 delivery-options">
-                                    <h6>
-                                        <label>
-                                            <input type="radio" name="delivery_standard" id="fast_delivery_standard">
-                                            <span>{{ service.standardpackage.standard_fast_delivery_time }} days ( +£{{ service.standardpackage.standard_fast_delivery_price }} )</span>
-                                        </label>
-                                    </h6>   
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Revisions -->
-                        <div class="col s6 m4">
-                            <h6>
-                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                                {{ service.standardpackage.standard_revisions }} revisions
-                            </h6>
-                        </div>
-                    </form>
-                <!-- Else display standard delivery time -->
-                {% else %}
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                            {{ service.standardpackage.standard_delivery_time }} day delivery
-                        </h6>
+                <!-- Package overview -->
+                <div class="row overview-list">
+                    <div class="col s12 m8 offset-m2">
+                        <ul>
+                            <li> <i class="material-icons">check</i> 1 initial concept included</li>
+                            <li> <i class="material-icons">check</i> source file</li>
+                            <li> <i class="material-icons">check</i> logo transparency</li>
+                            <li> <i class="material-icons">check</i> vector file</li>
+                            <li> <i class="material-icons">check</i> full colour</li>
+                            <li> <i class="material-icons">check</i> multiple sizes</li>
+                            <li> <i class="material-icons">check</i> social media kit</li>
+                        </ul>
                     </div>
-                    <!-- Revisions -->
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                            {{ service.standardpackage.standard_revisions }} revisions
-                        </h6>
+                </div>
+                <!-- Continue to payment -->
+                <div class="row center payment">
+                    <div class="col s12">
+                        <button type="submit" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.standardpackage.price }})</span></button>
                     </div>
-                {% endif %}
-            </div>
-            <!-- Package overview -->
-            <div class="row overview-list">
-                <div class="col s12 m8 offset-m2">
-                    <ul>
-                        <li> <i class="material-icons">check</i> 1 initial concept included</li>
-                        <li> <i class="material-icons">check</i> source file</li>
-                        <li> <i class="material-icons">check</i> logo transparency</li>
-                        <li> <i class="material-icons">check</i> vector file</li>
-                        <li> <i class="material-icons">check</i> full colour</li>
-                        <li> <i class="material-icons">check</i> multiple sizes</li>
-                        <li> <i class="material-icons">check</i> social media kit</li>
-                    </ul>
                 </div>
             </div>
-            <!-- Continue to payment -->
-            <div class="row center payment">
-                <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.standardpackage.standard_price }})</span></a>
-                </div>
-            </div>
-        </div>
+        </form>
 
-        <div class="tab-content service-package-container" id="premium">
-            <!-- Package headline -->
-            <div class="row center">
-                <div class="col s12">
-                    <h6 class="headline">{{ service.premiumpackage.premium_package_title }}</h6>
-                </div>
-            </div>
-            <!-- Package details -->
-            <div class="row center">
-                <div class="col s12">
-                    <p>{{ service.premiumpackage.premium_package_description }}</p>
-                </div>
-            </div>
-            <!-- References -->
-            {% if service.premiumpackage.premium_reference_images %}
+        <!-- Premium package -->
+        <form action="{% url 'checkout' service.id %}" method="POST" id="premiumCheckout">
+            {% csrf_token %}
+            <input type='hidden' value='standard' name='package'>
+            <div class="tab-content service-package-container" id="premium">
+                <!-- Package headline -->
                 <div class="row center">
                     <div class="col s12">
-                        <a href="#premiumReferenceImgs" class="blue-link modal-trigger">See references</a>
+                        <h6 class="headline">{{ service.premiumpackage.package_title }}</h6>
                     </div>
                 </div>
-                <!-- Image modal -->
-                <div class="reference-img-modal modal" id="premiumReferenceImgs">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <img src="{{ service.premiumpackage.premium_reference_images.url }}" 
-                        alt="Service reference image for the premium package" class="reference-img">
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Requirements -->
-            {% if service.include_client_requirements %}
-                <div class="row center requirements">
+                <!-- Package details -->
+                <div class="row center">
                     <div class="col s12">
-                        <h6 class="headline">Requirements</h6>
+                        <p>{{ service.premiumpackage.package_description }}</p>
                     </div>
-                    {% if service.requirements_same_for_all %}
+                </div>
+                <!-- References -->
+                {% if service.premiumpackage.reference_images %}
+                    <div class="row center">
                         <div class="col s12">
-                            <p>{{ service.basicpackage.client_requirements }}</p>
+                            <a href="#premiumReferenceImgs" class="blue-link modal-trigger">See references</a>
                         </div>
-                    {% else %}
+                    </div>
+                    <!-- Image modal -->
+                    <div class="reference-img-modal modal" id="premiumReferenceImgs">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <img src="{{ service.premiumpackage.reference_images.url }}" 
+                            alt="Service reference image for the premium package" class="reference-img">
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- Requirements -->
+                {% if service.include_client_requirements %}
+                    <div class="row center requirements">
                         <div class="col s12">
-                            <p>{{ service.premiumpackage.premium_client_requirements }}</p>
+                            <h6 class="headline">Requirements</h6>
+                        </div>
+                        {% if service.requirements_same_for_all %}
+                            <div class="col s12">
+                                <p>{{ service.basicpackage.client_requirements }}</p>
+                            </div>
+                        {% else %}
+                            <div class="col s12">
+                                <p>{{ service.premiumpackage.client_requirements }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <!-- Divider -->
+                <div class="word-divider">
+                    <span class="div-line"></span>
+                    <div class="delivery-icon">
+                        <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
+                    </div>
+                    <span class="div-line"></span>
+                </div>
+                <!-- Delivery and revsions -->
+                <div class="row center delivery-revisions">
+                    <!-- If fast delivery is available -->
+                    {% if service.premiumpackage.fast_delivery_time %}
+                        <!-- Choose between fast or premium delivery -->
+                        <form action="">
+                            <!-- Delivery options -->
+                            <div class="col s6 m8">
+                                <div class="row">
+                                    <div class="col s12 l4">
+                                        <h6>
+                                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                            day delivery:
+                                        </h6>
+                                    </div>
+                                    <div class="col s12 l4 delivery-options">
+                                        <h6>
+                                            <label>
+                                                <input type="radio" name="delivery" id="delivery_premium" value="0" checked>
+                                                <span>{{ service.premiumpackage.delivery_time }} days</span>
+                                            </label>
+                                        </h6>   
+                                    </div>
+                                    <div class="col s12 l4 delivery-options">
+                                        <h6>
+                                            <label>
+                                                <input type="radio" name="delivery" id="fast_delivery_premium"  value="{{ service.premiumpackage.fast_delivery_price }}">
+                                                <span>{{ service.premiumpackage.fast_delivery_time }} days ( +£{{ service.premiumpackage.fast_delivery_price }} )</span>
+                                            </label>
+                                        </h6>   
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Revisions -->
+                            <div class="col s6 m4">
+                                <h6>
+                                    <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                    {{ service.premiumpackage.revisions }} revisions
+                                </h6>
+                            </div>
+                        </form>
+                    <!-- Else display premium delivery time -->
+                    {% else %}
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
+                                {{ service.premiumpackage.delivery_time }} day delivery
+                            </h6>
+                        </div>
+                        <!-- Revisions -->
+                        <div class="col s6">
+                            <h6>
+                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
+                                {{ service.premiumpackage.revisions }} revisions
+                            </h6>
                         </div>
                     {% endif %}
                 </div>
-            {% endif %}
-            <!-- Divider -->
-            <div class="word-divider">
-                <span class="div-line"></span>
-                <div class="delivery-icon">
-                    <img src="{{ MEDIA_URL }}icons/box.svg" alt="Delivery box icon">
-                </div>
-                <span class="div-line"></span>
-            </div>
-            <!-- Delivery and revsions -->
-            <div class="row center delivery-revisions">
-                <!-- If fast delivery is available -->
-                {% if service.premiumpackage.premium_fast_delivery_time %}
-                    <!-- Choose between fast or premium delivery -->
-                    <form action="">
-                        <!-- Delivery options -->
-                        <div class="col s6 m8">
-                            <div class="row">
-                                <div class="col s12 l4">
-                                    <h6>
-                                        <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                                        day delivery:
-                                    </h6>
-                                </div>
-                                <div class="col s12 l4 delivery-options">
-                                    <h6>
-                                        <label>
-                                            <input type="radio" name="delivery_premium" id="delivery_premium" checked>
-                                            <span>{{ service.premiumpackage.premium_delivery_time }} days</span>
-                                        </label>
-                                    </h6>   
-                                </div>
-                                <div class="col s12 l4 delivery-options">
-                                    <h6>
-                                        <label>
-                                            <input type="radio" name="delivery_premium" id="fast_delivery_premium">
-                                            <span>{{ service.premiumpackage.premium_fast_delivery_time }} days ( +£{{ service.premiumpackage.premium_fast_delivery_price }} )</span>
-                                        </label>
-                                    </h6>   
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Revisions -->
-                        <div class="col s6 m4">
-                            <h6>
-                                <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                                {{ service.premiumpackage.premium_revisions }} revisions
-                            </h6>
-                        </div>
-                    </form>
-                <!-- Else display premium delivery time -->
-                {% else %}
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/time.svg" alt="Time icon" class="time-icon">
-                            {{ service.premiumpackage.premium_delivery_time }} day delivery
-                        </h6>
+                <!-- Package overview -->
+                <div class="row overview-list">
+                    <div class="col s12 m8 offset-m2">
+                        <ul>
+                            <li> <i class="material-icons">check</i> 1 initial concept included</li>
+                            <li> <i class="material-icons">check</i> source file</li>
+                            <li> <i class="material-icons">check</i> logo transparency</li>
+                            <li> <i class="material-icons">check</i> vector file</li>
+                            <li> <i class="material-icons">check</i> full colour</li>
+                            <li> <i class="material-icons">check</i> multiple sizes</li>
+                            <li> <i class="material-icons">check</i> social media kit</li>
+                        </ul>
                     </div>
-                    <!-- Revisions -->
-                    <div class="col s6">
-                        <h6>
-                            <img src="{{ MEDIA_URL }}icons/refresh.svg" alt="Refresh icon" class="refresh-icon">
-                            {{ service.premiumpackage.premium_revisions }} revisions
-                        </h6>
+                </div>
+                <!-- Continue to payment -->
+                <div class="row center payment">
+                    <div class="col s12">
+                        <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.premiumpackage.price }})</span></a>
                     </div>
-                {% endif %}
-            </div>
-            <!-- Package overview -->
-            <div class="row overview-list">
-                <div class="col s12 m8 offset-m2">
-                    <ul>
-                        <li> <i class="material-icons">check</i> 1 initial concept included</li>
-                        <li> <i class="material-icons">check</i> source file</li>
-                        <li> <i class="material-icons">check</i> logo transparency</li>
-                        <li> <i class="material-icons">check</i> vector file</li>
-                        <li> <i class="material-icons">check</i> full colour</li>
-                        <li> <i class="material-icons">check</i> multiple sizes</li>
-                        <li> <i class="material-icons">check</i> social media kit</li>
-                    </ul>
                 </div>
             </div>
-            <!-- Continue to payment -->
-            <div class="row center payment">
-                <div class="col s12">
-                    <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span>Continue <span>(£{{ service.premiumpackage.premium_price }})</span></a>
-                </div>
-            </div>
-        </div>
+        </form>
         {% endif %}
     </div>
 {% endblock %}

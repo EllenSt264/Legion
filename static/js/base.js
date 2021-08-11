@@ -98,14 +98,18 @@ $(document).ready(function () {
     ====================================================== */
 
     var tableCheckbox = $('table.extras input[type="checkbox"]');
+    console.log(tableCheckbox.prop('checked'))
+    if (tableCheckbox.prop('checked') == true) {
+        $(this).parent().parent().parent().parent().addClass('checked');
+    } else {
+        $(this).parent().parent().parent().parent().removeClass('checked');
+    }
     
     tableCheckbox.on('click', function() {
         if (tableCheckbox.is(':checked')) {
-            console.log('checked')
-            $(this).parent().parent().parent().parent().css('background-color', 'rgba(11, 35, 65, 50%)');
+            $(this).parent().parent().parent().parent().addClass('checked');
         } else if (!tableCheckbox.is(':checked')) {
-            console.log('not checked')
-            $(this).parent().parent().parent().parent().css('background-color', 'rgba(255, 255, 255, 0)');
+            $(this).parent().parent().parent().parent().removeClass('checked');
         }
     });
     

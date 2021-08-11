@@ -2991,8 +2991,27 @@ Checkout page styles
     background-color: #213958;
 }
 
-.order-summary-card .order-service-details .quantity .increment-qty {
-    margin-left: 39px;
+.order-summary-card .input-field .col.s3 {
+    margin: 0 !important;
+}
+
+.order-summary-card .input-field .col.s4 {
+    margin: 0 3px;
+}
+
+#checkout-orderSummary .input-field input {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.order-summary-card .qty-input {
+    margin: 0 3px !important;
+}
+
+.order-summary-card .subtotal tr:first-child .total-price {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    font-size: 16px;
+    letter-spacing: 2px;
 }
 
 .order-service-details {
@@ -3152,21 +3171,49 @@ table.extras .extra-price {
     padding-bottom: 25px !important;
 }
 
+.order-total .quantity {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-align: right;
+}
+
 .order-total .grand-total td {
     padding-top: 20px !important;
 }
 
 .order-total .subtotal .title,
 .order-total .service-fee .title,
-.order-total .delivery .title {
+.order-total .delivery .title,
+.order-total .service-total .price {
     font-family: 'Hurme Geometric Sans 3';
     font-size: 16px;
     letter-spacing: 1px;
     text-transform: capitalize;
 }
 
-.order-total .subtotal .price,
-.order-total .service-fee .price {
+.order-total .service-fee .price,
+.order-total .service-total .price,
+.order-total .extras-total .price  {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+.order-total .extras-total td {
+    padding-bottom: 15px !important;
+}
+
+.order-total .subtotal {
+    border-top: 1px solid rgba(243, 243, 244, 60%) !important;
+}
+
+.order-total .subtotal td {
+    padding-top: 10px !important;
+}
+
+.order-total .subtotal .price {
     font-family: 'Hurme Geometric Sans 3 - SemiBold';
     font-size: 16px;
     letter-spacing: 2px;
@@ -3178,10 +3225,9 @@ table.extras .extra-price {
     font-size: 20px;
     letter-spacing: 2px;
     text-align: right;
-    border-top: 1px solid #FFFFFF !important;
 }
 
-.order-total .grand-total .headline {
+.order-total .grand-total td {
     border-top: 1px solid #FFFFFF !important;
 }
 
@@ -3204,6 +3250,12 @@ table.grandtotal-table .grand-total {
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+table.extra-costs tr,
+table.subtotal tr,
+.grandtotal-table tr {
+    border-bottom: none;
 }
 
 /* ==========================================================================
