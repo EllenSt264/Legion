@@ -20,26 +20,32 @@ class UserProfileChangeForm(forms.ModelForm):
 
 class RecruiterInlineForm(admin.StackedInline):
     model = Recruiter
+    extra = 0
 
 
 class CreatorInlineForm(admin.StackedInline):
     model = Creator
+    extra = 0
 
 
 class CreatorWorkInlineForm(admin.StackedInline):
     model = CreatorWork
+    extra = 0
 
 
 class EducationInlineForm(admin.StackedInline):
     model = Education
+    extra = 0
 
 
 class WorkExperienceInlineForm(admin.StackedInline):
     model = WorkExperience
+    extra = 0
 
 
 class LanguagesInlineForm(admin.StackedInline):
     model = Languages
+    extra = 0
 
 
 class UserProfileAdmin(admin.ModelAdmin):
