@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import (UserProfile, Recruiter, Creator,
@@ -50,33 +51,55 @@ def creator_form(request, user_id):
         ]
 
         for each_form in form_list:
-            if each_form.is_valid():
-                profile = profile_form.save(commit=False)
-                profile.is_creator = True
-                creator = creator_form.save(commit=False)
-                creator.profile = profile
-                profile.save()
-                creator.save()
-
-                creator_work = work_form.save(commit=False)
-                creator_work.profile = profile
-                creator_work.save()
-
-                education = education_form.save(commit=False)
-                education.profile = profile
-                education.save()
-
-                work = work_experience_form.save(commit=False)
-                work.profile = profile
-                work.save()
-
-                languages = languages_form.save(commit=False)
-                languages.profile = profile
-                languages.save()
-
-                return redirect(reverse('success_creator'))
-            else:
+            if each_form.is_valid() is False:
                 return redirect(reverse('fail'))
+
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.is_creator = True
+
+        if creator_form.is_valid():
+            creator = creator_form.save(commit=False)
+            creator.profile = profile
+            profile.save()
+            creator.save()
+
+        if work_form.is_valid():
+            field = None
+            try:
+                if work_form.cleaned_data['dev_categories']:
+                    field = work_form.cleaned_data['dev_categories']
+                elif work_form.cleaned_data['creative_categories']:
+                    field = work_form.cleaned_data['creative_categories']
+                elif work_form.cleaned_data['writing_categories']:
+                    field = work_form.cleaned_data['writing_categories']
+                elif work_form.cleaned_data['translation_categories']:
+                    field = work_form.cleaned_data['translation_categories']
+            except Exception as e:
+                messages.error(request, 'Error! {e} The form could not be validated. \
+                        Please try again.').format(e)
+
+            creator_work = work_form.save(commit=False)
+            creator_work.profile = profile
+            creator_work.subcategory = field
+            creator_work.save()
+
+        if education_form.is_valid():
+            education = education_form.save(commit=False)
+            education.profile = profile
+            education.save()
+
+        if work_experience_form.is_valid():
+            work = work_experience_form.save(commit=False)
+            work.profile = profile
+            work.save()
+
+        if languages_form.is_valid():
+            languages = languages_form.save(commit=False)
+            languages.profile = profile
+            languages.save()
+
+        return redirect(reverse('success_creator'))  
     else:
         profile_form = UserProfileForm(instance=profile)
         creator_form = CreatorForm()

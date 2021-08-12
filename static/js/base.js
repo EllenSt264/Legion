@@ -98,7 +98,6 @@ $(document).ready(function () {
     ====================================================== */
 
     var tableCheckbox = $('table.extras input[type="checkbox"]');
-    console.log(tableCheckbox.prop('checked'))
     if (tableCheckbox.prop('checked') == true) {
         $(this).parent().parent().parent().parent().addClass('checked');
     } else {
@@ -323,7 +322,6 @@ $(document).ready(function () {
     $('#id_category_3').attr('id', 'translation_category');
 
     
-
     // Trigger category fullscreen overlay
     for (let i in categoryNames) {
         $(`#${categoryNames[i]}_category`).parent().on('click', function() {
@@ -340,9 +338,6 @@ $(document).ready(function () {
     function categoryClickEffect() {
         var clicks = 0
         $('.category-overlay li.col.s6').on('click', function() {
-            // Increment click count
-            clicks += 1
-
             // Remove selected class from previously selected category
             $('.category-overlay li').children().removeClass('selected-category');
 
@@ -350,17 +345,6 @@ $(document).ready(function () {
             if ($(this).children('input').attr('checked', true)) {
                 $(this).children().addClass('selected-category');
             };
-
-            // Remove selected class and checked attribute from the default checked radio value
-            if ($(this).attr('id') === 'id_desktop' && clicks === 1) {
-                $(this).children().removeClass('selected-category');
-                $(this).children().children().children().attr('checked', false);
-            };
-        });
-
-        // Reset click count
-        $('.close-category').on('click', function() {
-            clicks = 0;
         });
     };
 
@@ -607,13 +591,14 @@ $(document).ready(function () {
     to popular search tags
     ======================================= */
 
-    var categoryRadios = $('#ServiceCategory input[type="radio"]');
+    var categoryRadios = $('.subcategory-selection input[type="radio"]');
     var categorySelection;
 
     categoryRadios.on('change', function() {
         // Define value for category selection variable
         if ($(categoryRadios).is(':checked')) {
             var categorySelection = $(this).val();
+            console.log(categorySelection)
         };
 
         // Grab popular search tags container

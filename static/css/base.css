@@ -192,6 +192,11 @@ Global styles
     transition: 1s;
 }
 
+.btn-purple-gradient.btn-large {
+    line-height: 54px;
+    padding: 0 28px;
+}
+
 .btn-purple-gradient:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
@@ -207,6 +212,13 @@ Global styles
     background-color: #FFFFFF;
     color: #000000;
     border-radius: 25px;
+}
+
+.btn-purple {
+    background-color: #6713D2;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 0 25px !important;
 }
 
 .btn-green-gradient {
@@ -244,6 +256,11 @@ Global styles
     transition: 1s;
 }
 
+.btn-white-gradient.btn-large {
+    line-height: 54px;
+    padding: 0 28px;
+}
+
 .btn-white-gradient:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
@@ -260,6 +277,11 @@ Global styles
     line-height: 40px;
     border-radius: 72px;
     transition: 1s;
+}
+
+.btn-orange-gradient.btn-large {
+    line-height: 54px;
+    padding: 0 28px;
 }
 
 .btn-orange-gradient:hover {
@@ -304,14 +326,44 @@ Global styles
     letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid #03FFFF;
+    cursor: pointer;
+}
+
+.green-link {
+    font-family: 'Hurme Geometric Sans 3 - SemiBold';
+    color: #1CE89A;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .headline {
     font-family: 'Hurme Geometric Sans 3 - SemiBold';
     font-size: 16px;
     letter-spacing: 2px;
-    line-height: 20px;
     text-transform: uppercase;
+}
+
+.headline.large {
+    font-size: 28px;
+    margin: 45px auto;
+}
+
+.mt-2 {
+    margin-top: 40px;
+}
+
+.mt-3 {
+    margin-top: 60px;
+}
+
+.mt-4 {
+    margin-top: 80px;
+}
+
+.mt-5 {
+    margin-top: 100px;
 }
 
 .input-field {
@@ -425,6 +477,13 @@ Global styles
     min-height: 85px !important;
 }
 
+.file-field .btn {
+    margin: 5px !important;
+    border: 10px;
+    background-image: linear-gradient(to right, #6C5CE7 0%, #A770EF  51%, #6C5CE7  100%);
+    background-size: 200% auto;
+}
+
 .character-counter {
     position: absolute;
     bottom: 0;
@@ -434,6 +493,10 @@ Global styles
 
 #alternative-base-template {
     margin-top: 25px;
+}
+
+.chip {
+    cursor: pointer;
 }
 
 /* =======================
@@ -672,6 +735,14 @@ Profile sidenav styles
 }
 
 /* ======================================================
+Get started page styles
+====================================================== */
+
+#GetStarted .btn-black {
+    width: auto;
+}
+
+/* ======================================================
 Form step styles
 ====================================================== */
 
@@ -683,15 +754,23 @@ Form step styles
 Titles and content
 ====================== */
 
+.form-step-container .tab .btn.btn-large {
+    width: auto;
+} 
+
 .form-step-container ol {
     padding: 5px 40px;
 }
 
 .form-step-container li {
     padding: 5px 25px;
-    text-align: left;
+    text-align: center;
     font-weight: 300;
     letter-spacing: 1px;
+}
+
+.form-step-container #ExpertiseLevel .radio-btn label span {
+    display: flex;
 }
 
 .form-step-container p {
@@ -991,6 +1070,12 @@ Category overlay
     align-items: center;
     text-align: center;
     border-radius: 10px;
+}
+
+.category-box,
+.category-box label,
+.category-box h6 {
+    cursor: pointer;
 }
 
 .category-overlay .category-box {
@@ -3004,6 +3089,11 @@ Checkout page styles
     text-align: center;
 }
 
+.checkout#checkout-payment .input-field input {
+    color: #2D2D2D;
+    text-align: left;
+}
+
 .order-summary-card .qty-input {
     margin: 0 3px !important;
 }
@@ -3271,6 +3361,7 @@ table.subtotal tr,
     margin: 0 auto;
     position: sticky;
     bottom: 0;
+    z-index: 50;
 }
 
 #fixedOrderSummary .card-panel {
@@ -3326,6 +3417,98 @@ table.subtotal tr,
 #fixedOrderSummary .col.s5,
 #fixedOrderSummary .col.s4 {
     transform: translateY(10%);
+}
+
+#checkout-payment .order-summary-card {
+    margin-top: 25px;
+}
+
+#checkout-payment .contact.small td {
+    text-align: center;
+}
+
+#checkout-payment .contact.small tr:nth-child(2) td {
+    padding: 15px;
+}
+
+#checkout-payment .contact tr {
+    border: 1px solid white;
+}
+
+#checkout-payment .contact td:first-child {
+    padding: 15px 35px;
+}
+
+#checkout-payment .contact td:nth-child(3) {
+    padding: 15px 25px;
+}
+
+#checkout-payment .contact td:nth-child(2) {
+    padding: 15px 10px;
+}
+
+#checkout-payment .headline {
+    font-size: 14px;
+}
+
+#checkout-payment p {
+    font-family: 'Hurme Geometric Sans 3';
+    font-size: 14px;
+}
+
+#checkout-payment .email-confirmation-checkbox {
+    padding-top: 15px;
+    padding-left: 25px;
+}
+
+#checkout-payment .email-confirmation-checkbox span {
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    line-height: 18px;
+}
+
+#checkout-payment .email-confirmation-checkbox span strong {
+    font-family: 'Product Sans - Bold';
+    letter-spacing: 2px;
+}
+
+.save-billing {
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+.save-billing span {
+    color: #FFFFFF;
+    letter-spacing: 1px;
+}
+
+#checkout-payment .email-confirmation-checkbox [type="checkbox"]:checked+span:not(.lever):before {
+    top: 0;
+}
+
+[name="email-confirmation"]+span:not(.lever):before,
+[name="email-confirmation"]:not(.filled-in)+span:not(.lever):after {
+    top: 5px;
+    border: 2px solid #F4F4F4;
+}
+
+[name="save-billing"]+span:not(.lever):before,
+[name="save-billing"]:not(.filled-in)+span:not(.lever):after {
+    border: 2px solid #F4F4F4;
+}
+
+#checkout-payment .divider {
+    margin-top: 35px !important;
+    background-color: rgba(224, 224, 244, 50%);
+}
+
+#checkout-payment .billing {
+    margin-top: 65px;
+}
+
+#submit-payment {
+    width: 315px;
 }
 
 /* ==========================================================================
@@ -4024,6 +4207,9 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     #ScopePricing .row:nth-child(2) label {
         margin-right: 5%;
     }
+    #submit-payment {
+        width: 250px;
+    }    
 }
 
 @media (max-width: 334px) {
@@ -4035,6 +4221,11 @@ RESPONSIVE STYLES FOR MEDIUM SCREENS
     #ScopePricing .row:nth-child(2) .lever {
         margin-left: 0;
     }
+    /* Checkout styles
+    =========================== */
+    #checkout-payment .email-confirmation-checkbox {
+        padding-left: 10px;
+    }    
 }
 
 
