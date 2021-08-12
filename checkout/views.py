@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
+from .models import Order, OrderLineItem
 from profiles.models import UserProfile
 from services.models import Service
 from checkout.forms import OrderForm
@@ -111,28 +112,58 @@ def checkout(request, service_id):
 def checkout_payment(request, service_id):
     """ A view to process payment for an order """
 
-    if 'order' in request.session:
-        order = request.session.get('order')
-        if order['service_id'] is not service_id:
-            return render(request, '404.html')
-        if order['buyer'] != request.user.email:
-            return render(request, '404.html')
-    else:
-        return redirect(reverse('checkout', args=(service_id,)))
-
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    current_order = order_contents(request)
+    service = get_object_or_404(Service, pk=service_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        order = request.session.get('order', {})
 
+        form_data = {
+            'full_name': request.POST.get('full_name'),
+            'email': request.POST.get('email'),
+            'company_name': request.POST.get('company_name'),
+            'street_address': request.POST.get('street_address'),
+            'apartment_no': request.POST.get('apartment_no'),
+            'town_or_city': request.POST.get('town_or_city'),
+            'country': request.POST.get('country'),
+            'county': request.POST.get('county'),
+            'postcode': request.POST.get('postcode'),
+            'phone_number': request.POST.get('phone_number'),
+        }
+        form = OrderForm(form_data)
+        if form.is_valid():
+            user_order = form.save(commit=False)
+            user_order.profile = profile
+            user_order.save()
+
+            package = current_order['package']
+
+            order_line_item = OrderLineItem(
+                order=user_order,
+                service=service,
+                package=package,
+                service_price=package.price,
+                quantity=current_order['quantity'],
+                delivery_cost=current_order['delivery'],
+            )
+            order_line_item.save()
+
+            request.session['save_info'] = 'save_info' in request.POST
+            return redirect(reverse(
+                'checkout_success', args=[user_order.order_number]))
+        else:
+            messages.error(request, 'There was an error with your form. \
+                Please double check your information.')
     else:
-        form = OrderForm()
-
-        service = get_object_or_404(Service, pk=service_id)
-        profile = get_object_or_404(UserProfile, user=request.user)
-
-        current_order = order_contents(request)
+        order = request.session.get('order', {})
+        if not order:
+            messages.error(
+                request, "You must select a service before you a payment")
+            return redirect(reverse('service_details', args=(service_id)))
 
         total = current_order['grand_total']
         stripe_total = round(total * 100)
@@ -142,9 +173,11 @@ def checkout_payment(request, service_id):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        if not stripe_public_key:
-            messages.warning(request, 'Stripe public key is missing. \
-                Did you forget to set it in your environment?')
+        form = OrderForm()
+
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. \
+            Did you forget to set it in your environment?')
 
     template = 'checkout/checkout-payment.html'
     context = {
@@ -154,4 +187,17 @@ def checkout_payment(request, service_id):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
+    return render(request, template, context)
+
+
+def checkout_success(request, order_number):
+    """ A view to handle successful checkouts """
+
+    order = get_object_or_404(Order, order_number=order_number)
+
+    template = 'checkout/checkout-success.html'
+    context = {
+        'order': order,
+    }
+
     return render(request, template, context)

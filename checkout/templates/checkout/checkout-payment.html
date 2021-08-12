@@ -22,7 +22,7 @@
 <div class="checkout" id="checkout-payment">
     <div class="row">
         <div class="col s12 l5 offset-l1 offset-xl2">
-            <form action="{% url 'checkout_payment' service.id %}" class="payment-form">
+            <form action="{% url 'checkout_payment' service.id %}" method="POST" id="payment-form">
                 {% csrf_token %}
                 <!-- Information -->
                 <h5 class="headline center">Information</h5>
@@ -96,8 +96,15 @@
                 <!-- Submit payment -->
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit" class="btn btn-large btn-black" id="submit-payment">Place Order</button>
+                        <button type="submit" class="btn btn-large btn-black" id="submit-payment">
+                            <div class="spinner hidden" id="spinner"></div>
+                            Place Order
+                        </button>
                     </div>
+                    <p id="card-error" role="alert"></p>
+                    <p class="result-message hidden">
+                        Payment succeeded, see the result in your
+                    </p>
                 </div>
             </form>
         </div>

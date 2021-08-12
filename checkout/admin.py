@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Order, OrderLineItem
 
 
-class OrderLineItemAdminInline(admin.TabularInline):
+class OrderLineItemAdminInline(admin.StackedInline):
     model = OrderLineItem
     extra = 0
 

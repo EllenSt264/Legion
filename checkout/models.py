@@ -69,6 +69,7 @@ class OrderLineItem(models.Model):
 
     quantity = models.IntegerField(null=True, blank=True, default=0)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
+    service_price = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     subtotal = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     service_fee = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     grand_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
@@ -77,12 +78,12 @@ class OrderLineItem(models.Model):
     def save(self, *args, **kwargs):
         """ Override original save method to set order number """
 
-        self.subtotal = (
-            float(self.package.price) * self.quantity) + self.delivery_cost
+        self.subtotal = (float(self.service_price) * self.quantity) + self.delivery_cost
+
         self.service_fee = (self.subtotal / 10) / 2
         self.grand_total = self.subtotal + self.service_fee
 
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.service.sku} on order {self.order.order_number}'
+        return self.order.order_number
