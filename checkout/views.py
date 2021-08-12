@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
+from profiles.models import UserProfile
 from services.models import Service
+from checkout.forms import OrderForm
 
 import stripe
 
@@ -109,11 +111,6 @@ def checkout(request, service_id):
 def checkout_payment(request, service_id):
     """ A view to process payment for an order """
 
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
-
-    service = get_object_or_404(Service, pk=service_id)
-
     if 'order' in request.session:
         order = request.session.get('order')
         if order['service_id'] is not service_id:
@@ -123,26 +120,37 @@ def checkout_payment(request, service_id):
     else:
         return redirect(reverse('checkout', args=(service_id,)))
 
-    current_order = order_contents(request)
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    total = current_order['grand_total']
-    stripe_total = round(total * 100)
-    stripe.api_key = stripe_secret_key
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
 
-    print(intent)
+    else:
+        form = OrderForm()
 
-    if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. \
-            Did you forget to set it in your environment?')
+        service = get_object_or_404(Service, pk=service_id)
+        profile = get_object_or_404(UserProfile, user=request.user)
+
+        current_order = order_contents(request)
+
+        total = current_order['grand_total']
+        stripe_total = round(total * 100)
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
+
+        if not stripe_public_key:
+            messages.warning(request, 'Stripe public key is missing. \
+                Did you forget to set it in your environment?')
 
     template = 'checkout/checkout-payment.html'
     context = {
         'current_order': current_order,
         'service': service,
+        'form': form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }

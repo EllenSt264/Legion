@@ -1,5 +1,6 @@
 {% extends "base-alternative.html" %}
 {% load static %}
+{% load materializecss %}
 
 {% block breadcrumbs %}
     {% if service.shipping_required %}
@@ -20,10 +21,49 @@
 {% block content %}
 <div class="checkout" id="checkout-payment">
     <div class="row">
-        <div class="col s12 l5 offset-l1">
-            <h5 class="headline center">Payment</h5>
+        <div class="col s12 l5 offset-l1 offset-xl2">
             <form action="{% url 'checkout_payment' service.id %}" class="payment-form">
                 {% csrf_token %}
+                <!-- Information -->
+                <h5 class="headline center">Information</h5>
+                <div class="row center">
+                    <div class="col s12">
+                        <table class="contact hide-on-small-only">
+                            <tr>
+                                <td class="headline">contact</td>
+                                <td>
+                                    <p>
+                                        {{ request.user.get_full_name }},
+                                        {{ profile.user }},
+                                        {{ request.user.phone_number }}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="contact small hide-on-med-and-up">
+                            <tr>
+                                <td class="headline">contact</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        {{ request.user.get_full_name }},
+                                        {{ profile.user }},
+                                        {{ request.user.phone_number }}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p class="email-confirmation-checkbox">
+                    <label>
+                        <input type="checkbox" name="email-confirmation" checked/>
+                        <span>Email order confirmation to <strong>{{ profile.user }}</strong></span>
+                    </label>
+                </p>
+                <div class="divider"></div>
+                <h5 class="headline center">Payment</h5>
                 <!-- Card payment -->
                 <div class="row">
                     <div class="col s12">
@@ -39,13 +79,14 @@
                     </div>
                 </div>
                 <!-- Billing address -->
-                <div class="row">
+                <div class="row billing">
                     <div class="col s12">
                         <fieldset>
                             <legend class="fieldset-label center">Billing Address</legend>
-                            <p>
+                            {{ form | materializecss }}
+                            <p class="save-billing">
                                 <label>
-                                    <input type="checkbox" class="save-address"/>
+                                    <input type="checkbox" name="save-billing"/>
                                     <span>Save address details</span>
                                 </label>
                             </p>
@@ -55,12 +96,12 @@
                 <!-- Submit payment -->
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit" class="btn btn-black" id="submit-payment">Place Order</button>
+                        <button type="submit" class="btn btn-large btn-black" id="submit-payment">Place Order</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col l5 order-summary-card right hide-on-med-and-down">
+        <div class="col l5 xl4 order-summary-card right hide-on-med-and-down">
             <div class="card-panel white-text">
                 <!-- Title -->
                 <div class="row">
@@ -73,20 +114,32 @@
                 </div>
                 <!-- Order image, quantity and base price -->
                 <div class="row">
-                    <div class="col s3">
+                    <div class="col s4">
                         <img src="{% if service.images %}{{ service.images.url }}{% else %}{{ MEDIA_URL }}noimage.jpg{% endif %}"
                         alt="Service order image" class="order-card-img">
                     </div>
-                    <div class="col s8 order-service-details">
+                    <!-- Service price -->
+                    <div class="col s8">
+                        <h6>
+                            <span>
+                                x{{ current_order.quantity }}
+                            </span>
+                            £{{ current_order.total|floatformat:"2" }}
+                        </h6>
+                    </div>
+                    <!-- Headline -->
+                    <div class="col s12">
                         <!-- Service headline -->
                         <h6>{{ service.headline }}</h6>
-                        <!-- Service price -->
-                        <div class="service-price">
-                            <h6>
-                                <span>{% if quantity < 1 %}x{{ quantity }}{% endif %}</span>
-                                £{{ quantity_total }}
-                            </h6>
-                        </div>
+                    </div>
+                    <!-- Package type and title -->
+                    <div class="col s12">
+                        <p>{{ current_order.package.package_type|title }} Package</p>
+                        <p>{{ current_order.package.package_title }}</p>
+                        {% if current_order.package.client_requirements %}
+                            <div class="divider" style="width: 50%; margin-left: 0;"></div>
+                            <p class="requirements">{{ current_order.package.client_requirements }}</p>
+                        {% endif %}
                     </div>
                     <div class="col s12">
                         <div class="divider"></div>
@@ -96,38 +149,21 @@
                 <div class="row">
                     <div class="col s12">
                         <table class="extra-costs">
-                            {% if delivery == 0 %}
-                                <tr>
-                                    <td class="extra-name">{{ package.delivery_time }} day delivery</td>
-                                    <td class="extra-qty"></td>
-                                    <td class="extra-price">FREE</td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td class="extra-name">Fast {{ package.fast_delivery_time }} day delivery</td>
-                                    <td class="extra-qty"></td>
-                                    <td class="extra-price">£{{ package.fast_delivery_price }}</td>
-                                </tr>
-                            {% endif %}
+                            <tr>
+                                <td class="extra-name">{{ current_order.delivery_time }} day delivery</td>
+                                <td class="extra-price">£{{ current_order.delivery|floatformat:"2" }}</td>
+                            </tr>
                         </table>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <div class="divider"></div>
-                    </div>
-                </div>
-                <!-- Subtotal -->
-                <div class="row">
                     <div class="col s12">
                         <table class="subtotal">
                             <tr>
                                 <td class="total-name">Subtotal</td>
-                                <td class="total-price">£{{ subtotal }}</td>
+                                <td class="total-price">£{{ subtotal|floatformat:"2" }}</td>
                             </tr>
                             <tr>
                                 <td class="total-name">Service fee</td>
-                                <td class="total-price">£{{ service_fee }}</td>
+                                <td class="total-price">£{{ service_fee|floatformat:"2" }}</td>
                             </tr>
                         </table>
                     </div>
@@ -143,17 +179,11 @@
                         <table class="grandtotal-table">
                             <tr>
                                 <td class="headline">Total</td>
-                                <td class="grand-total">£{{ grand_total }}</td>
+                                <td class="grand-total">£{{ grand_total|floatformat:"2" }}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <!-- Checkout -->
-                <div class="row center">
-                    <div class="col s12">
-                        <a href="#!" class="btn btn-large btn-green-gradient"><span class="helper"></span><span class="show">Continue</span> <span class="hide">Go</span> to checkout</a>
-                    </div>
-                </div>  
             </div>
         </div>
     </div>
