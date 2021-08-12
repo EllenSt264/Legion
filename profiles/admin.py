@@ -2,8 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import (Creator, UserProfile, Recruiter,
-                     CreatorWork, Category,
+from .models import (Creator, UserProfile, Recruiter, CreatorWork,
                      Education, WorkExperience, Languages)
 
 from .forms import UserProfileForm
@@ -31,10 +30,6 @@ class CreatorWorkInlineForm(admin.StackedInline):
     model = CreatorWork
 
 
-class CategoryInlineForm(admin.StackedInline):
-    model = Category
-
-
 class EducationInlineForm(admin.StackedInline):
     model = Education
 
@@ -56,7 +51,6 @@ class UserProfileAdmin(admin.ModelAdmin):
     inlines = [
         RecruiterInlineForm,
         CreatorInlineForm,
-        CategoryInlineForm,
         CreatorWorkInlineForm,
         EducationInlineForm,
         WorkExperienceInlineForm,

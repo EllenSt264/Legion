@@ -1,7 +1,7 @@
 from django import forms
-from .models import (Creator, UserProfile, Recruiter,
-                     CreatorWork, Category,
+from .models import (Creator, UserProfile, Recruiter, CreatorWork,
                      Education, WorkExperience, Languages)
+from services.models import Category, SubCategory
 
 
 class UserProfileForm(forms.ModelForm):
@@ -92,9 +92,43 @@ class CreatorForm(forms.ModelForm):
 
 
 class CreatorWorkForm(forms.ModelForm):
+
+    dev_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=1),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    creative_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=2),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    writing_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=3),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+    translation_categories = forms.ModelChoiceField(
+        queryset=SubCategory.objects.filter(category=4),
+        empty_label=None,
+        widget=forms.RadioSelect(
+            attrs={'class': 'radio-btn', 'name': 'subcategory'},
+        ),
+        label='',
+    )
+
     class Meta:
         model = CreatorWork
-        exclude = ('profile', 'creator', 'category')
+        exclude = ('profile', 'creator',)
 
         widgets = {
             'skills': forms.HiddenInput(
@@ -105,10 +139,27 @@ class CreatorWorkForm(forms.ModelForm):
             'skills': '',
         }
 
+    def save(self, commit=True):
+        return super(CreatorWorkForm, self).save(commit=commit)
+
     def __init__(self, *args, **kwargs):
         """ Add placeholders and classes to form inputs """
 
         super().__init__(*args, **kwargs)
+
+        categories = forms.ModelChoiceField(
+            queryset=Category.objects.all(),
+            widget=forms.RadioSelect(
+                attrs={'class': 'radio-btn'},
+            ),
+            label='',
+        )
+        self.fields['category'] = categories
+        self.fields['subcategory'].required = False
+
+        for field in self.fields:
+            if 'categories' in field:
+                self.fields[field].required = False
 
         # Overwrite choice field as radio buttons
         expertise = CreatorWork.Expertise
@@ -190,27 +241,6 @@ class WorkExperienceForm(forms.ModelForm):
             if field != 'work_country':
                 placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-
-
-class CategoryForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        exclude = ('profile',)
-
-    def __init__(self, *args, **kwargs):
-        """ Add placeholders and classes to form inputs """
-
-        super().__init__(*args, **kwargs)
-
-        # Overwrite choice field as radio buttons
-        categories = forms.ChoiceField(
-            choices=Category.CATEGORY_CHOICES,
-            widget=forms.RadioSelect( 
-                attrs={'class': 'radio-btn'},
-            ),
-            label=''
-        )
-        self.fields['category_name'] = categories
 
 
 class LanguagesForm(forms.ModelForm):

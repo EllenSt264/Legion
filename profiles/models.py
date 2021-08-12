@@ -6,6 +6,8 @@ from django.dispatch import receiver
 
 from django_countries.fields import CountryField
 
+from services.models import Category, SubCategory
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -72,58 +74,6 @@ class Creator(models.Model):
         return self.profile.user.email
 
 
-class Category(models.Model):
-    CATEGORY_CHOICES = [
-        ('Web, Mobile & Software Dev', (
-                ('DESKTOP', 'Desktop Software Development'),
-                ('MOBILE', 'Mobile Development'),
-                ('GAME', 'Game Development'),
-                ('OTHER', 'Other Software Development'),
-                ('TESTING', 'Testing'),
-                ('UX', 'Web UX & Mobile Design'),
-                ('WEB', 'Web Development'),
-            )),
-        ('Design & Creative', (
-                ('ART', 'Art & Illustration'),
-                ('AUDIO', 'Audio & Music Production'),
-                ('VIDEO', 'Video & Animation'),
-                ('DESIGN', 'Graphic, Editorial & Presentation Design'),
-                ('ARTS', 'Performing Arts'),
-                ('PHOTO', 'Photography'),
-                ('BRANDING', 'Branding & Logo Design'),
-                ('GAMING', 'Gaming AR/VR'),
-            )),
-        ('Writing', (
-                ('CONTENT', 'Content & Copyright'),
-                ('CREATIVE', 'Creative'),
-                ('EDITING', 'Editing & Proofreading'),
-                ('RESUMES', 'Resumes & Cover Letters'),
-                ('TECHNICAL', 'Technical Writing'),
-            )),
-        ('Translation', (
-                ('GENERAL', 'General'),
-                ('LEGAL', 'Legal'),
-                ('MEDICAL', 'Medical'),
-                ('TECHNICAL', 'Technical'),
-            )),
-    ]
-
-    profile = models.OneToOneField(
-        UserProfile,
-        on_delete=models.CASCADE,
-        related_name='profile_cat',
-        null=True,
-        blank=True,
-    )
-
-    category_name = models.CharField(
-        max_length=70,
-        choices=CATEGORY_CHOICES,
-        null=False,
-        blank=False,
-    )
-
-
 class CreatorWork(models.Model):
     profile = models.OneToOneField(
         UserProfile,
@@ -131,6 +81,16 @@ class CreatorWork(models.Model):
         related_name='profile_work',
         null=True,
         blank=True,
+    )
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+    )
+
+    subcategory = models.ForeignKey(
+        SubCategory,
+        on_delete=models.CASCADE,
     )
 
     skills = models.CharField(max_length=120, null=True, blank=True)

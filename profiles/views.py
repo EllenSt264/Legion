@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
-from .models import Category, Creator, CreatorWork, Education, Languages, Recruiter, UserProfile, WorkExperience
-from .forms import (RecruiterForm, UserProfileForm, CreatorForm,
-                    CreatorWorkForm, CategoryForm,
-                    EducationForm, WorkExperienceForm, LanguagesForm)
+from .models import (UserProfile, Recruiter, Creator,
+                     CreatorWork, Education, WorkExperience,
+                     Languages)
+from .forms import (RecruiterForm, UserProfileForm,
+                    CreatorForm, CreatorWorkForm,
+                    EducationForm, WorkExperienceForm,
+                    LanguagesForm)
 
 
 # ==========================================================
@@ -36,14 +39,12 @@ def creator_form(request, user_id):
         profile_form = UserProfileForm(request.POST, instance=profile)
         creator_form = CreatorForm(request.POST)
         work_form = CreatorWorkForm(request.POST)
-        category_form = CategoryForm(request.POST)
         education_form = EducationForm(request.POST)
         work_experience_form = WorkExperienceForm(request.POST)
         languages_form = LanguagesForm(request.POST)
 
         form_list = [
             profile_form, creator_form, work_form,
-            category_form,
             education_form, work_experience_form,
             languages_form
         ]
@@ -57,13 +58,8 @@ def creator_form(request, user_id):
                 profile.save()
                 creator.save()
 
-                category = category_form.save(commit=False)
-                category.profile = profile
-                category.save()
-
                 creator_work = work_form.save(commit=False)
                 creator_work.profile = profile
-                creator_work.category = category
                 creator_work.save()
 
                 education = education_form.save(commit=False)
@@ -85,7 +81,6 @@ def creator_form(request, user_id):
         profile_form = UserProfileForm(instance=profile)
         creator_form = CreatorForm()
         work_form = CreatorWorkForm()
-        category_form = CategoryForm()
         education_form = EducationForm()
         work_experience_form = WorkExperienceForm()
         languages_form = LanguagesForm()
@@ -95,7 +90,6 @@ def creator_form(request, user_id):
         'user': user,
         'profile_form': profile_form,
         'creator_form': creator_form,
-        'category_form': category_form,
         'work_form': work_form,
         'education_form': education_form,
         'work_experience_form': work_experience_form,
