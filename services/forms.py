@@ -86,7 +86,7 @@ class FreelanceServiceForm(forms.ModelForm):
 
 
 class ServiceForm(forms.ModelForm):
-    """ NEED TO FIX SUBCATEGORY VARIABLE """
+    """ A class model for adding services  """
 
     dev_categories = forms.ModelChoiceField(
         queryset=SubCategory.objects.filter(category=1),
@@ -146,6 +146,7 @@ class ServiceForm(forms.ModelForm):
             label='',
         )
         self.fields['category'] = categories
+        self.fields['category'].required = False
         self.fields['subcategory'].required = False
 
         for field in self.fields:

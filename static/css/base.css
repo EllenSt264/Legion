@@ -2389,7 +2389,7 @@ Bio
     width: 115%;
     margin-left: -7.5%;
     padding: 25px;
-    background: linear-gradient(180.3deg, rgba(232,5,5,1) 25%, rgba(245,49,191,1) 75%);
+    background: linear-gradient(180.3deg, #6D19FC 25%, #7D1FA5 75%);
     background-size: cover;
     border-radius: 5px;
 }

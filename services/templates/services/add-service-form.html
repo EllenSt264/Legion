@@ -12,7 +12,7 @@
             {% csrf_token %}
 
             <!-- Service category -->
-            <div class="tab" id="ServiceCategory">
+            <div class="tab" class="category-select" id="ServiceCategory">
                 <div class="row">
                     <div class="col s12">
                         <h4 class="center form-step-title">Select your job category</h4>
@@ -184,7 +184,7 @@
                     <a href="#!" class="btn btn-large next-btn btn-orange-gradient" id="nextBtn-service">Next</a>
                 </div>
                 <div class="col s12 l3 hide offset-l3 push-l3">
-                    <button type="submit" class="btn btn-large btn-green-gradient submit-btn">Submit</button>
+                    <button type="submit" class="btn btn-large btn-green-gradient submit-btn">Continue</button>
                 </div>
                 <div class="col s12 l3 pull-l3">
                     <a href="#!" class="btn btn-large prev-btn btn-black">Go back</a>
@@ -210,4 +210,17 @@
     </script>
     <!-- Form steps -->
     <script src="{% static 'services/js/form-steps.js' %}" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_requirements_same_for_all').on('click', function() {
+                var requirementsAllSame = $('#id_requirements_same_for_all');
+                var includeRequirements = $('#id_include_client_requirements');
+
+                if (requirementsAllSame.is(':checked')) {
+                    includeRequirements.prop('checked', true);
+                };
+            });
+        })
+    </script>
 {% endblock %}

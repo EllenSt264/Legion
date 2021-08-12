@@ -598,7 +598,6 @@ $(document).ready(function () {
         // Define value for category selection variable
         if ($(categoryRadios).is(':checked')) {
             var categorySelection = $(this).val();
-            console.log(categorySelection)
         };
 
         // Grab popular search tags container
