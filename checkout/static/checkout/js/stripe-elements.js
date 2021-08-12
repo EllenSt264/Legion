@@ -29,53 +29,68 @@ var style = {
 };
 var card = element.create('card', {style: style});
 card.mount('#card-element');
- 
-// Handle realtime validation errors on the card element
-card.addEventListener('change', function (event) {
-    var errorDiv = document.getElementById('card-errors');
-    if (event.error) {
-        var html = `
-            <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
-            <span>${event.error.message}</span>
-        `;
-        $(errorDiv).html(html);
-    } else {
-        errorDiv.textContent = '';
-    }
+
+
+
+card.on("change", function (event) {
+    // Disable the Pay button if there are no card details in the Element
+    document.querySelector("button").disabled = event.empty;
+    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
 });
 
-// Handle form submit
-var form = $('.payment-form');
-
-form.on('submit', function(ev) {
-    // Before we call out Stripe, we want to disable both the
-    // card element and submit button to prevent multiple submissions.
-    ev.preventDefault();
-    card.update({ 'disabled': true});
-    $('#submit-payment').attr('disabled', true);
-    stripe.confirmCardPayment(clientSecret, {
+var form = document.getElementById("payment-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    // Complete payment when the submit button is clicked
+    payWithCard(stripe, card, clientSecret);
+});
+// Calls stripe.confirmCardPayment
+// If the card requires authentication Stripe shows a pop-up modal to
+// prompt the user to enter authentication details without leaving your page.
+var payWithCard = function(stripe, card, clientSecret) {
+    loading(true);
+    stripe
+    .confirmCardPayment(clientSecret, {
         payment_method: {
-            card: card,
+            card: card
         }
-    }).then(function(result) {
+    })
+    .then(function(result) {
         if (result.error) {
-            var errorDiv = $('#card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            // If there is an error we want to re-enable the card element
-            // and submit button to allow the user to fix it.
-            card.update({ 'disabled': false});
-            $('#submit-payment').attr('disabled', false);
+        // Show error to your customer
+        showError(result.error.message);
         } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
-            }
+        // The payment succeeded!
+        orderComplete(result.paymentIntent.id);
         }
     });
-});
+};
+
+/* ------- UI helpers ------- */
+
+// Shows a success message when the payment is complete
+var orderComplete = function(paymentIntentId) {
+    form.submit()
+};
+
+// Show the customer the error from Stripe if their card fails to charge
+var showError = function(errorMsgText) {
+    loading(false);
+    var errorMsg = document.querySelector("#card-error");
+    errorMsg.textContent = errorMsgText;
+    setTimeout(function() {
+        errorMsg.textContent = "";
+    }, 4000);
+};
+
+// Show a spinner on payment submission
+var loading = function(isLoading) {
+    if (isLoading) {
+        // Disable the button and show a spinner
+        document.querySelector("button").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+    } else {
+        document.querySelector("button").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+    }
+};
