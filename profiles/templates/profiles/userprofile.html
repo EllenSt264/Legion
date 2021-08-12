@@ -92,7 +92,7 @@
                 <!-- Button -->
                 <div class="row center">
                     <div class="col s12">
-                        <a href="#!" class="btn clear-btn-cyan">Add new service</a>
+                        <a href="{% url 'add_service' user.id %}" class="btn clear-btn-cyan">Add new service</a>
                     </div>
                 </div>
             </div>
@@ -146,24 +146,6 @@
                                     English
                                     <span>
                                         {% with languages.english_proficiency as l %}
-                                        {% if l == 1 %}
-                                            Basic
-                                        {% elif l == 2 %}
-                                            Conversational
-                                        {% elif l == 3 %}
-                                            Fluent
-                                        {% elif l == 4 %}
-                                            Native / Bilingual
-                                        {% endif %}
-                                        {% endwith %}
-                                    </span>
-                                </p>
-                                <!-- Other languages -->
-                                {% if languages.language %}
-                                    <p>
-                                        {{ languages.language }}
-                                        <span>
-                                            {% with languages.language_proficiency as l %}
                                             {% if l == 1 %}
                                                 Basic
                                             {% elif l == 2 %}
@@ -173,6 +155,24 @@
                                             {% elif l == 4 %}
                                                 Native / Bilingual
                                             {% endif %}
+                                        {% endwith %}
+                                    </span>
+                                </p>
+                                <!-- Other languages -->
+                                {% if languages.language %}
+                                    <p>
+                                        {{ languages.language }}
+                                        <span>
+                                            {% with languages.language_proficiency as l %}
+                                                {% if l == 1 %}
+                                                    Basic
+                                                {% elif l == 2 %}
+                                                    Conversational
+                                                {% elif l == 3 %}
+                                                    Fluent
+                                                {% elif l == 4 %}
+                                                    Native / Bilingual
+                                                {% endif %}
                                             {% endwith %}
                                         </span>
                                     </p>

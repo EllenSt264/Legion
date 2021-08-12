@@ -212,17 +212,16 @@ def user_profile(request, user_id):
                 return render(request, template, context)
             else:
                 creator = get_object_or_404(Creator, profile=profile)
-                category = get_object_or_404(Category, profile=profile)
                 work = get_object_or_404(CreatorWork, profile=profile)
                 education = get_object_or_404(Education, profile=profile)
-                workexperience = get_object_or_404(WorkExperience, profile=profile)
+                workexperience = get_object_or_404(
+                    WorkExperience, profile=profile)
                 languages = get_object_or_404(Languages, profile=profile)
 
                 template = 'profiles/userprofile.html'
                 context = {
                     'profile': profile,
                     'creator': creator,
-                    'category': category,
                     'work': work,
                     'education': education,
                     'workexperience': workexperience,
