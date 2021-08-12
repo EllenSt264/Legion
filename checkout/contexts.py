@@ -18,8 +18,6 @@ def order_contents(request):
 
     order_details.append({
         'service_id': service_id,
-        'delivery': int(delivery),
-        'quantity': int(quantity),
         'service': service,
     })
 
@@ -30,6 +28,8 @@ def order_contents(request):
     elif package == 'premium':
         chosen_package = service.premium
 
+    delivery_time = chosen_package.delivery_time
+
     total = chosen_package.price * int(quantity)
     subtotal = int(total) + int(delivery)
     service_fee = (subtotal / 10) / 2
@@ -37,9 +37,13 @@ def order_contents(request):
 
     context = {
         'order_details': order_details,
-        'package': package,
-        'subtotal': subtotal,
-        'service_fee': service_fee,
-        'grand_total': grand_total,
+        'package': chosen_package,
+        'delivery': float(delivery),
+        'delivery_time': delivery_time,
+        'quantity': int(quantity),
+        'total': float(total),
+        'subtotal': float(subtotal),
+        'service_fee': float(service_fee),
+        'grand_total': float(grand_total),
     }
     return context
