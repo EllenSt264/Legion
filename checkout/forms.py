@@ -6,7 +6,11 @@ from django import forms
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        exclude = ('profile', 'order_number', 'stripe_pid', 'date')
+        exclude = (
+            'profile', 'order_number', 'stripe_pid', 'date',
+            'original_order_contents', 'delivery_cost',
+            'order_total', 'grand_total',
+        )
 
         labels = {
             'full_name': 'Full Name *',
