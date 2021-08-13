@@ -331,6 +331,22 @@ AWS_S3_OBJECT_PARAMATERS = {
 
 
 
+### Stripe and Heroku
+
+1. Create a Stripe account if you haven't done so already and navigate to **API Keys** under the **Developers** tab.
+
+2. From there, find and copy `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` and paste them into the Heroku config vars. Give them the same name so that they can be accessed by your application.
+
+3. To setup a webhook, navigate to to the **Webhooks** tab on Stripe, and click **Add Endpoint**. In there paste in the appropriate url for your application. For me this was `
+https://my-legion-app.herokuapp.com/checkout/wh/` and check *recieve all events**. Add the endpoint.
+
+4. You can now reveal your webhook signing secret, which you can add to Heroku config variables as done before. 
+
+5. Ensure all your variable names match the names defined in `settings.py`.
+
+6. Send a test webhook from Stripe to ensure that the listener is working by clicking **send test webhook**.
+
+
 -----
 
 ## Credits
