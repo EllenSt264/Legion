@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from services.models import Category
 from .models import (UserProfile, Recruiter, Creator,
                      CreatorWork, Education, WorkExperience,
                      Languages)
@@ -69,18 +70,23 @@ def creator_form(request, user_id):
             try:
                 if work_form.cleaned_data['dev_categories']:
                     field = work_form.cleaned_data['dev_categories']
+                    categoryVal = 1
                 elif work_form.cleaned_data['creative_categories']:
                     field = work_form.cleaned_data['creative_categories']
+                    categoryVal = 2
                 elif work_form.cleaned_data['writing_categories']:
                     field = work_form.cleaned_data['writing_categories']
+                    categoryVal = 3
                 elif work_form.cleaned_data['translation_categories']:
                     field = work_form.cleaned_data['translation_categories']
+                    categoryVal = 4
             except Exception as e:
                 messages.error(request, 'Error! {e} The form could not be validated. \
                         Please try again.').format(e)
 
             creator_work = work_form.save(commit=False)
             creator_work.profile = profile
+            creator_work.category = Category.objects.get(pk=categoryVal)
             creator_work.subcategory = field
             creator_work.save()
 

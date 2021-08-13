@@ -155,6 +155,7 @@ class CreatorWorkForm(forms.ModelForm):
             label='',
         )
         self.fields['category'] = categories
+        self.fields['category'].required = False
         self.fields['subcategory'].required = False
 
         for field in self.fields:

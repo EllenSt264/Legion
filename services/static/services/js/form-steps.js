@@ -23,10 +23,10 @@ $(document).ready(function() {
         if (currentTab === 0) {
             if ($('.active-category .category-box').hasClass('selected-category')) {
                 next();
-            }
+            };
         } else {
-            next()
-        }
+            next();
+        };
     });
 
     $('.prev-btn').on('click', function() {
