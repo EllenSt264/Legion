@@ -12,8 +12,6 @@ class OrderAdmin(admin.ModelAdmin):
         'order_number',
         'date',
         'full_name',
-        'order_total',
-        'delivery_cost',
         'grand_total'
     )
 

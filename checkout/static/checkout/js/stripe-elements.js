@@ -5,92 +5,140 @@
     https://stripe.com/docs/stripe-js
 */
 
-// Slice off the first and last character to remove quotation marks
+// Slice off the first and last character as we don't want the quotation marks
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 
+// Set up Stripe
 var stripe = Stripe(stripePublicKey);
-var element = stripe.elements();
+var elements = stripe.elements();
 var style = {
     base: {
-        color: "#2D2D2D",
-        fontFamily: 'Arial, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-            color: "##9E9E9E"
-        },
+        color: '#000',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+            color: '#aab7c4'
+        }
     },
     invalid: {
-        fontFamily: 'Arial, sans-serif',
-        color: "#dc3545",
-        iconColor: "#dc3545",
-    },
-};
-var card = element.create('card', {style: style});
-card.mount('#card-element');
-
-
-
-card.on("change", function (event) {
-    // Disable the Pay button if there are no card details in the Element
-    document.querySelector("button").disabled = event.empty;
-    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
-});
-
-var form = document.getElementById("payment-form");
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    // Complete payment when the submit button is clicked
-    payWithCard(stripe, card, clientSecret);
-});
-// Calls stripe.confirmCardPayment
-// If the card requires authentication Stripe shows a pop-up modal to
-// prompt the user to enter authentication details without leaving your page.
-var payWithCard = function(stripe, card, clientSecret) {
-    loading(true);
-    stripe
-    .confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card
-        }
-    })
-    .then(function(result) {
-        if (result.error) {
-        // Show error to your customer
-        showError(result.error.message);
-        } else {
-        // The payment succeeded!
-        orderComplete(result.paymentIntent.id);
-        }
-    });
-};
-
-/* ------- UI helpers ------- */
-
-// Shows a success message when the payment is complete
-var orderComplete = function(paymentIntentId) {
-    form.submit()
-};
-
-// Show the customer the error from Stripe if their card fails to charge
-var showError = function(errorMsgText) {
-    loading(false);
-    var errorMsg = document.querySelector("#card-error");
-    errorMsg.textContent = errorMsgText;
-    setTimeout(function() {
-        errorMsg.textContent = "";
-    }, 4000);
-};
-
-// Show a spinner on payment submission
-var loading = function(isLoading) {
-    if (isLoading) {
-        // Disable the button and show a spinner
-        document.querySelector("button").disabled = true;
-        document.querySelector("#spinner").classList.remove("hidden");
-    } else {
-        document.querySelector("button").disabled = false;
-        document.querySelector("#spinner").classList.add("hidden");
+        color: '#dc3545',
+        iconColor: '#dc3545'
     }
 };
+var card = elements.create('card', {style: style});
+card.mount('#card-element');
+
+// Handle realtime validation errors on the card element
+card.addEventListener('change', function (event) {
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
+});
+
+// Handle form submit
+var form = document.getElementById('payment-form');
+
+form.addEventListener('submit', function(ev) {
+    // Before we call out Stripe, we want to disable both the
+    // card element and submit button to prevent multiple submissions.
+    // When the user submits the form, the card element is disabled
+    // and the loading overlay is triggered.
+    ev.preventDefault();
+    card.update({ 'disabled': true});
+    $('#submit-button').attr('disabled', true);
+    $('#submit-payment').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
+
+    // The four variables below, capture the form data that we 
+    // can't put in the payment intent. We then post it
+    // to the cache_checkout_data view
+
+    // Get boolean value of saved info box
+    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    // From using {% csrf_token %} in the form
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+    // Object to pass this information to the new view and
+    // pass the client secret for the payment intent
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    }
+
+    var url = '/checkout/cache_checkout_data/';
+
+    // Post data to the view
+
+    // We use the done method to wait for a response that the payment intent
+    // was updated before calling the confirmed payment method.
+    $.post(url, postData).done(function() {
+        // The view updates the payment intent and returns a 200 response, at which point we call
+        // the confirmCardPayment method from stripe and if all is good, submit the form
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                // The trim method will remove any whitespace
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address: {
+                        line1: $.trim(form.street_address.value),
+                        line2: $.trim(form.apartment_no.value),
+                        city: $.trim(form.town_or_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
+                    }
+                }
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.street_address.value),
+                    line2: $.trim(form.apartment_no.value),
+                    city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.county.value),
+                }
+            }
+        }).then(function(result) {
+            // If an error exists in the form
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                // If there is an error we want to re-enable the card element, hide the overlay,
+                // and submit button to allow the user to fix it.
+                $('#submit-payment').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
+            }
+        });
+    }).fail(function() {
+        // Reload the page to show the error from the view with django messages
+        location.reload();
+    })
+});

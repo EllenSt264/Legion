@@ -39,6 +39,8 @@ Legion is a professional, online marketplace that connects businesses with freel
 
 The purpose of Legion is to compete with known platforms like LinkedIn, Fiverr and Upwork, by providing a new, distinct platform for individuals to connect with business and vice versa. Legion is also open to smaller, independent companies who wish to hire freelance services. Legion aims to provide a professional, easy and secure space for people to network and grow their business and/or online presence. What makes it different is its approach, as Legion takes on an aesthetic which is similar to social media platforms like Instagram. This makes Legion easy to navigate and makes the user experience much more enjoyable.
 
+Due to the mere scope of this project, not all user stories have been yet and many features have not yet been added. Due to a shortage of time, many features that I wanted to implement have been put on hold.
+
 
 #### Site Owner Goals
 

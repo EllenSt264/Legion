@@ -1,13 +1,15 @@
-from checkout.contexts import order_contents
-from django.shortcuts import redirect, render, reverse, get_object_or_404
+from django.shortcuts import (
+    redirect, render, reverse, get_object_or_404, HttpResponse)
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 from .models import Order, OrderLineItem
-from profiles.models import UserProfile
+from profiles.models import Creator, Recruiter, UserProfile
 from services.models import Service
 from checkout.forms import OrderForm
+from checkout.contexts import order_contents
 
 import stripe
 import json
@@ -109,6 +111,24 @@ def checkout(request, service_id):
     return render(request, template, context)
 
 
+@require_POST
+def cache_checkout_data(request):
+    """ Add saved info to payment intent in metadata key """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'order': json.dumps(request.session.get('order', {})),
+            'save_info': request.POST.get('save_info'),
+            'email': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
+
+
 @login_required
 def checkout_payment(request, service_id):
     """ A view to process payment for an order """
@@ -141,18 +161,12 @@ def checkout_payment(request, service_id):
             user_order.profile = profile
             user_order.save()
 
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            user_order.stripe_pid = pid
-            user_order.original_order_contents = json.dumps(order)
-            user_order.save()
-
             package = current_order['package']
 
             order_line_item = OrderLineItem(
                 order=user_order,
                 service=service,
                 package=package,
-                service_price=package.price,
                 quantity=current_order['quantity'],
                 delivery_cost=current_order['delivery'],
             )
@@ -180,6 +194,27 @@ def checkout_payment(request, service_id):
         )
 
         form = OrderForm()
+
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                if profile.is_creator:
+                    profile_type = Creator.objects.get(profile=profile)
+                elif profile.is_recruiter:
+                    profile_type = Recruiter.objects.get(profile=profile)
+
+                form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': request.user.phone_number,
+                    'town_or_city': profile_type.town_or_city,
+                    'postcode': profile_type.postcode,
+                    'country': profile_type.country,
+                })
+            except UserProfile.DoesNotExist:
+                form = OrderForm()
+        else:
+            form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
