@@ -12,6 +12,7 @@ from checkout.forms import OrderForm
 from checkout.contexts import order_contents
 
 import stripe
+import json
 
 
 def checkout(request, service_id):
@@ -112,13 +113,12 @@ def checkout(request, service_id):
 
 @require_POST
 def cache_checkout_data(request):
-    order = order_contents(request)
     """ Add saved info to payment intent in metadata key """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'order': order,
+            'order': json.dumps(request.session.get('order', {})),
             'save_info': request.POST.get('save_info'),
             'email': request.user,
         })
