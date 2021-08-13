@@ -12,7 +12,6 @@ from checkout.forms import OrderForm
 from checkout.contexts import order_contents
 
 import stripe
-import json
 
 
 def checkout(request, service_id):
@@ -159,11 +158,6 @@ def checkout_payment(request, service_id):
         if form.is_valid():
             user_order = form.save(commit=False)
             user_order.profile = profile
-            user_order.save()
-
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            user_order.stripe_pid = pid
-            user_order.original_order_contents = json.dumps(order)
             user_order.save()
 
             package = current_order['package']
