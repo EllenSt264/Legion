@@ -2,25 +2,25 @@
 <ul class="sidenav collapsible show-on-large" id="sidenav-main">
     <li><a href="#!"><i class="material-icons search">search</i></a></li>
     <li><a href="{% url 'home' %}">Home <i class="material-icons right">chevron_right</i></a></li>
-    <li><a href="#!">About Us <i class="material-icons right">chevron_right</i></a></li>
-    <li><a href="#!">Services <i class="material-icons right">chevron_right</i></a></li>
+    <li><a href="{% url 'home' %}">About Us <i class="material-icons right">chevron_right</i></a></li>
+    <li><a href="{% url 'services' %}">Services <i class="material-icons right">chevron_right</i></a></li>
     <li><a href="#!">Ways to Earn <i class="material-icons right">chevron_right</i></a></li>
     <li><a href="#!">Job Listings <i class="material-icons right">chevron_right</i></a></li>
-    <li><a href="#!">Post a Job and Hire <i class="material-icons right">chevron_right</i></a></li>
-    <li><a href="#!">Find Creators <i class="material-icons right">chevron_right</i></a></li>
+    <li><a href="{% url 'services' %}">Post a Job and Hire <i class="material-icons right">chevron_right</i></a></li>
+    <li><a href="{% url 'services' %}">Find Creators <i class="material-icons right">chevron_right</i></a></li>
 
     <li class="hide-on-large-only">
-        <a href="#!" class="collapsible-header">Find Work <i class="material-icons right">keyboard_arrow_down</i></a>
+        <a href="{% url 'home' %}" class="collapsible-header">Find Work <i class="material-icons right">keyboard_arrow_down</i></a>
         <ul class="collapsible-body">
             <li><a href="#!">Ways to Earn</a></li>
             <li><a href="#!">Job Listings</a></li>
         </ul>
     </li>
     <li class="hide-on-large-only">
-        <a href="#!" class="collapsible-header">Find Creators <i class="material-icons right">keyboard_arrow_down</i></a>
+        <a href="{% url 'services' %}" class="collapsible-header">Find Creators <i class="material-icons right">keyboard_arrow_down</i></a>
         <ul class="collapsible-body">
-            <li><a href="#!">Post a Job and Hire</a></li>
-            <li><a href="#!">Find a Creator</a></li>
+            <li><a href="{% url 'services' %}">Post a Job and Hire</a></li>
+            <li><a href="{% url 'services' %}">Find a Creator</a></li>
         </ul>
     </li>
  
