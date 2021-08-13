@@ -9,7 +9,7 @@ class OrderForm(forms.ModelForm):
         exclude = (
             'profile', 'order_number', 'stripe_pid', 'date',
             'original_order_contents', 'delivery_cost',
-            'order_total', 'grand_total',
+            'service_fee', 'grand_total', 'order_subtotal',
         )
 
         labels = {

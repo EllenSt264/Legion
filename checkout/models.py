@@ -31,10 +31,6 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     original_order_contents = models.TextField(null=False, blank=False, default='')
 
-    delivery_cost = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, default=0)
-    order_total = models.DecimalField(
-        max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
 
@@ -51,6 +47,13 @@ class Order(models.Model):
 
         return uuid.uuid4().hex.upper()
 
+    def update_total(self):
+        """ Update total price """
+
+        self.grand_total = self.lineitem.aggregate(
+            Sum('lineitem_total'), self.lineitem.service_fee)
+        self.save()
+
     def save(self, *args, **kwargs):
         """ Override original save method to set order number """
 
@@ -63,27 +66,18 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
+    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitem')
     service = models.ForeignKey(Service, null=False, blank=False, on_delete=models.CASCADE)
     package = models.ForeignKey(BasicPackage, null=False, blank=False, on_delete=models.CASCADE, related_name='package')
-
     quantity = models.IntegerField(null=True, blank=True, default=0)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
-    service_price = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    subtotal = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    service_fee = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    grand_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, default=0)
+    service_fee = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
-    # Set the line-item total field by overriding its save method
     def save(self, *args, **kwargs):
         """ Override original save method to set order number """
 
-        self.subtotal = (float(self.service_price) * self.quantity) + self.delivery_cost
-
-        self.service_fee = (self.subtotal / 10) / 2
-        self.grand_total = self.subtotal + self.service_fee
-
-        super().save(*args, **kwargs)
+        self.lineitem_total = self.package.price * self.quantity
 
     def __str__(self):
         return self.order.order_number
